@@ -7,13 +7,42 @@ class NavBar extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = { dropdown: false };
+        this.handleDropdown = this.handleDropdown.bind(this);
+    }
+
+    handleDropdown(){
+        this.setState({ dropdown: !this.state.dropdown });
     }
 
     renderLogin(){
+
+        const hidden = this.state.dropdown ? "" : "hidden";
+
         if (this.props.loggedIn){
             return(
-                <div onClick={this.props.logout}>
-                    you are logged in; click to logout
+                <div className="nav-profile flex-diag">
+                    <div className="nav-char">
+                        Hello, Blanche!
+                    </div>
+                    <div className="nav-dropdown relative">
+                        <img src="https://i.ibb.co/Rv91CDx/blanche-head.png" className="small-profile-pic hover" onClick={this.handleDropdown} />
+                        {/* <a><i className="fas fa-caret-down" onClick={this.handleDropdown}></i></a> */}
+                        <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
+                            <div className="dropdown hover dd-profile">
+                                Your Profile here
+                            </div>
+                            <div className="dropdown hover dd-chars">
+                                Your Chars Here
+                            </div>
+                            <div className="dropdown hover dd-add-chars">
+                                Create Character
+                            </div>
+                            <div className="dropdown hover dd-logout" onClick={() => this.props.logout()}>
+                                Log Out
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         } else {
@@ -38,7 +67,7 @@ class NavBar extends React.Component {
         } else {
             return (
                 <>
-                    <div className="navbar-submenu flex-center hover">How to Co-Tell</div>
+                    <div className="navbar-submenu flex-center hover">How to CoTell</div>
                     <div className="navbar-submenu flex-center hover">Featured</div>
                     <div className="navbar-submenu flex-center hover">Contact Us</div>
                 </>
@@ -47,7 +76,6 @@ class NavBar extends React.Component {
     }
 
     render() {
-
         return (
           <nav className="navbar-container">
             <div className="navbar-search-container">
