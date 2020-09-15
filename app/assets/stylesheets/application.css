@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+html, body, h1, h2, h3, h4, h5, h6, div, main, nav, p, ul, ol, li, aside, article, header, footer {
+   border: 0px;
+   margin: 0px;
+   padding: 0px;
+   outline: 0px;
+   text-align: inherit;
+   font: inherit;
+   background-color: transparent;
+   list-style: none;
+}
+
+.flex-diag {
+    display: flex;
+}
+
+.flex-vert {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background: #D89A9E;
+    background: #95B8D1;
+}
