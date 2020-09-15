@@ -7,9 +7,9 @@ class User < ApplicationRecord
     attr_reader :password
     after_initialize :ensure_session_token
 
-    # has_many :posts
+    has_many :posts
     # has_many :comments
-    # has_one_attached :profile_photo
+    has_one_attached :profile_photo
     # has_one_attached :cover_photo
 
     # has_many :sent_friend_requests,

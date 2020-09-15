@@ -23,6 +23,8 @@ html, body, h1, h2, h3, h4, h5, h6, div, main, nav, p, ul, ol, li, aside, articl
    font: inherit;
    background-color: transparent;
    list-style: none;
+   /* font-family: 'Roboto', sans-serif; */
+   font-family: sans-serif;
 }
 
 .flex-diag {
@@ -34,7 +36,13 @@ html, body, h1, h2, h3, h4, h5, h6, div, main, nav, p, ul, ol, li, aside, articl
     flex-direction: column;
 }
 
-body {
+.flex-center {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* body {
     background: #D89A9E;
     background: #95B8D1;
-}
+} */

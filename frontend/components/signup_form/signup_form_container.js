@@ -8,8 +8,7 @@ import SignupForm from './signup_form';
 // });
 
 const mDTP = (dispatch) => ({
-    signup: (user) => dispatch(signup(user)),
-    loginDemoUser: () => dispatch(loginDemoUser())
+    signup: (user) => dispatch(signup(user))
 });
 
 export default connect(null, mDTP)(SignupForm);
