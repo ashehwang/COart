@@ -4,7 +4,7 @@ import SignupFormContainer from './signup_form/signup_form_container';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import ArtLogContainer from './art_log/art_log_container';
 // import { AuthRoute, ProtectedRoute } from '../util/route_util';
-// import Modal from './modal/modal';
+import Modal from './modal/modal';
 // import ProfileContainer from './profile/profile_container';
 // import Entry from './entry';
 // import MainMenu from './main';
@@ -13,7 +13,7 @@ import ArtLogContainer from './art_log/art_log_container';
 
 const App = () => (
     <body>
-        {/* <Modal /> */}
+        <Modal />
         {/* <Switch>
             <ProtectedRoute path="/profile/:userId" component={ProfileContainer}/>
             <ProtectedRoute path="/main" component={MainMenu} />
