@@ -18,10 +18,9 @@ class SignupForm extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="signup">
-                <form className="signup-form" onSubmit={this.handleSubmit}>
+                <form className="signup-form">
                     <div className="signup-detail">
                         <label> Username: 
                         <input type="text" required id="username" value={this.state.user_name} onChange={this.update("user_name")} />

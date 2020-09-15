@@ -5,12 +5,12 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { user_name: "", password: "" };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.login(this.state);
+  handleClick(e) {
+    this.props.login(this.state)
+      .then(() => this.props.closeModal());
   }
 
   update(field) {
@@ -18,31 +18,46 @@ class LoginForm extends React.Component {
   }
 
   render(){
-      return (
-        <div className="login-form-container">
-          <form className="login-form" onSubmit={this.handleSubmit}>
+    return (
+      <div className="signup">
+        <form className="signup-form">
+          <div className="signup-detail">
             <label>
+              {" "}
               Username:
               <input
                 type="text"
+                required
+                id="username"
                 value={this.state.user_name}
                 onChange={this.update("user_name")}
               />
             </label>
+          </div>
+          <div className="signup-detail">
             <label>
+              {" "}
               Password:
               <input
                 type="password"
+                required
+                id="password"
                 value={this.state.password}
                 onChange={this.update("password")}
               />
             </label>
-            <input type="submit" value="Log In" />
-          </form>
-        </div>
-      );
+          </div>
+          <div
+            className="signup-button flex-center hover"
+            onClick={this.handleClick}
+          >
+            Log In
+          </div>
+        </form>
+      </div>
+    );
   }
 
 }
 
-export default LoginForm
+export default LoginForm;
