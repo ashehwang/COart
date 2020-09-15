@@ -1,3 +1,42 @@
 .login-form-container {
     background-color: red;
 }
+
+.signup {
+    padding: 30px;
+    /* background: rgba(white, 0.7); */
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+}
+
+.signup-detail input[type=text], .signup-detail input[type=password] {
+    padding: 5px 8px;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.10);
+    border: none;
+    margin-left: 10px;
+}
+
+.signup-detail label {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: grey;
+}
+
+.signup-button {
+    width: 86%;
+    background: #99B8D6;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 0 auto;
+    color: white;
+    border: 1px solid lightgrey;
+}
+
+.signup-button:hover {
+    background: #6D99C5;
+}

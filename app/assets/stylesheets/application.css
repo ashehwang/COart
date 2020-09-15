@@ -42,6 +42,10 @@ html, body, h1, h2, h3, h4, h5, h6, div, main, nav, p, ul, ol, li, aside, articl
     align-items: center;
 }
 
+.hover:hover {
+    cursor: pointer;
+}
+
 /* body {
     background: #D89A9E;
     background: #95B8D1;

@@ -7,19 +7,7 @@ class NavBar extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.state = { user_name: "", password: "" };
-        // console.log(this.props);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    // handleSubmit(e){
-    //     e.preventDefault();
-    //     this.props.login(this.state);
-    // }
-
-    // update(field) {
-    //     return e => this.setState({ [field]: e.currentTarget.value });
-    // }
 
     renderLogin(){
         if (this.props.loggedIn){
@@ -31,10 +19,30 @@ class NavBar extends React.Component {
         } else {
             return (
               <div className="session-container flex-diag">
-                <div className="session flex-center" onClick={() => this.props.openModal('signup')}>Join</div>
-                <div className="session flex-center" onClick={() => this.props.openModal('login')}>Login</div>
+                <div className="session flex-center hover" onClick={() => this.props.openModal('signup')}>Join</div>
+                <div className="session flex-center hover" onClick={() => this.props.openModal('login')}>Login</div>
               </div>
             );
+        }
+    }
+
+    renderNavLogin(){
+        if (this.props.loggedIn){
+            return (
+              <>
+                <div className="navbar-submenu flex-center hover">Feed</div>
+                <div className="navbar-submenu flex-center hover">Char Page</div>
+                <div className="navbar-submenu flex-center hover">Username's Page</div>
+              </>
+            );
+        } else {
+            return (
+                <>
+                    <div className="navbar-submenu flex-center hover">How to Co-Tell</div>
+                    <div className="navbar-submenu flex-center hover">Featured</div>
+                    <div className="navbar-submenu flex-center hover">Contact Us</div>
+                </>
+            )
         }
     }
 
@@ -46,10 +54,8 @@ class NavBar extends React.Component {
               <SearchBarContainer />
             </div>
             <div className="navbar-menu flex-diag">
-              <div className="navbar-submenu flex-center">World</div>
-              <div className="navbar-submenu flex-center">Feed</div>
-              <div className="navbar-submenu flex-center">Char Page</div>
-              <div className="navbar-submenu flex-center">Username's Page</div>
+              <div className="navbar-submenu flex-center hover">World</div>
+              {this.renderNavLogin()}
             </div>
             <div className="navbar-right">{this.renderLogin()}</div>
           </nav>
