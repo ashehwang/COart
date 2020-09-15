@@ -6,10 +6,11 @@ import { closeModal } from "../../actions/modal_actions";
 
 const mSTP = (state) => ({
   currentUser: state.entities.users[state.session.id],
+  char: state.entities.characters
 });
 
 const mDTP = (dispatch) => ({
-  updateChar: (formData, id) => dispatch(updateChar(formData, id)),
+  action: (formData, id) => dispatch(updateChar(formData, id)),
   closeModal: () => dispatch(closeModal()),
 });
 
