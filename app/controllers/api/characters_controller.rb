@@ -36,7 +36,7 @@ class Api::CharactersController < ApplicationController
             end
             render :show
         else
-            render json: @chracter.errors, status: 422
+            render json: @character.errors, status: 422
         end
     end
 

@@ -32,10 +32,10 @@ class NavBar extends React.Component {
                             <div className="dropdown hover dd-profile">
                                 Your Profile here
                             </div>
-                            <div className="dropdown hover dd-chars">
+                            <div className="dropdown hover dd-chars" >
                                 Your Chars Here
                             </div>
-                            <div className="dropdown hover dd-add-chars">
+                            <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
                                 Create Character
                             </div>
                             <div className="dropdown hover dd-logout" onClick={() => this.props.logout()}>

@@ -1,7 +1,9 @@
 .navbar-container {
     height: 45px;
     /* background-color: #F7B2AD; */
+    background: #E8B4BC;
     background: #95B8D1;
+    background: #A3C3D9;
     display: flex;
     justify-content: space-between;
     padding: 30px 30px 0 30px;
