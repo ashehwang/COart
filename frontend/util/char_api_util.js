@@ -10,14 +10,14 @@ export const fetchChar = (charId) =>
     url: `/api/characters/${charId}`,
   });
 
-export const createChar = (char) =>
-  $.ajax({
-    method: "POST",
-    url: "/api/characters",
-    data: { char },
-    contentType: false,
-    processData: false,
-  });
+// export const createChar = (char) =>
+//   $.ajax({
+//     method: "POST",
+//     url: "/api/characters",
+//     data: { char },
+//     contentType: false,
+//     processData: false,
+//   });
 
 export const updateChar = (formData, id) =>
   $.ajax({
@@ -34,14 +34,14 @@ export const deleteChar = (charId) =>
     url: `/api/characters/${charId}`,
   });
 
-export const fetchUserCharacters = (userId) =>
+export const fetchUserChars = (userId) =>
   $.ajax({
     method: "GET",
     url: `/api/characters`,
     data: { userId },
   });
 
-export const createPhotoChar = (formData) =>
+export const createChar = (formData) =>
   $.ajax({
     method: "POST",
     url: "/api/characters",

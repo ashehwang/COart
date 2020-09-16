@@ -7,17 +7,17 @@ export const RECEIVE_CHAR_ERROR = "RECEIVE_CHAR_ERROR";
 
 const receiveAllChars = (payload) => ({
   type: RECEIVE_ALL_CHARS,
-  payload: payload,
+  payload: payload
 });
 
 const receiveChar = (char) => ({
   type: RECEIVE_CHAR,
-  char,
+  char
 });
 
 const removeChar = (charId) => ({
   type: REMOVE_CHAR,
-  charId,
+  charId
 });
 
 export const fetchChars = () => (dispatch) =>
@@ -28,8 +28,8 @@ export const fetchChars = () => (dispatch) =>
 export const fetchChar = (charId) => (dispatch) =>
   CharApiUtil.fetchChar(charId).then((char) => dispatch(receiveChar(char)));
 
-export const createChar = (char) => (dispatch) =>
-  CharApiUtil.createChar(char).then((char) => dispatch(receiveChar(char)));
+// export const createChar = (char) => (dispatch) =>
+//   CharApiUtil.createChar(char).then((char) => dispatch(receiveChar(char)));
 
 export const updateChar = (formData, id) => (dispatch) =>
   CharApiUtil.updateChar(formData, id).then((updatedChar) =>
@@ -44,8 +44,8 @@ export const fetchUserChars = (userId) => (dispatch) =>
     dispatch(receiveAllChars(chars))
   );
 
-export const createPhotoChar = (formData) => (dispatch) =>
-  CharApiUtil.createPhotoChar(formData).then((char) =>
+export const createChar = (formData) => (dispatch) =>
+  CharApiUtil.createChar(formData).then((char) =>
     dispatch(receiveChar(char))
   );
 

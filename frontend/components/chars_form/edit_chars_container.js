@@ -6,7 +6,8 @@ import { closeModal } from "../../actions/modal_actions";
 
 const mSTP = (state) => ({
   currentUser: state.entities.users[state.session.id],
-  char: state.entities.characters
+  character: state.entities.characters,
+  notice: "Edit Character"
 });
 
 const mDTP = (dispatch) => ({
