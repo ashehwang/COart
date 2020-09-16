@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBarContainer from './search_bar_container';
+import CharItem from './char_item';
 // import FriendRequestShowContainer from './friend_request_show_container';
 
 class NavBar extends React.Component {
@@ -43,11 +44,17 @@ class NavBar extends React.Component {
                         <img src={avatar.headPhotoUrl} className="small-profile-pic hover" onClick={this.handleDropdown} />
                         {/* <a><i className="fas fa-caret-down" onClick={this.handleDropdown}></i></a> */}
                         <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
-                            <div className="dropdown hover dd-profile">
-                                Your Profile here
+                            <div className="dropdown hover dd-profile flex-diag">
+                                <div>
+                                    <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="small-profile-pic"/>
+                                </div>
+                                <div>
+                                    {currentUser.nick_name}
+                                </div>
                             </div>
                             <div className="dropdown hover dd-chars" >
-                                Your Chars Here
+                                {/* Your Chars Here */}
+                                {currentUser.character_ids.map( charId => < CharItem key={charId} character={characters[charId]} />)}
                             </div>
                             <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
                                 Create Character
@@ -66,7 +73,7 @@ class NavBar extends React.Component {
                         Hello, {currentUser.nick_name}! Create a character to participate in CoTell.
                     </div>
                     <div className="nav-dropdown relative">
-                        <img src="https://i.ibb.co/Rv91CDx/blanche-head.png" className="small-profile-pic hover" onClick={this.handleDropdown} />
+                        <img src="https://i.ibb.co/K9PYxTP/ahri2.jpg" className="small-profile-pic hover" onClick={this.handleDropdown} />
                         <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
                             <div className="dropdown hover dd-profile">
                                 Your Profile here
