@@ -11,6 +11,10 @@ class NavBar extends React.Component {
         this.handleDropdown = this.handleDropdown.bind(this);
     }
 
+    componentDidMount(){
+        this.props.fetchUser(this.props.currentUser.id);
+    }
+
     handleDropdown(){
         this.setState({ dropdown: !this.state.dropdown });
     }
@@ -18,15 +22,25 @@ class NavBar extends React.Component {
     renderLogin(){
 
         const hidden = this.state.dropdown ? "" : "hidden";
-
-        if (this.props.loggedIn){
+        const { characters, currentUser, loggedIn } = this.props;
+        
+        if (!loggedIn) {
+            return (
+              <div className="session-container flex-diag">
+                <div className="session flex-center hover" onClick={() => this.props.openModal('signup')}>Join</div>
+                <div className="session flex-center hover" onClick={() => this.props.openModal('login')}>Login</div>
+              </div>
+            );
+        } else if ( loggedIn && characters[currentUser.selected_id] ) {
+            const avatar = characters[currentUser.selected_id];
             return(
                 <div className="nav-profile flex-diag">
                     <div className="nav-char">
-                        Hello, Blanche!
+                        <h1>You are logged in as <span>{avatar.first_name}</span>.</h1>
+                        <p>Hello, {currentUser.nick_name}!</p>
                     </div>
                     <div className="nav-dropdown relative">
-                        <img src="https://i.ibb.co/Rv91CDx/blanche-head.png" className="small-profile-pic hover" onClick={this.handleDropdown} />
+                        <img src={avatar.headPhotoUrl} className="small-profile-pic hover" onClick={this.handleDropdown} />
                         {/* <a><i className="fas fa-caret-down" onClick={this.handleDropdown}></i></a> */}
                         <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
                             <div className="dropdown hover dd-profile">
@@ -46,25 +60,52 @@ class NavBar extends React.Component {
                 </div>
             )
         } else {
-            return (
-              <div className="session-container flex-diag">
-                <div className="session flex-center hover" onClick={() => this.props.openModal('signup')}>Join</div>
-                <div className="session flex-center hover" onClick={() => this.props.openModal('login')}>Login</div>
-              </div>
-            );
-        }
+            return(
+                <div className="nav-profile flex-diag">
+                    <div className="nav-char">
+                        Hello, {currentUser.nick_name}! Create a character to participate in CoTell.
+                    </div>
+                    <div className="nav-dropdown relative">
+                        <img src="https://i.ibb.co/Rv91CDx/blanche-head.png" className="small-profile-pic hover" onClick={this.handleDropdown} />
+                        <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
+                            <div className="dropdown hover dd-profile">
+                                Your Profile here
+                            </div>
+                            <div className="dropdown hover dd-chars" >
+                                Your Chars Here
+                            </div>
+                            <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
+                                Create Character
+                            </div>
+                            <div className="dropdown hover dd-logout" onClick={() => this.props.logout()}>
+                                Log Out
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        } 
     }
 
     renderNavLogin(){
-        if (this.props.loggedIn){
+            const { characters, currentUser, loggedIn } = this.props;
+        if (loggedIn && characters[currentUser.selected_id]){
+            const avatar = characters[currentUser.selected_id];
             return (
               <>
                 <div className="navbar-submenu flex-center hover">Feed</div>
-                <div className="navbar-submenu flex-center hover">Char Page</div>
-                <div className="navbar-submenu flex-center hover">Username's Page</div>
+                <div className="navbar-submenu flex-center hover">{avatar.first_name}'s Page</div>
+                <div className="navbar-submenu flex-center hover">{currentUser.nick_name}'s Page</div>
               </>
             );
-        } else {
+        } else if (loggedIn && !characters[currentUser.selected_id]) {
+            return (
+              <>
+                <div className="navbar-submenu flex-center hover">Feed</div>
+                <div className="navbar-submenu flex-center hover">{currentUser.nick_name}'s Page</div>
+              </>
+            );
+        }else {
             return (
                 <>
                     <div className="navbar-submenu flex-center hover">How to CoTell</div>
@@ -76,6 +117,7 @@ class NavBar extends React.Component {
     }
 
     render() {
+
         return (
           <nav className="navbar-container">
             <div className="navbar-search-container">

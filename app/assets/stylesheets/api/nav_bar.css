@@ -1,5 +1,5 @@
 .navbar-container {
-    height: 45px;
+    height: 60px;
     /* background-color: #F7B2AD; */
     background: #E8B4BC;
     background: #95B8D1;
@@ -51,8 +51,8 @@
 }
 
 img.small-profile-pic {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -75,4 +75,17 @@ img.small-profile-pic {
 
 .dd-profile, .dd-chars, .dd-add-chars {
     margin-bottom: 15px;
+}
+
+.nav-char > h1 {
+    font-size: 14px;
+}
+
+.nav-char span {
+    font-weight: 600;
+}
+
+.nav-char > p {
+    font-size: 12px;
+    color: white;
 }

@@ -3,19 +3,20 @@ import { logout, login } from '../../actions/session_actions';
 import NavBar from './nav_bar';
 import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
-// import { fetchUser } from '../../actions/user_actions';
+import { fetchUser } from '../../actions/user_actions';
 
 const mSTP = (state) => ({
-    // currentUser: state.entities.users[state.session.id],
+    currentUser: state.entities.users[state.session.id],
     loggedIn: Boolean(state.session.id),
+    characters: state.entities.characters
     // friendRequests: state.entities.friendRequests
 });
 
 const mDTP = (dispatch) => ({
     logout: () => dispatch(logout()),
     login: user => dispatch(login(user)),
-    openModal: modal => dispatch(openModal(modal))
-    // fetchUser: userId => dispatch(fetchUser(userId))
+    openModal: modal => dispatch(openModal(modal)),
+    fetchUser: userId => dispatch(fetchUser(userId))
 });
 
 export default withRouter(connect(mSTP, mDTP)(NavBar));

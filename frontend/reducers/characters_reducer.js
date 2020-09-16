@@ -4,6 +4,7 @@ import {
   REMOVE_CHAR,
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
+import { RECEIVE_USER } from '../actions/user_actions';
 // import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
@@ -22,7 +23,9 @@ const charactersReducer = (state = {}, action) => {
       delete newState[action.charId];
       return newState;
     case RECEIVE_CURRENT_USER:
-      return action.payload.characters;
+      if (action.payload.characters) return action.payload.characters;
+    case RECEIVE_USER:
+      if (action.payload.characters) return action.payload.characters;
     // case RECEIVE_COMMENT:
     //   if (
     //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)
