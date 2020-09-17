@@ -10,6 +10,9 @@ class Api::CharacterPostsController < ApplicationController
         if params[:characterId] 
             @character_posts = CharacterPost.where(character_id: params[:characterId])
                         .includes(:user) #reduce N+1 query
+                        .order(updated_at: :desc)
+            @character = Character.find(params[:characterId])
+            @user = @character.user
             render :index
         # else
         #     @posts = Post.includes(:user, comments: [:user]) 

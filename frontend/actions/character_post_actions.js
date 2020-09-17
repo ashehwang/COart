@@ -44,16 +44,12 @@ export const deleteCharacterPost = (characterPostId) => (dispatch) =>
 //     dispatch(receiveAllCharacterPosts(characterPosts))
 //   );
 
-export const fetchRelatedCharacterPosts = (characterId) => (
+export const fetchRelatedCharacterPosts = (characterId) => dispatch => (
   CharacterPostApiUtil.fetchRelatedCharacterPosts(characterId)
     .then(payload => dispatch(receiveAllCharacterPosts(payload)))
 );
-// export const fetchRelatedCharacterPosts = (characterId) => (
-//   CharacterPostApiUtil.fetchRelatedCharacterPosts(characterId)
-//     .then(payload => {
-//       debugger
-//       return dispatch(receiveAllCharacterPosts(payload))})
-// );
+
+
 
 export const createCharacterPost = (formData) => (dispatch) =>
   CharacterPostApiUtil.createCharacterPost(formData)

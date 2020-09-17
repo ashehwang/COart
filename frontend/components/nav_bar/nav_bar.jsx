@@ -42,7 +42,7 @@ class NavBar extends React.Component {
                     </div>
                     <div className="nav-dropdown relative">
                         <img src={avatar.headPhotoUrl} className="small-profile-pic hover" onClick={this.handleDropdown} />
-                        <i className="fas fa-caret-down white absolute" onClick={this.handleDropdown}></i>
+                        <i className="fas fa-caret-down white absolute hover" onClick={this.handleDropdown}></i>
                         <div className={`dropdown-menu shadow flex-vert absolute ${hidden}`}>
                             <div className="dropdown hover dd-profile flex">
                                 <div>
