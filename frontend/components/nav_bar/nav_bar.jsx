@@ -13,7 +13,7 @@ class NavBar extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchUser(this.props.currentUser.id);
+        if (this.props.loggedIn) this.props.fetchUser(this.props.currentUser.id);
     }
 
     handleDropdown(){
@@ -27,7 +27,7 @@ class NavBar extends React.Component {
         
         if (!loggedIn) {
             return (
-              <div className="session-container flex-diag">
+              <div className="session-container flex">
                 <div className="session flex-center hover" onClick={() => this.props.openModal('signup')}>Join</div>
                 <div className="session flex-center hover" onClick={() => this.props.openModal('login')}>Login</div>
               </div>
@@ -35,32 +35,32 @@ class NavBar extends React.Component {
         } else if ( loggedIn && characters[currentUser.selected_id] ) {
             const avatar = characters[currentUser.selected_id];
             return(
-                <div className="nav-profile flex-diag">
+                <div className="nav-profile flex">
                     <div className="nav-char">
                         <h1>You are logged in as <span>{avatar.first_name}</span>.</h1>
-                        <p>Hello, {currentUser.nick_name}!</p>
+                        <p>Hello, {currentUser.nick_name}! :) </p>
                     </div>
                     <div className="nav-dropdown relative">
                         <img src={avatar.headPhotoUrl} className="small-profile-pic hover" onClick={this.handleDropdown} />
-                        {/* <a><i className="fas fa-caret-down" onClick={this.handleDropdown}></i></a> */}
-                        <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
-                            <div className="dropdown hover dd-profile flex-diag">
+                        <i className="fas fa-caret-down white absolute" onClick={this.handleDropdown}></i>
+                        <div className={`dropdown-menu shadow flex-vert absolute ${hidden}`}>
+                            <div className="dropdown hover dd-profile flex">
                                 <div>
-                                    <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="small-profile-pic"/>
+                                    <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="smaller-profile-pic"/>
                                 </div>
                                 <div>
-                                    {currentUser.nick_name}
+                                    {currentUser.nick_name} <span>@{currentUser.user_name}</span>
                                 </div>
                             </div>
                             <div className="dropdown hover dd-chars" >
-                                {/* Your Chars Here */}
+                                <div className="flex-center"><p>Your Characters</p></div>
                                 {currentUser.character_ids.map( charId => < CharItem key={charId} character={characters[charId]} />)}
                             </div>
                             <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
-                                Create Character
+                                <i className="fas fa-plus white"></i>Create Character
                             </div>
                             <div className="dropdown hover dd-logout" onClick={() => this.props.logout()}>
-                                Log Out
+                                <i className="fas fa-sign-out-alt white"></i>Log Out
                             </div>
                         </div>
                     </div>
@@ -68,24 +68,30 @@ class NavBar extends React.Component {
             )
         } else {
             return(
-                <div className="nav-profile flex-diag">
-                    <div className="nav-char">
+                <div className="nav-profile flex">
+                    <div className="nav-char2 white">
                         Hello, {currentUser.nick_name}! Create a character to participate in CoTell.
                     </div>
                     <div className="nav-dropdown relative">
                         <img src="https://i.ibb.co/K9PYxTP/ahri2.jpg" className="small-profile-pic hover" onClick={this.handleDropdown} />
-                        <div className={`dropdown-menu flex-vert absolute ${hidden}`}>
-                            <div className="dropdown hover dd-profile">
-                                Your Profile here
+                        <i className="fas fa-caret-down white absolute" onClick={this.handleDropdown}></i>
+                        <div className={`dropdown-menu shadow flex-vert absolute ${hidden}`}>
+                            <div className="dropdown hover dd-profile flex">
+                                <div>
+                                    <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="smaller-profile-pic"/>
+                                </div>
+                                <div>
+                                    {currentUser.nick_name} <span>@{currentUser.user_name}</span>
+                                </div>
                             </div>
-                            <div className="dropdown hover dd-chars" >
-                                Your Chars Here
-                            </div>
+                            {/* <div className="dropdown hover dd-chars" >
+                                Create New Characters!
+                            </div> */}
                             <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
-                                Create Character
+                                <i className="fas fa-plus white"></i>Create Character
                             </div>
                             <div className="dropdown hover dd-logout" onClick={() => this.props.logout()}>
-                                Log Out
+                                <i className="fas fa-sign-out-alt white"></i>Log Out
                             </div>
                         </div>
                     </div>
@@ -100,24 +106,25 @@ class NavBar extends React.Component {
             const avatar = characters[currentUser.selected_id];
             return (
               <>
-                <div className="navbar-submenu flex-center hover">Feed</div>
-                <div className="navbar-submenu flex-center hover">{avatar.first_name}'s Page</div>
-                <div className="navbar-submenu flex-center hover">{currentUser.nick_name}'s Page</div>
+                <div className="navbar-submenu hover">Feed</div>
+                <div className="navbar-submenu hover">{avatar.first_name}'s Page</div>
+                <div className="navbar-submenu hover">{currentUser.nick_name}'s Page</div>
               </>
             );
         } else if (loggedIn && !characters[currentUser.selected_id]) {
             return (
               <>
-                <div className="navbar-submenu flex-center hover">Feed</div>
-                <div className="navbar-submenu flex-center hover">{currentUser.nick_name}'s Page</div>
+                <div className="navbar-submenu hover">Feed</div>
+                <div className="navbar-submenu hover">{currentUser.nick_name}'s Page</div>
+                <div className="navbar-submenu hover">Create Character</div>
               </>
             );
         }else {
             return (
                 <>
-                    <div className="navbar-submenu flex-center hover">How to CoTell</div>
-                    <div className="navbar-submenu flex-center hover">Featured</div>
-                    <div className="navbar-submenu flex-center hover">Contact Us</div>
+                    <div className="navbar-submenu hover">How to CoTell</div>
+                    <div className="navbar-submenu hover">Featured</div>
+                    <div className="navbar-submenu hover">Contact Us</div>
                 </>
             )
         }
@@ -128,10 +135,14 @@ class NavBar extends React.Component {
         return (
           <nav className="navbar-container">
             <div className="navbar-search-container">
-              <SearchBarContainer />
+              <div><img src="https://i.ibb.co/tMkrDPR/Untitled.png" /></div>
+              <div className="flex">
+                <i className="fas fa-search white"></i>
+                <SearchBarContainer />
+              </div>
             </div>
-            <div className="navbar-menu flex-diag">
-              <div className="navbar-submenu flex-center hover">World</div>
+            <div className="navbar-menu flex">
+              <div className="navbar-submenu hover">World</div>
               {this.renderNavLogin()}
             </div>
             <div className="navbar-right">{this.renderLogin()}</div>

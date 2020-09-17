@@ -9,7 +9,7 @@ class ArtLog extends React.Component {
 
     render(){
         return(
-            <div className="art-log-container flex-diag">
+            <div className="art-log-container flex">
                 <div className="art-log-nav flex-vert">
                     <div>
                         Main
