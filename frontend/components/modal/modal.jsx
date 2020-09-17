@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import LoginFormContainer from '../login_form/login_form_container';
 import SignUpFormContainer from '../signup_form/signup_form_container';
+import CreateCharacterPostFromContainer from '../char_posts_form/create_charpost_form_container'
 // import CreatePostFormContainer from '../posts/create_post_form_container';
 // import EditProfileContainer from '../profile/edit_profile_container';
 // import EditPostFormContainer from '../posts/edit_post_form_container';
@@ -20,6 +21,9 @@ function Modal({ modal, closeModal }) {
             break;
         case 'signup':
             component = < SignUpFormContainer />;
+            break;
+        case 'createcharpost':
+            component = <CreateCharacterPostFromContainer />;
             break;
         // case 'createpost':
         //     component = <CreatePostFormContainer referenceId={modal.referenceId} />;

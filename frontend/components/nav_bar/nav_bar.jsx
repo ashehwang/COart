@@ -106,7 +106,7 @@ class NavBar extends React.Component {
             const avatar = characters[currentUser.selected_id];
             return (
               <>
-                <div className="navbar-submenu hover">Feed</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.openModal('createcharpost')}>Feed</div>
                 <div className="navbar-submenu hover">{avatar.first_name}'s Page</div>
                 <div className="navbar-submenu hover">{currentUser.nick_name}'s Page</div>
               </>

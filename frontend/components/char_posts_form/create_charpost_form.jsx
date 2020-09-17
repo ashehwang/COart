@@ -4,9 +4,9 @@ class CreateCharacterPostForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { user_id: this.props.currentUser.id, character_id: 1, body: "", visibility: "public", photoFile: null, photoUrl: null };
-        this.updateBody = this.updateBody.bind(this);
-        this.handleFild = this.handleFild.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.updateBody = this.updateBody.bind(this);
+        // this.handleFild = this.handleFild.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     updateBody(e){
@@ -39,7 +39,14 @@ class CreateCharacterPostForm extends React.Component {
     }
 
     render(){
-        return null;
+
+        const preview = this.state.photoUrl ? <img className="pic-preview" src={this.state.photoUrl} /> : null;
+    
+        return(
+            <div>
+                This will be creating character post
+            </div>
+        )
     }
 }
 
