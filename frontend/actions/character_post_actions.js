@@ -45,8 +45,8 @@ export const fetchUserCharacterPosts = (userId) => (dispatch) =>
   );
 
 export const createCharacterPost = (formData) => (dispatch) =>
-  CharacterPostApiUtil.createCharacterPost(formData).then((characterPost) =>
-    dispatch(receiveCharacterPost(characterPost))
+  CharacterPostApiUtil.createCharacterPost(formData)
+    .then((characterPost) => dispatch(receiveCharacterPost(characterPost))
   );
 
 // export const likePost = (postLike) => (dispatch) =>

@@ -41,7 +41,7 @@ export const fetchUserCharacterPosts = (userId) =>
     data: { userId },
   });
 
-export const createPhotoCharacterPost = (formData) =>
+export const createCharacterPost = (formData) =>
   $.ajax({
     method: "POST",
     url: "/api/character_posts",
@@ -49,6 +49,7 @@ export const createPhotoCharacterPost = (formData) =>
     contentType: false,
     processData: false,
   });
+
 
 // export const likePost = (postLike) =>
 //   $.ajax({

@@ -10,7 +10,7 @@ const characterPostsReducer = (state = {}, action) => {
             if(!action.payload.character_posts) return {};
             return action.payload.character_posts;
         case RECEIVE_CHARACTER_POST:
-            newState[action.character_post.id] = action.chraracter_post;
+            newState[action.characterPost.id] = action.characterPost;
             return newState;
         case REMOVE_CHARACTER_POST:
             delete newState[action.characterPostId];

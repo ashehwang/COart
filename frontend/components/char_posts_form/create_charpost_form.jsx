@@ -3,18 +3,22 @@ import React from 'react';
 class CreateCharacterPostForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user_id: this.props.currentUser.id, character_id: 1, body: "", visibility: "public", photoFile: null, photoUrl: null };
+        this.state = { body: "", visibility: "public", photoFile: null, photoUrl: null };
         // this.updateBody = this.updateBody.bind(this);
-        // this.handleFild = this.handleFild.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFile = this.handleFile.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    updateBody(e){
-        this.setState({ body: e.currentTarget.value });
+    // updateBody(e){
+    //     this.setState({ body: e.currentTarget.value });
+    // }
+
+    update(property){
+        return e => this.setState({[property]: e.currentTarget.value});
     }
 
     handleFile(e){
-        const file = e.currentTarget.file[0];
+        const file = e.currentTarget.files[0];
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
             this.setState({ photoFile: file, photoUrl: fileReader.result });
@@ -23,6 +27,17 @@ class CreateCharacterPostForm extends React.Component {
             fileReader.readAsDataURL(file);
         }
     }
+
+    // handleFile(e) {
+    //     const file = e.currentTarget.files[0];
+    //     const fileReader = new FileReader();
+    //     fileReader.onloadend = () => {
+    //         this.setState({ photoFile: file, photoUrl: fileReader.result })
+    //     };
+    //     if (file) {
+    //         fileReader.readAsDataURL(file);
+    //     }
+    // }
 
     handleSubmit(e){
         e.preventDefault();
@@ -34,17 +49,68 @@ class CreateCharacterPostForm extends React.Component {
         if (this.state.photoFile) {
             formData.append("charater_post[photo]", this.state.photoFile);
         }
+        debugger
+        console.log(formData);
         this.props.createCharacterPost(formData);
         this.props.closeModal();
+    }
+
+    returnIcon(){
+        switch(this.state.visibility){
+            case "public":
+                return <i className="fas fa-globe-americas"></i>;
+            case "following":
+                return <i className="fas fa-users"></i>;
+            case "private":
+                return <i className="fas fa-user-lock"></i>;
+        }
     }
 
     render(){
 
         const preview = this.state.photoUrl ? <img className="pic-preview" src={this.state.photoUrl} /> : null;
+        const { character } = this.props;
     
         return(
-            <div>
-                This will be creating character post
+            <div className="create-post-container relative">
+                <div className="create-post-prompt">
+                    Create Post
+                </div>
+                <div className="create-post-profile flex">
+                    <div>
+                        <img src={character.headPhotoUrl} className="smaller-profile-pic" />
+                    </div>
+                    <div>
+                        <div>
+                            {character.first_name} {character.last_name}
+                        </div>
+                        <div className="create-post-visibility">
+                            {this.returnIcon()}
+                            <select onChange={this.update("visibility")}>
+                                <option selected value="public">Public</option>
+                                <option value="following">Following</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div className="create-post-body">
+                    <textarea placeholder={`What's on your mind, ${character.first_name}?`} value={this.state.body} cols="50" rows="4" onChange={this.update("body")} />
+                </div>
+                <div className="create-post-footer flex">
+                    <div> Add To Your Post</div>
+                    <div className="create-post-icons">
+                        <label htmlFor="file-upload" className="custom-file-upload">
+                            <i className="fas fa-images"></i>
+                        </label>
+                        <input type="file" onChange={this.handleFile} id="file-upload" className="hidden" />
+                        <i className="fas fa-user-tag"></i>
+                    </div>
+                </div>
+                <div>{preview}</div>
+                <div className="create-post-submit" onClick={this.handleSubmit}>
+                    Create Post
+                </div>
             </div>
         )
     }

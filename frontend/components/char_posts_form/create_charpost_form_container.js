@@ -4,7 +4,8 @@ import { closeModal } from '../../actions/modal_actions';
 import CreateCharacterPostForm from './create_charpost_form';
 
 const mSTP = state => ({
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    character: state.entities.characters[state.entities.users[state.session.id].selected_id]
 });
 
 const mDTP = dispatch => ({
