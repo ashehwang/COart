@@ -12,6 +12,7 @@ import {
   REMOVE_FRIEND,
 } from "../actions/friend_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
+import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -65,6 +66,9 @@ const usersReducer = (state = {}, action) => {
         action.friend.user_id
       );
       newState[action.friend.friend_id].friendship_ids.splice(deleteIdx, 1);
+      return newState;
+    case RECEIVE_ALL_CHARACTER_POSTS:
+      newState[action.payload.user.id] = action.payload.user;
       return newState;
     case LOGOUT_CURRENT_USER:
       return {};

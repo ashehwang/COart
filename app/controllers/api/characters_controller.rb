@@ -29,10 +29,10 @@ class Api::CharactersController < ApplicationController
         @character.user_id = current_user.id
         @character.selected = true
         if @character.save
-            # @character.selected = true
             if current_user.characters.count > 1
                 other_selected_character = current_user.characters.detect { |char| char.selected }
                 other_selected_character.selected = false
+                other_selected_character.save
             end
             render :show
         else

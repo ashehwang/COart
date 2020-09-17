@@ -7,8 +7,8 @@ const characterPostsReducer = (state = {}, action) => {
 
     switch(action.type) {
         case RECEIVE_ALL_CHARACTER_POSTS:
-            if(!action.payload.character_posts) return {};
-            return action.payload.character_posts;
+            if(!action.payload.characterPosts) return {};
+            return action.payload.characterPosts;
         case RECEIVE_CHARACTER_POST:
             newState[action.characterPost.id] = action.characterPost;
             return newState;

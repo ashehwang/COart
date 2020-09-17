@@ -10,15 +10,6 @@ export const fetchCharacterPost = (characterPostId) =>
     url: `/api/character_posts/${characterPostId}`,
   });
 
-// export const createCharacterPost = (character_post) =>
-//   $.ajax({
-//     method: "POST",
-//     url: "/api/character_posts",
-//     data: { character_post },
-//     contentType: false,
-//     processData: false,
-//   });
-
 export const updateCharacterPost = (formData, id) =>
   $.ajax({
     method: "PATCH",
@@ -37,8 +28,15 @@ export const deleteCharacterPost = (characterPostId) =>
 export const fetchUserCharacterPosts = (userId) =>
   $.ajax({
     method: "GET",
-    url: `/api/chracter_posts`,
+    url: `/api/character_posts`,
     data: { userId },
+  });
+
+export const fetchRelatedCharacterPosts = (characterId) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/character_posts`,
+    data: { characterId },
   });
 
 export const createCharacterPost = (formData) =>

@@ -8,7 +8,7 @@ export const RECEIVE_CHARACTER_POST_ERROR = "RECEIVE_CHARACTER_POST_ERROR";
 const receiveAllCharacterPosts = (payload) => ({
   type: RECEIVE_ALL_CHARACTER_POSTS,
   payload: payload,
-});
+}); //USE THIS FOR INDIVIDUAL CHARACTER POST PAGE
 
 const receiveCharacterPost = (characterPost) => ({
   type: RECEIVE_CHARACTER_POST,
@@ -39,10 +39,21 @@ export const updateCharacterPost = (formData, id) => (dispatch) =>
 export const deleteCharacterPost = (characterPostId) => (dispatch) =>
   CharacterPostApiUtil.deleteCharacterPost(characterPostId).then(() => dispatch(removeCharacterPost(characterPostId)));
 
-export const fetchUserCharacterPosts = (userId) => (dispatch) =>
-  CharacterPostApiUtil.fetchUserCharacterPosts(userId).then((characterPosts) =>
-    dispatch(receiveAllCharacterPosts(characterPosts))
-  );
+// export const fetchUserCharacterPosts = (userId) => (dispatch) =>
+//   CharacterPostApiUtil.fetchUserCharacterPosts(userId).then((characterPosts) =>
+//     dispatch(receiveAllCharacterPosts(characterPosts))
+//   );
+
+export const fetchRelatedCharacterPosts = (characterId) => (
+  CharacterPostApiUtil.fetchRelatedCharacterPosts(characterId)
+    .then(payload => dispatch(receiveAllCharacterPosts(payload)))
+);
+// export const fetchRelatedCharacterPosts = (characterId) => (
+//   CharacterPostApiUtil.fetchRelatedCharacterPosts(characterId)
+//     .then(payload => {
+//       debugger
+//       return dispatch(receiveAllCharacterPosts(payload))})
+// );
 
 export const createCharacterPost = (formData) => (dispatch) =>
   CharacterPostApiUtil.createCharacterPost(formData)

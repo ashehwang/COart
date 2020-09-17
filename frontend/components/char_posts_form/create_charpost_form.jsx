@@ -28,17 +28,6 @@ class CreateCharacterPostForm extends React.Component {
         }
     }
 
-    // handleFile(e) {
-    //     const file = e.currentTarget.files[0];
-    //     const fileReader = new FileReader();
-    //     fileReader.onloadend = () => {
-    //         this.setState({ photoFile: file, photoUrl: fileReader.result })
-    //     };
-    //     if (file) {
-    //         fileReader.readAsDataURL(file);
-    //     }
-    // }
-
     handleSubmit(e){
         e.preventDefault();
         const formData = new FormData();
@@ -47,10 +36,8 @@ class CreateCharacterPostForm extends React.Component {
         formData.append("character_post[character_id]", this.props.currentUser.selected_id);
         formData.append("character_post[visibility]", this.state.visibility);
         if (this.state.photoFile) {
-            formData.append("charater_post[photo]", this.state.photoFile);
+            formData.append("character_post[photo]", this.state.photoFile);
         }
-        debugger
-        console.log(formData);
         this.props.createCharacterPost(formData);
         this.props.closeModal();
     }
