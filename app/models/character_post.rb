@@ -5,8 +5,7 @@ class CharacterPost < ApplicationRecord
     belongs_to :user
     belongs_to :character
     
-    has_one_attached :photo,
-    optional: true
+    has_one_attached :photo
     
     # has_many :comments,
     # dependent: :destroy
