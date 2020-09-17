@@ -6,6 +6,7 @@ import searchReducer from "./search_reducer";
 import friendRequestsReducer from "./friend_requests_reducer";
 import friendsReducer from "./friends_reducer";
 import charactersReducer from "./characters_reducer";
+import characterPostsReducer from './character_posts_reducer';
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
@@ -14,7 +15,8 @@ const entitiesReducer = combineReducers({
   search: searchReducer,
   friendRequests: friendRequestsReducer,
   friends: friendsReducer,
-  characters: charactersReducer
+  characters: charactersReducer,
+  characterPosts: characterPostsReducer
 });
 
 export default entitiesReducer;
