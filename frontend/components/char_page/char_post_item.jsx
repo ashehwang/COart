@@ -11,15 +11,21 @@ class CharPostItem extends React.Component {
         } else {return null}
     }
 
-    renderButtons(){
-        if (!this.props.loggedIn) {
-            return null;
-        } else if (this.props.currentUser.id === this.props.character.creator.id){
-            return <div className="char-post-buttons hover flex-center">Edit</div>
-        } else {
-            return <div className="char-post-buttons hover flex-center">Like</div>
-        }
+  renderButtons() {
+    if (!this.props.loggedIn) {
+      return null;
+    } else if (this.props.currentUser.id === this.props.character.creator.id) {
+      return (<div className="char-post-bottom flex">
+                <div className="char-post-buttons hover flex-center">Edit</div>
+                <div className="char-post-buttons hover flex-center">Comment</div>
+              </div>);
+    } else {
+      return (<div className="char-post-bottom flex">
+                <div className="char-post-buttons hover flex-center">Like</div>
+                <div className="char-post-buttons hover flex-center">Comment</div>
+              </div>);
     }
+  }
 
     render(){
 
@@ -39,10 +45,10 @@ class CharPostItem extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="char-post-bottom flex">
+                {/* <div className="char-post-bottom flex"> */}
                     {this.renderButtons()}
-                    <div className="char-post-buttons hover flex-center">Comment</div>
-                </div>
+                    {/* <div className="char-post-buttons hover flex-center">Comment</div> */}
+                {/* </div> */}
             </div>
         )
     }
