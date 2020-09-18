@@ -15,6 +15,9 @@ end
 json.character do
     # character = @character_posts[0].character
     json.extract! @character, :id, :user_id, :first_name, :last_name, :bio
+    json.creator do
+        json.extract! @character.user, :id, :user_name, :nick_name
+    end
     json.headPhotoUrl url_for(@character.head_photo) if @character.head_photo.attached?
     json.bodyPhotoUrl url_for(@character.body_photo) if @character.body_photo.attached?
 end

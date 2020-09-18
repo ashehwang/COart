@@ -41,9 +41,11 @@ class CharPage extends React.Component {
 
     render(){
         const { character, users, characterPosts } = this.props;
-        if (!character) return null;
-        const creator = users[character.user_id];
-        if (!creator) return null;
+        // if (!character) return null;
+        if (!character) return <div>no character</div>;
+        const creator = character.creator;
+        // if (!creator) return null;
+        // if (!creator) return <div>no creator</div>;
 
         return (
             <div className="char-page-container align-center">

@@ -26,7 +26,8 @@ class Api::UsersController < ApplicationController
     end
 
     def show
-        @user = User.find_by(id: params[:id])
+        @user = User.includes(:characters) #reduce N+1 query
+                    .find_by(id: params[:id])
         @current_user = current_user
         render :show
     end

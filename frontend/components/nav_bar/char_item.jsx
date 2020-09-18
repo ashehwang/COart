@@ -11,6 +11,9 @@ class CharacterItem extends React.Component {
     }
 
     render(){
+
+        if(!this.props.character) return null;
+
         return (
             <div className="nav-char-item flex">
                 <div>
