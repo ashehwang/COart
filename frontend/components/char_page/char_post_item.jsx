@@ -2,7 +2,7 @@ import React from 'react';
 
 class CharPostItem extends React.Component {
     constructor(props){
-        super(props) //this.props.characterPost / creator /character
+        super(props);
     }
 
     imgExists(){
@@ -11,17 +11,25 @@ class CharPostItem extends React.Component {
         } else {return null}
     }
 
+    renderButtons(){
+        if(this.props.currentUser.id === this.props.character.creator.id){
+            return <div className="char-post-buttons hover flex-center">Edit</div>
+        } else {
+            return <div className="char-post-buttons hover flex-center">Like</div>
+        }
+    }
+
     render(){
 
-        const { characterPost, creator, character } = this.props;
+        const { characterPost, character } = this.props;
 
         return (
             <div className="char-post-container">
                 <div className="char-post-top flex">
-                    <div>Profile Pic Here</div>
+                    <div><img src={character.headPhotoUrl} className="smaller-profile-pic" /></div>
                     <div>
                         <div className="char-post-profile">
-                            {character.first_name} {character.last_name} <span> updated at </span>
+                            {character.first_name} {character.last_name} <span> {characterPost.created_at.slice(0,10)} </span>
                         </div>
                         {this.imgExists()}
                         <div className="char-post-body">
@@ -29,8 +37,9 @@ class CharPostItem extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="char-post-bottom">
-                    Edit & Comment Buttons Here
+                <div className="char-post-bottom flex">
+                    {this.renderButtons()}
+                    <div className="char-post-buttons hover flex-center">Comment</div>
                 </div>
             </div>
         )

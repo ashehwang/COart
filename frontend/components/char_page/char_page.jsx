@@ -11,15 +11,12 @@ class CharPage extends React.Component {
     }
 
     renderButtons(){
-        const { character, users, currentUser, loggedIn } = this.props;
+        const { character, currentUser, loggedIn } = this.props;
         if (!character) return null;
-        const creator = users[character.user_id];
-        if (!creator) return null;
-
 
         if (!loggedIn) {
             return null;
-        } else if (currentUser.id === creator.id) {
+        } else if (currentUser.id === character.creator.id) {
             return(
                 <>
                     <div className="char-page-buttons hover flex-center">
@@ -40,12 +37,8 @@ class CharPage extends React.Component {
     }
 
     render(){
-        const { character, users, characterPosts } = this.props;
-        // if (!character) return null;
+        const { character, characterPosts, loggedIn, currentUser } = this.props;
         if (!character) return <div>no character</div>;
-        const creator = character.creator;
-        // if (!creator) return null;
-        // if (!creator) return <div>no creator</div>;
 
         return (
             <div className="char-page-container align-center">
@@ -56,8 +49,8 @@ class CharPage extends React.Component {
                             <div className="char-page-profile-detail">
                                 {character.first_name} {character.last_name}
                                 <div className="char-page-creator-detail">
-                                    <span>Creator: {creator.nick_name}</span>
-                                    @{creator.user_name}
+                                    <span>Creator: {character.creator.nick_name}</span>
+                                    @{character.creator.user_name}
                                 </div>
                             </div>
                         </div>
@@ -70,7 +63,7 @@ class CharPage extends React.Component {
                     </div>
                     <div className="char-page-right">
                         <div>
-                            {characterPosts.map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} creator={creator} character={character}/>)}
+                            {characterPosts.map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} character={character} loggedIn={loggedIn} currentUser={currentUser}/>)}
                         </div>
                     </div>
                 </div>
