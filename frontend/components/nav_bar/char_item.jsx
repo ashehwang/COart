@@ -6,7 +6,7 @@ class CharacterItem extends React.Component {
         if(this.props.character.selected){
             return <div className="nav-char-selected">Selected</div>
         } else {
-            return <div className="nav-char-change hover">Select</div>
+            return <div className="nav-char-change hover" onClick={() => this.props.selectChar(this.props.character.id)}>Select</div>
         }
     }
 

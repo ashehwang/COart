@@ -10,6 +10,12 @@ export const fetchChar = (charId) =>
     url: `/api/characters/${charId}`,
   });
 
+export const selectChar = (charId) => (
+  $.ajax({
+    method: "PATCH",
+    url: `/api/characters/${charId}/select`
+  })
+);
 // export const createChar = (char) =>
 //   $.ajax({
 //     method: "POST",

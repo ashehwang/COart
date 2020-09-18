@@ -40,6 +40,16 @@ class Api::CharactersController < ApplicationController
         end
     end
 
+    def select
+        @character = Character.find_by(id: params[:id])
+        @character.selected = true
+        @other_selected_character = current_user.characters.detect { |char| char.selected }
+        @other_selected_character.selected = false
+        @character.save
+        @other_selected_character.save
+        render :selected
+    end
+
     # def destroy
     #     @post = Post.find_by(id: params[:id])
     #     if @post.destroy

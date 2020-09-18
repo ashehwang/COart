@@ -23,7 +23,7 @@ class NavBar extends React.Component {
     renderLogin(){
 
         const hidden = this.state.dropdown ? "" : "hidden";
-        const { characters, currentUser, loggedIn } = this.props;
+        const { characters, currentUser, loggedIn, selectChar } = this.props;
         
         if (!loggedIn) {
             return (
@@ -54,7 +54,7 @@ class NavBar extends React.Component {
                             </div>
                             <div className="dropdown hover dd-chars" >
                                 <div className="flex-center"><p>Your Characters</p></div>
-                                {currentUser.character_ids.map( charId => < CharItem key={charId} character={characters[charId]} />)}
+                                {currentUser.character_ids.map( charId => < CharItem key={charId} character={characters[charId]} selectChar={selectChar} />)}
                             </div>
                             <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
                                 <i className="fas fa-plus white"></i>Create Character

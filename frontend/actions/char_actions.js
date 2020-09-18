@@ -4,6 +4,7 @@ export const RECEIVE_ALL_CHARS = "RECEIVE_ALL_CHARS";
 export const RECEIVE_CHAR = "RECEIVE_CHAR";
 export const REMOVE_CHAR = "REMOVE_CHAR";
 export const RECEIVE_CHAR_ERROR = "RECEIVE_CHAR_ERROR";
+export const CHANGE_SELECTED_CHAR = "CHANGE_SELECTED_CHAR";
 
 const receiveAllChars = (payload) => ({
   type: RECEIVE_ALL_CHARS,
@@ -20,6 +21,11 @@ const removeChar = (charId) => ({
   charId
 });
 
+const receiveSelectedChar = (payload) => ({
+  type: CHANGE_SELECTED_CHAR,
+  payload
+});
+
 export const fetchChars = () => (dispatch) =>
   CharApiUtil.fetchChars().then((payload) =>
     dispatch(receiveAllChars(payload))
@@ -27,9 +33,6 @@ export const fetchChars = () => (dispatch) =>
 
 export const fetchChar = (charId) => (dispatch) =>
   CharApiUtil.fetchChar(charId).then((char) => dispatch(receiveChar(char)));
-
-// export const createChar = (char) => (dispatch) =>
-//   CharApiUtil.createChar(char).then((char) => dispatch(receiveChar(char)));
 
 export const updateChar = (formData, id) => (dispatch) =>
   CharApiUtil.updateChar(formData, id).then((updatedChar) =>
@@ -48,6 +51,10 @@ export const createChar = (formData) => (dispatch) =>
   CharApiUtil.createChar(formData).then((char) =>
     dispatch(receiveChar(char))
   );
+
+export const selectChar = (charId) => (dispatch) => (
+  CharApiUtil.selectChar(charId).then((payload) => dispatch(receiveSelectedChar(payload)))
+);
 
 // export const likeChar = (postLike) => (dispatch) =>
 //   CharApiUtil.likeChar(postLike).then((post) => dispatch(receiveChar(post)));

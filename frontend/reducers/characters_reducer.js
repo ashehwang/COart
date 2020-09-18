@@ -2,6 +2,7 @@ import {
   RECEIVE_ALL_CHARS,
   RECEIVE_CHAR,
   REMOVE_CHAR,
+  CHANGE_SELECTED_CHAR,
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER } from '../actions/user_actions';
@@ -32,6 +33,10 @@ const charactersReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_PUBLIC_CHARACTER_POSTS:
       return action.payload.characters;
+    case CHANGE_SELECTED_CHAR:
+      newState[action.payload.selected].selected = true;
+      newState[action.payload.unselected].selected = false;
+      return newState;
     // case RECEIVE_COMMENT:
     //   if (
     //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)

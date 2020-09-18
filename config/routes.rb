@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     end
 
     resources :characters, only: [:create, :index, :show, :update] do
+      member do
+        patch :select, to: 'characters#select', as: "select"
+      end
       collection do
         get "search"
       end
