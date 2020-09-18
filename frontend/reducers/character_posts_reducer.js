@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_CHARACTER_POST, REMOVE_CHARACTER_POST } from '../actions/character_post_actions';
+import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_CHARACTER_POST, REMOVE_CHARACTER_POST, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
 const characterPostsReducer = (state = {}, action) => {
@@ -15,6 +15,8 @@ const characterPostsReducer = (state = {}, action) => {
         case REMOVE_CHARACTER_POST:
             delete newState[action.characterPostId];
             return newState;
+        case RECEIVE_PUBLIC_CHARACTER_POSTS:
+            return action.payload.characterPosts;
         case LOGOUT_CURRENT_USER:
             return {};
         default:

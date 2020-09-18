@@ -1,4 +1,4 @@
-export const fetchCharacterPosts = () =>
+export const fetchPublicCharacterPosts = () =>
   $.ajax({
     method: "GET",
     url: "/api/character_posts",

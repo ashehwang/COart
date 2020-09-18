@@ -15,7 +15,6 @@ class Api::CharacterPostsController < ApplicationController
             @character_posts = CharacterPost.includes(:user, :character) #reduce N+1 query
                         .where(visibility: "public")
                         .order(updated_at: :desc)
-            @user = current_user
             render :main
         end
     end

@@ -7,7 +7,7 @@ import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER } from '../actions/user_actions';
 // import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
+import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
 
 const charactersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -30,6 +30,8 @@ const charactersReducer = (state = {}, action) => {
     case RECEIVE_ALL_CHARACTER_POSTS:
       newState[action.payload.character.id] = action.payload.character;
       return newState;
+    case RECEIVE_PUBLIC_CHARACTER_POSTS:
+      return action.payload.characters;
     // case RECEIVE_COMMENT:
     //   if (
     //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)

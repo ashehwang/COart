@@ -142,7 +142,7 @@ class NavBar extends React.Component {
               </div>
             </div>
             <div className="navbar-menu flex">
-              <div className="navbar-submenu hover">World</div>
+              <div className="navbar-submenu hover" onClick={()=>this.props.history.push("/")}>World</div>
               {this.renderNavLogin()}
             </div>
             <div className="navbar-right">{this.renderLogin()}</div>
