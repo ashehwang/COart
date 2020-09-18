@@ -28,7 +28,7 @@
     border: 1px solid lightgrey; */
 }
 .char-page-left {
-    width: 300px;
+    min-width: 300px;
     margin: 20px 30px 0 50px;
     background: #FAF0F5;
     background: #F5E0EB;
@@ -55,4 +55,21 @@
 .char-page-creator-detail > span {
     color: grey;
     font-size: 12px;
+}
+
+.char-page-buttons {
+    width: 90%;
+    padding: 8px;
+    background: #FAF0F5;
+    border-radius: 10px;
+    color: #4B4944;
+    border: 2px solid grey;
+    border-style: outset;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.char-page-buttons:hover {
+    background: #F0D1E1;
+    border-style: inset;
 }

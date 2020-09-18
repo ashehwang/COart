@@ -10,6 +10,35 @@ class CharPage extends React.Component {
         this.props.fetchRelatedCharacterPosts(this.props.characterId);
     }
 
+    renderButtons(){
+        const { character, users, currentUser, loggedIn } = this.props;
+        if (!character) return null;
+        const creator = users[character.user_id];
+        if (!creator) return null;
+
+
+        if (!loggedIn) {
+            return null;
+        } else if (currentUser.id === creator.id) {
+            return(
+                <>
+                    <div className="char-page-buttons hover flex-center">
+                        Edit {character.first_name}
+                    </div>
+                    <div className="char-page-buttons hover flex-center">
+                        Delete {character.first_name}
+                    </div>
+                </>
+            )
+        } else {
+            return(
+                <div className="char-page-buttons hover flex-center">
+                    Follow {character.first_name}
+                </div>
+            )
+        }
+    }
+
     render(){
         const { character, users, characterPosts } = this.props;
         if (!character) return null;
@@ -30,11 +59,11 @@ class CharPage extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            Click to see Full Profile
+                        <div className="char-page-buttons hover flex-center">
+                            View Full Profile
                         </div>
                         <div>
-                            Edit vs Follow Button Here
+                            {this.renderButtons()}
                         </div>
                     </div>
                     <div className="char-page-right">

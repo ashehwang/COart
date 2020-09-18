@@ -68,7 +68,7 @@ const usersReducer = (state = {}, action) => {
       newState[action.friend.friend_id].friendship_ids.splice(deleteIdx, 1);
       return newState;
     case RECEIVE_ALL_CHARACTER_POSTS:
-      newState[action.payload.user.id] = action.payload.user;
+      if (!newState[action.payload.user.id]) newState[action.payload.user.id] = action.payload.user;
       return newState;
     case LOGOUT_CURRENT_USER:
       return {};
