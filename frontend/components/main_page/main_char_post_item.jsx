@@ -18,10 +18,18 @@ class MainCharPostItem extends React.Component {
   }
 
   renderButtons() {
-    if (this.props.currentUser.id === this.props.character.creator.id) {
-      return <div className="char-main-post-buttons hover flex-center">Edit</div>;
+    if (!this.props.loggedIn) {
+      return null;
+    } else if (this.props.currentUser.id === this.props.character.creator.id) {
+      return (<div className="char-post-bottom flex">
+                <div className="char-main-post-buttons hover flex-center">Edit</div>
+                <div className="char-main-post-buttons hover flex-center">Comment</div>
+              </div>);
     } else {
-      return <div className="char-main-post-buttons hover flex-center">Like</div>;
+      return (<div className="char-post-bottom flex">
+                <div className="char-main-post-buttons hover flex-center">Like</div>
+                <div className="char-main-post-buttons hover flex-center">Comment</div>
+              </div>);
     }
   }
 
@@ -43,10 +51,9 @@ class MainCharPostItem extends React.Component {
             <div className="char-post-body">{characterPost.body}</div>
           </div>
         </div>
-        <div className="char-post-bottom flex">
+        {/* <div className="char-post-bottom flex"> */}
           {this.renderButtons()}
-          <div className="char-main-post-buttons hover flex-center">Comment</div>
-        </div>
+        {/* </div> */}
       </div>
     );
   }

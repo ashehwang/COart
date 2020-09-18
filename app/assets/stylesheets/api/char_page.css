@@ -98,8 +98,12 @@
     font-size: 14px;
 }
 
-.char-post-top {
+/* .char-post-top {
     border-bottom: 1px solid lightgrey;
+} */
+
+.char-post-bottom {
+    border-top: 1px solid lightgrey;
 }
 
 .char-post-buttons {

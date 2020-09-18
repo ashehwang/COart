@@ -12,7 +12,9 @@ class CharPostItem extends React.Component {
     }
 
     renderButtons(){
-        if(this.props.currentUser.id === this.props.character.creator.id){
+        if (!this.props.loggedIn) {
+            return null;
+        } else if (this.props.currentUser.id === this.props.character.creator.id){
             return <div className="char-post-buttons hover flex-center">Edit</div>
         } else {
             return <div className="char-post-buttons hover flex-center">Like</div>
