@@ -37,6 +37,11 @@ html, body, h1, h2, h3, h4, h5, h6, div, main, nav, p, ul, ol, li, aside, articl
     align-items: center;
 }
 
+.align-center {
+    display: flex;
+    justify-content: center;
+}
+
 .hover:hover {
     cursor: pointer;
 }

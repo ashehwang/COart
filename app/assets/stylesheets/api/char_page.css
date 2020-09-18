@@ -2,3 +2,57 @@
     background-image: linear-gradient(#ffffff, #F7DEE2);
     height: calc(100vh - 131px);
 }
+
+/* .char-page-left {
+    width: 300px;
+    background: red;
+    margin: 20px 30px 0 50px;
+} */
+
+.char-page-right {
+    background: blue;
+    width: 750px;
+    margin: 20px 50px 0 30px;
+}
+
+.char-page-right > div {
+    overflow-y: auto;
+}
+
+.char-page-profile {
+    /* background: #FAF0F5;
+    background: #F5E0EB;
+    background: white; */
+    padding: 10px;
+    /* border-radius: 14px;
+    border: 1px solid lightgrey; */
+}
+.char-page-left {
+    width: 300px;
+    margin: 20px 30px 0 50px;
+    background: #FAF0F5;
+    background: #F5E0EB;
+    background: white;
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid lightgrey;
+    height: fit-content;
+}
+
+.char-page-profile > img {
+    border: 2px solid #4B4944 !important;
+}
+
+.char-page-profile-detail {
+    color: #4B4944;
+    padding: 5px 8px;
+}
+
+.char-page-creator-detail {
+    color: lightgrey;
+    font-size: 11px;
+}
+.char-page-creator-detail > span {
+    color: grey;
+    font-size: 12px;
+}
