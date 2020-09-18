@@ -4,22 +4,19 @@ class Api::CharacterPostsController < ApplicationController
 
     def index
 
-        # friends_ids = current_user.friendship_ids
-        # friends_ids << current_user.id
-
         if params[:characterId] 
             @character_posts = CharacterPost.where(character_id: params[:characterId])
-                        .includes(:user) #reduce N+1 query
+                        .includes(:user, :character) #reduce N+1 query
                         .order(updated_at: :desc)
             @character = Character.find(params[:characterId])
             @user = @character.user
             render :index
-        # else
-        #     @posts = Post.includes(:user, comments: [:user]) 
-        #                 .where(user_id: friends_ids)
-        #                 .order(updated_at: :desc)
-        #     @user = current_user
-        #     render :index
+        else
+            @character_posts = CharacterPost.includes(:user, :character) #reduce N+1 query
+                        .where(visibility: "public")
+                        .order(updated_at: :desc)
+            @user = current_user
+            render :main
         end
     end
 

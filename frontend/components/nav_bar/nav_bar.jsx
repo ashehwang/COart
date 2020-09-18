@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import SearchBarContainer from './search_bar_container';
 import CharItem from './char_item';
 // import FriendRequestShowContainer from './friend_request_show_container';
@@ -102,12 +102,12 @@ class NavBar extends React.Component {
 
     renderNavLogin(){
             const { characters, currentUser, loggedIn } = this.props;
-        if (loggedIn && characters[currentUser.selected_id]){
+            if (loggedIn && characters[currentUser.selected_id]){
             const avatar = characters[currentUser.selected_id];
             return (
               <>
                 <div className="navbar-submenu hover" onClick={() => this.props.openModal('createcharpost')}>Feed</div>
-                <div className="navbar-submenu hover">{avatar.first_name}'s Page</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
                 <div className="navbar-submenu hover">{currentUser.nick_name}'s Page</div>
               </>
             );

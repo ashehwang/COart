@@ -10,6 +10,11 @@ const receiveAllCharacterPosts = (payload) => ({
   payload: payload,
 }); //USE THIS FOR INDIVIDUAL CHARACTER POST PAGE
 
+const receivePublicCharacterPosts = (payload) => ({
+  type: RECEIVE_PUBLIC_CHARACTER_POSTS,
+  payload: payload,
+}); //USE THIS FOR MAIN CHARACTER POST PAGE
+
 const receiveCharacterPost = (characterPost) => ({
   type: RECEIVE_CHARACTER_POST,
   characterPost,
@@ -49,6 +54,10 @@ export const fetchRelatedCharacterPosts = (characterId) => dispatch => (
     .then(payload => dispatch(receiveAllCharacterPosts(payload)))
 );
 
+export const fetchPublicCharacterPosts = () => (dispatch) =>
+  CharacterPostApiUtil.fetchAllCharacterPosts().then((payload) =>
+    dispatch(receivePublicCharacterPosts(payload))
+  );
 
 
 export const createCharacterPost = (formData) => (dispatch) =>

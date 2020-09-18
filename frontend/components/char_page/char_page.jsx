@@ -19,6 +19,9 @@ class CharPage extends React.Component {
         } else if (currentUser.id === character.creator.id) {
             return(
                 <>
+                    <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
+                        Write as {character.first_name}
+                    </div>
                     <div className="char-page-buttons hover flex-center">
                         Edit {character.first_name}
                     </div>

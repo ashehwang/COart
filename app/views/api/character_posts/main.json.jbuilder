@@ -7,12 +7,7 @@ json.characterPosts do
     end
 end
 
-json.user do 
-    # user = @character_posts[0].user
-    json.extract! @user, :id, :user_name, :nick_name
-end
-
-json.character do
+json.characters do
     # character = @character_posts[0].character
     json.extract! @character, :id, :user_id, :first_name, :last_name, :bio
     json.creator do
