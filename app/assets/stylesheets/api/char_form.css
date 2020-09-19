@@ -58,7 +58,7 @@
 }
 
 .create-post-icons i:hover {
-    color: grey;
+    color: #2BA0CA;
 }
 
 .create-post-submit {
@@ -87,5 +87,14 @@
 }
 
 .create-post-close:hover {
-    color: grey;
+    color: #2BA0CA;
+}
+
+.pic-preview {
+    padding: 10px;
+}
+
+.pic-preview > img {
+    max-height: 350px;
+    width: auto;
 }

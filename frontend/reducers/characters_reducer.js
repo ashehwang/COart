@@ -32,7 +32,11 @@ const charactersReducer = (state = {}, action) => {
       newState[action.payload.character.id] = action.payload.character;
       return newState;
     case RECEIVE_PUBLIC_CHARACTER_POSTS:
-      return action.payload.characters;
+      // return action.payload.characters;
+      Object.values(action.payload.characters).forEach(character => {
+        if(!newState[character.id]) newState[character.id] = character;
+      });
+      return newState;
     case CHANGE_SELECTED_CHAR:
       newState[action.payload.selected].selected = true;
       newState[action.payload.unselected].selected = false;

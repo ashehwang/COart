@@ -50,7 +50,7 @@ class CreateCharacterPostForm extends React.Component {
 
     render(){
 
-        const preview = this.state.photoUrl ? <img className="pic-preview" src={this.state.photoUrl} /> : null;
+        const preview = this.state.photoUrl ? <div className="pic-preview"><img src={this.state.photoUrl} /></div> : null;
         const { character } = this.props;
     
         return(
@@ -80,6 +80,7 @@ class CreateCharacterPostForm extends React.Component {
                 <div className="create-post-body align-center">
                     <textarea placeholder={`What's on your mind, ${character.first_name}?`} value={this.state.body} cols="50" rows="4" onChange={this.update("body")} />
                 </div>
+                <div className="flex-center">{preview}</div>
                 <div className="create-post-footer flex">
                     <div> Add To Your Post</div>
                     <div className="create-post-icons">
@@ -90,7 +91,7 @@ class CreateCharacterPostForm extends React.Component {
                         <i className="fas fa-user-tag hover"></i>
                     </div>
                 </div>
-                <div>{preview}</div>
+                
                 <div className="create-post-submit flex-center hover" onClick={this.handleSubmit}>
                     Create Post
                 </div>
