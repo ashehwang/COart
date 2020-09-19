@@ -1,6 +1,6 @@
 class Api::CharactersController < ApplicationController
 
-    before_action :require_login, only: [:create, :edit]
+    before_action :require_login, only: [:create, :edit, :select]
 
     # def index
 

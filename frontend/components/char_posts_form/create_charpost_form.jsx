@@ -4,14 +4,9 @@ class CreateCharacterPostForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { body: "", visibility: "public", photoFile: null, photoUrl: null };
-        // this.updateBody = this.updateBody.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    // updateBody(e){
-    //     this.setState({ body: e.currentTarget.value });
-    // }
 
     update(property){
         return e => this.setState({[property]: e.currentTarget.value});
@@ -59,16 +54,17 @@ class CreateCharacterPostForm extends React.Component {
         const { character } = this.props;
     
         return(
-            <div className="create-post-container relative">
-                <div className="create-post-prompt">
+            <div className="create-post-container shadow relative">
+                {/* <div className="create-post-prompt">
                     Create Post
-                </div>
+                </div> */}
+                <div className="create-post-close absolute"><i className="far fa-times-circle hover" onClick={() => this.props.closeModal()}></i></div>
                 <div className="create-post-profile flex">
                     <div>
                         <img src={character.headPhotoUrl} className="smaller-profile-pic" />
                     </div>
                     <div>
-                        <div>
+                        <div className="create-post-profile-name">
                             {character.first_name} {character.last_name}
                         </div>
                         <div className="create-post-visibility">
@@ -81,21 +77,21 @@ class CreateCharacterPostForm extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="create-post-body">
+                <div className="create-post-body align-center">
                     <textarea placeholder={`What's on your mind, ${character.first_name}?`} value={this.state.body} cols="50" rows="4" onChange={this.update("body")} />
                 </div>
                 <div className="create-post-footer flex">
                     <div> Add To Your Post</div>
                     <div className="create-post-icons">
                         <label htmlFor="file-upload" className="custom-file-upload">
-                            <i className="fas fa-images"></i>
+                            <i className="fas fa-images hover"></i>
                         </label>
                         <input type="file" onChange={this.handleFile} id="file-upload" className="hidden" />
-                        <i className="fas fa-user-tag"></i>
+                        <i className="fas fa-user-tag hover"></i>
                     </div>
                 </div>
                 <div>{preview}</div>
-                <div className="create-post-submit" onClick={this.handleSubmit}>
+                <div className="create-post-submit flex-center hover" onClick={this.handleSubmit}>
                     Create Post
                 </div>
             </div>
