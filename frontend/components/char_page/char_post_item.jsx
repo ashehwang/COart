@@ -37,7 +37,7 @@ class CharPostItem extends React.Component {
                     <div><img src={character.headPhotoUrl} className="smaller-profile-pic" /></div>
                     <div>
                         <div className="char-post-profile">
-                            {character.first_name} {character.last_name} <span> {characterPost.created_at.slice(0,10)} </span>
+                            {character.first_name} {character.last_name} <span> {characterPost.updated_at.slice(0,10)} </span>
                         </div>
                         {this.imgExists()}
                         <div className="char-post-body">

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import CharForm from "./char_form";
+import CreateCharForm from "./create_char_form";
 import { createChar } from "../../actions/char_actions";
 // import { closeModal } from "../../actions/modal_actions";
 
@@ -14,4 +14,4 @@ const mDTP = (dispatch) => ({
 //   closeModal: () => dispatch(closeModal()),
 });
 
-export default connect(mSTP, mDTP)(CharForm);
+export default connect(mSTP, mDTP)(CreateCharForm);

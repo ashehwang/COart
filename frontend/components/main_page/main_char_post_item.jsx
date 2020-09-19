@@ -45,7 +45,7 @@ class MainCharPostItem extends React.Component {
           <div>
             <div className="char-post-profile">
               {character.first_name} {character.last_name}{" "}
-              <span> {characterPost.created_at.slice(0, 10)} </span>
+              <span> {characterPost.updated_at.slice(0, 10)} </span>
             </div>
             {this.imgExists()}
             <div className="char-post-body">{characterPost.body}</div>

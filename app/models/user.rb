@@ -7,8 +7,12 @@ class User < ApplicationRecord
     attr_reader :password
     after_initialize :ensure_session_token
 
-    has_many :posts
-    has_many :characters
+    has_many :posts,
+    dependent: :destroy
+    
+    has_many :characters,
+    dependent: :destroy
+
     # has_many :comments
     has_one_attached :profile_photo
     # has_one_attached :cover_photo

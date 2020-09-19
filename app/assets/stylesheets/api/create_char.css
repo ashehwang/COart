@@ -1,0 +1,89 @@
+.charform-container {
+    background-image: linear-gradient(#84DCCF, #14c1c7);
+    min-height: calc(100vh - 151px);
+    padding-top: 20px;
+}
+
+.charform-action {
+    width: 800px;
+    background: white;
+    margin: 0px auto;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.charform-action > h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.charform-action > h3 {
+    font-size: 12px;
+}
+
+.charform {
+    width: 800px;
+    background: white;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.charform-limit {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 0 20px;
+}
+
+.charform input[type=text] {
+    padding: 5px 8px;
+    border: none;
+    background: lightgrey;
+    border-radius: 7px;
+}
+
+.charform-detail {
+    margin-bottom: 10px;
+}
+
+.charform label {
+    background: #84DCCF;
+    padding: 5px 8px;
+    border: 1px solid black;
+    border-radius: 7px;
+    margin-right: 10px;
+    width: 120px;
+}
+
+.charform textarea {
+    font-family: sans-serif;
+    resize: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    width: 779px;
+}
+
+.charform-files > label {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.charform-files > label:hover {
+    background: #14c1c7;
+}
+
+.charform-submit {
+    padding: 15px 200px;
+    background: #C1EDE7;
+    border-radius: 10px;
+    color: grey;
+}
+
+.charform-submit:hover {
+    background: #84DCCF;
+    color: black;
+    font-weight: 600;
+}
