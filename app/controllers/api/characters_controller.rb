@@ -1,6 +1,6 @@
 class Api::CharactersController < ApplicationController
 
-    before_action :require_login, only: [:create, :edit, :select]
+    before_action :require_login, only: [:create, :edit, :select, :update]
 
     # def index
 
@@ -59,14 +59,17 @@ class Api::CharactersController < ApplicationController
     #     end
     # end
 
-    # def update
-    #     @post = Post.find_by(id: params[:id])
-    #     if @post.update(post_params)
-    #         render :show
-    #     else
-    #         render json: @post.errors, status: 422
-    #     end
-    # end
+    def update
+        @character = Character.find_by(id: params[:id])
+        @character.body_photo.purge if params["remove_body_photo"] == "true"
+        @character.head_photo.purge if params["remove_head_photo"] == "true"
+        # debugger
+        if @character.update(character_params)
+            render :show
+        else
+            render json: @character.errors, status: 422
+        end
+    end
 
     # def like
     #     @like = Like.new(likeable_type: "Post", likeable_id: params[:id])
@@ -92,6 +95,6 @@ class Api::CharactersController < ApplicationController
     private
 
     def character_params
-        params.require(:character).permit(:first_name, :last_name, :bio, :head_photo, :body_photo)
+        params.require(:character).permit(:first_name, :last_name, :bio, :head_photo, :body_photo, :remove_head_photo, :remove_body_photo)
     end
 end

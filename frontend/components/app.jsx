@@ -7,6 +7,7 @@ import NavBarContainer from './nav_bar/nav_bar_container';
 import CharPageContainer from './char_page/char_page_container';
 import CreateCharsContainer from './chars_form/create_chars_container';
 import MainPageContainer from './main_page/main_page_container';
+import EditCharContainer from './chars_form/edit_char_form_container';
 // import ArtLogContainer from './art_log/art_log_container';
 // import ProfileContainer from './profile/profile_container';
 // import Entry from './entry';
@@ -29,6 +30,7 @@ const App = () => (
         <Route exact path="/character/:characterId" component={CharPageContainer}/>
         {/* <Route path="/" component={ArtLogContainer} /> */}
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
+        <ProtectedRoute path="/edit/:characterId" component={EditCharContainer} />
     </>
 );
 

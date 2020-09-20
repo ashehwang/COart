@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import LoginFormContainer from '../login_form/login_form_container';
 import SignUpFormContainer from '../signup_form/signup_form_container';
-import CreateCharacterPostFromContainer from '../char_posts_form/create_charpost_form_container'
+import CreateCharacterPostFormContainer from '../char_posts_form/create_charpost_form_container';
+import EditCharacterPostFormContainer from '../char_posts_form/edit_charpost_form_container';
+import EditCharacterFormContainer from '../chars_form/edit_char_form_container';
 // import CreatePostFormContainer from '../posts/create_post_form_container';
 // import EditProfileContainer from '../profile/edit_profile_container';
 // import EditPostFormContainer from '../posts/edit_post_form_container';
@@ -23,8 +25,13 @@ function Modal({ modal, closeModal }) {
             component = < SignUpFormContainer />;
             break;
         case 'createcharpost':
-            component = <CreateCharacterPostFromContainer />;
+            component = <CreateCharacterPostFormContainer />;
             break;
+        case 'editcharpost':
+            component = <EditCharacterPostFormContainer characterPost={modal.data} />
+            break;
+        case 'editchar':
+            component = <EditCharacterFormContainer character={modal.data} />
         // case 'createpost':
         //     component = <CreatePostFormContainer referenceId={modal.referenceId} />;
         //     break;

@@ -10,6 +10,12 @@ class CharPage extends React.Component {
         this.props.fetchRelatedCharacterPosts(this.props.characterId);
     }
 
+    // componentDidUpdate(prevProps){
+    //     if(prevProps.location.key !== this.props.location.key) {
+    //         this.props.fetchRelatedCharacterPosts(this.props.characterId);
+    //     }
+    // }
+
     renderButtons(){
         const { character, currentUser, loggedIn } = this.props;
         if (!character) return null;
@@ -22,7 +28,7 @@ class CharPage extends React.Component {
                     <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
                         Write as {character.first_name}
                     </div>
-                    <div className="char-page-buttons hover flex-center">
+                    <div className="char-page-buttons hover flex-center" onClick={() => this.props.history.push(`/edit/${character.id}`)}>
                         Edit {character.first_name}
                     </div>
                     <div className="char-page-buttons hover flex-center">
@@ -42,7 +48,7 @@ class CharPage extends React.Component {
     render(){
         const { character, characterPosts, loggedIn, currentUser } = this.props;
         if (!character) return <div>no character</div>;
-
+        debugger
         return (
             <div className="char-page-container align-center">
                 <div className="relative flex">

@@ -3,6 +3,7 @@ import React from 'react';
 import SearchBarContainer from './search_bar_container';
 import CharItem from './char_item';
 // import FriendRequestShowContainer from './friend_request_show_container';
+// const charactetLocation = this.props.location.pathname === "/character/.*" ? "habitsLocation" : "";
 
 class NavBar extends React.Component {
 

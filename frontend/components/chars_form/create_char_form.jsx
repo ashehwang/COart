@@ -63,8 +63,8 @@ class CreateCharForm extends React.Component {
 
   render() {
 
-    const headPreview = this.state.head_photoUrl ? <img className="pic-preview" src={this.state.head_photoUrl} /> : null;
-    const bodyPreview = this.state.body_photoUrl ? <img className="pic-preview" src={this.state.body_photoUrl} /> : null;
+    const headPreview = this.state.head_photoUrl ? <img className="pic-preview2" src={this.state.head_photoUrl} /> : null;
+    const bodyPreview = this.state.body_photoUrl ? <img className="pic-preview2" src={this.state.body_photoUrl} /> : null;
 
     return(
         <div className="charform-container">
@@ -74,7 +74,7 @@ class CreateCharForm extends React.Component {
                 <br/>
                 <h3>This is the most exciting and fun part of Co-Tell, and the very reason this site was made. Ever thought you'd like to create your own original character to tell stories with? The character can be based off from you, or someone you like, or from your favorite anime/game/manga/novel character. Be as creative and as crazy as you like. </h3>
                 <br/>
-                <h3>Your character can be living now, here... suffering through pandemic. Or be living in D&D style fantasy world. Anyone interested in SF? Your character can be outgoing, or shy, or bubbly. Maybe he/she is a twin tailed tsundere. Maybe it's an animal that turns into humans when we're not looking. I know your imagination is endless, and so are the possibilities of your character. </h3>
+                <h3>Your character can be living now, here... suffering through pandemic. Or be living in D&D style fantasy world. Anyone interested in SF? Your character can be outgoing, or shy, or bubbly. Maybe he/she is a twin tailed tsundere. Maybe it's an animal that takes human form when we're not looking. I know your imagination is endless, and so are the possibilities of your character. </h3>
                 <br/>
                 <h3>If you're someone who can draw, you can add pictures of your character. Odd eyes? Cat ears? Rainbow colored hair? If you can't draw, maybe you ask someone to. If you'd like to leave it to people's imagination, you can leave it blank too.</h3>
             </div>

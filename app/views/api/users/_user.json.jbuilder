@@ -17,7 +17,11 @@ json.characters do
             else
                 json.headPhotoUrl "https://i.ibb.co/K9PYxTP/ahri2.jpg"
             end
-            json.bodyPhotoUrl url_for(character.body_photo) if character.body_photo.attached?
+            if character.body_photo.attached?
+                json.bodyPhotoUrl url_for(character.body_photo) 
+            else
+                json.bodyPhotoUrl nil
+            end
             json.creator do
                 json.extract! user, :id, :user_name, :nick_name
             end

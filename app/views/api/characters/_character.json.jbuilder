@@ -5,7 +5,12 @@ else
     json.headPhotoUrl "https://i.ibb.co/K9PYxTP/ahri2.jpg"
 end
 # json.headPhotoUrl url_for(character.head_photo) if character.head_photo.attached?
-json.bodyPhotoUrl url_for(character.body_photo) if character.body_photo.attached?
-json.creater do
+if character.body_photo.attached?
+    json.bodyPhotoUrl url_for(character.body_photo) 
+else
+    json.bodyPhotoUrl nil
+end
+
+json.creator do
     json.extract! character.user, :id, :user_name, :nick_name
 end
