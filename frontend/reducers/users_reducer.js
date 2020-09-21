@@ -78,6 +78,7 @@ const usersReducer = (state = {}, action) => {
     case REMOVE_CHAR:
       let targetCharIdx = newState[action.character.creator.id].character_ids.indexOf(action.character.id);
       newState[action.character.creator.id].character_ids.splice(targetCharIdx, 1);
+      newState[action.character.creator.id].selected_id = action.character.other_char.id;
       return newState;
     case RECEIVE_CHAR: //receiving newly created character
       newState[action.char.creator.id].character_ids.push(action.char.id);

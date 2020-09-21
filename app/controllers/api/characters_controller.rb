@@ -52,13 +52,16 @@ class Api::CharactersController < ApplicationController
 
     def destroy
         @character = Character.find_by(id: params[:id])
-
-        if @character.selected && @character.user.characters.count > 1
-            other_character = @character.user.characters.find_by
+        if @character.selected
+            if @character.user.characters.count > 1
+                @other_character = @character.user.characters.find { |char| !char.selected }
+                @other_character.selected = true
+                @other_character.save
+            end
         end
 
         if @character.destroy
-            render :show
+            render :remove
         else
             render json: @character.errors, status: 422
         end
@@ -68,7 +71,6 @@ class Api::CharactersController < ApplicationController
         @character = Character.find_by(id: params[:id])
         @character.body_photo.purge if params["remove_body_photo"] == "true"
         @character.head_photo.purge if params["remove_head_photo"] == "true"
-        # debugger
         if @character.update(character_params)
             render :show
         else
