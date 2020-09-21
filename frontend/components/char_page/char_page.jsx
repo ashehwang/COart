@@ -47,7 +47,7 @@ class CharPage extends React.Component {
 
     render(){
         const { character, characterPosts, loggedIn, currentUser } = this.props;
-        if (!character) return <div>no character</div>;
+        if (!character) return <div className="warning flex-center">Sorry, this character does not exist.</div>;
 
         return (
             <div className="char-page-container align-center">

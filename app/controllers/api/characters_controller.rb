@@ -62,7 +62,11 @@ class Api::CharactersController < ApplicationController
             else #this char was the only one character
                 @character.destroy
                 render :remove2
-            end
+            end            
+        else #char wasn't selected (and there will be another that is true)
+            @other_character = @character.user.characters.find { |char| char.selected }
+            @character.destroy #added
+            render :remove #added
         end
 
         # if @character.destroy
