@@ -100,35 +100,45 @@ class NavBar extends React.Component {
 
     renderNavLogin(){
             const { characters, currentUser, loggedIn } = this.props;
+
+            let charPageReg = new RegExp('/character/.*');
+
+            const main = this.props.location.pathname === "/" ? "nav-selected" : "";
+            const charPage = this.props.location.pathname === charPageReg ? "nav-selected" : "";
+            const userPage = this.props.location.pathname === "user/.*" ? "nav-selected" : "";
+
+
             if (loggedIn && characters[currentUser.selected_id]){
             const avatar = characters[currentUser.selected_id];
             return (
               <>
-                <div className="navbar-submenu hover" onClick={() => this.props.openModal('createcharpost')}>Feed</div>
-                <div className="navbar-submenu hover" onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
-                <div className="navbar-submenu hover">{currentUser.nick_name}'s Page</div>
+                <div className={`navbar-submenu hover ${""}`}>Feed</div>
+                <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
+                <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div>
               </>
             );
         } else if (loggedIn && !characters[currentUser.selected_id]) {
             return (
               <>
-                <div className="navbar-submenu hover">Feed</div>
-                <div className="navbar-submenu hover">{currentUser.nick_name}'s Page</div>
-                <div className="navbar-submenu hover">Create Character</div>
+                <div className={`navbar-submenu hover ${main}`}>Feed</div>
+                <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/create")}>Create Character</div>
               </>
             );
         }else {
             return (
                 <>
-                    <div className="navbar-submenu hover">How to CoTell</div>
-                    <div className="navbar-submenu hover">Featured</div>
-                    <div className="navbar-submenu hover">Contact Us</div>
+                    <div className={`navbar-submenu hover ${""}`}>How to CoTell</div>
+                    <div className={`navbar-submenu hover ${""}`}>Featured</div>
+                    <div className={`navbar-submenu hover ${""}`}>Contact Us</div>
                 </>
             )
         }
     }
 
     render() {
+
+        const main = this.props.location.pathname === "/" ? "nav-selected" : "";
 
         return (
           <nav className="navbar-container">
@@ -140,7 +150,7 @@ class NavBar extends React.Component {
               </div>
             </div>
             <div className="navbar-menu flex">
-              <div className="navbar-submenu hover" onClick={()=>this.props.history.push("/")}>World</div>
+              <div className={`navbar-submenu hover ${main}`} onClick={()=>this.props.history.push("/")}>World</div>
               {this.renderNavLogin()}
             </div>
             <div className="navbar-right">{this.renderLogin()}</div>

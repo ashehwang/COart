@@ -12,5 +12,5 @@ else
 end
 
 json.creator do
-    json.extract! character.user, :id, :user_name, :nick_name
+    json.extract! character.user, :id, :user_name, :nick_name, :character_ids
 end

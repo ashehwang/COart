@@ -4,7 +4,6 @@
 }
 
 .char-page-right {
-    /* background: blue; */
     width: 750px;
     margin: 20px 50px 0 30px;
 }
@@ -144,4 +143,8 @@
 .delete-char-button:hover {
     background: #F2C9D0;
     border-style: inset;
+}
+
+#profile > p {
+    white-space: pre-wrap;
 }

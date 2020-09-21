@@ -63,7 +63,7 @@ class CharPage extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="char-page-buttons hover flex-center">
+                        <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('showchar', character)}>
                             View Full Profile
                         </div>
                         <div>
@@ -72,7 +72,7 @@ class CharPage extends React.Component {
                     </div>
                     <div className="char-page-right">
                         <div>
-                            {characterPosts.map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} character={character} loggedIn={loggedIn} currentUser={currentUser}/>)}
+                            {characterPosts.reverse().map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} character={character} loggedIn={loggedIn} currentUser={currentUser}/>)}
                         </div>
                     </div>
                 </div>

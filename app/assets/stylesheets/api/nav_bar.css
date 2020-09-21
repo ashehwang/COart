@@ -39,10 +39,16 @@
 }
 
 .navbar-submenu:hover {
+    /* background: white;
+    color: black; */
+    font-weight: 600;
+} /*FIX THIS WHEN TRYING TO DISPLAY*/
+
+.nav-selected {
     background: white;
     color: black;
     font-weight: 600;
-} /*FIX THIS WHEN TRYING TO DISPLAY*/
+}
 
 .navbar-right {
     /* background-color: blue; */

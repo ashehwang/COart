@@ -53,18 +53,23 @@ class Api::CharactersController < ApplicationController
     def destroy
         @character = Character.find_by(id: params[:id])
         if @character.selected
-            if @character.user.characters.count > 1
+            if @character.user.characters.count > 1 #has other character to select
                 @other_character = @character.user.characters.find { |char| !char.selected }
                 @other_character.selected = true
                 @other_character.save
+                @character.destroy #added
+                render :remove #added
+            else #this char was the only one character
+                @character.destroy
+                render :remove2
             end
         end
 
-        if @character.destroy
-            render :remove
-        else
-            render json: @character.errors, status: 422
-        end
+        # if @character.destroy
+        #     render :remove
+        # else
+        #     render json: @character.errors, status: 422
+        # end
     end
 
     def update

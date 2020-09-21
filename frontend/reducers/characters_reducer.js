@@ -20,6 +20,10 @@ const charactersReducer = (state = {}, action) => {
       return action.payload.chars;
     case RECEIVE_CHAR:
       newState[action.char.id] = action.char;
+      for (var i = 0; i < action.char.creator.character_ids.length; i ++) {
+        if (action.char.creator.character_ids[i] === action.char.id) continue;
+        newState[action.char.creator.character_ids[i]].selected = false;
+      }
       return newState;
     case REMOVE_CHAR:
       delete newState[action.character.id];

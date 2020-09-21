@@ -5,6 +5,7 @@ import LoginFormContainer from '../login_form/login_form_container';
 import SignUpFormContainer from '../signup_form/signup_form_container';
 import CreateCharacterPostFormContainer from '../char_posts_form/create_charpost_form_container';
 import DeleteCharacterFormContainer from '../chars_form/delete_char_form_container';
+import FullProfile from '../char_page/full_profile';
 
 
 // import EditCharacterPostFormContainer from '../char_posts_form/edit_charpost_form_container';
@@ -31,7 +32,10 @@ function Modal({ modal, closeModal }) {
             component = <CreateCharacterPostFormContainer />;
             break;
         case 'deletechar':
-            component = <DeleteCharacterFormContainer character={modal.data}/>;
+            component = <DeleteCharacterFormContainer character={modal.data} />;
+            break;
+        case 'showchar':
+            component = <FullProfile character={modal.data} />;
             break;
         // case 'editcharpost':
         //     component = <EditCharacterPostFormContainer characterPost={modal.data} />
