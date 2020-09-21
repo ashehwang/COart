@@ -31,7 +31,7 @@ class CharPage extends React.Component {
                     <div className="char-page-buttons hover flex-center" onClick={() => this.props.history.push(`/edit/${character.id}`)}>
                         Edit {character.first_name}
                     </div>
-                    <div className="char-page-buttons hover flex-center">
+                    <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('deletechar', character)}>
                         Delete {character.first_name}
                     </div>
                 </>
@@ -48,7 +48,7 @@ class CharPage extends React.Component {
     render(){
         const { character, characterPosts, loggedIn, currentUser } = this.props;
         if (!character) return <div>no character</div>;
-        debugger
+
         return (
             <div className="char-page-container align-center">
                 <div className="relative flex">

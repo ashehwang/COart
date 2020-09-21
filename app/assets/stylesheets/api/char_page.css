@@ -3,12 +3,6 @@
     height: calc(100vh - 131px);
 }
 
-/* .char-page-left {
-    width: 300px;
-    background: red;
-    margin: 20px 30px 0 50px;
-} */
-
 .char-page-right {
     /* background: blue; */
     width: 750px;
@@ -22,13 +16,9 @@
 }
 
 .char-page-profile {
-    /* background: #FAF0F5;
-    background: #F5E0EB;
-    background: white; */
     padding: 10px;
-    /* border-radius: 14px;
-    border: 1px solid lightgrey; */
 }
+
 .char-page-left {
     min-width: 300px;
     margin: 20px 30px 0 50px;
@@ -98,10 +88,6 @@
     font-size: 14px;
 }
 
-/* .char-post-top {
-    border-bottom: 1px solid lightgrey;
-} */
-
 .char-post-bottom {
     border-top: 1px solid lightgrey;
 }
@@ -121,4 +107,41 @@
 
 .char-post-buttons:hover {
     background: #F0D1E1;
+}
+
+.delete-char-container {
+    padding: 20px;
+    border: 3px solid red;
+    border-radius: 12px;
+    color: #4B4944;
+    background: white;
+}
+
+.delete-char-container i, .delete-char-container h1 {
+    color: red;
+    font-size: 21px;
+    text-align: center;
+}
+.delete-char-container i {
+    right: 7px;
+    top: 7px;
+}
+
+.delete-char-container div {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.delete-char-button {
+    background: #F7DEE2;
+    border: 2px solid grey;
+    border-style: outset;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.delete-char-button:hover {
+    background: #F2C9D0;
+    border-style: inset;
 }

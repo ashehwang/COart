@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :characters, only: [:create, :index, :show, :update] do
+    resources :characters, only: [:create, :index, :show, :update, :destroy] do
       member do
         patch :select, to: 'characters#select', as: "select"
       end

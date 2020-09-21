@@ -50,14 +50,19 @@ class Api::CharactersController < ApplicationController
         render :selected
     end
 
-    # def destroy
-    #     @post = Post.find_by(id: params[:id])
-    #     if @post.destroy
-    #         render :show
-    #     else
-    #         render json: @post.errors, status: 422
-    #     end
-    # end
+    def destroy
+        @character = Character.find_by(id: params[:id])
+
+        if @character.selected && @character.user.characters.count > 1
+            other_character = @character.user.characters.find_by
+        end
+
+        if @character.destroy
+            render :show
+        else
+            render json: @character.errors, status: 422
+        end
+    end
 
     def update
         @character = Character.find_by(id: params[:id])

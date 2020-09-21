@@ -85,9 +85,6 @@ class NavBar extends React.Component {
                                     {currentUser.nick_name} <span>@{currentUser.user_name}</span>
                                 </div>
                             </div>
-                            {/* <div className="dropdown hover dd-chars" >
-                                Create New Characters!
-                            </div> */}
                             <div className="dropdown hover dd-add-chars" onClick={() => this.props.history.push("/create")}>
                                 <i className="fas fa-plus white"></i>Create Character
                             </div>

@@ -10,7 +10,6 @@ class CreateCharForm extends React.Component {
   }
 
   handleSubmit(e) {
-    // e.preventDefault();
     const formData = new FormData();
     formData.append("character[first_name]", this.state.first_name);
     formData.append("character[last_name]", this.state.last_name);
@@ -22,18 +21,12 @@ class CreateCharForm extends React.Component {
       formData.append("character[body_photo]", this.state.body_photoFile);
     }
     this.props.createChar(formData).then(res => {
-      if(res.type === "RECEIVE_CHARACTER"){
+      if(res.type === "RECEIVE_CHAR"){
         this.setState({ body: ""});
-        this.props.history.push("/");
+        this.props.history.push(`/character/${res.char.id}`);
       }
     });
-    // this.setState({ body: "" });
-    // this.props.closeModal();
   }
-
-//   updateBody(e) {
-//     this.setState({ body: e.currentTarget.value });
-//   }
 
   updateField(val) {
       return e => this.setState({ [val] : e.currentTarget.value });

@@ -13,7 +13,8 @@ import {
 } from "../actions/friend_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
-import { CHANGE_SELECTED_CHAR } from '../actions/char_actions';
+import { CHANGE_SELECTED_CHAR, REMOVE_CHAR, RECEIVE_CHAR } from "../actions/char_actions";
+import { bindActionCreators } from "redux";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -73,6 +74,14 @@ const usersReducer = (state = {}, action) => {
       return newState;
     case CHANGE_SELECTED_CHAR:
       newState[action.payload.user_id].selected_id = action.payload.selected;
+      return newState;
+    case REMOVE_CHAR:
+      let targetCharIdx = newState[action.character.creator.id].character_ids.indexOf(action.character.id);
+      newState[action.character.creator.id].character_ids.splice(targetCharIdx, 1);
+      return newState;
+    case RECEIVE_CHAR: //receiving newly created character
+      newState[action.char.creator.id].character_ids.push(action.char.id);
+      newState[action.char.creator.id].selected_id = action.char.id;
       return newState;
     case LOGOUT_CURRENT_USER:
       return {};

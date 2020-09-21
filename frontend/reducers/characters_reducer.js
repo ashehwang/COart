@@ -22,10 +22,10 @@ const charactersReducer = (state = {}, action) => {
       newState[action.char.id] = action.char;
       return newState;
     case REMOVE_CHAR:
-      delete newState[action.charId];
+      delete newState[action.character.id];
       return newState;
     case RECEIVE_CURRENT_USER:
-      if (action.payload.characters) return action.payload.characters;
+    if (action.payload.characters) return action.payload.characters;
     case RECEIVE_USER:
       if (action.payload.characters) return action.payload.characters;
     case RECEIVE_ALL_CHARACTER_POSTS:

@@ -16,9 +16,9 @@ const receiveChar = (char) => ({
   char
 });
 
-const removeChar = (charId) => ({
+const removeChar = (character) => ({
   type: REMOVE_CHAR,
-  charId
+  character
 });
 
 const receiveSelectedChar = (payload) => ({
@@ -40,7 +40,7 @@ export const updateChar = (formData, id) => (dispatch) =>
   );
 
 export const deleteChar = (charId) => (dispatch) =>
-  CharApiUtil.deleteChar(charId).then(() => dispatch(removeChar(charId)));
+  CharApiUtil.deleteChar(charId).then((character) => dispatch(removeChar(character)));
 
 export const fetchUserChars = (userId) => (dispatch) =>
   CharApiUtil.fetchUserChars(userId).then((chars) =>
