@@ -1,8 +1,4 @@
-import {
-  RECEIVE_ALL_COMMENTS,
-  RECEIVE_COMMENT,
-  REMOVE_COMMENT,
-} from "../actions/comment_actions";
+import {  RECEIVE_ALL_COMMENTS,  RECEIVE_COMMENT,  REMOVE_COMMENT } from "../actions/comment_actions";
 import { RECEIVE_ALL_POSTS } from "../actions/post_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 

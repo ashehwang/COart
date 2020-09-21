@@ -1,8 +1,30 @@
 import React from 'react';
+import { LOGOUT_CURRENT_USER } from '../../actions/session_actions';
 
 class CharPostItem extends React.Component {
+    
     constructor(props){
         super(props);
+        this.state = { dropdown: false, body: "", visibility: "public", user_id: this.props.currentUser.id, character_post_id: this.props.characterPost.id};
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDropdown = this.handleDropdown.bind(this);
+        this.updateBody = this.updateBody.bind(this);
+    }
+
+    updateBody(e){
+        this.setState({ body: e.target.value });
+    }
+
+    handleSubmit(e){
+        if(e.key === "Enter") {
+            e.preventDefault();
+            this.props.createComment(this.state);
+            this.setState({ body: "" });
+        }
+    }
+
+    handleDropdown(e){
+        this.setState({ dropdown: !this.state.dropdown });
     }
 
     imgExists(){
@@ -11,25 +33,26 @@ class CharPostItem extends React.Component {
         } else {return null}
     }
 
-  renderButtons() {
-    if (!this.props.loggedIn) {
-      return null;
-    } else if (this.props.currentUser.id === this.props.character.creator.id) {
-      return (<div className="char-post-bottom flex">
-                <div className="char-post-buttons hover flex-center">Edit</div>
-                <div className="char-post-buttons hover flex-center">Comment</div>
-              </div>);
-    } else {
-      return (<div className="char-post-bottom flex">
-                <div className="char-post-buttons hover flex-center">Like</div>
-                <div className="char-post-buttons hover flex-center">Comment</div>
-              </div>);
+    renderButtons() {
+        if (!this.props.loggedIn) {
+        return null;
+        } else if (this.props.currentUser.id === this.props.character.creator.id) {
+        return (<div className="char-post-bottom flex">
+                    <div className="char-post-buttons hover flex-center">Edit</div>
+                    <div className="char-post-buttons hover flex-center" onClick={this.handleDropdown}>Comment</div>
+                </div>);
+        } else {
+        return (<div className="char-post-bottom flex">
+                    <div className="char-post-buttons hover flex-center">Like</div>
+                    <div className="char-post-buttons hover flex-center" onClick={this.handleDropdown}>Comment</div>
+                </div>);
+        }
     }
-  }
 
     render(){
 
-        const { characterPost, character } = this.props;
+        const { characterPost, character, currentUser } = this.props;
+        const hidden = this.state.dropdown ? "" : "hidden";
 
         return (
             <div className="char-post-container">
@@ -45,10 +68,11 @@ class CharPostItem extends React.Component {
                         </div>
                     </div>
                 </div>
-                {/* <div className="char-post-bottom flex"> */}
-                    {this.renderButtons()}
-                    {/* <div className="char-post-buttons hover flex-center">Comment</div> */}
-                {/* </div> */}
+                {this.renderButtons()}
+                <div className={`single-char-post-comments ${hidden} flex`}>
+                    <p>{currentUser.nick_name} <span>@{currentUser.user_name}</span> :</p>
+                    <input type="text" placeholder="Write a comment!" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit} />
+                </div>
             </div>
         )
     }

@@ -19,8 +19,8 @@ const removeComment = (comment) => ({
   comment,
 });
 
-export const fetchPostComments = (postId) => (dispatch) =>
-  CommentApiUtil.fetchPostComments(postId).then((comments) =>
+export const fetchCharacterPostComments = (characterPostId) => (dispatch) =>
+  CommentApiUtil.fetchCharacterPostComments(characterPostId).then((comments) =>
     dispatch(receiveAllComments(comments))
   );
 
@@ -40,12 +40,12 @@ export const deleteComment = (commentId) => (dispatch) =>
     dispatch(removeComment(comment))
   );
 
-export const likeComment = (commentLike) => (dispatch) =>
-  CommentApiUtil.likeComment(commentLike).then((comment) =>
-    dispatch(receiveComment(comment))
-  );
+// export const likeComment = (commentLike) => (dispatch) =>
+//   CommentApiUtil.likeComment(commentLike).then((comment) =>
+//     dispatch(receiveComment(comment))
+//   );
 
-export const unlikeComment = (commentLike) => (dispatch) =>
-  CommentApiUtil.unlikeComment(commentLike).then((comment) =>
-    dispatch(receiveComment(comment))
-  );
+// export const unlikeComment = (commentLike) => (dispatch) =>
+//   CommentApiUtil.unlikeComment(commentLike).then((comment) =>
+//     dispatch(receiveComment(comment))
+//   );

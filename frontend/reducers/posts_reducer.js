@@ -20,15 +20,15 @@ const postsReducer = (state = {}, action) => {
     case REMOVE_POST:
       delete newState[action.postId];
       return newState;
-    case RECEIVE_COMMENT:
-      if (
-        !state[action.comment.post_id].comment_ids.includes(action.comment.id)
-      ) {
-        newState[action.comment.post_id].comment_ids.push(action.comment.id);
-        return newState;
-      } else {
-        return state;
-      }
+    // case RECEIVE_COMMENT:
+    //   if (
+    //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)
+    //   ) {
+    //     newState[action.comment.post_id].comment_ids.push(action.comment.id);
+    //     return newState;
+    //   } else {
+    //     return state;
+    //   }
     case REMOVE_COMMENT:
       let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
         action.comment.id

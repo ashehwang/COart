@@ -6,7 +6,7 @@ import {
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER } from '../actions/user_actions';
-// import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
 
@@ -45,21 +45,21 @@ const charactersReducer = (state = {}, action) => {
       newState[action.payload.selected].selected = true;
       newState[action.payload.unselected].selected = false;
       return newState;
-    // case RECEIVE_COMMENT:
-    //   if (
-    //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)
-    //   ) {
-    //     newState[action.comment.post_id].comment_ids.push(action.comment.id);
-    //     return newState;
-    //   } else {
-    //     return state;
-    //   }
-    // case REMOVE_COMMENT:
-    //   let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
-    //     action.comment.id
-    //   );
-    //   newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
-    //   return newState;
+    case RECEIVE_COMMENT:
+      if (
+        !state[action.comment.post_id].comment_ids.includes(action.comment.id)
+      ) {
+        newState[action.comment.post_id].comment_ids.push(action.comment.id);
+        return newState;
+      } else {
+        return state;
+      }
+    case REMOVE_COMMENT:
+      let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
+        action.comment.id
+      );
+      newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
+      return newState;
     case LOGOUT_CURRENT_USER:
       return {};
     default:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_223618) do
+ActiveRecord::Schema.define(version: 2020_09_21_221352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2020_09_15_223618) do
     t.string "visibility", default: "public", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_posts_on_character_id"
+    t.index ["user_id"], name: "index_character_posts_on_user_id"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -53,6 +55,18 @@ ActiveRecord::Schema.define(version: 2020_09_15_223618) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "selected", default: false
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "character_post_id", null: false
+    t.string "body", null: false
+    t.string "visibility", default: "public", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_post_id"], name: "index_comments_on_character_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -61,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_223618) do
     t.string "visibility", default: "public", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

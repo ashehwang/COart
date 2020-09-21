@@ -1,6 +1,6 @@
-export const fetchPostComments = (postId) =>
+export const fetchCharacterPostComments = (characterPostId) =>
   $.ajax({
-    url: `/api/posts/${postId}/comments`,
+    url: `/api/character_posts/${characterPostId}/comments`,
     method: "GET",
   });
 
@@ -24,14 +24,14 @@ export const updateComment = (comment) =>
     data: { comment },
   });
 
-export const likeComment = (commentLike) =>
-  $.ajax({
-    method: "POST",
-    url: `/api/comments/${commentLike.id}/like`,
-  });
+// export const likeComment = (commentLike) =>
+//   $.ajax({
+//     method: "POST",
+//     url: `/api/comments/${commentLike.id}/like`,
+//   });
 
-export const unlikeComment = (commentLike) =>
-  $.ajax({
-    method: "POST",
-    url: `/api/comments/${commentLike.id}/unlike`,
-  });
+// export const unlikeComment = (commentLike) =>
+//   $.ajax({
+//     method: "POST",
+//     url: `/api/comments/${commentLike.id}/unlike`,
+//   });

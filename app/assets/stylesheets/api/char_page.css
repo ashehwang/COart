@@ -205,3 +205,26 @@ img.pic-preview3 {
 .full-profile-container > i:hover {
     color: #4B4944;
 }
+
+.single-char-post-comments {
+    font-size: 13px;
+    color: grey;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+.single-char-post-comments span {
+    color: lightgrey;
+}
+
+.single-char-post-comments input[type=text] {
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    width: 80%;
+    font-size: 12px;
+}
+
+.single-char-post-comments p {
+    margin-left: 5px;
+}

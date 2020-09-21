@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import CharPage from './char_page';
 import { fetchRelatedCharacterPosts } from '../../actions/character_post_actions';
 import { openModal } from '../../actions/modal_actions';
+import { createComment } from '../../actions/comment_actions';
 
 const mSTP = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.id],
@@ -14,7 +15,8 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = dispatch => ({
     fetchRelatedCharacterPosts: characterId => dispatch(fetchRelatedCharacterPosts(characterId)),
-    openModal: (modal, data) => dispatch(openModal(modal, data))
+    openModal: (modal, data) => dispatch(openModal(modal, data)),
+    createComment: comment => dispatch(createComment(comment))
 });
 
 export default connect(mSTP, mDTP)(CharPage);

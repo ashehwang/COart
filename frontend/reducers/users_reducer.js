@@ -14,7 +14,7 @@ import {
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { CHANGE_SELECTED_CHAR, REMOVE_CHAR, RECEIVE_CHAR } from "../actions/char_actions";
-import { bindActionCreators } from "redux";
+
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
