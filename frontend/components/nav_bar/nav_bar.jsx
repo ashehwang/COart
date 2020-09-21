@@ -101,10 +101,10 @@ class NavBar extends React.Component {
     renderNavLogin(){
             const { characters, currentUser, loggedIn } = this.props;
 
-            let charPageReg = new RegExp('/character/.*');
+            let charPageReg = new RegExp('^/character/');
 
             const main = this.props.location.pathname === "/" ? "nav-selected" : "";
-            const charPage = this.props.location.pathname === charPageReg ? "nav-selected" : "";
+            const charPage = this.props.location.pathname.match(charPageReg) ? "nav-selected" : "";
             const userPage = this.props.location.pathname === "user/.*" ? "nav-selected" : "";
 
 

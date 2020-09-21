@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
 
 class CharacterItem extends React.Component {
 
@@ -6,7 +7,7 @@ class CharacterItem extends React.Component {
         if(this.props.character.selected){
             return <div className="nav-char-selected">Selected</div>
         } else {
-            return <div className="nav-char-change hover" onClick={() => this.props.selectChar(this.props.character.id)}>Select</div>
+            return <div className="nav-char-change hover" onClick={() => this.props.selectChar(this.props.character.id).then(() => this.props.history.push(`/character/${this.props.character.id}`))}>Select</div>
         }
     }
 
@@ -19,8 +20,8 @@ class CharacterItem extends React.Component {
                 <div>
                     <img src={this.props.character.headPhotoUrl} className="smaller-profile-pic" />
                 </div>
-                <div className="nav-char-item-name">
-                    {this.props.character.first_name} {this.props.character.last_name}
+                <div className="nav-char-item-name" >
+                    <Link to={`/character/${this.props.character.id}`}>{this.props.character.first_name} {this.props.character.last_name}</Link>
                     {this.selected()}
                 </div>
             </div>
