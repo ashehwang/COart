@@ -10,6 +10,12 @@ class MainPage extends React.Component {
         this.props.fetchPublicCharacterPosts();
     }
 
+    componentDidUpdate(prevProps){
+        if(prevProps.location.key !== this.props.location.key) {
+            this.props.fetchPublicCharacterPosts();
+        }
+    }
+
     render(){
         const { characterPosts, characters, loggedIn, currentUser, createComment } = this.props;
         if(!characterPosts) return null;

@@ -245,7 +245,38 @@ img.pic-preview3 {
 }
 
 .single-post-comments-container {
-    /* background: red; */
     border-top: 1px solid lightgrey;
     margin-top: 15px;
+}
+
+.comment-edit input[type=text] {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 470px;
+    padding: 3px;
+}
+
+.comment-box-container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-box-container > span {
+    font-size: 11px;
+    color: lightgrey;
+}
+
+.comment-box-container i {
+    /* color: lightgrey; */
+    font-size: 14px;
+}
+
+.comment-box-container i:hover {
+    color: grey;
+}
+
+.comment-body {
+    max-width: 530px;
+    overflow-wrap: break-word;
 }

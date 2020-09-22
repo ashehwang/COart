@@ -70,7 +70,7 @@ class CreateCharacterPostForm extends React.Component {
                         <div className="create-post-visibility">
                             {this.returnIcon()}
                             <select onChange={this.update("visibility")}>
-                                <option selected value="public">Public</option>
+                                <option defaultValue="public">Public</option>
                                 <option value="following">Following</option>
                                 <option value="private">Private</option>
                             </select>

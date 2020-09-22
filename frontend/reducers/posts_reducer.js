@@ -29,12 +29,12 @@ const postsReducer = (state = {}, action) => {
     //   } else {
     //     return state;
     //   }
-    case REMOVE_COMMENT:
-      let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
-        action.comment.id
-      );
-      newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
-      return newState;
+    // case REMOVE_COMMENT:
+    //   let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
+    //     action.comment.id
+    //   );
+    //   newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
+    //   return newState;
     case LOGOUT_CURRENT_USER:
       return {};
     default:

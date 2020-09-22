@@ -24,7 +24,7 @@ class MainCharPostItem extends React.Component {
   handleSubmit(e) {
     if (e.key === "Enter") {
       this.setState({ user_id: this.props.currentUser.id }, () => {
-          e.preventDefault();
+        //   e.preventDefault();
           this.props.createComment(this.state);
           this.setState({ body: "" });
       });
