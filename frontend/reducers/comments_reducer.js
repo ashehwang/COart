@@ -21,8 +21,8 @@ const commentsReducer = (state = {}, action) => {
     case REMOVE_COMMENT:
       delete newState[action.comment.id];
       return newState;
-    case LOGOUT_CURRENT_USER:
-      return {};
+    // case LOGOUT_CURRENT_USER:
+    //   return {};
     default:
       return state;
   }

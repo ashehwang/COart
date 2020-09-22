@@ -9,7 +9,7 @@ class MainCharPostItem extends React.Component {
       dropdown: false,
       body: "",
       visibility: "public",
-      user_id: this.props.currentUser.id,
+      user_id: null,
       character_post_id: this.props.characterPost.id,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,9 +23,11 @@ class MainCharPostItem extends React.Component {
 
   handleSubmit(e) {
     if (e.key === "Enter") {
-      e.preventDefault();
-      this.props.createComment(this.state);
-      this.setState({ body: "" });
+      this.setState({ user_id: this.props.currentUser.id }, () => {
+          e.preventDefault();
+          this.props.createComment(this.state);
+          this.setState({ body: "" });
+      });
     }
   }
 
@@ -71,7 +73,7 @@ class MainCharPostItem extends React.Component {
 
   renderCreateComment(){
       if (!this.props.loggedIn) {
-          return <div>user not logged in</div>;
+          return null;
       } else {
             const hidden = this.state.dropdown ? "" : "hidden";
             const { currentUser } = this.props;
@@ -85,8 +87,11 @@ class MainCharPostItem extends React.Component {
   }
 
   render() {
-    const { characterPost, character, currentUser } = this.props;
+    const { characterPost, character } = this.props;
     const hasComments = characterPost.comment_ids.length ? "" : "hidden";
+
+    if(!character) return <div>no character</div>
+    if(!characterPost) return <div>no character post</div>
 
     return (
       <div className="main-char-post-container">

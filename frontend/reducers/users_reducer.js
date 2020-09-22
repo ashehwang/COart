@@ -89,8 +89,8 @@ const usersReducer = (state = {}, action) => {
       newState[action.char.creator.id].character_ids.push(action.char.id);
       newState[action.char.creator.id].selected_id = action.char.id;
       return newState;
-    case LOGOUT_CURRENT_USER:
-      return {};
+    // case LOGOUT_CURRENT_USER:
+    //   return {};
     default:
       return state;
   }

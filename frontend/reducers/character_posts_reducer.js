@@ -25,8 +25,8 @@ const characterPostsReducer = (state = {}, action) => {
             } else {
                 return state
             };
-        case LOGOUT_CURRENT_USER:
-            return {};
+        // case LOGOUT_CURRENT_USER:
+        //     return {};
         default:
             return state;
     }
