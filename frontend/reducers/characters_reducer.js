@@ -29,17 +29,21 @@ const charactersReducer = (state = {}, action) => {
       delete newState[action.character.id];
       return newState;
     case RECEIVE_CURRENT_USER:
-    if (action.payload.characters) return action.payload.characters;
+      if (action.payload.characters) {
+        return action.payload.characters;
+      } else { return newState; };
     case RECEIVE_USER:
-      if (action.payload.characters) return action.payload.characters;
+      if (action.payload.characters) {
+        return action.payload.characters;
+      } else { return newState; };
     case RECEIVE_ALL_CHARACTER_POSTS:
       newState[action.payload.character.id] = action.payload.character;
       return newState;
     case RECEIVE_PUBLIC_CHARACTER_POSTS:
-      // return action.payload.characters;
+      if (action.payload.characters){
       Object.values(action.payload.characters).forEach(character => {
         if(!newState[character.id]) newState[character.id] = character;
-      });
+      })};
       return newState;
     case CHANGE_SELECTED_CHAR:
       newState[action.payload.selected].selected = true;
@@ -54,12 +58,12 @@ const charactersReducer = (state = {}, action) => {
     //   } else {
     //     return state;
     //   }
-    case REMOVE_COMMENT:
-      let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
-        action.comment.id
-      );
-      newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
-      return newState;
+    // case REMOVE_COMMENT:
+    //   let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
+    //     action.comment.id
+    //   );
+    //   newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
+    //   return newState;
     case LOGOUT_CURRENT_USER:
       return {};
     default:
