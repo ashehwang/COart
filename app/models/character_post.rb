@@ -7,8 +7,8 @@ class CharacterPost < ApplicationRecord
     
     has_one_attached :photo
     
-    # has_many :comments,
-    # dependent: :destroy
+    has_many :comments,
+    dependent: :destroy
 
     # has_many :likes,
     # as: :likeable,

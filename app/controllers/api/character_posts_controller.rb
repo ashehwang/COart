@@ -6,13 +6,13 @@ class Api::CharacterPostsController < ApplicationController
 
         if params[:characterId] 
             @character_posts = CharacterPost.where(character_id: params[:characterId])
-                        .includes(:user, :character) #reduce N+1 query
+                        .includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .order(updated_at: :desc)
             @character = Character.find(params[:characterId])
             @user = @character.user
             render :index
         else
-            @character_posts = CharacterPost.includes(:user, :character) #reduce N+1 query
+            @character_posts = CharacterPost.includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .where(visibility: "public")
                         .order(updated_at: :desc)
             render :main

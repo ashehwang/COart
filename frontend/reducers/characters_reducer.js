@@ -45,15 +45,15 @@ const charactersReducer = (state = {}, action) => {
       newState[action.payload.selected].selected = true;
       newState[action.payload.unselected].selected = false;
       return newState;
-    case RECEIVE_COMMENT:
-      if (
-        !state[action.comment.post_id].comment_ids.includes(action.comment.id)
-      ) {
-        newState[action.comment.post_id].comment_ids.push(action.comment.id);
-        return newState;
-      } else {
-        return state;
-      }
+    // case RECEIVE_COMMENT:
+    //   if (
+    //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)
+    //   ) {
+    //     newState[action.comment.post_id].comment_ids.push(action.comment.id);
+    //     return newState;
+    //   } else {
+    //     return state;
+    //   }
     case REMOVE_COMMENT:
       let targetIdx = newState[action.comment.post_id].comment_ids.indexOf(
         action.comment.id
