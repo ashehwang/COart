@@ -1,5 +1,5 @@
 import React from 'react';
-import { LOGOUT_CURRENT_USER } from '../../actions/session_actions';
+import CommentShowContainer from '../comments/comment_show_container';
 
 class CharPostItem extends React.Component {
     
@@ -53,6 +53,7 @@ class CharPostItem extends React.Component {
 
         const { characterPost, character, currentUser } = this.props;
         const hidden = this.state.dropdown ? "" : "hidden";
+        const hasComments = characterPost.comment_ids.length ? "" : "hidden";
 
         return (
             <div className="char-post-container">
@@ -72,6 +73,9 @@ class CharPostItem extends React.Component {
                 <div className={`single-char-post-comments ${hidden} flex`}>
                     <p>{currentUser.nick_name} <span>@{currentUser.user_name}</span> :</p>
                     <input type="text" placeholder="Write a comment!" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit} />
+                </div>
+                <div className={`single-post-comments-container ${hasComments}`}>
+                    {characterPost.comment_ids.map(commentId => <CommentShowContainer key={commentId} commentId={commentId} />)}
                 </div>
             </div>
         )

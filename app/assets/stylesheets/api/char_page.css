@@ -209,7 +209,7 @@ img.pic-preview3 {
 .single-char-post-comments {
     font-size: 13px;
     color: grey;
-    margin-top: 10px;
+    margin-top: 15px;
     justify-content: space-between;
     align-items: center;
 }
@@ -227,4 +227,25 @@ img.pic-preview3 {
 
 .single-char-post-comments p {
     margin-left: 5px;
+}
+
+.comment-box {
+    margin-top: 5px;
+    font-size: 13px;
+    color: grey;
+}
+
+.comment-user {
+    margin: 0 10px 0 5px;
+}
+
+.comment-user span {
+    color: lightgrey;
+    font-size: 11px;
+}
+
+.single-post-comments-container {
+    /* background: red; */
+    border-top: 1px solid lightgrey;
+    margin-top: 15px;
 }
