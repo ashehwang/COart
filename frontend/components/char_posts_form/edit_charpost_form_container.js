@@ -1,17 +1,16 @@
 import { connect } from "react-redux";
 import EditCharPostForm from './edit_charpost_form';
-
-import { updateChar } from "../../actions/char_actions";
+import { updateCharacterPost } from "../../actions/character_post_actions";
 import { closeModal } from "../../actions/modal_actions";
 
-const mSTP = (state) => ({
+const mSTP = (state, ownProps) => ({
   currentUser: state.entities.users[state.session.id],
-  // character: state.entities.characters,
-  notice: "Edit Character"
+  characterPost: ownProps.characterPost,
+  character: state.entities.characters[state.entities.users[state.session.id].selected_id]
 });
 
 const mDTP = (dispatch) => ({
-  action: (formData, id) => dispatch(updateChar(formData, id)),
+  updateCharacterPost: (formData, id) => dispatch(updateCharacterPost(formData, id)),
   closeModal: () => dispatch(closeModal()),
 });
 

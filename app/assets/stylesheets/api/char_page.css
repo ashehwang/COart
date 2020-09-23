@@ -285,3 +285,17 @@ img.pic-preview3 {
     max-width: 530px;
     overflow-wrap: break-word;
 }
+
+.char-post-delete {
+    background: #FAF0F5;
+    font-size: 12px;
+    color: #4B4944;
+    padding: 3px 5px;
+    top: 7px;
+    right: 7px;
+    border-radius: 5px;
+}
+
+.char-post-delete:hover {
+    background: #F0D1E1;
+}

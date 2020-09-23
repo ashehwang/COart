@@ -17,12 +17,12 @@ class MainPage extends React.Component {
     }
 
     render(){
-        const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost } = this.props;
+        const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost, openModal } = this.props;
         if(!characterPosts) return null;
         return (
             <div className="main-page-container relative align-center">
                 <div className="main-page">
-                    {characterPosts.reverse().map(charPost => <MainCharPostItem key={charPost.id} characterPost={charPost} character={characters[charPost.character_id]} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment} deleteCharacterPost={deleteCharacterPost} />)}
+                    {characterPosts.reverse().map(charPost => <MainCharPostItem key={charPost.id} characterPost={charPost} character={characters[charPost.character_id]} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment} deleteCharacterPost={deleteCharacterPost} openModal={openModal}/>)}
                 </div>
             </div>
         )

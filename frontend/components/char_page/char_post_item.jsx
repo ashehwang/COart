@@ -53,7 +53,7 @@ class CharPostItem extends React.Component {
         return null;
         } else if (this.props.currentUser.id === this.props.character.creator.id) {
         return (<div className="char-post-bottom flex">
-                    <div className="char-post-buttons hover flex-center">Edit</div>
+                    <div className="char-post-buttons hover flex-center" onClick={() => this.props.openModal('editcharpost', this.props.characterPost)}>Edit</div>
                     <div className="char-post-buttons hover flex-center" onClick={this.handleDropdown}>Comment</div>
                 </div>);
         } else {
@@ -64,7 +64,13 @@ class CharPostItem extends React.Component {
         }
     }
 
-      renderCreateComment(){
+    renderDelete() {
+        if (this.props.loggedIn && this.props.currentUser.id === this.props.character.creator.id) {
+            return <div className="char-post-delete absolute hover" onClick={() => this.props.deleteCharacterPost(this.props.characterPost.id)}> Delete <i className="far fa-times-circle"></i></div>
+        } else return null;
+    }
+
+    renderCreateComment(){
       if (!this.props.loggedIn) {
           return null;
       } else {
@@ -77,7 +83,24 @@ class CharPostItem extends React.Component {
                 </div>
           );
       }
-  }
+    }
+
+
+    renderBody(){
+        if(this.props.characterPost.body) {
+        return this.props.characterPost.body.split("\n").map( i => <p>{i}<br/></p>)
+        } else return null;
+    }
+    
+    renderBio(){
+        if (this.props.character.bio) {
+            return(
+                <div className="full-profile-bio">
+                    {this.props.character.bio.split("\n").map( i => <><p>{i}</p><br/></>)}
+                </div>
+            )
+        } else return null;
+    }
 
     render(){
 
@@ -88,7 +111,8 @@ class CharPostItem extends React.Component {
         if (!characterPost) return <div>no character post</div>;
 
         return (
-            <div className="char-post-container">
+            <div className="char-post-container relative">
+                {this.renderDelete()}
                 <div className="char-post-top flex">
                     <div><img src={character.headPhotoUrl} className="smaller-profile-pic" /></div>
                     <div>
@@ -98,7 +122,7 @@ class CharPostItem extends React.Component {
                         </div>
                         {this.imgExists()}
                         <div className="char-post-body">
-                            {characterPost.body}
+                            {this.renderBody()}
                         </div>
                     </div>
                 </div>

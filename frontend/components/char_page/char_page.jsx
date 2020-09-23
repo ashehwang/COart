@@ -64,7 +64,7 @@ class CharPage extends React.Component {
     }
 
     render(){
-        const { character, characterPosts, loggedIn, currentUser, createComment } = this.props;
+        const { character, characterPosts, loggedIn, currentUser, createComment, openModal } = this.props;
         if (!character) return <div className="warning flex-center">Sorry, this character does not exist.</div>;
 
         return (
@@ -90,7 +90,7 @@ class CharPage extends React.Component {
                     </div>
                     <div className="char-page-right">
                         <div>
-                            {characterPosts.reverse().map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} character={character} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment}/>)}
+                            {characterPosts.reverse().map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} character={character} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment} openModal={openModal}/>)}
                         </div>
                     </div>
                 </div>

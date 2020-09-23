@@ -25,7 +25,6 @@ class MainCharPostItem extends React.Component {
   handleSubmit(e) {
     if (e.key === "Enter") {
       this.setState({ user_id: this.props.currentUser.id }, () => {
-        //   e.preventDefault();
           this.props.createComment(this.state);
           this.setState({ body: "" });
       });
@@ -67,7 +66,7 @@ class MainCharPostItem extends React.Component {
     } else if (this.props.currentUser.id === this.props.character.creator.id) {
       return (
         <div className="char-post-bottom flex">
-          <div className="char-main-post-buttons hover flex-center">Edit</div>
+          <div className="char-main-post-buttons hover flex-center" onClick={() => this.props.openModal('editcharpost', this.props.characterPost)}>Edit</div>
           <div className="char-main-post-buttons hover flex-center" onClick={this.handleDropdown}>
             Comment
           </div>
@@ -106,6 +105,12 @@ class MainCharPostItem extends React.Component {
       }
   }
 
+    renderBody(){
+        if(this.props.characterPost.body) {
+            return this.props.characterPost.body.split("\n").map( i => <p>{i}<br/></p>)
+        } else return null;
+    }
+
   render() {
     const { characterPost, character } = this.props;
     const hasComments = characterPost.comment_ids.length ? "" : "hidden";
@@ -115,7 +120,6 @@ class MainCharPostItem extends React.Component {
 
     return (
       <div className="main-char-post-container relative">
-        {/* <div className="main-char-post-delete absolute hover"> Delete <i className="far fa-times-circle"></i></div> */}
         {this.renderDelete()}
         <div className="char-post-top flex">
           <div>
@@ -127,7 +131,7 @@ class MainCharPostItem extends React.Component {
               <span> {this.handleTime()} </span>
             </div>
             {this.imgExists()}
-            <div className="char-post-body">{characterPost.body}</div>
+            <div className="char-post-body">{this.renderBody()}</div>
           </div>
         </div>
         {this.renderButtons()}
