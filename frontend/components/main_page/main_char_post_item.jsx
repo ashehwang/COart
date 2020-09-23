@@ -85,6 +85,12 @@ class MainCharPostItem extends React.Component {
     }
   }
 
+  renderDelete() {
+      if (this.props.loggedIn && this.props.currentUser.id === this.props.character.creator.id) {
+          return <div className="main-char-post-delete absolute hover" onClick={() => this.props.deleteCharacterPost(this.props.characterPost.id)}> Delete <i className="far fa-times-circle"></i></div>
+      } else return null;
+  }
+
   renderCreateComment(){
       if (!this.props.loggedIn) {
           return null;
@@ -108,7 +114,9 @@ class MainCharPostItem extends React.Component {
     if(!characterPost) return <div>no character post</div>
 
     return (
-      <div className="main-char-post-container">
+      <div className="main-char-post-container relative">
+        {/* <div className="main-char-post-delete absolute hover"> Delete <i className="far fa-times-circle"></i></div> */}
+        {this.renderDelete()}
         <div className="char-post-top flex">
           <div>
             <img src={character.headPhotoUrl} className="smaller-profile-pic" />

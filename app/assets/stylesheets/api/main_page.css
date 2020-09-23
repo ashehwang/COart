@@ -36,3 +36,17 @@
     border: 1px solid lightgrey;
     min-width: 650px;
 }
+
+.main-char-post-delete {
+    background: #A3CBE1;
+    font-size: 12px;
+    color: #4B4944;
+    padding: 3px 5px;
+    top: 7px;
+    right: 7px;
+    border-radius: 5px;
+}
+
+.main-char-post-delete:hover {
+    background: #84BAD7;
+}
