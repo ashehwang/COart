@@ -51,7 +51,7 @@ class MainCharPostItem extends React.Component {
   imgExists() {
     if (this.props.characterPost.photoUrl) {
       return (
-        <div className="char-post-img">
+        <div className="char-post-img flex-center">
           <img src={this.props.characterPost.photoUrl} />
         </div>
       );

@@ -299,3 +299,15 @@ img.pic-preview3 {
 .char-post-delete:hover {
     background: #F0D1E1;
 }
+
+.char-post-img {
+    /* background: red; */
+    width: 580px;
+    padding-top: 10px;
+}
+
+.main-char-post-img {
+    padding-top: 10px;
+    width: 620px;
+    /* background: red; */
+}
