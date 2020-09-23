@@ -4,10 +4,22 @@ import CharPostItem from './char_post_item'
 class CharPage extends React.Component {
     constructor(props){
         super(props);
+        this.handleFollow = this.handleFollow.bind(this);
+        this.handleUnfollow = this.handleUnfollow.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchRelatedCharacterPosts(this.props.characterId);
+    }
+
+    handleFollow(){
+        const follow = { id: this.props.character.id };
+        this.props.followCharacter(follow);
+    }
+
+    handleUnfollow(){
+        const unfollow = { id: this.props.character.id };
+        this.props.unfollowCharacter(unfollow);
     }
 
     // componentDidUpdate(prevProps){
@@ -36,9 +48,15 @@ class CharPage extends React.Component {
                     </div>
                 </>
             )
+        } else if (character.follower_ids.includes(currentUser.id)) {
+            return(
+                <div className="char-page-buttons hover flex-center" onClick={this.handleUnfollow}>
+                    Unfollow {character.first_name}
+                </div>
+            )
         } else {
             return(
-                <div className="char-page-buttons hover flex-center">
+                <div className="char-page-buttons hover flex-center" onClick={this.handleFollow}>
                     Follow {character.first_name}
                 </div>
             )

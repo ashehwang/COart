@@ -16,14 +16,6 @@ export const selectChar = (charId) => (
     url: `/api/characters/${charId}/select`
   })
 );
-// export const createChar = (char) =>
-//   $.ajax({
-//     method: "POST",
-//     url: "/api/characters",
-//     data: { char },
-//     contentType: false,
-//     processData: false,
-//   });
 
 export const updateChar = (formData, id) =>
   $.ajax({
@@ -54,6 +46,19 @@ export const createChar = (formData) =>
     data: formData,
     contentType: false,
     processData: false,
+  });
+
+export const followCharacter = (follow) => 
+  $.ajax({
+    method: "POST",
+    url: `/api/characters/${follow.id}/follow`
+  });
+
+
+export const unfollowCharacter = (follow) =>
+  $.ajax({
+    method: "POST",
+    url: `/api/characters/${follow.id}/unfollow`,
   });
 
 // export const likePost = (postLike) =>

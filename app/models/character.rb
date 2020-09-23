@@ -12,6 +12,12 @@ class Character < ApplicationRecord
     class_name: :CharacterPost,
     dependent: :destroy
 
+    has_many :follows
+
+    has_many :followers,
+    through: :follows,
+    source: :user
+
     # has_many :comments,
     # dependent: :destroy
 

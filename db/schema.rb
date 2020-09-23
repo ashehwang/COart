@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_221352) do
+ActiveRecord::Schema.define(version: 2020_09_23_011138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(version: 2020_09_21_221352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "selected", default: false
+    t.integer "num_follows", default: 0, null: false
+    t.integer "community_id", default: 0
+    t.string "intro"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -67,6 +70,14 @@ ActiveRecord::Schema.define(version: 2020_09_21_221352) do
     t.datetime "updated_at", null: false
     t.index ["character_post_id"], name: "index_comments_on_character_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "character_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "character_id"], name: "index_follows_on_user_id_and_character_id", unique: true
   end
 
   create_table "posts", force: :cascade do |t|

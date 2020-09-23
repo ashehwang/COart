@@ -2,7 +2,7 @@ import {
   RECEIVE_ALL_CHARS,
   RECEIVE_CHAR,
   REMOVE_CHAR,
-  CHANGE_SELECTED_CHAR,
+  CHANGE_SELECTED_CHAR, RECEIVE_FOLLOW, RECEIVE_UNFOLLOW
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER } from '../actions/user_actions';
@@ -52,6 +52,13 @@ const charactersReducer = (state = {}, action) => {
     case CHANGE_SELECTED_CHAR:
       newState[action.payload.selected].selected = true;
       newState[action.payload.unselected].selected = false;
+      return newState;
+    case RECEIVE_FOLLOW:
+      newState[action.follow.character_id].follower_ids.push(action.follow.user_id);
+      return newState;
+    case RECEIVE_UNFOLLOW:
+      const targetIdx = newState[action.follow.character_id].follower_ids.indexOf(action.follow.user_id)
+      newState[action.follow.character_id].follower_ids.splice(targetIdx, 1);
       return newState;
     // case RECEIVE_COMMENT:
     //   if (

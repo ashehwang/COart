@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
     resources :characters, only: [:create, :index, :show, :update, :destroy] do
       member do
-        patch :select, to: 'characters#select', as: "select"
+        patch :select, to: "characters#select", as: "select"
+        post :follow, to: "characters#follow", as: "follow"
+        post :unfollow, to: "characters#unfollow", as: "unfollow"
       end
       collection do
         get "search"

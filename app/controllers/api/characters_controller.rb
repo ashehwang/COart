@@ -87,6 +87,31 @@ class Api::CharactersController < ApplicationController
         end
     end
 
+    def follow
+        @follow = Follow.new(character_id: params[:id])
+        @follow.user_id = current_user.id
+        @character = Character.find_by(id: params[:id])
+        if @follow.save
+            @character.num_follows += 1
+            @character.save
+            render :follow
+        else
+            render json: @follow.errors, status: 422
+        end
+    end
+
+    def unfollow
+        @follow = Follow.find_by(user_id: current_user.id, character_id: params[:id])
+        @character = Character.find_by(id: params[:id])
+        if @follow.destroy
+            @character.num_follows -= 1
+            @character.save
+            render :follow
+        else
+            render json: @follow.errors.full_messages, status: :unprocessable_entity
+        end
+    end
+
     # def like
     #     @like = Like.new(likeable_type: "Post", likeable_id: params[:id])
     #     @like.user_id = current_user.id
@@ -111,6 +136,6 @@ class Api::CharactersController < ApplicationController
     private
 
     def character_params
-        params.require(:character).permit(:first_name, :last_name, :bio, :head_photo, :body_photo, :remove_head_photo, :remove_body_photo)
+        params.require(:character).permit(:first_name, :last_name, :bio, :head_photo, :body_photo, :remove_head_photo, :remove_body_photo, :intro)
     end
 end

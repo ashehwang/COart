@@ -4,14 +4,14 @@ class Api::CharacterPostsController < ApplicationController
 
     def index
 
-        if params[:characterId] 
+        if params[:characterId]  #for receiving a specific character
             @character_posts = CharacterPost.where(character_id: params[:characterId])
                         .includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .order(updated_at: :desc)
             @character = Character.find(params[:characterId])
             @user = @character.user
             render :index
-        else
+        else #for receiving all characters in the main feed
             @character_posts = CharacterPost.includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .where(visibility: "public")
                         .order(updated_at: :desc)

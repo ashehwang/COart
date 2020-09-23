@@ -5,6 +5,8 @@ export const RECEIVE_CHAR = "RECEIVE_CHAR";
 export const REMOVE_CHAR = "REMOVE_CHAR";
 export const RECEIVE_CHAR_ERROR = "RECEIVE_CHAR_ERROR";
 export const CHANGE_SELECTED_CHAR = "CHANGE_SELECTED_CHAR";
+export const RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
+export const RECEIVE_UNFOLLOW = "RECEIVE_UNFOLLOW";
 
 const receiveAllChars = (payload) => ({
   type: RECEIVE_ALL_CHARS,
@@ -24,6 +26,16 @@ const removeChar = (character) => ({
 const receiveSelectedChar = (payload) => ({
   type: CHANGE_SELECTED_CHAR,
   payload
+});
+
+const receiveFollow = follow => ({
+  type: RECEIVE_FOLLOW,
+  follow
+});
+
+const receiveUnfollow = follow => ({
+  type: RECEIVE_UNFOLLOW,
+  follow
 });
 
 export const fetchChars = () => (dispatch) =>
@@ -55,6 +67,12 @@ export const createChar = (formData) => (dispatch) =>
 export const selectChar = (charId) => (dispatch) => (
   CharApiUtil.selectChar(charId).then((payload) => dispatch(receiveSelectedChar(payload)))
 );
+
+export const followCharacter = (follow) => (dispatch) =>
+  CharApiUtil.followCharacter(follow).then((follow) => dispatch(receiveFollow(follow)));
+
+export const unfollowCharacter = (unfollow) => (dispatch) =>
+  CharApiUtil.unfollowCharacter(unfollow).then((follow) => dispatch(receiveUnfollow(follow)));
 
 // export const likeChar = (postLike) => (dispatch) =>
 //   CharApiUtil.likeChar(postLike).then((post) => dispatch(receiveChar(post)));

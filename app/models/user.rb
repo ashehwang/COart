@@ -9,12 +9,22 @@ class User < ApplicationRecord
 
     has_many :posts,
     dependent: :destroy
-    
+
     has_many :characters,
     dependent: :destroy
 
-    # has_many :comments
+    has_many :comments,
+    dependent: :destroy
+
     has_one_attached :profile_photo
+
+    has_many :follows
+
+    has_many :following_characters,
+    through: :follows,
+    source: :character
+
+
     # has_one_attached :cover_photo
 
     # has_many :sent_friend_requests,
