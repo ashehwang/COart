@@ -10,13 +10,13 @@ class CommentShow extends React.Component {
     }
 
     allowDelete(){
-        if(this.props.comment.user_id === this.props.currentUser.id){
+        if(this.props.loggedIn && this.props.comment.user_id === this.props.currentUser.id){
             return <i className="far fa-times-circle hover" onClick={() => this.props.deleteComment(this.props.comment.id)}></i>
         } else return null;
     }
 
     toggleEdit(){
-        this.setState({ editable: true })
+        if (this.props.loggedIn && this.props.comment.user_id === this.props.currentUser.id) this.setState({ editable: true })
     }
 
     updateBody(e){
@@ -32,6 +32,19 @@ class CommentShow extends React.Component {
         }
     }
 
+    handleTime(){
+        const now = new Date();
+        const nowString = now.toString();
+        const past = new Date(this.props.comment.updated_at);
+        const pastString = past.toString();
+
+        if (nowString.slice(4, 15) === pastString.slice(4, 15)) {
+            return "Today " + pastString.slice(16,24);
+        } else {
+            return this.props.comment.updated_at.slice(0, 10);
+        }
+    }
+
     render(){
         const { comment } = this.props;
         const edit = this.state.editable ? "" : "hidden";
@@ -44,7 +57,7 @@ class CommentShow extends React.Component {
                     <div className={`comment-body ${hide}`} onClick={this.toggleEdit}>{comment.body}</div>
                     <div className={`comment-edit ${edit}`}><input type="text" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit}/></div>
                 </div>
-                    <span>{comment.updated_at.slice(0,10)}  {this.allowDelete()}</span>
+                    <span>{this.handleTime()}  {this.allowDelete()}</span>
             </div>
         )
     }

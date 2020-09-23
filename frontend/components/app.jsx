@@ -26,7 +26,7 @@ const App = () => (
         </Switch> */}
 
         <Route path="/" component={NavBarContainer} />
-        <Route exact path="/" component={MainPageContainer} />
+        <Route exact path="/main" component={MainPageContainer} />
         <Route exact path="/character/:characterId" component={CharPageContainer}/>
         {/* <Route path="/" component={ArtLogContainer} /> */}
         <ProtectedRoute path="/create" component={CreateCharsContainer} />

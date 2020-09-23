@@ -76,10 +76,15 @@
 .char-post-profile > span {
     color: lightgrey;
     font-size: 11px;
+    padding-left: 5px;
 }
 
 .char-post-profile, .char-post-body {
     color: #4B4944;
+}
+
+.char-post-profile {
+    align-items: center;
 }
 
 .char-post-body {

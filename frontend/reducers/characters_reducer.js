@@ -30,7 +30,11 @@ const charactersReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_CURRENT_USER:
       if (action.payload.characters) {
-        return action.payload.characters;
+        // return action.payload.characters;
+        Object.values(action.payload.characters).forEach( character => {
+          newState[character.id] = character;
+        })
+        return newState;
       } else { return newState; };
     case RECEIVE_USER:
       if (action.payload.characters) {

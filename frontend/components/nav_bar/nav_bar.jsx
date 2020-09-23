@@ -138,7 +138,7 @@ class NavBar extends React.Component {
 
     render() {
 
-        const main = this.props.location.pathname === "/" ? "nav-selected" : "";
+        const main = this.props.location.pathname === "/main" ? "nav-selected" : "";
 
         return (
           <nav className="navbar-container">
@@ -150,7 +150,7 @@ class NavBar extends React.Component {
               </div>
             </div>
             <div className="navbar-menu flex">
-              <div className={`navbar-submenu hover ${main}`} onClick={()=>this.props.history.push("/")}>World</div>
+              <div className={`navbar-submenu hover ${main}`} onClick={()=>this.props.history.push("/main")}>World</div>
               {this.renderNavLogin()}
             </div>
             <div className="navbar-right">{this.renderLogin()}</div>

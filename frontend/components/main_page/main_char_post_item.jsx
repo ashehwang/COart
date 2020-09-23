@@ -1,5 +1,6 @@
 import React from "react";
 import CommentShowContainer from '../comments/comment_show_container';
+import { Link } from 'react-router-dom';
 
 class MainCharPostItem extends React.Component {
 
@@ -29,6 +30,19 @@ class MainCharPostItem extends React.Component {
           this.setState({ body: "" });
       });
     }
+  }
+
+  handleTime(){
+      const now = new Date();
+      const nowString = now.toString();
+      const past = new Date(this.props.characterPost.updated_at);
+      const pastString = past.toString();
+
+      if (nowString.slice(4, 15) === pastString.slice(4, 15)) {
+          return "Today at " + pastString.slice(16,24)
+      } else {
+          return this.props.characterPost.updated_at.slice(0, 10)
+      }
   }
 
   handleDropdown(e) {
@@ -100,9 +114,9 @@ class MainCharPostItem extends React.Component {
             <img src={character.headPhotoUrl} className="smaller-profile-pic" />
           </div>
           <div>
-            <div className="char-post-profile">
-              {character.first_name} {character.last_name}{" "}
-              <span> {characterPost.updated_at.slice(0, 10)} </span>
+            <div className="char-post-profile flex">
+              <Link to={`/character/${character.id}`}>{character.first_name} {character.last_name}</Link>
+              <span> {this.handleTime()} </span>
             </div>
             {this.imgExists()}
             <div className="char-post-body">{characterPost.body}</div>
