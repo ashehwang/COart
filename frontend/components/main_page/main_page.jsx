@@ -8,6 +8,7 @@ class MainPage extends React.Component {
 
     componentDidMount(){
         this.props.fetchPublicCharacterPosts();
+        if (this.props.history.action === "POP") this.props.fetchPublicCharacterPosts();
     }
 
     componentDidUpdate(prevProps){
