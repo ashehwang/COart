@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './stores/store';
 import Root from './components/root';
 
+// import { configureStore } from './stores/store';
+
 document.addEventListener("DOMContentLoaded", () => {
     let store;
     if (window.currentUser) {
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 users: { [window.currentUser.session.id]: window.currentUser.users[window.currentUser.session.id] }
             }
         }
-        store=configureStore(preloadedState);
+        store = configureStore(preloadedState);
         delete window.currentUser;
     } else {
         store = configureStore();
@@ -21,6 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root)
 
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
 })

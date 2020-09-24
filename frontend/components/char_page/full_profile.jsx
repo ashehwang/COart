@@ -17,7 +17,7 @@ class FullProfile extends React.Component {
         if (this.props.character.bio) {
             return(
                 <div className="full-profile-bio">
-                    {this.props.character.bio.split("\n").map( i => <><p>{i}</p><br/></>)}
+                    {this.props.character.bio.split("\n").map( (text, i) => <p key={i}>{text}<br/></p>)}
                 </div>
             )
         } else return null;

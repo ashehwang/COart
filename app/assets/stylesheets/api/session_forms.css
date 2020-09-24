@@ -37,3 +37,10 @@
 .signup-button:hover {
     background: #6D99C5;
 }
+
+.login-error, .signup-error {
+    color: red;
+    font-size: 12px;
+    bottom: 8px;
+    left: 65px;
+}

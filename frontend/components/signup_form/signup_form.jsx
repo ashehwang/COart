@@ -17,13 +17,23 @@ class SignupForm extends React.Component {
             .then(() => this.props.closeModal());
     }
 
+    renderErrors(){
+        if(this.props.errors['user_name']){
+            return(
+                <div className="signup-error absolute">
+                    Username has already been taken.
+                </div>
+            )
+        } else return null;
+    }
+
     render() {
         return (
-            <div className="signup">
+            <div className="signup relative">
                 <form className="signup-form">
                     <div className="signup-detail">
                         <label> Username: 
-                        <input type="text" required id="username" value={this.state.user_name} onChange={this.update("user_name")} />
+                        <input type="text" required id="username" value={this.state.user_name} onChange={this.update("user_name")} onFocus={this.props.removeErrors} />
                         </label>
                     </div>
                     <div className="signup-detail">
@@ -45,6 +55,7 @@ class SignupForm extends React.Component {
                         Sign Up
                     </div>                                      
                 </form>
+                {this.renderErrors()}
             </div>
         )
     }

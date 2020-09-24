@@ -10,16 +10,31 @@ class LoginForm extends React.Component {
 
   handleClick(e) {
     this.props.login(this.state)
-      .then(() => this.props.closeModal());
+      .then((res) => {
+        if (res.type === "RECEIVE_CURRENT_USER") {
+          this.props.closeModal();
+        } 
+      });
   }
 
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
+  renderError(){
+    const errors = this.props.errors.login ? "" : "hidden";
+
+    return(
+      <div className={`login-error absolute ${errors}`}>
+        Invalid Email / Password Combination
+      </div>
+    )
+  }
+
   render(){
     return (
-      <div className="signup">
+      <div className="signup relative">
+        {this.renderError()}
         <form className="signup-form">
           <div className="signup-detail">
             <label>
@@ -31,6 +46,7 @@ class LoginForm extends React.Component {
                 id="username"
                 value={this.state.user_name}
                 onChange={this.update("user_name")}
+                onFocus={() => this.props.removeErrors()}
               />
             </label>
           </div>
@@ -44,6 +60,7 @@ class LoginForm extends React.Component {
                 id="password"
                 value={this.state.password}
                 onChange={this.update("password")}
+                onFocus={() => this.props.removeErrors()}
               />
             </label>
           </div>

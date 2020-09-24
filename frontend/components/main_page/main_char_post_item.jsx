@@ -38,9 +38,12 @@ class MainCharPostItem extends React.Component {
       const pastString = past.toString();
 
       if (nowString.slice(4, 15) === pastString.slice(4, 15)) {
-          return "Today at " + pastString.slice(16,24)
+          if (Number(pastString.slice(16, 18)) >= 12) {
+              const hour = Number(pastString.slice(16,18)) - 12;
+              return "Today at " + String(hour) + pastString.slice(18,21) + " PM"              
+          } else { return "Today at " + pastString.slice(16, 21) + " AM" }
       } else {
-          return this.props.characterPost.updated_at.slice(0, 10)
+          return "Posted on " + this.props.characterPost.updated_at.slice(0, 10)
       }
   }
 
@@ -107,7 +110,7 @@ class MainCharPostItem extends React.Component {
 
     renderBody(){
         if(this.props.characterPost.body) {
-            return this.props.characterPost.body.split("\n").map( i => <p>{i}<br/></p>)
+            return this.props.characterPost.body.split("\n").map((text,idx) => <p key={idx}>{text}<br/></p>)
         } else return null;
     }
 

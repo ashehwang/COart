@@ -29,7 +29,7 @@ class Api::CharacterPostsController < ApplicationController
         if @character_post.save
             render :show
         else
-            render json: @character_post.errors, status: 422
+            render json: { "character_post": "You cannot have an empty post." }, status: 422
         end
     end
 

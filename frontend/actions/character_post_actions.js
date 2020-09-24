@@ -5,6 +5,8 @@ export const RECEIVE_CHARACTER_POST = "RECEIVE_CHARACTER_POST";
 export const REMOVE_CHARACTER_POST = "REMOVE_CHARACTER_POST";
 export const RECEIVE_CHARACTER_POST_ERROR = "RECEIVE_CHARACTER_POST_ERROR";
 export const RECEIVE_PUBLIC_CHARACTER_POSTS = "RECEIVE_PUBLIC_CHARACTER_POSTS";
+export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const REMOVE_ERRORS = "REMOVE_ERRORS";
 
 const receiveAllCharacterPosts = (payload) => ({
   type: RECEIVE_ALL_CHARACTER_POSTS,
@@ -24,6 +26,15 @@ const receiveCharacterPost = (characterPost) => ({
 const removeCharacterPost = (characterPostId) => ({
   type: REMOVE_CHARACTER_POST,
   characterPostId,
+});
+
+export const receiveErrors = (errors) => ({
+  type: RECEIVE_ERRORS,
+  errors: errors,
+});
+
+export const removeErrors = () => ({
+  type: REMOVE_ERRORS
 });
 
 // export const fetchCharacterPosts = () => (dispatch) =>
@@ -63,8 +74,9 @@ export const fetchPublicCharacterPosts = () => (dispatch) =>
 
 export const createCharacterPost = (formData) => (dispatch) =>
   CharacterPostApiUtil.createCharacterPost(formData)
-    .then((characterPost) => dispatch(receiveCharacterPost(characterPost))
-  );
+    .then((characterPost) => dispatch(receiveCharacterPost(characterPost)),
+      err => dispatch(receiveErrors(err.responseJSON)));
+    // .catch((err) => dispatch(receiveErrors(err.response.data)));
 
 // export const likePost = (postLike) => (dispatch) =>
 //   CharacterPostApiUtil.likePost(postLike).then((post) => dispatch(receivePost(post)));
