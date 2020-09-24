@@ -33,10 +33,10 @@ export const removeErrors = () => ({
 });
 
 
-export const fetchBoardPost = (characterPostId) => (dispatch) =>
+export const fetchBoardPost = (boardPostId) => (dispatch) =>
   BoardPostApiUtil.fetchBoardPost(
-    characterPostId
-  ).then((characterPost) => dispatch(receiveBoardPost(characterPost)));
+    boardPostId
+  ).then((boardPost) => dispatch(receiveBoardPost(boardPost)));
 
 export const updateBoardPost = (formData, id) => (dispatch) =>
   BoardPostApiUtil.updateBoardPost(

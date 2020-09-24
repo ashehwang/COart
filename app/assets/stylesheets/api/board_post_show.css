@@ -1,0 +1,35 @@
+.board-post-show-container {
+    background-image: linear-gradient(#ffffff, lightgrey);
+    height: calc(100vh - 131px);
+    color: #28292A;
+}
+
+.board-post-show {
+    padding: 20px;
+    border-radius: 15px;
+    width: 880px;
+    margin: 25px auto;
+}
+
+.board-post-show-title {
+    font-size: 20px;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.board-post-show-detail {
+    font-size: 12px;
+    color: grey;
+    flex-direction: row-reverse;
+}
+
+.board-post-show-detail span {
+    color: lightgrey;
+}
+
+.board-post-show-body {
+    padding: 10px 5px;
+    font-size: 14px;
+    border-bottom: 1px solid lightgrey;
+}

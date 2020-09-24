@@ -10,6 +10,7 @@ import MainPageContainer from './main_page/main_page_container';
 import EditCharContainer from './chars_form/edit_char_form_container';
 import CreateBoardPostContainer from './board/create_board_post_container';
 import BoardContainer from './board/board_container';
+import BoardPostShowContainer from './board/board_post_show_container';
 
 // import ArtLogContainer from './art_log/art_log_container';
 
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="/" component={NavBarContainer} />
         <Route exact path="/main" component={MainPageContainer} />
         <Route exact path="/board" component={BoardContainer} />
+        <Route exact path="/board/:boardPostId" component={BoardPostShowContainer} />
         <Route exact path="/character/:characterId" component={CharPageContainer}/>
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
         <ProtectedRoute path="/write" component={CreateBoardPostContainer} />

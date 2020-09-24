@@ -7,17 +7,32 @@ class Board extends React.Component {
         this.state = { category: "General", page_num: 1 }
     }
 
+    switch(num){
+        switch(num){
+            case 1:
+                this.setState({ category: "General"}, () => this.props.fetchAllBoardPosts(num));
+                break;
+            case 2:
+                this.setState({ category: "Finding Members"}, () => this.props.fetchAllBoardPosts(num));
+                break;
+            case 3:
+                this.setState({ category: "Looking for Community"}, () => this.props.fetchAllBoardPosts(num));
+                break;
+        }
+    }
+
     render(){
         const { boardPosts } = this.props;
         if(!boardPosts) return <div>No Posts exist in this Category Yet.</div>
+        console.log(this.state)
         return(
             <div className="board-container">
                 <div className="flex">
                     <div className="board-category-container border bg-white">
                         <div className="flex-center">Select Category</div>
-                        <div className="board-category flex-center hover border" onClick={() => this.props.fetchAllBoardPosts(1)}>General</div>
-                        <div className="board-category flex-center hover border" onClick={() => this.props.fetchAllBoardPosts(2)}>Finding Members</div>
-                        <div className="board-category flex-center hover border" onClick={() => this.props.fetchAllBoardPosts(3)}>Looking for Community</div>
+                        <div className="board-category flex-center hover border" onClick={() => this.switch(1)}>General</div>
+                        <div className="board-category flex-center hover border" onClick={() => this.switch(2)}>Finding Members</div>
+                        <div className="board-category flex-center hover border" onClick={() => this.switch(3)}>Looking for Community</div>
                     </div>
                     <div className="board-list-container border bg-white">
                         <div className="board-top flex">
@@ -31,7 +46,7 @@ class Board extends React.Component {
                                 <div className="flex-center board-author">Author</div>
                                 <div className="flex-center board-date">Date</div>
                             </div>
-                            <div>{boardPosts.map( boardPost => <BoardPostTitle key={boardPost.id} boardPost={boardPost}/>)}</div>
+                            <div>{boardPosts.reverse().map( boardPost => <BoardPostTitle key={boardPost.id} boardPost={boardPost}/>)}</div>
                             <div className="board-page-flip flex">
                                 <div className="hover"><i className="fas fa-chevron-right"></i>  Next</div>
                                 <div className="hover"><i className="fas fa-chevron-left"></i>  Previous</div>
@@ -74,7 +89,7 @@ class BoardPostTitle extends React.Component {
         const { boardPost } = this.props;
 
         return(
-            <Link>
+            <Link to={`/board/${boardPost.id}`}>
                 <div className="flex board-bottomline">
                     <div className="flex-center board-title">{boardPost.title}</div> 
                     <div className="flex-center board-comments">0</div> 

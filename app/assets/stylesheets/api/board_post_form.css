@@ -20,7 +20,7 @@
 
 .board-post-container textarea {
     width: 858px;
-    min-height: 300px;
+    min-height: 290px;
     resize: none;
     padding: 10px;
     border: 1px solid lightgrey;
@@ -34,6 +34,7 @@
 .board-post-buttons {
     flex-direction: row-reverse;
     margin-top: 10px;
+    font-size: 14px;
 }
 
 .board-post-submit {

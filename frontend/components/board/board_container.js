@@ -12,4 +12,4 @@ const mDTP = dispatch => ({
     fetchAllBoardPosts: tagId => dispatch(fetchAllBoardPosts(tagId))
 });
 
-export default connect(mSTP, mDTP)(Board)
+export default connect(mSTP, mDTP)(Board);
