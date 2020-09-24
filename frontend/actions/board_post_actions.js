@@ -8,9 +8,9 @@ export const RECEIVE_BOARD_POST_ERROR = "RECEIVE_BOARD_POST_ERROR";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const REMOVE_ERRORS = "REMOVE_ERRORS";
 
-const receiveAllBoardPosts = (payload) => ({
+const receiveAllBoardPosts = (boardPosts) => ({
   type: RECEIVE_ALL_BOARD_POSTS,
-  payload: payload
+  boardPosts
 }); 
 
 const receiveBoardPost = (boardPost) => ({
@@ -51,9 +51,9 @@ export const deleteBoardPost = (boardPostId) => (dispatch) =>
     dispatch(removeBoardPost(boardPostId))
   );
 
-export const fetchAllBoardPosts = () => (dispatch) =>
-  BoardPostApiUtil.fetchPublicBoardPosts().then((payload) =>
-    dispatch(receiveAllBoardPosts(payload))
+export const fetchAllBoardPosts = (tagId) => (dispatch) =>
+  BoardPostApiUtil.fetchAllBoardPosts(tagId).then((boardPosts) =>
+    dispatch(receiveAllBoardPosts(boardPosts))
   );
 
 export const createBoardPost = (formData) => (dispatch) =>

@@ -1,7 +1,8 @@
-export const fetchAllBoardPosts = () =>
+export const fetchAllBoardPosts = (tagId) =>
   $.ajax({
     method: "GET",
     url: "/api/board_posts",
+    data: {tagId}
   });
 
 export const fetchBoardPost = (boardPostId) =>

@@ -6,8 +6,8 @@ const boardPostsReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_BOARD_POSTS:
-      if (!action.payload.boardPosts) return {};
-      return action.payload.boardPosts;
+    //   if (!action.boardPosts) return {};
+      return action.boardPosts;
     case RECEIVE_BOARD_POST:
       newState[action.boardPost.id] = action.boardPost;
       return newState;

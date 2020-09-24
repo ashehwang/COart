@@ -12,27 +12,15 @@ import CreateBoardPostContainer from './board/create_board_post_container';
 import BoardContainer from './board/board_container';
 
 // import ArtLogContainer from './art_log/art_log_container';
-// import ProfileContainer from './profile/profile_container';
-// import Entry from './entry';
-// import MainMenu from './main';
-
 
 
 const App = () => (
     <>
         <Modal />
-        {/* <Switch>
-            <ProtectedRoute path="/profile/:userId" component={ProfileContainer}/>
-            <ProtectedRoute path="/main" component={MainMenu} />
-            <AuthRoute path="/" component={Entry} />
-            <Route render={() => <Redirect to="/" />} />
-        </Switch> */}
-
         <Route path="/" component={NavBarContainer} />
         <Route exact path="/main" component={MainPageContainer} />
         <Route exact path="/board" component={BoardContainer} />
         <Route exact path="/character/:characterId" component={CharPageContainer}/>
-        {/* <Route path="/" component={ArtLogContainer} /> */}
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
         <ProtectedRoute path="/write" component={CreateBoardPostContainer} />
         <ProtectedRoute path="/edit/:characterId" component={EditCharContainer} />

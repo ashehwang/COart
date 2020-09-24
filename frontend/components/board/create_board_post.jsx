@@ -40,7 +40,7 @@ class CreateBoardPost extends React.Component {
             .then(res => {
                 if (res.type === "RECEIVE_BOARD_POST") {
                     this.setState({ body: "", title: "" })
-                    this.props.history.push("/main")
+                    this.props.history.push("/board")
                 }
             })
     }

@@ -40,8 +40,6 @@
 }
 
 .create-post-footer {
-    /* background: #BCE3F1;
-    background: lightgrey; */
     border: 1px solid lightgrey;
     width: 536px;
     border-radius: 10px;
@@ -54,7 +52,6 @@
 
 .create-post-icons i {
     margin-left: 10px;
-    /* color: white; */
 }
 
 .create-post-icons i:hover {

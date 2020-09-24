@@ -1,0 +1,101 @@
+.board-container {
+    background-image: linear-gradient(#ffffff, lightgrey);
+    height: calc(100vh - 131px);
+    color: #28292A;
+}
+
+.board-category-container, .board-list-container {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.board-category-container {
+    margin-right: 15px;
+}
+
+.board-container > div {
+    margin: 15px auto;
+    width: fit-content;
+}
+
+.board-category {
+    padding: 8px;
+    border-radius: 7px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.board-list-container {
+    width: 900px;
+}
+
+.board-top {
+    justify-content: space-between;
+}
+
+.board-top h1 {
+    font-size: 23px;
+    /* background: red; */
+    display: inline-block;
+    padding: 5px 0 0 5px;
+}
+
+.board-top > div {
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.board-top > div:hover {
+    background: lightgrey;
+    color: white;
+}
+
+.board-top i {
+    margin-right: 5px;
+}
+
+.board-topline {
+    margin: 10px 0;
+    color: white;
+    background: #28292A;
+    padding: 5px 0;
+    /* border-radius: 8px; */
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.board-bottomline {
+    /* width: 835px; */
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 12px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.board-title {
+    width: 500px;
+    /* background: pink; */
+}
+.board-comments {
+    width: 80px;
+    /* background: pink; */
+}
+.board-author {
+    width: 130px;
+    /* background: pink; */
+}
+.board-date {
+    width: 130px;
+    /* background: pink; */
+}
+
+.board-page-flip > div {
+    font-size: 12px;
+    padding: 5px 8px;
+    color: grey;
+}
+
+.board-page-flip {
+    flex-direction: row-reverse;
+}
