@@ -10,6 +10,7 @@
     padding: 30px 30px 0 30px;
     border-bottom: 1px solid lightgrey;
     color: white;
+    /* flex-wrap: wrap; */
 }
 
 .navbar-search-container i {
@@ -21,18 +22,11 @@
 .navbar-submenu {
     width: 150px;
     height: 100%;
-    /* background-color: white; */
-    /* background-color: transparent;
-    color: white; */
     margin: 0 10px;
     margin: 60px 10px -30px 50px;
     border-top-right-radius: 14px;
     border-top-left-radius: 14px;
     font-size: 14px;
-    /* border-top: 1px solid lightgrey;
-    border-right: 1px solid lightgrey;
-    border-left: 1px solid lightgrey; */
-    /* font-weight: 400; */
     text-align: center;
     padding-top: 12px;
     font-weight: 500;

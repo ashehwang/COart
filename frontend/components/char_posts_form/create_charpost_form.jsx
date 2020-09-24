@@ -55,9 +55,6 @@ class CreateCharacterPostForm extends React.Component {
     
         return(
             <div className="create-post-container shadow relative">
-                {/* <div className="create-post-prompt">
-                    Create Post
-                </div> */}
                 <div className="create-post-close absolute"><i className="far fa-times-circle hover" onClick={() => this.props.closeModal()}></i></div>
                 <div className="create-post-profile flex">
                     <div>

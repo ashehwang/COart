@@ -21,9 +21,9 @@ Rails.application.routes.draw do
       end
     end
 
-    # resources :posts, only: [:index, :create, :show, :destroy, :update] do
-    #   resources :comments, only: [:index]
-    # end
+    resources :board_posts, only: [:index, :create, :show, :destroy, :update] do
+      # resources :comments, only: [:index]
+    end
 
     resources :comments, only: [:destroy, :update, :create]
     resources :friend_requests, only: [:create, :destroy]

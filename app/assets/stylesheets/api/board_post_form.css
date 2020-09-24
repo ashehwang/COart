@@ -1,0 +1,113 @@
+.board-post-container {
+    width: 880px;
+    background: white;
+    margin: 10px auto;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* .charform-limit {
+    background: red;
+} */
+
+.board-post-container input[type=text] {
+    width: 854px;
+    padding: 12px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.board-post-container textarea {
+    width: 858px;
+    min-height: 300px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-family: sans-serif;
+    color: grey;
+}
+
+.board-post-buttons {
+    flex-direction: row-reverse;
+    margin-top: 10px;
+}
+
+.board-post-submit {
+    /* background: #84DCCF; */
+    background: #4C5760;
+    padding: 8px;
+    border-radius: 8px;
+    width: 120px;
+    margin-left: 10px;
+    color: white;
+}
+
+.board-post-submit:hover {
+    /* background: #14c1c7; */
+    background: #363E45;
+    /* color: white; */
+    font-weight: 600;
+}
+
+.board-post-cancel {
+    /* border: 1px solid #84DCCF; */
+    border: 1px solid #4C5760;
+    color: #84DCCF;
+    color: #4C5760;
+    padding: 8px;
+    border-radius: 8px;
+    width: 120px;
+}
+
+.board-post-cancel:hover {
+    /* border: 1px solid #14c1c7; */
+    border: 1px solid #363E45;
+    color: #14c1c7;
+    color: #363E45;
+    font-weight: 600;
+}
+
+.board-post-form-container {
+    background-image: linear-gradient(#84DCCF, #14c1c7);
+    background-image: linear-gradient(#EDD6D4, #CC8B86);
+    min-height: calc(100vh - 151px);
+    padding-top: 20px;
+}
+
+.board-post-form-limit {
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+    margin: 0 15px;
+}
+
+.pic-preview4 > img {
+    max-width: 800px;
+    height: auto;
+    margin-top: 15px;
+}
+
+.board-post-info {
+    justify-content: space-between;
+    color: #4C5760;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.board-post-info label {
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.board-post-info .flex {
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.board-post-info label:hover {
+    background: #4C5760;
+    color: white;
+}

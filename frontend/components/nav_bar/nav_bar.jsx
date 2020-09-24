@@ -112,9 +112,10 @@ class NavBar extends React.Component {
             const avatar = characters[currentUser.selected_id];
             return (
               <>
-                <div className={`navbar-submenu hover ${""}`}>Feed</div>
+                <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div>
                 <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
-                <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div>
+                {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
+                <div className={`navbar-submenu hover ${userPage}`} onClick={() => this.props.history.push("/board")}>Board</div>
               </>
             );
         } else if (loggedIn && !characters[currentUser.selected_id]) {
@@ -130,7 +131,7 @@ class NavBar extends React.Component {
                 <>
                     <div className={`navbar-submenu hover ${""}`}>How to CoTell</div>
                     <div className={`navbar-submenu hover ${""}`}>Featured</div>
-                    <div className={`navbar-submenu hover ${""}`}>Contact Us</div>
+                    <div className={`navbar-submenu hover ${""}`}>Board</div>
                 </>
             )
         }

@@ -300,7 +300,6 @@ img.pic-preview3 {
 }
 
 .char-post-img {
-    /* background: red; */
     width: 580px;
     padding-top: 10px;
 }
@@ -308,7 +307,6 @@ img.pic-preview3 {
 .main-char-post-img {
     padding-top: 10px;
     width: 620px;
-    /* background: red; */
 }
 
 .main-char-post-img > img {
