@@ -310,3 +310,13 @@ img.pic-preview3 {
     width: 620px;
     /* background: red; */
 }
+
+.main-char-post-img > img {
+    max-width: 620px;
+    height: auto;
+}
+
+.char-post-img > img {
+    max-width: 580px;
+    height: auto;
+}
