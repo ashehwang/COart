@@ -62,7 +62,7 @@ class BoardCommentShow extends React.Component {
         const edit = this.state.editable ? "" : "hidden";
         const hide = this.state.editable ? "hidden" : "";
 
-        if(!boardComment) return <div>no board comment</div>
+        if(!boardComment) return null;
         return (
           <div className="comment-box-container flex">
             <div className="comment-box flex">
