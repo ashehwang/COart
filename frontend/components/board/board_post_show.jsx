@@ -8,7 +8,18 @@ class BoardPostShow extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchBoardPost(this.props.boardPost.id);
+        this.props.fetchBoardPost(this.props.match.params.boardPostId);
+    }
+
+    renderButtons(){
+        if(this.props.loggedIn && this.props.boardPost.author.id === this.props.currentUser.id) {
+            return(
+                <div className="board-post-user-buttons flex absolute">
+                    <div className="board-post-user-button border flex-center hover">Edit</div>
+                    <div className="board-post-user-button border flex-center hover">Delete</div>
+                </div>
+            )
+        } else return null;
     }
 
     showTime(){
@@ -37,7 +48,8 @@ class BoardPostShow extends React.Component {
         return(
             <div className="board-post-show-container">
                 <div className="board-post-show-limit">
-                    <div className="board-post-show bg-white border">
+                    <div className="board-post-show bg-white border relative">
+                        {this.renderButtons()}
                         <div className="board-post-show-title">
                             {boardPost.title}
                         </div>
@@ -51,11 +63,11 @@ class BoardPostShow extends React.Component {
                         <div className="board-post-show-detail flex">
                             <span>Post last updated at {this.showTime()}</span>
                         </div>
-                        <div className="board-post-show-write-comments">
+                        <div className="board-post-show-write-comments border">
                             <div>{this.props.currentUser.nick_name} </div>
                             <textarea placeholder="Leave a comment"/>
-                            <div>
-                                Post Comment
+                            <div className="flex board-post-show-comment-button hover">
+                                <div className="border">Post Comment</div>
                             </div>
                         </div>
                     </div>
