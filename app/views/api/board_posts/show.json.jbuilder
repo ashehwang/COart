@@ -6,7 +6,7 @@ json.boardPost do
     end
 end
 
-if @board_post.board_comment_ids.length > 1
+if @board_post.board_comment_ids.length > 0
     json.boardComments do 
         @board_post.board_comments.each do |board_comment|
             json.set! board_comment.id do

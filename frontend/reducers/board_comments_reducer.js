@@ -13,7 +13,9 @@ const boardCommentsReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_FETCHED_BOARD_POST:
-        return action.payload.boardComments;
+        if (action.payload.boardComments) {
+            return action.payload.boardComments;
+        } else return newState;
     case RECEIVE_ALL_BOARD_COMMENTS:
       return action.boardComments;
     case RECEIVE_BOARD_COMMENT:

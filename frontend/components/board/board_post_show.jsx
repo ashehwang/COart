@@ -1,4 +1,5 @@
 import React from 'react';
+import BoardCommentShowContainer from './board_comment_show_container';
 
 class BoardPostShow extends React.Component {
 
@@ -93,6 +94,9 @@ class BoardPostShow extends React.Component {
                             <span>Post last updated at {this.showTime()}</span>
                         </div>
                         {this.renderWriteComments()}
+                        <div>
+                            {boardPost.board_comment_ids.map( id => <BoardCommentShowContainer key={id} boardCommentId={id}/>)}
+                        </div>
                     </div>
                 </div>
             </div>

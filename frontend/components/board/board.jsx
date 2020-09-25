@@ -92,7 +92,7 @@ class BoardPostTitle extends React.Component {
             <Link to={`/board/${boardPost.id}`}>
                 <div className="flex board-bottomline">
                     <div className="flex-center board-title">{boardPost.title}</div> 
-                    <div className="flex-center board-comments">0</div> 
+                    <div className="flex-center board-comments">{boardPost.board_comment_ids.length}</div> 
                     <div className="flex-center board-author">{boardPost.author.user_name}</div>
                     <div className="flex-center board-date">{this.showTime()}</div>
                 </div>

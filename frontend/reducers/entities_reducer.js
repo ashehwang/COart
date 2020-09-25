@@ -21,7 +21,7 @@ const entitiesReducer = combineReducers({
   characters: charactersReducer,
   characterPosts: characterPostsReducer,
   boardPosts: boardPostsReducer,
-  boardComment: boardCommentsReducer
+  boardComments: boardCommentsReducer
 });
 
 export default entitiesReducer;

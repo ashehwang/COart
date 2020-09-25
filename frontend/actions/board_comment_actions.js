@@ -4,10 +4,10 @@ export const RECEIVE_ALL_BOARD_COMMENTS = "RECEIVE_ALL_BOARD_COMMENTS";
 export const RECEIVE_BOARD_COMMENT = "RECEIVE_BOARD_COMMENT";
 export const REMOVE_BOARD_COMMENT = "REMOVE_BOARD_COMMENT";
 
-const receiveAllBoardComments = (boardComments) => ({
-  type: RECEIVE_ALL_BOARD_COMMENTS,
-  boardComments,
-});
+// const receiveAllBoardComments = (boardComments) => ({
+//   type: RECEIVE_ALL_BOARD_COMMENTS,
+//   boardComments,
+// });
 
 const receiveBoardComment = (boardComment) => ({
   type: RECEIVE_BOARD_COMMENT,
