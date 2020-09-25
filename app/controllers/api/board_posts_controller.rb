@@ -35,7 +35,7 @@ class Api::BoardPostsController < ApplicationController
     def update
         @board_post = BoardPost.find_by(id: params[:id])
         if @board_post.update(board_post_params)
-            render :show
+            render :update
         else
             render json: @board_post.errors, status: 422
         end

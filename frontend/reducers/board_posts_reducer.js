@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_BOARD_POSTS, RECEIVE_BOARD_POST, RECEIVE_FETCHED_BOARD_POST, REMOVE_BOARD_POST } from '../actions/board_post_actions'
+import { RECEIVE_ALL_BOARD_POSTS, RECEIVE_BOARD_POST, RECEIVE_FETCHED_BOARD_POST, REMOVE_BOARD_POST, RECEIVE_UPDATED_BOARD_POST } from '../actions/board_post_actions'
 import { RECEIVE_BOARD_COMMENT } from '../actions/board_comment_actions';
 
 const boardPostsReducer = (state = {}, action) => {
@@ -11,6 +11,9 @@ const boardPostsReducer = (state = {}, action) => {
       return action.boardPosts;
     case RECEIVE_BOARD_POST:
       newState[action.boardPost.id] = action.boardPost;
+      return newState;
+    case RECEIVE_UPDATED_BOARD_POST:
+      newState[action.payload.boardPost.id] = action.payload.boardPost;
       return newState;
     case RECEIVE_FETCHED_BOARD_POST:
         newState[action.payload.boardPost.id] = action.payload.boardPost;

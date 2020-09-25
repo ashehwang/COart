@@ -11,6 +11,7 @@ import EditCharContainer from './chars_form/edit_char_form_container';
 import CreateBoardPostContainer from './board/create_board_post_container';
 import BoardContainer from './board/board_container';
 import BoardPostShowContainer from './board/board_post_show_container';
+import EditBoardPostContainer from './board/edit_board_post_container';
 
 // import ArtLogContainer from './art_log/art_log_container';
 
@@ -26,6 +27,7 @@ const App = () => (
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
         <ProtectedRoute path="/write" component={CreateBoardPostContainer} />
         <ProtectedRoute path="/edit/:characterId" component={EditCharContainer} />
+        <ProtectedRoute path="/board/edit/:boardPostId" component={EditBoardPostContainer} />
     </>
 );
 

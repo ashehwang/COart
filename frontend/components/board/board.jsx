@@ -7,6 +7,14 @@ class Board extends React.Component {
         this.state = { category: "General", page_num: 1 }
     }
 
+    componentDidMount(){
+        if (this.props.boardPosts.length === 0){
+            this.props.fetchAllBoardPosts(1);
+        }
+        if (this.props.history.action === "POP") this.props.fetchAllBoardPosts(1);
+    }
+
+
     switch(num){
         switch(num){
             case 1:
@@ -24,7 +32,7 @@ class Board extends React.Component {
     render(){
         const { boardPosts } = this.props;
         if(!boardPosts) return <div>No Posts exist in this Category Yet.</div>
-        console.log(this.state)
+
         return(
             <div className="board-container">
                 <div className="flex">
@@ -65,21 +73,41 @@ class BoardPostTitle extends React.Component {
         super(props);
     }
 
-    showTime(){
+    // showTime(){
+    //     const now = new Date();
+    //     const nowString = now.toString();
+    //     const past = new Date(this.props.boardPost.updated_at);
+    //     const pastString = past.toString();
+
+    //     if (nowString.slice(4,15) === pastString.slice(4,15)) {
+    //         if (Number(pastString.slice(16, 18)) > 12 ) {
+    //             const hour = Number(pastString.slice(16,18)) - 12;
+    //             return String(hour) + pastString.slice(18, 24) + " PM";
+    //         } else {
+    //                 return pastString.slice(16,24) + " AM";
+    //         }
+    //     } else {
+    //             return this.props.boardPost.updated_at.slice(0, 10);
+    //     }
+    // }
+
+    handleTime() {
         const now = new Date();
         const nowString = now.toString();
         const past = new Date(this.props.boardPost.updated_at);
         const pastString = past.toString();
 
-        if (nowString.slice(4,15) === pastString.slice(4,15)) {
-            if (Number(pastString.slice(16, 18)) >= 12 ) {
-                const hour = Number(pastString.slice(16,18)) - 12;
-                return String(hour) + pastString.slice(18, 24) + " PM";
-            } else {
-                    return pastString.slice(16,24) + " AM";
-            }
+        if (nowString.slice(4, 15) === pastString.slice(4, 15)) {
+        if (Number(pastString.slice(16, 18)) === 12) {
+            return "12" + pastString.slice(18, 24) + " PM";
+        } else if (Number(pastString.slice(16, 18)) > 12) {
+            const hour = Number(pastString.slice(16, 18)) - 12;
+            return String(hour) + pastString.slice(18, 24) + " PM";
         } else {
-                return this.props.boardPost.updated_at.slice(0, 10);
+            return pastString.slice(16, 24) + " AM";
+        }
+        } else {
+        return this.props.boardPost.updated_at.slice(0, 10);
         }
     }
     
@@ -94,7 +122,7 @@ class BoardPostTitle extends React.Component {
                     <div className="flex-center board-title">{boardPost.title}</div> 
                     <div className="flex-center board-comments">{boardPost.board_comment_ids.length}</div> 
                     <div className="flex-center board-author">{boardPost.author.user_name}</div>
-                    <div className="flex-center board-date">{this.showTime()}</div>
+                    <div className="flex-center board-date">{this.handleTime()}</div>
                 </div>
             </Link>
         )

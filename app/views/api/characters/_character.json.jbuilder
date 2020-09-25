@@ -1,4 +1,4 @@
-json.extract! character, :id, :first_name, :last_name, :bio, :selected
+json.extract! character, :id, :first_name, :last_name, :bio, :selected, :follower_ids
 if character.head_photo.attached?
     json.headPhotoUrl url_for(character.head_photo)
 else

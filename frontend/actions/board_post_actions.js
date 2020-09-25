@@ -2,6 +2,7 @@ import * as BoardPostApiUtil from "../util/board_post_api_util";
 
 export const RECEIVE_ALL_BOARD_POSTS = "RECEIVE_ALL_BOARD_POSTS";
 export const RECEIVE_BOARD_POST = "RECEIVE_BOARD_POST";
+export const RECEIVE_UPDATED_BOARD_POST = "RECEIVE_UPDATED_BOARD_POST";
 export const RECEIVE_FETCHED_BOARD_POST = "RECEIVE_FETCHED_BOARD_POST";
 export const REMOVE_BOARD_POST = "REMOVE_BOARD_POST";
 
@@ -17,6 +18,11 @@ const receiveAllBoardPosts = (boardPosts) => ({
 const receiveBoardPost = (boardPost) => ({
   type: RECEIVE_BOARD_POST,
   boardPost
+});
+
+const receiveUpdatedBoardPost = (payload) => ({
+  type: RECEIVE_UPDATED_BOARD_POST,
+  payload
 });
 
 const receiveFetchedBoardPost = (payload) => ({
@@ -48,8 +54,8 @@ export const updateBoardPost = (formData, id) => (dispatch) =>
   BoardPostApiUtil.updateBoardPost(
     formData,
     id
-  ).then((updatedBoardPost) =>
-    dispatch(receiveBoardPost(updatedBoardPost))
+  ).then((payload) =>
+    dispatch(receiveUpdatedBoardPost(payload))
   );
 
 export const deleteBoardPost = (boardPostId) => (dispatch) =>

@@ -8,18 +8,26 @@ class BoardPostShow extends React.Component {
         this.state = { body: "", board_post_id: this.props.match.params.boardPostId };
         this.updateBody = this.updateBody.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.deletePost = this.deletePost.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchBoardPost(this.props.match.params.boardPostId);
     }
 
+    deletePost(e){
+        this.props.deleteBoardPost(this.props.match.params.boardPostId)
+            .then( res => {
+                if (res.type === "REMOVE_BOARD_POST") this.props.history.push("/board")
+            })
+    }
+
     renderButtons(){
         if(this.props.loggedIn && this.props.boardPost.author.id === this.props.currentUser.id) {
             return(
                 <div className="board-post-user-buttons flex absolute">
-                    <div className="board-post-user-button border flex-center hover">Edit</div>
-                    <div className="board-post-user-button border flex-center hover">Delete</div>
+                    <div className="board-post-user-button border flex-center hover" onClick={() => this.props.history.push(`/board/edit/${this.props.match.params.boardPostId}`)}>Edit</div>
+                    <div className="board-post-user-button border flex-center hover" onClick={this.deletePost}>Delete</div>
                 </div>
             )
         } else return null;
@@ -70,10 +78,30 @@ class BoardPostShow extends React.Component {
         }
     }
 
+  handleTime() {
+    const now = new Date();
+    const nowString = now.toString();
+    const past = new Date(this.props.boardPost.updated_at);
+    const pastString = past.toString();
+
+    if (nowString.slice(4, 15) === pastString.slice(4, 15)) {
+      if (Number(pastString.slice(16, 18)) === 12) {
+        return "12" + pastString.slice(18, 21) + " PM";
+      } else if (Number(pastString.slice(16, 18)) > 12) {
+        const hour = Number(pastString.slice(16, 18)) - 12;
+        return String(hour) + pastString.slice(18, 24) + " PM";
+      } else {
+        return pastString.slice(16, 24) + " AM";
+      }
+    } else {
+      return this.props.boardPost.updated_at.slice(0, 10);
+    }
+  }
+
     render(){
 
         const {boardPost} = this.props;
-        if (!boardPost) return <div>No Such Post Exists</div>
+        if (!boardPost) return <div className="warning flex-center">Sorry, this post does not exist.</div>
 
         return(
             <div className="board-post-show-container">
@@ -91,7 +119,7 @@ class BoardPostShow extends React.Component {
                             written by {boardPost.author.nick_name} 
                         </div>
                         <div className="board-post-show-detail flex">
-                            <span>Post last updated at {this.showTime()}</span>
+                            <span>Post last updated at {this.handleTime()}</span>
                         </div>
                         {this.renderWriteComments()}
                         <div>
