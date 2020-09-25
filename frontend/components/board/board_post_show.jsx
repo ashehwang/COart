@@ -4,7 +4,9 @@ class BoardPostShow extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = { body: "" };
+        this.state = { body: "", board_post_id: this.props.match.params.boardPostId };
+        this.updateBody = this.updateBody.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -20,6 +22,33 @@ class BoardPostShow extends React.Component {
                 </div>
             )
         } else return null;
+    }
+
+    updateBody(e){
+        this.setState({ body: e.currentTarget.value });
+    }
+
+    handleSubmit(e){
+        this.props.createBoardComment(this.state)
+            .then(res => {
+                if (res.type === "RECEIVE_BOARD_COMMENT") {
+                    this.setState({body: ""})
+                }
+            })
+    }
+
+    renderWriteComments(){
+        if(this.props.loggedIn){
+            return (
+              <div className="board-post-show-write-comments border">
+                <div>{this.props.currentUser.nick_name} </div>
+                <textarea placeholder="Leave a comment" value={this.state.body} onChange={this.updateBody}/>
+                <div className="flex board-post-show-comment-button hover">
+                  <div className="border" onClick={this.handleSubmit}>Post Comment</div>
+                </div>
+              </div>
+            );
+        } else return <div> Please Log In to Comment </div>
     }
 
     showTime(){
@@ -63,13 +92,7 @@ class BoardPostShow extends React.Component {
                         <div className="board-post-show-detail flex">
                             <span>Post last updated at {this.showTime()}</span>
                         </div>
-                        <div className="board-post-show-write-comments border">
-                            <div>{this.props.currentUser.nick_name} </div>
-                            <textarea placeholder="Leave a comment"/>
-                            <div className="flex board-post-show-comment-button hover">
-                                <div className="border">Post Comment</div>
-                            </div>
-                        </div>
+                        {this.renderWriteComments()}
                     </div>
                 </div>
             </div>

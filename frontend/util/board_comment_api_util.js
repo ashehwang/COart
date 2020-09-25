@@ -4,11 +4,11 @@ export const fetchBoardPostComments = (boardPostId) =>
     method: "GET",
   });
 
-export const createBoardComment = (boardComment) =>
+export const createBoardComment = (board_comment) =>
   $.ajax({
     method: "POST",
     url: `/api/board_comments`,
-    data: { boardComment },
+    data: { board_comment },
   });
 
 export const deleteBoardComment = (boardCommentId) =>

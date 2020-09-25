@@ -8,6 +8,7 @@ class Api::BoardCommentsController < ApplicationController
 
     def create
         @board_comment = BoardComment.new(board_comment_params)
+        @board_comment.user_id = current_user.id
         if @board_comment.save
             render :show
         else

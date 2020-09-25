@@ -2,6 +2,7 @@ import * as BoardPostApiUtil from "../util/board_post_api_util";
 
 export const RECEIVE_ALL_BOARD_POSTS = "RECEIVE_ALL_BOARD_POSTS";
 export const RECEIVE_BOARD_POST = "RECEIVE_BOARD_POST";
+export const RECEIVE_FETCHED_BOARD_POST = "RECEIVE_FETCHED_BOARD_POST";
 export const REMOVE_BOARD_POST = "REMOVE_BOARD_POST";
 
 export const RECEIVE_BOARD_POST_ERROR = "RECEIVE_BOARD_POST_ERROR";
@@ -16,6 +17,11 @@ const receiveAllBoardPosts = (boardPosts) => ({
 const receiveBoardPost = (boardPost) => ({
   type: RECEIVE_BOARD_POST,
   boardPost
+});
+
+const receiveFetchedBoardPost = (payload) => ({
+  type: RECEIVE_FETCHED_BOARD_POST,
+  payload,
 });
 
 const removeBoardPost = (boardPostId) => ({
@@ -36,7 +42,7 @@ export const removeErrors = () => ({
 export const fetchBoardPost = (boardPostId) => (dispatch) =>
   BoardPostApiUtil.fetchBoardPost(
     boardPostId
-  ).then((boardPost) => dispatch(receiveBoardPost(boardPost)));
+  ).then((payload) => dispatch(receiveFetchedBoardPost(payload)));
 
 export const updateBoardPost = (formData, id) => (dispatch) =>
   BoardPostApiUtil.updateBoardPost(

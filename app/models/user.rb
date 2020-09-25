@@ -16,6 +16,9 @@ class User < ApplicationRecord
     has_many :comments,
     dependent: :destroy
 
+    has_many :board_comments,
+    dependent: :destroy
+
     has_one_attached :profile_photo
 
     has_many :follows

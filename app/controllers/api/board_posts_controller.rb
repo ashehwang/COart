@@ -10,6 +10,7 @@ class Api::BoardPostsController < ApplicationController
 
     def show
         @board_post = BoardPost.find_by(id: params[:id])
+                            # .includes(:user, board_comments: [:user])
     end
 
     def create

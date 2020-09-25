@@ -19,14 +19,14 @@ const removeBoardComment = (boardComment) => ({
   boardComment,
 });
 
-export const fetchBoardPostComments = (boardPostId) => (dispatch) =>
-  BoardCommentApiUtil.fetchBoardPostComments(boardPostId).then((boardComments) =>
-    dispatch(receiveAllBoardComments(boardComments))
-  );
+// export const fetchBoardPostComments = (boardPostId) => (dispatch) =>
+//   BoardCommentApiUtil.fetchBoardPostComments(boardPostId).then((boardComments) =>
+//     dispatch(receiveAllBoardComments(boardComments))
+//   );
 
 export const createBoardComment = (boardComment) => (dispatch) =>
   BoardCommentApiUtil.createBoardComment(boardComment).then(
-    (boardComment) => dispatch(receiveComment(boardComment)),
+    (boardComment) => dispatch(receiveBoardComment(boardComment)),
     (err) => console.log(err)
   );
 
