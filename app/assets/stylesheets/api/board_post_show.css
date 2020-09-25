@@ -2,6 +2,15 @@
     background-image: linear-gradient(#ffffff, lightgrey);
     height: calc(100vh - 156px);
     color: #28292A;
+    margin-top: 25px;
+}
+
+.board-post-show-limit {
+    /* background: pink; */
+    padding: 0 15px;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+    margin: 0 30px;
 }
 
 .board-post-show {
@@ -78,4 +87,15 @@
 .board-post-user-button:hover {
     background: lightgrey;
     color: white;
+}
+
+.board-post-img {
+    padding-top: 10px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.board-post-img > img {
+    max-width: 800px;
+    height: auto;
 }

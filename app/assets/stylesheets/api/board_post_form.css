@@ -112,3 +112,11 @@
     background: #4C5760;
     color: white;
 }
+
+.board-post-error {
+    color: red;
+    border: 2px solid red;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}

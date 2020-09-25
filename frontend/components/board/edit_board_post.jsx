@@ -50,13 +50,32 @@ class EditBoardPost extends React.Component {
     });
   }
 
+  renderButtons(){
+      if(this.props.loggedIn && this.props.currentUser.id === this.props.boardPost.author.id) {
+          return (
+            <div className="board-post-buttons flex">
+              <div
+                className="board-post-submit hover flex-center"
+                onClick={this.handleSubmit}
+              >
+                Edit Post
+              </div>
+              <div className="board-post-cancel hover flex-center">Cancel</div>
+            </div>
+          );
+      } else return (
+          <div className="board-post-buttons flex">
+              <div className="board-post-error">Only The Author Can Edit This Post</div>
+          </div>
+      )
+  }
+
   render() {
 
     if(!this.props.boardPost) return <div>Sorry, this Post does not exist.</div>
 
     const preview = this.state.photoUrl ? (<div className="pic-preview4"><img src={this.state.photoUrl} /></div>) : null;
-    // console.log(this.props)
-    // console.log(this.state)
+
     return (
       <div className="board-post-form-container">
         <div className="board-post-form-limit">
@@ -96,15 +115,7 @@ class EditBoardPost extends React.Component {
                 onChange={this.update("body")}
               />
             </div>
-            <div className="board-post-buttons flex">
-              <div
-                className="board-post-submit hover flex-center"
-                onClick={this.handleSubmit}
-              >
-                Edit Post
-              </div>
-              <div className="board-post-cancel hover flex-center">Cancel</div>
-            </div>
+            {this.renderButtons()}
           </div>
         </div>
       </div>

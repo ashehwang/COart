@@ -15,9 +15,9 @@ const receiveAllBoardPosts = (boardPosts) => ({
   boardPosts
 }); 
 
-const receiveBoardPost = (boardPost) => ({
+const receiveBoardPost = (payload) => ({
   type: RECEIVE_BOARD_POST,
-  boardPost
+  payload
 });
 
 const receiveUpdatedBoardPost = (payload) => ({
@@ -70,6 +70,6 @@ export const fetchAllBoardPosts = (tagId) => (dispatch) =>
 
 export const createBoardPost = (formData) => (dispatch) =>
   BoardPostApiUtil.createBoardPost(formData).then(
-    (boardPost) => dispatch(receiveBoardPost(boardPost)),
+    (payload) => dispatch(receiveBoardPost(payload)),
     (err) => dispatch(receiveErrors(err.responseJSON))
   );

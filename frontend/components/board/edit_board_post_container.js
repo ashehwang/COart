@@ -4,7 +4,8 @@ import { fetchBoardPost, updateBoardPost } from "../../actions/board_post_action
 
 const mSTP = (state, ownProps) => ({
   currentUser: state.entities.users[state.session.id],
-  boardPost: state.entities.boardPosts[ownProps.match.params.boardPostId]
+  boardPost: state.entities.boardPosts[ownProps.match.params.boardPostId],
+  loggedIn: Boolean(state.session.id)
 });
 
 const mDTP = (dispatch) => ({

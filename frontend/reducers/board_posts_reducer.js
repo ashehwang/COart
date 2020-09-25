@@ -10,7 +10,7 @@ const boardPostsReducer = (state = {}, action) => {
     //   if (!action.boardPosts) return {};
       return action.boardPosts;
     case RECEIVE_BOARD_POST:
-      newState[action.boardPost.id] = action.boardPost;
+      newState[action.payload.boardPost.id] = action.payload.boardPost;
       return newState;
     case RECEIVE_UPDATED_BOARD_POST:
       newState[action.payload.boardPost.id] = action.payload.boardPost;
