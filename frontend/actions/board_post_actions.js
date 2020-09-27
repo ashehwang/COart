@@ -63,8 +63,8 @@ export const deleteBoardPost = (boardPostId) => (dispatch) =>
     dispatch(removeBoardPost(boardPostId))
   );
 
-export const fetchAllBoardPosts = (tagId) => (dispatch) =>
-  BoardPostApiUtil.fetchAllBoardPosts(tagId).then((boardPosts) =>
+export const fetchAllBoardPosts = (tagId, numPages) => (dispatch) =>
+  BoardPostApiUtil.fetchAllBoardPosts(tagId, numPages).then((boardPosts) =>
     dispatch(receiveAllBoardPosts(boardPosts))
   );
 

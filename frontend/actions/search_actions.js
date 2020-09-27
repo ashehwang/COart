@@ -1,18 +1,18 @@
 import * as SearchApiUtil from "../util/search_api_util";
 
-export const RECEIVE_SEARCHED_USERS = "RECEIVE_SEARCHED_USERS";
-export const CLEAR_USER_SEARCH = "CLEAR_USER_SEARCH";
+export const RECEIVE_SEARCH_RESULTS = "RECEIVE_SEARCH_RESULTS";
+export const CLEAR_SEARCH = "CLEAR_SEARCH";
 
-const receiveSearchedUsers = (users) => ({
-  type: RECEIVE_SEARCHED_USERS,
-  users,
+const receiveSearchResults = (payload) => ({
+  type: RECEIVE_SEARCH_RESULTS,
+  payload,
 });
 
-export const clearUserSearch = () => ({
-  type: CLEAR_USER_SEARCH,
+export const clearSearch = () => ({
+  type: CLEAR_SEARCH,
 });
 
-export const fetchSearchedUsers = (filter) => (dispatch) =>
-  SearchApiUtil.fetchSearchedUsers(filter).then((users) =>
-    dispatch(receiveSearchedUsers(users))
+export const fetchSearchResult = (filter) => (dispatch) =>
+  SearchApiUtil.fetchSearchResult(filter).then((payload) =>
+    dispatch(receiveSearchResults(payload))
   );

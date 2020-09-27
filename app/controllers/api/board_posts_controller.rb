@@ -3,8 +3,13 @@ class Api::BoardPostsController < ApplicationController
     before_action :require_login, only: [:create, :destroy, :update]
 
     def index
+        offset = (params[:numPages].to_i - 1) * 15
         @board_posts = BoardPost.where(tag_id: params[:tagId])
                                 .includes(:user) #reduce N+1 query
+                                .offset(offset)
+                                .limit(15)
+                                .order(updated_at: :desc)
+    
         render :index
     end
 

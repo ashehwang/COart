@@ -4,35 +4,120 @@ import { Link } from 'react-router-dom';
 class Board extends React.Component {
     constructor(props){
         super(props);
-        this.state = { category: "General", page_num: 1 }
+        this.state = { category: "General", page_num: 1, next_avail: false }
+        this.getNextPosts = this.getNextPosts.bind(this);
+        this.getPreviousPosts = this.getPreviousPosts.bind(this);
     }
 
     componentDidMount(){
         if (this.props.boardPosts.length === 0){
-            this.props.fetchAllBoardPosts(1);
+            this.props.fetchAllBoardPosts(1, 1)
+                .then((res) => {
+                    if ( Object.values(res.boardPosts).length === 15 ) {
+                        this.setState({next_avail: true})
+                    }
+                })
         }
-        if (this.props.history.action === "POP") this.props.fetchAllBoardPosts(1);
+        // if (this.props.history.action === "POP") this.props.fetchAllBoardPosts(1, 1);
+    }
+
+    checkNextAvail(){
+        if (this.props.boardPosts.length >= 15) {
+            this.setState({next_avail: true});
+        } else this.setState({next_avail: false});
+    }
+
+    checkResLength(res){
+        if(Object.values(res.boardPosts).length === 15) {
+            this.setState({next_avail: true})
+        } else this.setState({next_avail: false})
     }
 
 
     switch(num){
         switch(num){
             case 1:
-                this.setState({ category: "General"}, () => this.props.fetchAllBoardPosts(num));
+                this.setState({ category: "General"}, () => {
+                    this.props.fetchAllBoardPosts(num, 1)
+                        .then( res => this.checkResLength(res));
+                    this.setState({ page_num: 1 });
+                });
                 break;
             case 2:
-                this.setState({ category: "Finding Members"}, () => this.props.fetchAllBoardPosts(num));
+                this.setState({ category: "Finding Members"}, () => {
+                    this.props.fetchAllBoardPosts(num, 1)
+                        .then( res => this.checkResLength(res));
+                    this.setState({ page_num: 1}); 
+                });
                 break;
             case 3:
-                this.setState({ category: "Looking for Community"}, () => this.props.fetchAllBoardPosts(num));
+                this.setState({ category: "Looking for Community"}, () => {
+                    this.props.fetchAllBoardPosts(num, 1)
+                        .then( res => this.checkResLength(res));
+                    this.setState({ page_num: 1 });
+                });
                 break;
         }
+    }
+
+    getNextPosts(e){
+        this.setState({ page_num: this.state.page_num + 1 }, () => {
+            switch(this.state.category){
+                case "General":
+                    this.props.fetchAllBoardPosts(1, this.state.page_num)
+                        .then(res => this.checkResLength(res));
+                    break;
+                case "Finding Members":
+                    this.props.fetchAllBoardPosts(2, this.state.page_num)
+                        .then(res => this.checkResLength(res));
+                    break;
+                case "Looking for Community":
+                    this.props.fetchAllBoardPosts(3, this.state.page_num)
+                        .then(res => this.checkResLength(res));
+                    break;
+            }
+        })
+    }
+
+    getPreviousPosts(e){
+        this.setState({ page_num: this.state.page_num - 1 }, () => {
+            switch(this.state.category){
+                case "General":
+                    this.props.fetchAllBoardPosts(1, this.state.page_num)
+                        .then(res => this.checkResLength(res));
+                    break;
+                case "Finding Members":
+                    this.props.fetchAllBoardPosts(2, this.state.page_num)
+                        .then(res => this.checkResLength(res));
+                    break;
+                case "Looking for Community":
+                    this.props.fetchAllBoardPosts(3, this.state.page_num)
+                        .then(res => this.checkResLength(res));
+                    break;
+            }
+        })
+    }
+
+    renderPrevious(){
+        if(this.state.page_num > 1){
+            return <div className="hover" onClick={this.getPreviousPosts}><i className="fas fa-chevron-left" ></i>  Previous</div>
+        } else return null;
+    }
+
+    renderNext(){
+        if (this.state.next_avail) {
+            return (
+              <div className="hover" onClick={this.getNextPosts}>
+                <i className="fas fa-chevron-right"></i> Next
+              </div>
+            );
+        } else return null;
     }
 
     render(){
         const { boardPosts } = this.props;
         if(!boardPosts) return <div>No Posts exist in this Category Yet.</div>
-
+        console.log(this.state)
         return(
             <div className="board-container">
                 <div className="flex">
@@ -54,10 +139,10 @@ class Board extends React.Component {
                                 <div className="flex-center board-author">Author</div>
                                 <div className="flex-center board-date">Date</div>
                             </div>
-                            <div>{boardPosts.reverse().map( boardPost => <BoardPostTitle key={boardPost.id} boardPost={boardPost}/>)}</div>
+                            <div>{boardPosts.reverse().slice(0,15).map( boardPost => <BoardPostTitle key={boardPost.id} boardPost={boardPost}/>)}</div>
                             <div className="board-page-flip flex">
-                                <div className="hover"><i className="fas fa-chevron-right"></i>  Next</div>
-                                <div className="hover"><i className="fas fa-chevron-left"></i>  Previous</div>
+                                {this.renderNext()}
+                                {this.renderPrevious()}
                             </div>
                         </div>
                     </div>
@@ -72,24 +157,6 @@ class BoardPostTitle extends React.Component {
     constructor(props){
         super(props);
     }
-
-    // showTime(){
-    //     const now = new Date();
-    //     const nowString = now.toString();
-    //     const past = new Date(this.props.boardPost.updated_at);
-    //     const pastString = past.toString();
-
-    //     if (nowString.slice(4,15) === pastString.slice(4,15)) {
-    //         if (Number(pastString.slice(16, 18)) > 12 ) {
-    //             const hour = Number(pastString.slice(16,18)) - 12;
-    //             return String(hour) + pastString.slice(18, 24) + " PM";
-    //         } else {
-    //                 return pastString.slice(16,24) + " AM";
-    //         }
-    //     } else {
-    //             return this.props.boardPost.updated_at.slice(0, 10);
-    //     }
-    // }
 
     handleTime() {
         const now = new Date();
@@ -111,7 +178,6 @@ class BoardPostTitle extends React.Component {
         }
     }
     
-
     render() {
 
         const { boardPost } = this.props;

@@ -112,6 +112,13 @@ class Api::CharactersController < ApplicationController
         end
     end
 
+    def search
+        filter = params[:filter].downcase
+        @characters = Character.where("LOWER(first_name) LIKE (?) OR LOWER(last_name) LIKE (?)", "%#{filter}%", "%#{filter}%")
+        @users = User.where("LOWER(nick_name LIKE (?)", "%#{filter}")
+        render :search
+    end
+
     # def like
     #     @like = Like.new(likeable_type: "Post", likeable_id: params[:id])
     #     @like.user_id = current_user.id

@@ -9,7 +9,7 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-    fetchAllBoardPosts: tagId => dispatch(fetchAllBoardPosts(tagId))
+    fetchAllBoardPosts: (tagId, numPages) => dispatch(fetchAllBoardPosts(tagId, numPages))
 });
 
 export default connect(mSTP, mDTP)(Board);

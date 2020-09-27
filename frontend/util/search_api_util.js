@@ -1,6 +1,6 @@
-export const fetchSearchedUsers = (filter) =>
+export const fetchSearchResult = (filter) =>
   $.ajax({
     method: "GET",
-    url: "/api/users/search",
+    url: "/api/characters/search",
     data: filter,
   });

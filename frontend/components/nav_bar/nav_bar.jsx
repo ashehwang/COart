@@ -102,10 +102,12 @@ class NavBar extends React.Component {
             const { characters, currentUser, loggedIn } = this.props;
 
             let charPageReg = new RegExp('^/character/');
+            let boardPageReg = new RegExp('^/board');
 
             const main = this.props.location.pathname === "/" ? "nav-selected" : "";
             const charPage = this.props.location.pathname.match(charPageReg) ? "nav-selected" : "";
             const userPage = this.props.location.pathname === "user/.*" ? "nav-selected" : "";
+            const board = this.props.location.pathname.match(boardPageReg) ? "nav-selected" : "";
 
 
             if (loggedIn && characters[currentUser.selected_id]){
@@ -115,12 +117,12 @@ class NavBar extends React.Component {
                 <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div>
                 <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
-                <div className={`navbar-submenu hover ${userPage}`} onClick={() => this.props.history.push("/board")}>Board</div>
+                <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
               </>
             );
         } else if (loggedIn && !characters[currentUser.selected_id]) {
             return (
-              <>
+                <>
                 <div className={`navbar-submenu hover ${main}`}>Feed</div>
                 <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div>
                 <div className="navbar-submenu hover" onClick={() => this.props.history.push("/create")}>Create Character</div>
@@ -131,7 +133,8 @@ class NavBar extends React.Component {
                 <>
                     <div className={`navbar-submenu hover ${""}`}>How to CoTell</div>
                     <div className={`navbar-submenu hover ${""}`}>Featured</div>
-                    <div className={`navbar-submenu hover ${""}`}>Board</div>
+                    <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
+                    {/* <div className={`navbar-submenu hover ${""}`}>Board</div> */}
                 </>
             )
         }

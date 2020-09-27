@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     this.state = { filter: "", showSearchResults: false };
     this.updateFilter = this.updateFilter.bind(this);
     this.performSearch = this.performSearch.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   updateFilter(e) {
@@ -17,56 +17,56 @@ class SearchBar extends React.Component {
 
   performSearch() {
     if (this.state.filter) {
-      this.props.fetchSearchedUsers({ filter: this.state.filter });
+      this.props.fetchSearchResult({ filter: this.state.filter });
     } else {
-      this.props.clearUserSearch();
+      this.props.clearSearch();
     }
   }
 
-  handleClick(userId) {
-    this.props.history.push(`/profile/${userId}`);
-    this.setState({ filter: "" });
-  }
+  // handleClick(userId) {
+  //   this.props.history.push(`/profile/${userId}`);
+  //   this.setState({ filter: "" });
+  // }
 
-  showSearchResults() {
-    if (!this.state.showSearchResults) {
-      return null;
-    } else if (!this.state.filter) {
-      return null;
-    } else if (this.state.filter && this.props.users.length === 0) {
-      return (
-        <div className="search-result-box">
-          <div className="search-result">No matching user</div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="search-result-box">
-          {this.props.users.map((user) => {
-            return (
-              <div
-                className="search-result"
-                key={user.id}
-                onMouseDown={(e) => this.handleClick(user.id)}
-              >
-                <img
-                  src={
-                    user.profilePhotoUrl
-                      ? user.profilePhotoUrl
-                      : "https://i.ibb.co/DRTq0KR/5cc28e190d41d2738de6.jpg"
-                  }
-                  className="small-profile-pic"
-                />
-                <p>
-                  {user.first_name} {user.last_name}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      );
-    }
-  }
+  // showSearchResults() {
+  //   if (!this.state.showSearchResults) {
+  //     return null;
+  //   } else if (!this.state.filter) {
+  //     return null;
+  //   } else if (this.state.filter && this.props.users.length === 0) {
+  //     return (
+  //       <div className="search-result-box">
+  //         <div className="search-result">No matching user</div>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <div className="search-result-box">
+  //         {this.props.users.map((user) => {
+  //           return (
+  //             <div
+  //               className="search-result"
+  //               key={user.id}
+  //               onMouseDown={(e) => this.handleClick(user.id)}
+  //             >
+  //               <img
+  //                 src={
+  //                   user.profilePhotoUrl
+  //                     ? user.profilePhotoUrl
+  //                     : "https://i.ibb.co/DRTq0KR/5cc28e190d41d2738de6.jpg"
+  //                 }
+  //                 className="small-profile-pic"
+  //               />
+  //               <p>
+  //                 {user.first_name} {user.last_name}
+  //               </p>
+  //             </div>
+  //           );
+  //         })}
+  //       </div>
+  //     );
+  //   }
+  // }
 
   render() {
     return (
@@ -86,7 +86,7 @@ class SearchBar extends React.Component {
             />
           </form>
         </div>
-        {this.showSearchResults()}
+        {/* {this.showSearchResults()} */}
       </div>
     );
   }

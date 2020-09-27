@@ -15,16 +15,6 @@ class BoardPostShow extends React.Component {
         this.props.fetchBoardPost(this.props.match.params.boardPostId);
     }
 
-    // imgExists(){
-    //     if(this.props.boardPost.photoUrl) {
-    //         return(
-    //             <div className="flex-center board-post-img">
-    //                 <img src={this,props.boardPost.photoUrl} />
-    //             </div>
-    //         )            
-    //     } else return null;
-    // }
-
     deletePost(e){
         this.props.deleteBoardPost(this.props.match.params.boardPostId)
             .then( res => {
@@ -108,6 +98,17 @@ class BoardPostShow extends React.Component {
     }
   }
 
+  renderBody() {
+    if (this.props.boardPost.body) {
+      return this.props.boardPost.body.split("\n").map((text, idx) => (
+        <p key={idx}>
+          {text}
+          <br />
+        </p>
+      ));
+    } else return null;
+  }
+
     render(){
 
         const {boardPost} = this.props;
@@ -124,7 +125,7 @@ class BoardPostShow extends React.Component {
                         </div>
                         {preview}
                         <div className="board-post-show-body">
-                            {boardPost.body}
+                            {this.renderBody()}
                         </div>
                         <div className="board-post-show-detail flex">
                             <span>  @{boardPost.author.user_name}</span>
