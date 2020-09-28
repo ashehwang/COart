@@ -5,7 +5,7 @@ class Community < ApplicationRecord
     belongs_to :admin,
     class_name: :User
 
-    has_many :characters
+    # has_many :characters
 
     has_one_attached :logo
     has_one_attached :image

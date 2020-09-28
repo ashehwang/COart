@@ -55,8 +55,8 @@ class CreateCommunity extends React.Component {
   }
 
   render() {
-    // const headPreview = this.state.head_photoUrl ? <img className="pic-preview2" src={this.state.head_photoUrl} /> : null;
-    // const bodyPreview = this.state.body_photoUrl ? <img className="pic-preview2" src={this.state.body_photoUrl} /> : null;
+    const logoPreview = this.state.logoUrl ? <img className="pic-preview5" src={this.state.logoUrl} /> : <p>No Logo Added</p>;
+    const imagePreview = this.state.imageUrl ? <img className="pic-preview5" src={this.state.imageUrl} /> : null;
 
     return (
       <div className="create-community-container">
@@ -70,7 +70,8 @@ class CreateCommunity extends React.Component {
               your stories to be consistent. We assume that characters that live
               in the same world can interact with each other to collaborate on
               an ongoing story. <br />
-              <strong> One character can only belong to one world.</strong>{" "}
+              <strong> One character can only belong to one world.</strong> But
+              the a user can place many of her/his characters in the same world.{" "}
             </h3>
             <br />
             <h3>
@@ -88,16 +89,20 @@ class CreateCommunity extends React.Component {
               you want to invite to the world. I assume you'd wouldn't want SF
               characters come in in a D&D style universe. If you're running a
               Hunger Games arena, I assume you wouldn't want anyone's character
-              to use clairvoyance. You can kick someone out if that person does
-              not seem to be respectful. You can provide the story context, NPC,
-              any events for characters to hold. You can stop accepting new members if you feel
-              you have enough. If you feel the story reached an ending, you can also call it an ending. 
-              It can be a lot of work and
-              responsibility, but also a lot of fun!
+              to use clairvoyance. You can dismiss a character if that
+              character, or its creator, does not seem to be respectful. You can
+              provide the story context, NPC, any events for characters to hold.
+              You can stop accepting new members if you feel you have enough. If
+              you feel the story reached an ending, you can also call it an
+              ending. It can be a lot of work and responsibility, but also a lot
+              of fun!
             </h3>
           </div>
-          <div className="charform">
-            <div className="charform-detail">
+          <div className="communityform border relative">
+            <div className="communityform-logo border absolute flex-center">
+              {logoPreview}
+            </div>
+            <div className="communityform-detail">
               <label>Name / Title</label>
               <input
                 type="text"
@@ -107,8 +112,8 @@ class CreateCommunity extends React.Component {
                 onChange={this.update("name")}
               />
             </div>
-            <div className="charform-detail">
-              <label>Introduction </label>
+            <div className="communityform-detail">
+              <label>Introduction</label>
               <input
                 type="text"
                 placeholder="A short description of the world"
@@ -116,45 +121,46 @@ class CreateCommunity extends React.Component {
                 onChange={this.update("intro")}
               />
             </div>
-            <div className="charform-detail">
-              <label>Description of the World & Its Story: </label>
+            <div className="communityform-detail">
+              {imagePreview}
+              {/* <label>Description of the World & Its Story: </label> */}
               <textarea
-                placeholder="Example: You're in Hogwarts. You're an FBI trying to catch an international criminal."
+                placeholder="Provide a story and context for the characters to live in. It could be a description of a fantasy world, or a scenario that other characters can participate in."
                 value={this.state.detail}
                 cols="50"
-                rows="5"
+                rows="20"
                 onChange={this.update("detail")}
               />
             </div>
-            <div className="charform-detail charform-files">
-              <label htmlFor="head-file-upload" className="hover">
-                Add Logo
-                <input
-                  type="file"
-                  id="head-file-upload"
-                  className="hidden"
-                    onChange={this.handleLogoFile}
-                />
-              </label>
-              {/* {headPreview} */}
-            </div>
-            <div className="charform-detail charform-files">
-              <label htmlFor="body-file-upload" className="hover">
-                Add Image
-                <input
-                  type="file"
-                  id="body-file-upload"
-                  className="hidden"
-                    onChange={this.handleImageFile}
-                />
-              </label>
-              {/* {bodyPreview} */}
+            <div className="communityform-addfiles flex">
+                <div className="communityform-detail communityform-files">
+                  <label htmlFor="head-file-upload" className="hover">
+                    Add Logo
+                    <input
+                      type="file"
+                      id="head-file-upload"
+                      className="hidden"
+                      onChange={this.handleLogoFile}
+                    />
+                  </label>
+                </div>
+                <div className="communityform-detail communityform-files">
+                  <label htmlFor="body-file-upload" className="hover">
+                    Add Image
+                    <input
+                      type="file"
+                      id="body-file-upload"
+                      className="hidden"
+                      onChange={this.handleImageFile}
+                    />
+                  </label>
+                </div>
             </div>
             <div
-              className="charform-submit hover flex-center"
-                onClick={this.handleSubmit}
+              className="communityform-submit hover flex-center"
+              onClick={this.handleSubmit}
             >
-              Create World
+              Generate World
             </div>
           </div>
         </div>

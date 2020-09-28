@@ -10,9 +10,9 @@ const receiveAllOpenCommunities = (payload) => ({
   payload: payload,
 });
 
-const receiveCommunity = (post) => ({
+const receiveCommunity = (community) => ({
   type: RECEIVE_COMMUNITY,
-  post,
+  community,
 });
 
 const removeCommunity = (communityId) => ({

@@ -115,7 +115,7 @@ class NavBar extends React.Component {
               <>
                 {/* <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div> */}
                 <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
-                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Create Communities</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Generate World</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
                 <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
               </>
@@ -125,7 +125,7 @@ class NavBar extends React.Component {
                 <>
                 <div className={`navbar-submenu hover ${main}`}>Feed</div>
                 <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div>
-                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Create Communities</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Generate World</div>
               </>
             );
         }else {
@@ -164,41 +164,3 @@ class NavBar extends React.Component {
 }
 
 export default NavBar;
-
-
-// class NavBar extends React.Component {
-//   render() {
-//     const landing =
-//       this.props.location.pathname === "/landing" ? "landing" : "";
-//     const tasksLocation =
-//       this.props.location.pathname === "/tasks" ? "tasksLocation" : "";
-//     const habitsLocation =
-//       this.props.location.pathname === "/habits" ? "habitsLocation" : "";
-
-//     return (
-//       <div className="navbar-container">
-//         <div className="navbar">
-//           <div
-//             className={`link-home ${landing}`}
-//             onClick={() => this.props.history.push("/landing")}
-//           >
-//             Home
-//           </div>
-//           <div
-//             className={`link-tasks ${tasksLocation}`}
-//             onClick={() => this.props.history.push("/tasks")}
-//           >
-//             Tasks
-//           </div>
-//           <div
-//             className={`link-habits ${habitsLocation}`}
-//             onClick={() => this.props.history.push("/habits")}
-//           >
-//             Habits
-//           </div>
-//           <Dropdown />
-//         </div>
-//       </div>
-//     );
-//   }
-// }

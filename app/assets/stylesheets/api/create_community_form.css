@@ -1,4 +1,97 @@
 .create-community-container {
     background-image: linear-gradient(white, #EDC7CF);
-    height: calc(100vh - 131px);
+    height: calc(100vh - 151px);
+    padding-top: 20px;
+}
+
+.communityform {
+    width: 800px;
+    background: white;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.communityform input[type=text] {
+    padding: 5px 8px;
+    border: none;
+    background: lightgrey;
+    border-radius: 7px;
+    width: 580px;
+}
+
+.communityform-detail {
+    margin-bottom: 15px;
+}
+
+.communityform label {
+    background: #EDC7CF;
+    padding: 5px 8px;
+    border: 1px solid black;
+    border-radius: 7px;
+    margin-right: 10px;
+    width: 170px;
+    text-align: center;
+}
+
+.communityform textarea {
+    font-family: sans-serif;
+    resize: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    width: 779px;
+}
+
+.communityform-files > label {
+    display: block;
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.communityform-files > label:hover {
+    background: #E6B2BC;
+}
+
+.communityform-submit {
+    padding: 15px 200px;
+    background: #FAF0F2;
+    border-radius: 10px;
+    color: grey;
+}
+
+.communityform-submit:hover {
+    background: #F5E0E4;
+    color: black;
+    font-weight: 600;
+}
+
+.communityform-detail img.pic-preview5 {
+    display: block;
+    max-width: 750px;
+    height: auto;
+    margin: 10px auto;
+}
+
+.communityform-logo {
+    width: 80px;
+    height: 80px;
+    top: 8px;
+    right: 15px;
+    text-align: center;
+    color: lightgrey;
+    border-radius: 4px;
+    background: #FAF0F2;
+}
+
+.communityform-logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.communityform-addfiles {
+    flex-direction: row-reverse;
 }
