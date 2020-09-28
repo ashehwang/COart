@@ -52,7 +52,7 @@ class CreateBoardPost extends React.Component {
         return(
             <div className="board-post-form-container">
                 <div className="board-post-form-limit">
-                    <div className="board-post-container">
+                    <div className="board-post-container border">
                         <div className="board-post-info flex">
                             <div className="flex border">
                                 <p>Select Category:</p> 

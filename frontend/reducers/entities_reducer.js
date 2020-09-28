@@ -10,6 +10,7 @@ import friendRequestsReducer from "./friend_requests_reducer";
 import friendsReducer from "./friends_reducer";
 import boardPostsReducer from './board_posts_reducer';
 import boardCommentsReducer from './board_comments_reducer';
+import communitiesReducer from './communities_reducer';
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
@@ -21,7 +22,8 @@ const entitiesReducer = combineReducers({
   characters: charactersReducer,
   characterPosts: characterPostsReducer,
   boardPosts: boardPostsReducer,
-  boardComments: boardCommentsReducer
+  boardComments: boardCommentsReducer,
+  communities: communitiesReducer
 });
 
 export default entitiesReducer;

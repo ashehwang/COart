@@ -15,9 +15,9 @@ const receiveCommunity = (post) => ({
   post,
 });
 
-const removeCommunity = (postId) => ({
+const removeCommunity = (communityId) => ({
   type: REMOVE_COMMUNITY,
-  postId,
+  communityId,
 });
 
 export const fetchAllOpenCommunities = () => (dispatch) =>
@@ -34,7 +34,7 @@ export const updateCommunity = (formData, communityId) => (dispatch) =>
   );
 
 export const deleteCommunity = (communityId) => (dispatch) =>
-  CommunityApiUtil.deleteCommunity(communityId).then((community) => dispatch(removeCommunity(community)));
+  CommunityApiUtil.deleteCommunity(communityId).then(() => dispatch(removeCommunity(communityId)));
 
 export const createCommunity = (formData) => (dispatch) =>
   CommunityApiUtil.createCommunity(formData).then((community) =>

@@ -3,7 +3,6 @@ import React from 'react';
 import SearchBarContainer from './search_bar_container';
 import CharItem from './char_item';
 // import FriendRequestShowContainer from './friend_request_show_container';
-// const charactetLocation = this.props.location.pathname === "/character/.*" ? "habitsLocation" : "";
 
 class NavBar extends React.Component {
 
@@ -114,8 +113,9 @@ class NavBar extends React.Component {
             const avatar = characters[currentUser.selected_id];
             return (
               <>
-                <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div>
+                {/* <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div> */}
                 <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Create Communities</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
                 <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
               </>
@@ -125,14 +125,14 @@ class NavBar extends React.Component {
                 <>
                 <div className={`navbar-submenu hover ${main}`}>Feed</div>
                 <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div>
-                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/create")}>Create Character</div>
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Create Communities</div>
               </>
             );
         }else {
             return (
                 <>
                     <div className={`navbar-submenu hover ${""}`}>How to CoTell</div>
-                    <div className={`navbar-submenu hover ${""}`}>Featured</div>
+                    <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/communities")}>Communities</div>
                     <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
                     {/* <div className={`navbar-submenu hover ${""}`}>Board</div> */}
                 </>

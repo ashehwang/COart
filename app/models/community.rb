@@ -8,5 +8,6 @@ class Community < ApplicationRecord
     has_many :characters
 
     has_one_attached :logo
+    has_one_attached :photo
 
 end
