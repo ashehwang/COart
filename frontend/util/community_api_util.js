@@ -19,10 +19,10 @@ export const updateCommunity = (formData, communityId) =>
     processData: false,
   });
 
-export const deleteCommunity = (postId) =>
+export const deleteCommunity = (communityId) =>
   $.ajax({
     method: "DELETE",
-    url: `/api/communities/${postId}`,
+    url: `/api/communities/${communityId}`,
   });
 
 export const createCommunity = (formData) =>
