@@ -115,7 +115,8 @@ class NavBar extends React.Component {
               <>
                 {/* <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div> */}
                 <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
-                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Generate World</div>
+                {/* <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Generate World</div> */}
+                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
                 <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
               </>

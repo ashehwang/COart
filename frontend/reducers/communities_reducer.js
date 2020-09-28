@@ -6,8 +6,8 @@ const communitiesReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_OPEN_COMMUNITIES:
-      if (!action.payload.communities) return {};
-      return action.payload.communities;
+      if (!action.payload) return {};
+      return action.payload;
     case RECEIVE_COMMUNITY:
       newState[action.community.id] = action.community;
       return newState;

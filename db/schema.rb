@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_010611) do
+ActiveRecord::Schema.define(version: 2020_09_28_220656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
-    t.string "record_type", null: falsea.
+    t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -100,12 +100,12 @@ ActiveRecord::Schema.define(version: 2020_09_28_010611) do
     t.integer "admin_id", null: false
     t.string "name", null: false
     t.string "status", default: "active"
-    t.string "recruiting", default: "acive"
     t.string "visibility", default: "public"
     t.text "intro"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "recruiting", default: "active"
     t.index ["admin_id"], name: "index_communities_on_admin_id"
     t.index ["name"], name: "index_communities_on_name", unique: true
   end
