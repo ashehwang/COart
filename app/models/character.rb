@@ -18,6 +18,8 @@ class Character < ApplicationRecord
     through: :follows,
     source: :user
 
+    belongs_to :community
+
     # has_many :comments,
     # dependent: :destroy
 

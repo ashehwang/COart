@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       resources :comments, only: [:index]
     end
 
+    resources :communities, only: [:index, :create, :show, :destroy, :update]
+
   end
 
 end

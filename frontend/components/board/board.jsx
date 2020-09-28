@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Board extends React.Component {
     constructor(props){
         super(props);
-        this.state = { category: "General", page_num: 1, next_avail: false }
+        this.state = { category: "General", page_num: 1, next_avail: true };
         this.getNextPosts = this.getNextPosts.bind(this);
         this.getPreviousPosts = this.getPreviousPosts.bind(this);
     }
@@ -12,20 +12,27 @@ class Board extends React.Component {
     componentDidMount(){
         if (this.props.boardPosts.length === 0){
             this.props.fetchAllBoardPosts(1, 1)
-                .then((res) => {
-                    if ( Object.values(res.boardPosts).length === 15 ) {
-                        this.setState({next_avail: true})
-                    }
-                })
+                .then((res) => this.checkResLength(res));
         }
         // if (this.props.history.action === "POP") this.props.fetchAllBoardPosts(1, 1);
     }
 
-    checkNextAvail(){
-        if (this.props.boardPosts.length >= 15) {
-            this.setState({next_avail: true});
-        } else this.setState({next_avail: false});
-    }
+    // componentDidUpdate(prevProps){
+    //     if(prevProps.location.pathname !== this.props.location.pathname) {
+    //         this.props.fetchAllBoardPosts(1,1)
+    //             .then(res => this.checkResLength(res));
+    //     }
+    // }
+
+    // componentWillUnmount(){
+    //     this.setState({ next_avail: false, page_num: 1 })
+    // }
+
+    // checkNextAvail(){
+    //     if (this.props.boardPosts.length >= 15) {
+    //         this.setState({next_avail: true});
+    //     } else this.setState({next_avail: false});
+    // }
 
     checkResLength(res){
         if(Object.values(res.boardPosts).length === 15) {
@@ -117,6 +124,7 @@ class Board extends React.Component {
     render(){
         const { boardPosts } = this.props;
         if(!boardPosts) return <div>No Posts exist in this Category Yet.</div>
+        console.log(this.props)
         console.log(this.state)
         return(
             <div className="board-container">
@@ -139,7 +147,9 @@ class Board extends React.Component {
                                 <div className="flex-center board-author">Author</div>
                                 <div className="flex-center board-date">Date</div>
                             </div>
-                            <div>{boardPosts.reverse().slice(0,15).map( boardPost => <BoardPostTitle key={boardPost.id} boardPost={boardPost}/>)}</div>
+                            <div>{boardPosts.sort(function(a,b){
+                                return a.id - b.id
+                            }).reverse().slice(0,15).map( boardPost => <BoardPostTitle key={boardPost.id} boardPost={boardPost}/>)}</div>
                             <div className="board-page-flip flex">
                                 {this.renderNext()}
                                 {this.renderPrevious()}

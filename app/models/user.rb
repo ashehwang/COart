@@ -27,6 +27,10 @@ class User < ApplicationRecord
     through: :follows,
     source: :character
 
+    has_many :created_communities,
+    foreign_key: :admin_id,
+    class_name: :Community
+
 
     # has_one_attached :cover_photo
 
