@@ -3,23 +3,27 @@ import React from 'react';
 class CreateCommunity extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { name: "", intro: "", detail: "" }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogoFile = this.handleLogoFile.bind(this);
+    this.handleImageFile = this.handleImageFile.bind(this);
   }
 
   handleSubmit(e) {
     const formData = new FormData();
-    formData.append("character[first_name]", this.state.first_name);
-    formData.append("character[last_name]", this.state.last_name);
-    formData.append("character[bio]", this.state.bio);
-    if (this.state.head_photoFile) {
-      formData.append("character[head_photo]", this.state.head_photoFile);
+    formData.append("community[name]", this.state.name);
+    formData.append("community[intro]", this.state.intro);
+    formData.append("community[detail]", this.state.detail);
+    if (this.state.logoFile) {
+      formData.append("community[logo]", this.state.logoFile);
     }
-    if (this.state.body_photoFile) {
-      formData.append("character[body_photo]", this.state.body_photoFile);
+    if (this.state.imageFile) {
+      formData.append("community[image]", this.state.imageFile);
     }
-    this.props.createChar(formData).then((res) => {
-      if (res.type === "RECEIVE_CHAR") {
+    this.props.createCommunity(formData).then((res) => {
+      if (res.type === "RECEIVE_COMMUNITY") {
         this.setState({ body: "" });
-        this.props.history.push(`/character/${res.char.id}`);
+        this.props.history.push(`/board`);
       }
     });
   }
@@ -28,22 +32,22 @@ class CreateCommunity extends React.Component {
     return (e) => this.setState({ [field]: e.currentTarget.value });
   }
 
-  handleBodyFile(e) {
+  handleLogoFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ body_photoFile: file, body_photoUrl: fileReader.result });
+      this.setState({ logoFile: file, logoUrl: fileReader.result });
     };
     if (file) {
       fileReader.readAsDataURL(file);
     }
   }
 
-  handleHeadFile(e) {
+  handleImageFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ head_photoFile: file, head_photoUrl: fileReader.result });
+      this.setState({ imageFile: file, imageUrl: fileReader.result });
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -86,66 +90,69 @@ class CreateCommunity extends React.Component {
               Hunger Games arena, I assume you wouldn't want anyone's character
               to use clairvoyance. You can kick someone out if that person does
               not seem to be respectful. You can provide the story context, NPC,
-              any events for characters to hold. It can be a lot of work and
+              any events for characters to hold. You can stop accepting new members if you feel
+              you have enough. If you feel the story reached an ending, you can also call it an ending. 
+              It can be a lot of work and
               responsibility, but also a lot of fun!
             </h3>
           </div>
           <div className="charform">
             <div className="charform-detail">
-              <label>First Name </label>
+              <label>Name / Title</label>
               <input
                 type="text"
                 required
                 placeholder="Required"
-                // value={this.state.first_name}
-                // onChange={this.updateField("first_name")}
+                value={this.state.name}
+                onChange={this.update("name")}
               />
             </div>
             <div className="charform-detail">
-              <label>Last Name </label>
+              <label>Introduction </label>
               <input
                 type="text"
-                // value={this.state.last_name}
-                // onChange={this.updateField("last_name")}
+                placeholder="A short description of the world"
+                value={this.state.intro}
+                onChange={this.update("intro")}
               />
             </div>
             <div className="charform-detail">
-              {/* <label>Bio & Characteristics: </label> */}
+              <label>Description of the World & Its Story: </label>
               <textarea
-                placeholder="Bio and characteristics. Background story. Anything you want people to know of your character, write down here. Be as crazy as you want!"
-                // value={this.state.bio}
+                placeholder="Example: You're in Hogwarts. You're an FBI trying to catch an international criminal."
+                value={this.state.detail}
                 cols="50"
                 rows="5"
-                // onChange={this.updateField("bio")}
+                onChange={this.update("detail")}
               />
             </div>
             <div className="charform-detail charform-files">
               <label htmlFor="head-file-upload" className="hover">
-                Add Profile Picture
+                Add Logo
                 <input
                   type="file"
                   id="head-file-upload"
                   className="hidden"
-                  //   onChange={this.handleHeadFile}
+                    onChange={this.handleLogoFile}
                 />
               </label>
               {/* {headPreview} */}
             </div>
             <div className="charform-detail charform-files">
               <label htmlFor="body-file-upload" className="hover">
-                Add Body Picture
+                Add Image
                 <input
                   type="file"
                   id="body-file-upload"
                   className="hidden"
-                  //   onChange={this.handleBodyFile}
+                    onChange={this.handleImageFile}
                 />
               </label>
               {/* {bodyPreview} */}
             </div>
             <div
               className="charform-submit hover flex-center"
-              //   onClick={this.handleSubmit}
+                onClick={this.handleSubmit}
             >
               Create World
             </div>
