@@ -22,8 +22,10 @@
     height: 265px;
     margin: 10px;
     /* background: rgba(255, 255, 255, 0.85); */
-    background: rgba(255, 255, 255, 1);
+    /* background: rgba(255, 255, 255, 1); */
+    background: white;
     border: 2px solid #3B5B6B;
+    z-index: 1;
 }
 
 .world-item-name {
@@ -69,4 +71,51 @@
 
 .world-item-detail span {
     color: lightgrey;
+}
+
+.worlds-page-top {
+    margin: 10px auto 0 auto;
+    width: 900px;
+    justify-content: space-between;
+}
+
+.worlds-page-top input[type=text] {
+    background: lightgrey;
+    padding: 5px 8px;
+    border-radius: 8px;
+}
+
+.worlds-page-search, .worlds-page-recruit {
+    padding: 8px;
+    background: #FFEF85;
+    background: white;
+    border-radius: 8px;
+    font-size: 14px;
+    color: grey;
+}
+
+.worlds-page-search i {
+    margin-left: 5px;
+}
+
+.worlds-page-search {
+    margin-left: 10px;
+}
+
+.worlds-page-recruit {
+    margin-right: 28px;
+    text-align: center;
+    background: #FFF4AD;
+    border: 3px solid #FF5964;
+    border-style: outset;
+    color: #312F2F;
+}
+
+.worlds-page-recruit:hover {
+    border-style: inset;
+    background: #FFEF85;
+}
+
+.worlds-page-recruit i {
+    margin-right: 5px;
 }

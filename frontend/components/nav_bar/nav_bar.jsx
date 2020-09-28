@@ -104,10 +104,10 @@ class NavBar extends React.Component {
             let boardPageReg = new RegExp('^/board');
 
             const main = this.props.location.pathname === "/" ? "nav-selected" : "";
+            const worlds = this.props.location.pathname === "/worlds" ? "nav-selected" : "";
             const charPage = this.props.location.pathname.match(charPageReg) ? "nav-selected" : "";
             const userPage = this.props.location.pathname === "user/.*" ? "nav-selected" : "";
             const board = this.props.location.pathname.match(boardPageReg) ? "nav-selected" : "";
-
 
             if (loggedIn && characters[currentUser.selected_id]){
             const avatar = characters[currentUser.selected_id];
@@ -116,7 +116,7 @@ class NavBar extends React.Component {
                 {/* <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/write")}>Write</div> */}
                 <div className={`navbar-submenu hover ${charPage}`} onClick={() => this.props.history.push(`/character/${avatar.id}`)}>{avatar.first_name}'s Page</div>
                 {/* <div className="navbar-submenu hover" onClick={() => this.props.history.push("/recruit")}>Generate World</div> */}
-                <div className="navbar-submenu hover" onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>
+                <div className={`navbar-submenu hover ${worlds}`} onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
                 <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
               </>
@@ -155,7 +155,7 @@ class NavBar extends React.Component {
               </div>
             </div>
             <div className="navbar-menu flex">
-              <div className={`navbar-submenu hover ${main}`} onClick={()=>this.props.history.push("/main")}>World</div>
+              <div className={`navbar-submenu hover ${main}`} onClick={()=>this.props.history.push("/main")}>Featured</div>
               {this.renderNavLogin()}
             </div>
             <div className="navbar-right">{this.renderLogin()}</div>

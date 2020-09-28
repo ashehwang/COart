@@ -12,8 +12,18 @@ class CommunitiesPage extends React.Component {
 
     render(){
         return(
-            <div className="worlds-page-container">
+            <div className="worlds-page-container relative">
                 <div className="charform-limit">
+                    <div className="worlds-page-top flex">
+                        <div className="worlds-page-search border">
+                            Search: <input type="text" placeholder="search for worlds..."/>
+                            <i className="far fa-square hover"></i> All
+                            <i className="far fa-square hover"></i> Accepting Members
+                        </div>
+                        <div className="worlds-page-recruit flex-center hover" onClick={() => this.props.history.push("/recruit")}>
+                            <i className="fas fa-plus"></i> Generate World
+                        </div>
+                    </div>
                     <div className="worlds-page flex">
                         {this.props.communities.map( community => <CommunityItem key={community.id} community={community} />)}
                     </div>
