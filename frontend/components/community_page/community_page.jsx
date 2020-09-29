@@ -32,7 +32,7 @@ class CommunityPage extends React.Component {
                             </div>
                         </div>
                         <div className="world-show-right">
-
+                            <div>Will Render Depending On What is Clicked</div>
                         </div>
                     </div>
                 </div>

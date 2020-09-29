@@ -7,5 +7,23 @@
 .world-show-limit {
     background: red;
     margin: 0 auto;
-    width: 900px;
+    width: 1100px;
+}
+
+.world-show-full-name {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.world-show-left {
+    background: blue;
+    width: 270px;
+}
+
+.world-show-right {
+    background: pink;
+}
+
+.world-show-details {
+
 }

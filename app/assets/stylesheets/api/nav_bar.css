@@ -13,16 +13,25 @@
     /* flex-wrap: wrap; */
 }
 
+.navbar-menu {
+    /* background: teal; */
+    width: calc(100vw - 630px);
+}
+
 .navbar-search-container i {
     font-size: 25px;
     display: block;
     padding: 7px 10px 0 10px;
 }
 
+.navbar-search-container {
+    width: 350px;
+}
+
 .navbar-submenu {
-    width: 150px;
+    /* width: 150px; */
     height: 100%;
-    margin: 0 10px;
+    /* margin: 0 10px; */
     margin: 60px 10px -30px 50px;
     border-top-right-radius: 14px;
     border-top-left-radius: 14px;
@@ -42,6 +51,7 @@
     background: white;
     color: black;
     font-weight: 600;
+    width: 150px;
 }
 
 .navbar-right {
