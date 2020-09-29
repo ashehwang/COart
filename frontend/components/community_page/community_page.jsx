@@ -1,8 +1,13 @@
 import React from 'react';
 
+import { Route, Switch, Redirect } from "react-router-dom";
+import CommunityDetailShowContainer from './community_detail_show_container';
+// import { AuthRoute, ProtectedRoute } from "../util/route_util";
+
 class CommunityPage extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
+        this.state = { detail: true, members: false, feed: false, apply: false, edit: false };
     }
 
     componentDidMount(){
@@ -11,9 +16,11 @@ class CommunityPage extends React.Component {
 
     render(){
 
-        const { community } = this.props;
+        if(!this.props.community) return <div className="warning">No Such World Exists</div>
 
-        if(!community) return <div className="warning">No Such World Exists</div>
+        const { community } = this.props;        
+        const logo = community.logoUrl ? <img src={community.logoUrl} /> : <p>No Logo</p>
+
         return(
             <div className="world-show-container">
                 <div className="world-show-limit">
@@ -21,18 +28,26 @@ class CommunityPage extends React.Component {
                     <div className="world-show flex">
                         <div className="world-show-left">
                             <div className="world-show-details">
-                                logo name admin etc goes here. Number of members. Big title.
+                                <div className="world-show-logo">{logo}</div>
+                                <div className="world-show-intro">{community.intro}</div>
+                                <div className="world-show-others">Admin: {community.admin.nick_name} <span>@{community.admin.user_name}</span></div>
+                                <div className="world-show-others">Created at: 2020 09 27</div>
+                                <div className="world-show-others">Current members: 1</div>
+                                <div className="world-show-others">Visible to Public vs Member Only</div>
+                                <div className="world-show-others world-show-seeking flex-center">Open For New Members</div>
                             </div>
                             <div className="world-show-actions">
-                                <div className="world-show-action">View Full Detail</div>
+                                <div className="world-show-action hove flex-center">View Full Detail</div>
                                 {/* <div>View Notices</div> */}
-                                <div className="world-show-action">View Members</div>
-                                <div className="world-show-action">View StoryLine</div>
-                                <div className="world-show-action">Apply To Join</div>
+                                <div className="world-show-action hover flex-center">View Members</div>
+                                <div className="world-show-action hover flex-center">View StoryLine</div>
+                                <div className="world-show-action hover flex-center">Apply To Join</div>
+                                <div className="world-show-action hover flex-center">Edit World</div>
+                                {/* <div className="world-show-action">Edit Members</div> */}
                             </div>
                         </div>
                         <div className="world-show-right">
-                            <div>Will Render Depending On What is Clicked</div>
+                            <Route exact path="/world/:worldUrl/detail" component={CommunityDetailShowContainer} />
                         </div>
                     </div>
                 </div>

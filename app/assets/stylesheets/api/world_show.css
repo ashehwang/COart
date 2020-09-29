@@ -1,29 +1,83 @@
 .world-show-container {
-    /* height: calc(100vh - 131px);
-    background-image: linear-gradient(white, lightgrey),
-    background: #312F2F; */
+    height: calc(100vh - 131px);
+    background-image: linear-gradient(white, lightgrey);
 }
 
 .world-show-limit {
-    background: red;
+    /* background: red; */
     margin: 0 auto;
     width: 1100px;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
 }
 
 .world-show-full-name {
     font-size: 25px;
     font-weight: 600;
+    background: white;
+    margin: 15px 0;
 }
 
 .world-show-left {
-    background: blue;
+    /* background: blue; */
     width: 270px;
 }
 
 .world-show-right {
-    background: pink;
+    background: #424B54;
+    width: 815px;
+    margin-left: 15px;
+    border-radius: 15px;
+    color: white;
 }
 
-.world-show-details {
+.world-show-details, .world-show-actions {
+    padding: 10px;
+    border-radius: 15px;
+    background: #424B54;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
 
+.world-show-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    margin: 0 auto;
+    border: 2px solid white;
+}
+
+.world-show-logo > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.world-show-intro {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.world-show-others {
+    font-size: 12px;
+}
+
+.world-show-seeking {
+    margin: 5px;
+    color: red;
+}
+
+/* .world-show-actions {
+    display: flex;
+} */
+
+.world-show-action {
+    border: 2px solid lightpink;
+    border-style: outset;
+    background: pink;
+    padding: 5px 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }

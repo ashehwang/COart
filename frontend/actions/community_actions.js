@@ -31,8 +31,8 @@ export const fetchAllOpenCommunities = () => (dispatch) =>
     dispatch(receiveAllOpenCommunities(payload))
   );
 
-export const fetchCommunity = (communityId) => (dispatch) =>
-  CommunityApiUtil.fetchCommunity(communityId).then((community) => dispatch(receiveCommunity(community)));
+// export const fetchCommunity = (communityId) => (dispatch) =>
+//   CommunityApiUtil.fetchCommunity(communityId).then((community) => dispatch(receiveCommunity(community)));
 
   export const fetchCommunityByUrl = (worldUrl) => (dispatch) =>
   CommunityApiUtil.fetchCommunityByUrl(worldUrl).then((community) => dispatch(receiveViewingCommunity(community)));

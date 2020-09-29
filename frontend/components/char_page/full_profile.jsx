@@ -3,16 +3,6 @@ import { RECEIVE_ALL_CHARS } from '../../actions/char_actions';
 
 class FullProfile extends React.Component {
 
-    // renderBio(){
-    //     var profileBio = document.getElementById("profile");
-    //     var spacedBio = this.props.character.bio.split("\n").join("</br>");
-    //     profileBio.innerText = spacedBio;
-
-    //     document.write(spacedBio);
-    //     profileBio = profileBio.replace(/\r?\n/g, "<br />");
-    //     return profileBio;
-    // }
-
     renderBio(){
         if (this.props.character.bio) {
             return(
