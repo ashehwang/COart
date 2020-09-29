@@ -22,8 +22,8 @@ class CommunityDetailShow extends React.Component {
 
         return(
             <div className="">
-                {this.props.community.intro}
-                <div className="flex-center">{showImage}</div>
+                <div className="world-item-show-intro">{this.props.community.intro}</div>
+                <div className="flex-center world-item-show-image">{showImage}</div>
                 {this.renderDetail()}
             </div>
         )

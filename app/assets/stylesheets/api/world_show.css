@@ -1,14 +1,21 @@
 .world-show-container {
-    height: calc(100vh - 131px);
+    height: calc(100vh - 146px);
     background-image: linear-gradient(white, lightgrey);
 }
 
 .world-show-limit {
     /* background: red; */
     margin: 0 auto;
-    width: 1100px;
-    height: calc(100vh - 180px);
+    width: 1120px;
+    /* height: calc(100vh - 180px); */
+    /* overflow-y: auto; */
+}
+
+.world-show-right-limit {
+    /* background: blue; */
     overflow-y: auto;
+    height: calc(100vh - 230px);
+    padding-right: 50px;
 }
 
 .world-show-full-name {
@@ -29,6 +36,7 @@
     margin-left: 15px;
     border-radius: 15px;
     color: white;
+    /* margin-top: -15px; */
 }
 
 .world-show-details, .world-show-actions {
@@ -80,4 +88,32 @@
     padding: 5px 8px;
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+.world-item-show-intro {
+    font-size: 20px;
+    text-align: center;
+    padding: 15px;
+}
+
+.world-item-show-image > img {
+    max-width: 800px;
+    height: auto;
+    object-fit: cover;
+    border: 2px solid white;
+    border-radius: 12px;
+}
+
+.world-item-show-detail {
+    padding: 15px;
+    font-size: 12px;
+}
+
+.world-show-nologo {
+    background: white;
+    border: 1px solid lightgrey;
+    width: 148px;
+    height: 148px;
+    color: lightgrey;
+    margin: auto;
 }

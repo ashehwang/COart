@@ -19,7 +19,7 @@ class CommunityPage extends React.Component {
         if(!this.props.community) return <div className="warning">No Such World Exists</div>
 
         const { community } = this.props;        
-        const logo = community.logoUrl ? <img src={community.logoUrl} /> : <p>No Logo</p>
+        const logo = community.logoUrl ? <img src={community.logoUrl} /> : <div className="flex-center world-show-nologo"><p>No Logo</p></div>
 
         return(
             <div className="world-show-container">
@@ -37,17 +37,20 @@ class CommunityPage extends React.Component {
                                 <div className="world-show-others world-show-seeking flex-center">Open For New Members</div>
                             </div>
                             <div className="world-show-actions">
-                                <div className="world-show-action hove flex-center">View Full Detail</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/detail`)}>World</div>
                                 {/* <div>View Notices</div> */}
                                 <div className="world-show-action hover flex-center">View Members</div>
                                 <div className="world-show-action hover flex-center">View StoryLine</div>
                                 <div className="world-show-action hover flex-center">Apply To Join</div>
                                 <div className="world-show-action hover flex-center">Edit World</div>
+                                <div className="world-show-action hover flex-center">Destroy World</div>
                                 {/* <div className="world-show-action">Edit Members</div> */}
                             </div>
                         </div>
-                        <div className="world-show-right">
-                            <Route exact path="/world/:worldUrl/detail" component={CommunityDetailShowContainer} />
+                        <div className="world-show-right-limit">
+                            <div className="world-show-right">
+                                <Route exact path="/world/:worldUrl/detail" component={CommunityDetailShowContainer} />
+                            </div>
                         </div>
                     </div>
                 </div>

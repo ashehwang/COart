@@ -32,6 +32,7 @@
     background: #FFEF85;
     padding: 3px;
     border-radius: 7px;
+    text-align: center;
 }
 
 .world-item-name:hover {

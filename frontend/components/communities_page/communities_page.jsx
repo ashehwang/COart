@@ -25,7 +25,7 @@ class CommunitiesPage extends React.Component {
                         </div>
                     </div>
                     <div className="worlds-page flex">
-                        {this.props.communities.map( community => <CommunityItem key={community.id} community={community} />)}
+                        {this.props.communities.map( community => <CommunityItem key={community.url} community={community} />)}
                     </div>
                 </div>
             </div>
