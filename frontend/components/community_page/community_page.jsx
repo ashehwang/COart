@@ -18,7 +18,7 @@ class CommunityPage extends React.Component {
             <div className="world-show-container">
                 <div className="world-show-limit">
                     <div className="world-show-full-name">{community.name}</div>
-                    <div clasName="world-show flex">
+                    <div className="world-show flex">
                         <div className="world-show-left">
                             <div className="world-show-details">
                                 logo name admin etc goes here. Number of members. Big title.
