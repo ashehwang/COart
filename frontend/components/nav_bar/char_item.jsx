@@ -7,7 +7,9 @@ class CharacterItem extends React.Component {
         if(this.props.character.selected){
             return <div className="nav-char-selected">Selected</div>
         } else {
-            return <div className="nav-char-change hover" onClick={() => this.props.selectChar(this.props.character.id).then(() => this.props.history.push(`/character/${this.props.character.id}`))}>Select</div>
+            return <div className="nav-char-change hover" onClick={() => this.props.selectChar(this.props.character.id).then((res) => {
+                if(res.type === "CHANGE_SELECTED_CHAR") this.props.history.push(`/character/${this.props.character.id}`)
+            })}>Select</div>
         }
     }
 
@@ -29,4 +31,4 @@ class CharacterItem extends React.Component {
     }
 }
 
-export default CharacterItem;
+export default withRouter(CharacterItem);

@@ -4,11 +4,11 @@ export const fetchAllOpenCommunities = () =>
     url: "/api/communities",
   });
 
-export const fetchCommunity = (communityId) =>
-  $.ajax({
-    method: "GET",
-    url: `/api/communities/${communityId}`,
-  });
+// export const fetchCommunity = (communityId) =>
+//   $.ajax({
+//     method: "GET",
+//     url: `/api/communities/${communityId}`,
+//   });
 
 export const updateCommunity = (formData, communityId) =>
   $.ajax({
@@ -32,4 +32,11 @@ export const createCommunity = (formData) =>
     data: formData,
     contentType: false,
     processData: false,
+  });
+
+export const fetchCommunityByUrl = worldUrl =>
+  $.ajax({
+    method: "GET",
+    url: "/api/communities",
+    data: { worldUrl }
   });

@@ -1,6 +1,7 @@
 class Community < ApplicationRecord
 
-    validates :admin_id, :name, presence: true
+    validates :admin_id, :name, :url, presence: true
+    validates :url, :name, uniqueness: true
 
     belongs_to :admin,
     class_name: :User

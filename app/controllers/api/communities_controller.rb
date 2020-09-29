@@ -3,8 +3,13 @@ class Api::CommunitiesController < ApplicationController
     before_action :require_login, only: [:create, :destroy, :update]
 
     def index
-        @communities = Community.where(visibility: "public")
-                                .includes(:admin)
+        if params[:worldUrl]
+            @community = Community.where(url: params[:worldUrl])[0]
+            render :show
+        else            
+            @communities = Community.where(visibility: "public")
+                                    .includes(:admin)
+        end
     end
 
     def show
@@ -43,6 +48,6 @@ class Api::CommunitiesController < ApplicationController
     private
 
     def community_params
-        params.require(:community).permit(:admin_id, :name, :status, :recruiting, :visibility, :intro, :detail, :logo, :image)
+        params.require(:community).permit(:admin_id, :name, :status, :recruiting, :visibility, :intro, :detail, :logo, :image, :url)
     end
 end

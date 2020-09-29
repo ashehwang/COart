@@ -14,6 +14,7 @@ import BoardPostShowContainer from './board/board_post_show_container';
 import EditBoardPostContainer from './board/edit_board_post_container';
 import CreateCommunityContainer from './community_forms/create_community_container';
 import CommunitiesPageContainer from './communities_page/communities_page_container';
+import CommunityPageContainer from './community_page/community_page_container';
 
 // import ArtLogContainer from './art_log/art_log_container';
 
@@ -26,6 +27,7 @@ const App = () => (
         <Route exact path="/board/:boardPostId" component={BoardPostShowContainer} />
         <Route exact path="/character/:characterId" component={CharPageContainer}/>
         <Route exact path="/worlds" component={CommunitiesPageContainer}/>
+        <Route exact path="/world/:worldUrl" component={CommunityPageContainer}/>
         <ProtectedRoute path="/recruit" component={CreateCommunityContainer} />
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
         <ProtectedRoute path="/write" component={CreateBoardPostContainer} />

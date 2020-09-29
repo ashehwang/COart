@@ -7,9 +7,7 @@
 
 .worlds-page {
     width: 900px;
-    /* background: white; */
     margin: 20px auto;
-    /* padding: 15px; */
     border-radius: 12px;
     font-size: 14px;
     flex-wrap: wrap;
@@ -21,8 +19,6 @@
     padding: 10px;
     height: 265px;
     margin: 10px;
-    /* background: rgba(255, 255, 255, 0.85); */
-    /* background: rgba(255, 255, 255, 1); */
     background: white;
     border: 2px solid #3B5B6B;
     z-index: 1;
@@ -33,6 +29,7 @@
     font-weight: 600;
     margin-bottom: 5px;
     background: #ECF4F9;
+    background: #FFEF85;
     padding: 3px;
     border-radius: 7px;
 }
@@ -96,6 +93,11 @@
 
 .worlds-page-search i {
     margin-left: 5px;
+}
+
+.worlds-page-search i.fas {
+    margin-right: 5px;
+    margin-left: 0;
 }
 
 .worlds-page-search {

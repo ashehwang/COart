@@ -2,6 +2,7 @@ import * as CommunityApiUtil from '../util/community_api_util';
 
 export const RECEIVE_ALL_OPEN_COMMUNITIES = "RECEIVE_ALL_OPEN_COMMUNITIES";
 export const RECEIVE_COMMUNITY = "RECEIVE_COMMUNITY";
+export const RECEIVE_VIEWING_COMMUNITY = "RECEIVE_VIEWING_COMMUNITY";
 export const REMOVE_COMMUNITY = "REMOVE_COMMUNITY";
 export const RECEIVE_COMMUNITY_ERROR = "RECEIVE_COMMUNITY_ERROR";
 
@@ -12,6 +13,11 @@ const receiveAllOpenCommunities = (payload) => ({
 
 const receiveCommunity = (community) => ({
   type: RECEIVE_COMMUNITY,
+  community,
+});
+
+const receiveViewingCommunity = (community) => ({
+  type: RECEIVE_VIEWING_COMMUNITY,
   community,
 });
 
@@ -27,6 +33,9 @@ export const fetchAllOpenCommunities = () => (dispatch) =>
 
 export const fetchCommunity = (communityId) => (dispatch) =>
   CommunityApiUtil.fetchCommunity(communityId).then((community) => dispatch(receiveCommunity(community)));
+
+  export const fetchCommunityByUrl = (worldUrl) => (dispatch) =>
+  CommunityApiUtil.fetchCommunityByUrl(worldUrl).then((community) => dispatch(receiveViewingCommunity(community)));
 
 export const updateCommunity = (formData, communityId) => (dispatch) =>
   CommunityApiUtil.updateCommunity(formData, communityId).then((updatedCommunity) =>

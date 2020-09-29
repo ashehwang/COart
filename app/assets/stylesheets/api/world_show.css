@@ -1,0 +1,11 @@
+.world-show-container {
+    /* height: calc(100vh - 131px);
+    background-image: linear-gradient(white, lightgrey),
+    background: #312F2F; */
+}
+
+.world-show-limit {
+    background: red;
+    margin: 0 auto;
+    width: 900px;
+}

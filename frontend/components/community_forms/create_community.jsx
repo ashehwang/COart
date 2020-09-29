@@ -3,7 +3,7 @@ import React from 'react';
 class CreateCommunity extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", intro: "", detail: "" }
+    this.state = { name: "", intro: "", detail: "", url: "" }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogoFile = this.handleLogoFile.bind(this);
     this.handleImageFile = this.handleImageFile.bind(this);
@@ -14,6 +14,7 @@ class CreateCommunity extends React.Component {
     formData.append("community[name]", this.state.name);
     formData.append("community[intro]", this.state.intro);
     formData.append("community[detail]", this.state.detail);
+    formData.append("community[url]", this.state.url);
     if (this.state.logoFile) {
       formData.append("community[logo]", this.state.logoFile);
     }
@@ -102,7 +103,7 @@ class CreateCommunity extends React.Component {
             <div className="communityform-logo border absolute flex-center">
               {logoPreview}
             </div>
-            <div className="communityform-detail">
+            <div className="communityform-detail flex">
               <label>Name / Title</label>
               <input
                 type="text"
@@ -112,7 +113,17 @@ class CreateCommunity extends React.Component {
                 onChange={this.update("name")}
               />
             </div>
-            <div className="communityform-detail">
+            <div className="communityform-detail flex">
+              <label>World Url</label>
+              <input
+                type="text"
+                required
+                placeholder="will be used for world address; needs to be unique."
+                value={this.state.url}
+                onChange={this.update("url")}
+              />
+            </div>
+            <div className="communityform-detail flex">
               <label>Introduction</label>
               <input
                 type="text"
