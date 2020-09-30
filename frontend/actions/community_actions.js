@@ -16,9 +16,9 @@ const receiveCommunity = (community) => ({
   community,
 });
 
-const receiveViewingCommunity = (community) => ({
+const receiveViewingCommunity = (payload) => ({
   type: RECEIVE_VIEWING_COMMUNITY,
-  community,
+  payload,
 });
 
 const removeCommunity = (communityId) => ({
@@ -35,7 +35,7 @@ export const fetchAllOpenCommunities = () => (dispatch) =>
 //   CommunityApiUtil.fetchCommunity(communityId).then((community) => dispatch(receiveCommunity(community)));
 
   export const fetchCommunityByUrl = (worldUrl) => (dispatch) =>
-  CommunityApiUtil.fetchCommunityByUrl(worldUrl).then((community) => dispatch(receiveViewingCommunity(community)));
+  CommunityApiUtil.fetchCommunityByUrl(worldUrl).then((payload) => dispatch(receiveViewingCommunity(payload)));
 
 export const updateCommunity = (formData, communityId) => (dispatch) =>
   CommunityApiUtil.updateCommunity(formData, communityId).then((updatedCommunity) =>

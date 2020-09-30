@@ -3,13 +3,31 @@ import React from 'react';
 class CommunityApply extends React.Component {
     constructor(props){
         super(props);
-        this.state = { character_id: null }
+        this.state = { character_id: null, status: "pending" };
+        this.updateCharacter = this.updateCharacter.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    updateCharacter(e){
+        this.setState({ character_id: e.currentTarget.value, user_id: this.props.currentUser.id, admin_id: this.props.community.admin_id, community_id: this.props.community.id })
+    }
+
+    handleSubmit(e){
+        this.props.createMembershipRequest(this.state)
+            .then(res => {
+                if (res.type === "RECEIVE_MEMBERSHIP_REQUEST") {
+                    console.log("success!")
+                }
+            })
     }
 
     render(){
 
         const {community, currentUser, characters} = this.props; //its-you
-
+        if(!community) return <div className="warning">This World Does Not Exist</div>
+        if(!currentUser) return <div className="warning">No Current User</div>
+        if(!characters) return <div className="warning">You Have No Characters To Apply</div>
+        console.log(this.state)
         return(
             <div className="world-apply">
                 <div className="world-apply-title flex-center">Apply to {community.name}</div>
@@ -20,25 +38,24 @@ class CommunityApply extends React.Component {
                 <div className="world-apply-chars flex">
                     <div>Apply With: </div>
                     <div>
-                        {currentUser.character_ids.map(charId => <CharApplyShow key={charId} character={characters[charId]} />)}
+                        {currentUser.character_ids.map(charId => <CharApplyShow key={charId} character={characters[charId]} updateCharacter={this.updateCharacter}/>)}
                     </div>
                 </div>
-                <div className="world-apply-submit flex-center">Apply</div>
+                <div className="world-apply-submit flex-center hover" onClick={this.handleSubmit}>Apply</div>
             </div>
         )
     }
 }
 
-class CharApplyShow extends React.Component {
+class CharApplyShow extends CommunityApply {
 
     render(){
-
         const {character} = this.props;
         if(!character) return <div>No Character</div>
 
         return(
         <div className="world-apply-char">
-            <input type="radio" id={character.first_name} name="char" value={character.id}/>
+            <input type="radio" id={character.first_name} name="char" value={character.id} onChange={this.props.updateCharacter}/>
             <label htmlFor={character.first_name}> <img src={character.headPhotoUrl}/> {character.first_name} {character.last_name}</label>
         </div>
         )

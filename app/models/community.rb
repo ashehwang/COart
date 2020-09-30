@@ -6,7 +6,11 @@ class Community < ApplicationRecord
     belongs_to :admin,
     class_name: :User
 
-    # has_many :characters
+    has_many :membership_requests
+    has_many :applying_characters,
+    through: :membership_requests,
+    source: :character
+    has_many :memberships
 
     has_one_attached :logo
     has_one_attached :image

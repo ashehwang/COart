@@ -1,5 +1,6 @@
 import CommunityApply from './community_apply';
 import { connect } from 'react-redux';
+import { createMembershipRequest } from '../../actions/membership_actions';
 
 const mSTP = (state, ownProps) => ({
     loggedIn: Boolean(state.session.id),
@@ -9,7 +10,7 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = dispatch => ({
-
+    createMembershipRequest: (membershipRequest) => dispatch(createMembershipRequest(membershipRequest))
 });
 
 export default connect(mSTP, mDTP)(CommunityApply);

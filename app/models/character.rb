@@ -18,6 +18,16 @@ class Character < ApplicationRecord
     through: :follows,
     source: :user
 
+    has_many :sent_membership_requests,
+    foreign_key: :character_id,
+    class_name: :MembershipRequest
+
+    has_one :membership
+
+    belongs_to :community,
+    through: :membership,
+    source: :community
+
     # belongs_to :community
 
     # has_many :comments,

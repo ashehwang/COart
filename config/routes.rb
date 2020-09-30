@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
 
     resources :communities, only: [:index, :create, :show, :destroy, :update]
+    resources :membership_requests, only: [:create, :destroy, :index]
+    resources :memberships, only: [:create, :destroy, :index]
 
   end
 

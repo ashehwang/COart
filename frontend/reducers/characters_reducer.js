@@ -9,6 +9,7 @@ import { RECEIVE_USER } from '../actions/user_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
+import { RECEIVE_VIEWING_COMMUNITY } from '../actions/community_actions';
 
 const charactersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -60,6 +61,11 @@ const charactersReducer = (state = {}, action) => {
     case RECEIVE_UNFOLLOW:
       const targetIdx = newState[action.follow.character_id].follower_ids.indexOf(action.follow.user_id)
       newState[action.follow.character_id].follower_ids.splice(targetIdx, 1);
+      return newState;
+    case RECEIVE_VIEWING_COMMUNITY:
+      Object.keys(action.payload.characters).forEach( id => {
+        newState[id] = action.payload.characters[id];
+      })
       return newState;
     // case RECEIVE_COMMENT:
     //   if (

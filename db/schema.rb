@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_234859) do
+ActiveRecord::Schema.define(version: 2020_09_30_191437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_234859) do
     t.string "visibility", default: "public", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reference_id"
     t.index ["character_id"], name: "index_character_posts_on_character_id"
     t.index ["user_id"], name: "index_character_posts_on_user_id"
   end
@@ -80,7 +81,6 @@ ActiveRecord::Schema.define(version: 2020_09_28_234859) do
     t.datetime "updated_at", null: false
     t.boolean "selected", default: false
     t.integer "num_follows", default: 0, null: false
-    t.integer "community_id", default: 0
     t.string "intro"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_234859) do
     t.datetime "updated_at", null: false
     t.string "recruiting", default: "active"
     t.string "url", null: false
+    t.integer "num_follows", default: 0
     t.index ["admin_id"], name: "index_communities_on_admin_id"
     t.index ["name"], name: "index_communities_on_name", unique: true
     t.index ["url"], name: "index_communities_on_url", unique: true
@@ -118,6 +119,28 @@ ActiveRecord::Schema.define(version: 2020_09_28_234859) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "character_id"], name: "index_follows_on_user_id_and_character_id", unique: true
+  end
+
+  create_table "membership_requests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "character_id", null: false
+    t.integer "community_id", null: false
+    t.integer "admin_id", null: false
+    t.string "status", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_membership_requests_on_admin_id"
+    t.index ["character_id"], name: "index_membership_requests_on_character_id"
+    t.index ["community_id"], name: "index_membership_requests_on_community_id"
+    t.index ["user_id"], name: "index_membership_requests_on_user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "character_id"
+    t.string "status", default: "PC"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|

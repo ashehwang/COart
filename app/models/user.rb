@@ -31,6 +31,14 @@ class User < ApplicationRecord
     foreign_key: :admin_id,
     class_name: :Community
 
+    has_many :sent_membership_requests,
+    foreign_key: :user_id,
+    class_name: :MembershipRequest
+
+    has_many :received_membership_requests,
+    foreign_key: :admin_id,
+    class_name: :MembershipRequest
+
 
     # has_one_attached :cover_photo
 
