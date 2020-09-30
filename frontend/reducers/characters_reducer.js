@@ -40,7 +40,10 @@ const charactersReducer = (state = {}, action) => {
       } else { return newState; };
     case RECEIVE_USER:
       if (action.payload.characters) {
-        return action.payload.characters;
+        Object.keys(action.payload.characters).forEach(id => {
+          newState[id] = action.payload.characters[id]
+        })
+        return newState;
       } else { return newState; };
     case RECEIVE_ALL_CHARACTER_POSTS:
       newState[action.payload.character.id] = action.payload.character;
@@ -63,6 +66,7 @@ const charactersReducer = (state = {}, action) => {
       newState[action.follow.character_id].follower_ids.splice(targetIdx, 1);
       return newState;
     case RECEIVE_VIEWING_COMMUNITY:
+      if (!action.payload.characters) return newState;
       Object.keys(action.payload.characters).forEach( id => {
         newState[id] = action.payload.characters[id];
       })

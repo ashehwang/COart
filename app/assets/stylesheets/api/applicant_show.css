@@ -1,0 +1,69 @@
+.applicant-show-container {
+    padding: 15px;
+    background: white;
+    /* box-shadow: 2px 2px 5px 0px rgba(133,133,133,1); */
+    border-radius: 12px;
+    color: #474848;
+    text-align: center;
+    font-size: 14px;
+    width: 200px;
+    border: 2px solid lightgrey;
+    margin: 0 15px 10px 21px;
+}
+
+.applicant-show-photo > img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border: 2px solid #474848;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.applicant-show-creator {
+    font-size: 12px;
+    color: grey;
+    margin-bottom: 7px;
+}
+
+.applicant-show-creator span {
+    color: lightgrey;
+}
+
+.applicant-show-see {
+    background: #F0D1D8;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 7px;
+    color: grey;
+}
+
+.applicant-title {
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.applicant-show-buttons {
+    justify-content: space-between;
+}
+
+.applicant-show-button {
+    background: #F0D1D8;
+    padding: 8px;
+    border-radius: 8px;
+    width: 80px;
+    color: grey;
+}
+
+.applicant-show-button:hover, .applicant-show-see:hover {
+    background: #EBC1CB;
+    font-weight: 600;
+}
+
+.applicant-list {
+    /* justify-content: space-evenly; */
+    flex-wrap: wrap;
+    /* background: red; */
+    padding-bottom: 13px;
+}

@@ -52,6 +52,7 @@ class CharApplyShow extends CommunityApply {
     render(){
         const {character} = this.props;
         if(!character) return <div>No Character</div>
+        if(!character.eligible) return null;
 
         return(
         <div className="world-apply-char">

@@ -10,9 +10,9 @@ const receiveMembershipRequest = (payload) => ({
   payload
 });
 
-const removeMembershipRequest = (payload) => ({
+const removeMembershipRequest = (membershipRequest) => ({
   type: REMOVE_MEMBERSHIP_REQUEST,
-  payload
+  membershipRequest
 });
 
 const receiveMembership = (membership) => ({
@@ -31,8 +31,8 @@ export const createMembershipRequest = (membershipRequest) => (dispatch) =>
   );
 
 export const deleteMembershipRequest = (membershipRequestId) => (dispatch) =>
-  MembershipApiUtil.deleteMembershipRequest(membershipRequestId).then((payload) =>
-    dispatch(removeMembershipRequest(payload))
+  MembershipApiUtil.deleteMembershipRequest(membershipRequestId).then((membershipRequest) =>
+    dispatch(removeMembershipRequest(membershipRequest))
   );
 
 export const createMembership = (membership) => (dispatch) =>

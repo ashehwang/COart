@@ -6,7 +6,7 @@
 
 # json.was_default true
 
-json.extract! @character, :id, :first_name, :last_name, :bio, :selected
+json.extract! @character, :id, :first_name, :last_name, :bio, :selected, :eligible
 if @character.head_photo.attached?
     json.headPhotoUrl url_for(@character.head_photo)
 else

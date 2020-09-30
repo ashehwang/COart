@@ -16,9 +16,10 @@ const membershipRequestsReducer = (state = {}, action) => {
       newState[action.payload.id] = action.payload;
       return newState;
     case REMOVE_MEMBERSHIP_REQUEST:
-      delete newState[action.payload.membershipRequest.id];
+      delete newState[action.membershipRequest.id];
       return newState;
     case RECEIVE_VIEWING_COMMUNITY:
+      if (!action.payload.membership_requests) return newState;
       return action.payload.membership_requests;
     // case RECEIVE_CURRENT_USER:
     //   if (!action.payload.friendRequests) return {};

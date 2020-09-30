@@ -10,7 +10,7 @@ end
 json.characters do
     @character_posts.each do |character_post|
         json.set! character_post.character.id do
-            json.extract! character_post.character, :id, :user_id, :first_name, :last_name, :selected, :follower_ids
+            json.extract! character_post.character, :id, :user_id, :first_name, :last_name, :selected, :follower_ids, :eligible
             json.creator do
                 json.extract! character_post.user, :id, :user_name, :nick_name
             end

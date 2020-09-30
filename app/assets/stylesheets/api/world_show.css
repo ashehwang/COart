@@ -1,5 +1,5 @@
 .world-show-container {
-    height: calc(100vh - 146px);
+    min-height: calc(100vh - 146px);
     background-image: linear-gradient(white, lightgrey);
 }
 
@@ -14,7 +14,8 @@
 .world-show-right-limit {
     /* background: blue; */
     overflow-y: auto;
-    height: calc(100vh - 230px);
+    min-height: calc(100vh - 230px);
+    max-height: 612px;
     padding-right: 50px;
 }
 

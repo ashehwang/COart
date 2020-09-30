@@ -12,20 +12,15 @@ class Api::MembershipRequestsController < ApplicationController
         end
     end
 
-    # def destroy
-    #     @membership_request = MembershipRequest.find(params[:id])
-    #     @matching_friend_request = FriendRequest.where(requestor_id: @membership_request.requestee_id).where(requestee_id: @friend_request.requestor_id)[0]
+    def destroy
+        @membership_request = MembershipRequest.find(params[:id])
 
-    #     if @matching_friend_request
-    #         @matching_friend_request.destroy
-    #     end
-
-    #     if @friend_request.destroy
-    #         render :show
-    #     else
-    #         render json: @friend_request.errors, status: 422
-    #     end
-    # end
+        if @membership_request.destroy
+            render :show
+        else
+            render json: @friend_request.errors, status: 422
+        end
+    end
 
     private
 

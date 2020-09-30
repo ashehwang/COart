@@ -18,7 +18,7 @@ class Character < ApplicationRecord
     through: :follows,
     source: :user
 
-    has_many :sent_membership_requests,
+    has_one :sent_membership_request,
     foreign_key: :character_id,
     class_name: :MembershipRequest
 
@@ -28,9 +28,13 @@ class Character < ApplicationRecord
     through: :membership,
     source: :community
 
-    # belongs_to :community
-
     # has_many :comments,
     # dependent: :destroy
+
+    def eligible
+        return false if self.sent_membership_request
+        return false if self.membership
+        return true
+    end
 
 end

@@ -18,7 +18,7 @@ end
 json.characters do
     @community.applying_characters.each do |character|
         json.set! character.id do
-            json.extract! character, :id, :first_name, :last_name, :bio, :selected, :follower_ids
+            json.extract! character, :id, :first_name, :last_name, :bio, :selected, :follower_ids, :eligible
             if character.head_photo.attached?
                 json.headPhotoUrl url_for(character.head_photo)
             else
