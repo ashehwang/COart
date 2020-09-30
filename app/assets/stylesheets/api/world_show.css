@@ -83,11 +83,16 @@
 
 .world-show-action {
     border: 2px solid lightpink;
+    border: 2px solid lightgrey;
     border-style: outset;
-    background: pink;
+    background: #EDC7CF;
     padding: 5px 8px;
     border-radius: 8px;
     margin-bottom: 10px;
+}
+.world-show-action:hover {
+    background: #E6B2BC;
+    border-style: inset;
 }
 
 .world-item-show-intro {
@@ -116,4 +121,8 @@
     height: 148px;
     color: lightgrey;
     margin: auto;
+}
+
+.world-show-action:last-of-type {
+    margin-bottom: 0;
 }

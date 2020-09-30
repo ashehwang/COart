@@ -42,7 +42,7 @@ class CommunityPage extends React.Component {
                                 {/* <div>View Notices</div> */}
                                 <div className="world-show-action hover flex-center">View Members</div>
                                 <div className="world-show-action hover flex-center">View StoryLine</div>
-                                <div className="world-show-action hover flex-center">Apply To Join</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>Apply To Join</div>
                                 <div className="world-show-action hover flex-center">Edit World</div>
                                 <div className="world-show-action hover flex-center">Destroy World</div>
                                 {/* <div className="world-show-action">Edit Members</div> */}
