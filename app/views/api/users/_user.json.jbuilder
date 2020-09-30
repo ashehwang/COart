@@ -25,6 +25,7 @@ json.characters do
             json.creator do
                 json.extract! user, :id, :user_name, :nick_name
             end
+            json.membership_id character.membership.id if character.membership
         end
     end
 end

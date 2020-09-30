@@ -1,5 +1,5 @@
 json.community do
-    json.extract! @community, :id, :admin_id, :name, :status, :recruiting, :visibility, :intro, :detail, :url, :membership_request_ids
+    json.extract! @community, :id, :admin_id, :name, :status, :recruiting, :visibility, :intro, :detail, :url, :membership_request_ids, :member_ids
     json.admin do
         json.extract! @community.admin, :id, :user_name, :nick_name
     end
@@ -32,6 +32,25 @@ json.characters do
             json.creator do
                 json.extract! character.user, :id, :user_name, :nick_name, :character_ids
             end
+        end
+    end
+    @community.members.each do |character|
+        json.set! character.id do
+            json.extract! character, :id, :first_name, :last_name, :bio, :selected, :follower_ids, :eligible
+            if character.head_photo.attached?
+                json.headPhotoUrl url_for(character.head_photo)
+            else
+                json.headPhotoUrl "https://i.ibb.co/K9PYxTP/ahri2.jpg"
+            end
+            if character.body_photo.attached?
+                json.bodyPhotoUrl url_for(character.body_photo) 
+            else
+                json.bodyPhotoUrl nil
+            end
+            json.creator do
+                json.extract! character.user, :id, :user_name, :nick_name, :character_ids
+            end
+            json.membership_id character.membership.id
         end
     end
 end

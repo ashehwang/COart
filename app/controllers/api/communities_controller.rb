@@ -4,7 +4,11 @@ class Api::CommunitiesController < ApplicationController
 
     def index
         if params[:worldUrl]
-            @community = Community.where(url: params[:worldUrl])[0]
+            @community = Community
+                            .includes(:members => [:membership, :user])
+                            .includes(:membership_requests)
+                            .includes(:applying_characters => [:user])
+                            .find_by(url: params[:worldUrl]) #reduce N+1 query
             render :show
         else            
             @communities = Community.where(visibility: "public")

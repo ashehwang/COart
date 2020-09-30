@@ -1,5 +1,5 @@
 import { RECEIVE_VIEWING_COMMUNITY, RECEIVE_ALL_OPEN_COMMUNITIES, RECEIVE_COMMUNITY, REMOVE_COMMUNITY } from '../actions/community_actions';
-import { REMOVE_MEMBERSHIP_REQUEST } from '../actions/membership_actions';
+import { REMOVE_MEMBERSHIP_REQUEST, REMOVE_MEMBERSHIP } from '../actions/membership_actions';
 
 const communitiesReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -21,6 +21,10 @@ const communitiesReducer = (state = {}, action) => {
     case REMOVE_MEMBERSHIP_REQUEST:
       let targetIdx = newState[action.membershipRequest.url].membership_request_ids.indexOf(action.membershipRequest.id);
       newState[action.membershipRequest.url].membership_request_ids.splice(targetIdx, 1);
+      return newState;
+    case REMOVE_MEMBERSHIP:
+      let expelledCharIdx = newState[action.membership.url].member_ids.indexOf(action.membership.character_id);
+      newState[action.membership.url].member_ids.splice(expelledCharIdx, 1);
       return newState;
     default:
       return state;

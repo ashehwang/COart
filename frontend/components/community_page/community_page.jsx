@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { Route, Switch, Redirect } from "react-router-dom";
+import { ProtectedRoute } from "../../util/route_util";
+
 import CommunityDetailShowContainer from './community_detail_show_container';
 import CommunityApplyContainer from '../community_forms/community_apply_container';
 import ManageMembershipRequestsContainer from '../community_forms/manage_membership_requests_container';
-import { ProtectedRoute } from "../../util/route_util";
+import ShowMembersContainer from '../community_forms/show_members_container';
 
 class CommunityPage extends React.Component {
     constructor(props){
@@ -41,7 +43,7 @@ class CommunityPage extends React.Component {
                             <div className="world-show-actions">
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/detail`)}>World</div>
                                 {/* <div>View Notices</div> */}
-                                <div className="world-show-action hover flex-center">View Members</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/members`)}>View / Manage Members</div>
                                 <div className="world-show-action hover flex-center">View StoryLine</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>Apply To Join</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/manage`)}>Manage Requests</div>
@@ -55,6 +57,7 @@ class CommunityPage extends React.Component {
                                 <Route exact path="/world/:worldUrl/detail" component={CommunityDetailShowContainer} />
                                 <ProtectedRoute exact path="/world/:worldUrl/apply" component={CommunityApplyContainer} />
                                 <ProtectedRoute exact path="/world/:worldUrl/manage" component={ManageMembershipRequestsContainer} />
+                                <ProtectedRoute exact path="/world/:worldUrl/members" component={ShowMembersContainer} />
                             </div>
                         </div>
                     </div>
