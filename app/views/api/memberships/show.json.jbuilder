@@ -1,0 +1,1 @@
+json.extract! @membership, :id, :character_id, :community_id

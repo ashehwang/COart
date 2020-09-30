@@ -24,7 +24,7 @@ class Character < ApplicationRecord
 
     has_one :membership
 
-    belongs_to :community,
+    has_one :community,
     through: :membership,
     source: :community
 

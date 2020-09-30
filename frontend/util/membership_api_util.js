@@ -17,3 +17,18 @@ export const deleteMembershipRequest = (membershipRequestId) =>
     method: "DELETE",
     url: `/api/membership_requests/${membershipRequestId}`,
   });
+
+export const createMembership = membership => (
+  $.ajax({
+    method: "POST",
+    url: "/api/memberships",
+    data: { membership }
+  })
+);
+
+export const deleteMembership = membershipId => (
+  $.ajax({
+    method: "DELETE",
+    url: `/api/memberships/${membershipId}`
+  })
+);
