@@ -17,10 +17,10 @@ class Api::CommunitiesController < ApplicationController
         end
     end
 
-    def show
-        @community = Community.find_by(id: params[:id])
-        render :show
-    end
+    # def show
+    #     @community = Community.find_by(id: params[:id])
+    #     render :show
+    # end
 
     def create
         @community = Community.new(community_params)
@@ -44,7 +44,7 @@ class Api::CommunitiesController < ApplicationController
     def update
         @community = Community.find_by(id: params[:id])
         if @community.update(community_params)
-            render :show
+            render :update
         else
             render json: @community.errors, status: 422
         end

@@ -10,7 +10,7 @@ const communitiesReducer = (state = {}, action) => {
       if (!action.payload) return {};
       return action.payload;
     case RECEIVE_COMMUNITY:
-      newState[action.community.id] = action.community;
+      newState[action.community.url] = action.community;
       return newState;
     case REMOVE_COMMUNITY:
       delete newState[action.communityId];

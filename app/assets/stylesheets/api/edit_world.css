@@ -1,0 +1,43 @@
+.edit-world-container {
+    background-image: linear-gradient(white, #EDC7CF);
+    height: calc(100vh - 151px);
+    padding-top: 25px;
+    border-radius: 15px;
+}
+
+.communityform-detail span {
+    display: block;
+    color: grey;
+    padding: 5px 8px;
+    background: lightgrey;
+    border-radius: 7px;
+    width: 562px;
+}
+
+.edit-world-members {
+    padding: 5px 8px;
+    background: lightgrey;
+    border-radius: 7px;
+    width: 259px;
+    margin-right: 20px;
+    color: white;
+    border: 2px solid lightslategrey;
+    border-style: inset;
+}
+
+.edit-new-member {
+    color: black;
+    background: #F4DBE1;
+    border: 2px solid pink;
+    border-style: outset;
+}
+
+.edit-world-close-button {
+    top: 7px;
+    right: 17px;
+    color: grey;
+}
+
+.edit-world-close-button:hover {
+    color: #424B54;
+}

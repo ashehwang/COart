@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { ProtectedRoute } from "../../util/route_util";
 
 import CommunityDetailShowContainer from './community_detail_show_container';
@@ -23,26 +23,45 @@ class CommunityPage extends React.Component {
         return (this.props.loggedIn && this.props.currentUser.id === this.props.community.admin_id) ? true : false ;
     }
 
+    isOpen(){
+        if(!this.props.community) return null;
+
+        if(this.isAdmin()){
+            return (<div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${this.props.community.url}/apply`)}>Add Character</div>)
+        } else if (this.props.loggedIn && this.props.community.recruiting === "active") {
+            return (<div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${this.props.community.url}/apply`)}>Apply To Join</div>)
+        } else return null;
+    }
+
+    isOpen2(){
+        if(!this.props.community) return null;
+        if (this.props.community.recruiting === "active") {
+            const manager = this.isAdmin() ? "Manage" : "View";
+            return (<div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${this.props.community.url}/applications`)}>{manager} Applications</div>)
+        } else return null;
+    }
+    
     renderAdminButtons(){
         if(this.isAdmin()) {
             return (
                 <>
-                    <div className="world-show-action hover flex-center">Edit World</div>
+                    <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('editworld', this.props.community)}>Edit World</div>
                     <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('apocalypse', this.props.community)}>Destroy World</div>
                 </>
                 )
             } else return null;
-    }
-
-    render(){
-
-        if(!this.props.community) return <div className="warning">No Such World Exists</div>
-
-        const { community } = this.props;        
-        const logo = community.logoUrl ? <img src={community.logoUrl} /> : <div className="flex-center world-show-nologo"><p>No Logo</p></div>
-        const manager = this.isAdmin() ? "Manage" : "View";
-        const apply = this.isAdmin() ? "Add Character" : "Apply To Join";
-
+        }
+        
+        render(){
+            
+            if(!this.props.community) return <div className="warning">No Such World Exists</div>
+            
+            const { community } = this.props;        
+            const logo = community.logoUrl ? <img src={community.logoUrl} /> : <div className="flex-center world-show-nologo"><p>No Logo</p></div>
+            // const apply = this.isAdmin() ? "Add Character" : "Apply To Join";
+            const openOrNot = community.recruiting === "active" ? "Open For New Members" : <span>Members Only</span>
+            const manager = this.isAdmin() ? "Manage" : "View";
+            
         return(
             <div className="world-show-container">
                 <div className="world-show-limit">
@@ -53,18 +72,20 @@ class CommunityPage extends React.Component {
                                 <div className="world-show-logo">{logo}</div>
                                 <div className="world-show-intro">{community.intro}</div>
                                 <div className="world-show-others">Admin: {community.admin.nick_name} <span>@{community.admin.user_name}</span></div>
-                                <div className="world-show-others">Created at: 2020 09 27</div>
-                                <div className="world-show-others">Current members: 1</div>
-                                <div className="world-show-others">Visible to Public vs Member Only</div>
-                                <div className="world-show-others world-show-seeking flex-center">Open For New Members</div>
+                                <div className="world-show-others">Created at: {community.created_at.slice(0,10)}</div>
+                                <div className="world-show-others">Current members: {community.member_ids.length}</div>
+                                {/* <div className="world-show-others">Visible to Public vs Member Only</div> */}
+                                <div className="world-show-others world-show-seeking flex-center">{openOrNot}</div>
                             </div>
                             <div className="world-show-actions">
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}`)}>World</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/members`)}>{manager} Members</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/story`)}>View Story</div>
                                 <div className="world-show-action hover flex-center">View Board</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>{apply}</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/applications`)}>{manager} Applications</div>
+                                {this.isOpen()}
+                                {/* <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>{apply}</div> */}
+                                {/* <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/applications`)}>{manager} Applications</div> */}
+                                {this.isOpen2()}
                                 {/* <div className="world-show-action hover flex-center">Edit World</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('apocalypse', community)}>Destroy World</div> */}
                                 {this.renderAdminButtons()}

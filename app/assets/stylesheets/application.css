@@ -106,3 +106,7 @@ a {
 textarea {
     resize: none;
 }
+
+.between {
+    justify-content: space-between;
+}
