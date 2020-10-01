@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
+
 import LoginFormContainer from '../login_form/login_form_container';
 import SignUpFormContainer from '../signup_form/signup_form_container';
 import CreateCharacterPostFormContainer from '../char_posts_form/create_charpost_form_container';
@@ -10,6 +11,7 @@ import FullProfileContainer from '../char_page/full_profile_container';
 import ExpelMemberContainer from '../community_forms/expel_member_container';
 import DeleteCommunityContainer from '../community_forms/delete_community_container';
 import CreateWorldCharPostContainer from '../char_posts_form/create_world_charpost_container';
+import EditCommunityContainer from '../community_forms/edit_community_container';
 
 function Modal({ modal, closeModal }) {
 
@@ -46,17 +48,9 @@ function Modal({ modal, closeModal }) {
         case 'apocalypse':
             component = <DeleteCommunityContainer community={modal.data} />;
             break;
-        // case 'editchar':
-        //     component = <EditCharacterFormContainer character={modal.data} />
-        // case 'createpost':
-        //     component = <CreatePostFormContainer referenceId={modal.referenceId} />;
-        //     break;
-        // case 'edituser':
-        //     component = <EditProfileContainer />;
-        //     break;
-        // case 'editpost':
-        //     component = <EditPostFormContainer post={modal.referenceId} />;
-        //     break;
+        case 'editworld':
+            component = <EditCommunityContainer community={modal.data} />;
+            break;
         default:
             return null;
     }

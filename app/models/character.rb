@@ -36,7 +36,7 @@ class Character < ApplicationRecord
     def eligible
         return false if self.sent_membership_request
         return false if self.membership
-        return true
+        true
     end
 
 end

@@ -27,8 +27,11 @@ json.character do
     else
         json.bodyPhotoUrl nil
     end
-    json.community do
-        json.extract! @character.community, :url, :name
+    if @character.community
+        json.community do
+            json.extract! @character.community, :url, :name
+            json.logoUrl url_for(@character.community.logo) if @character.community.logo.attached?
+        end
     end
 end
 

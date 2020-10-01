@@ -325,3 +325,30 @@ img.pic-preview3 {
     max-width: 580px;
     height: auto;
 }
+
+.char-page-world-show img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
+.char-page-world-show {
+    background: #FAF0F5;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.char-page-world {
+    text-align: center;
+    color: grey;
+    padding: 5px;
+}
+
+.char-page-world span {
+    color: lightgrey;
+}
+
+.char-page-world-show:hover {
+    background: #F0D1E1;
+}

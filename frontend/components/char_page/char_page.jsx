@@ -1,5 +1,6 @@
 import React from 'react';
-import CharPostItem from './char_post_item'
+import CharPostItem from './char_post_item';
+import { Link } from 'react-router-dom';
 
 class CharPage extends React.Component {
     constructor(props){
@@ -21,6 +22,25 @@ class CharPage extends React.Component {
     handleUnfollow(){
         const unfollow = { id: this.props.character.id };
         this.props.unfollowCharacter(unfollow);
+    }
+
+    hasWorld(){
+        if(!this.props.character) return null;
+        if(this.props.character && this.props.character.community) {
+            const logo = this.props.character.community.logoUrl ? <img src={this.props.character.community.logoUrl}/> : null ;
+            return (
+                <Link to={`/world/${this.props.character.community.url}`}>
+                    <div className="char-page-world-show flex-center border hover flex">
+                        <div className="flex-center">
+                        {logo}
+                        </div>
+                        <div className="char-page-world">
+                        <span>Member Of</span> <br /> {this.props.character.community.name}
+                        </div>
+                    </div>
+                </Link>
+            );
+        } else return null;
     }
 
     // componentDidUpdate(prevProps){
@@ -79,6 +99,11 @@ class CharPage extends React.Component {
                                 <div className="char-page-creator-detail">
                                     <span>Creator: {character.creator.nick_name}</span>
                                     @{character.creator.user_name}
+                                    {/* <div className="char-page-world-show border hover flex">
+                                        <div className="flex-center"><img src={character.community.logoUrl}/></div>
+                                        <div className="char-page-world">Member Of <br/> {character.community.name}</div>
+                                    </div> */}
+                                    {this.hasWorld()}
                                 </div>
                             </div>
                         </div>
