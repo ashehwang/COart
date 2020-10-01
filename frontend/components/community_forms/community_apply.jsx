@@ -16,7 +16,7 @@ class CommunityApply extends React.Component {
         this.props.createMembershipRequest(this.state)
             .then(res => {
                 if (res.type === "RECEIVE_MEMBERSHIP_REQUEST") {
-                    console.log("success!")
+                    this.props.history.push(`/world/${res.payload.url}/applications`);
                 }
             })
     }

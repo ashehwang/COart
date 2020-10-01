@@ -41,12 +41,13 @@ class CommunityPage extends React.Component {
                                 <div className="world-show-others world-show-seeking flex-center">Open For New Members</div>
                             </div>
                             <div className="world-show-actions">
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/detail`)}>World</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}`)}>World</div>
                                 {/* <div>View Notices</div> */}
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/members`)}>View / Manage Members</div>
                                 <div className="world-show-action hover flex-center">View StoryLine</div>
+                                <div className="world-show-action hover flex-center">View Board</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>Apply To Join</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/manage`)}>Manage Requests</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/applications`)}>Manage Requests</div>
                                 <div className="world-show-action hover flex-center">Edit World</div>
                                 <div className="world-show-action hover flex-center">Destroy World</div>
                                 {/* <div className="world-show-action">Edit Members</div> */}
@@ -54,9 +55,10 @@ class CommunityPage extends React.Component {
                         </div>
                         <div className="world-show-right-limit">
                             <div className="world-show-right">
-                                <Route exact path="/world/:worldUrl/detail" component={CommunityDetailShowContainer} />
+                                {/* <Route exact path="/world/:worldUrl/detail" component={CommunityDetailShowContainer} /> */}
+                                <Route exact path="/world/:worldUrl" component={CommunityDetailShowContainer} />
                                 <ProtectedRoute exact path="/world/:worldUrl/apply" component={CommunityApplyContainer} />
-                                <ProtectedRoute exact path="/world/:worldUrl/manage" component={ManageMembershipRequestsContainer} />
+                                <ProtectedRoute exact path="/world/:worldUrl/applications" component={ManageMembershipRequestsContainer} />
                                 <ProtectedRoute exact path="/world/:worldUrl/members" component={ShowMembersContainer} />
                             </div>
                         </div>

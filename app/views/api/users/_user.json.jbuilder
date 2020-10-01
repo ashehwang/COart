@@ -1,4 +1,3 @@
-
 json.users do 
     json.set! user.id do
         json.extract! user, :id, :user_name, :nick_name, :bio, :character_ids
