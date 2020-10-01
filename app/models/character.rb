@@ -20,9 +20,11 @@ class Character < ApplicationRecord
 
     has_one :sent_membership_request,
     foreign_key: :character_id,
-    class_name: :MembershipRequest
+    class_name: :MembershipRequest,
+    dependent: :destroy
 
-    has_one :membership
+    has_one :membership,
+    dependent: :destroy
 
     has_one :community,
     through: :membership,

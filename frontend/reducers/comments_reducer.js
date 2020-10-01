@@ -2,6 +2,7 @@ import {  RECEIVE_ALL_COMMENTS,  RECEIVE_COMMENT,  REMOVE_COMMENT } from "../act
 // import { RECEIVE_ALL_POSTS } from "../actions/post_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_CHARACTER_POST, REMOVE_CHARACTER_POST, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
+import { RECEIVE_VIEWING_COMMUNITY } from '../actions/community_actions'; 
 
 const commentsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -20,6 +21,9 @@ const commentsReducer = (state = {}, action) => {
       return newState;
     case REMOVE_COMMENT:
       delete newState[action.comment.id];
+      return newState;
+    case RECEIVE_VIEWING_COMMUNITY:
+      if (action.payload.comments) return action.payload.comments;
       return newState;
     // case LOGOUT_CURRENT_USER:
     //   return {};

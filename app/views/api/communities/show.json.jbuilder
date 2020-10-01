@@ -64,4 +64,16 @@ json.characterPosts do
     end
 end
 
+@character_posts.each do |character_post|
+    json.comments do
+        character_post.comments.each do |comment|
+            json.set! comment.id do
+                json.extract! comment, :id, :user_id, :character_post_id, :body, :visibility, :updated_at
+                json.user do
+                    json.extract! comment.user, :id, :user_name, :nick_name
+                end
+            end
+        end
+    end
+end
 

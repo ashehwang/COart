@@ -19,12 +19,29 @@ class CommunityPage extends React.Component {
         this.props.fetchCommunityByUrl(this.props.worldUrl);
     }
 
+    isAdmin(){
+        return (this.props.loggedIn && this.props.currentUser.id === this.props.community.admin_id) ? true : false ;
+    }
+
+    renderAdminButtons(){
+        if(this.isAdmin()) {
+            return (
+                <>
+                    <div className="world-show-action hover flex-center">Edit World</div>
+                    <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('apocalypse', this.props.community)}>Destroy World</div>
+                </>
+                )
+            } else return null;
+    }
+
     render(){
 
         if(!this.props.community) return <div className="warning">No Such World Exists</div>
 
         const { community } = this.props;        
         const logo = community.logoUrl ? <img src={community.logoUrl} /> : <div className="flex-center world-show-nologo"><p>No Logo</p></div>
+        const manager = this.isAdmin() ? "Manage" : "View";
+        const apply = this.isAdmin() ? "Add Character" : "Apply To Join";
 
         return(
             <div className="world-show-container">
@@ -43,13 +60,14 @@ class CommunityPage extends React.Component {
                             </div>
                             <div className="world-show-actions">
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}`)}>World</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/members`)}>View / Manage Members</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/members`)}>{manager} Members</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/story`)}>View Story</div>
                                 <div className="world-show-action hover flex-center">View Board</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>Apply To Join</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/applications`)}>Manage Requests</div>
-                                <div className="world-show-action hover flex-center">Edit World</div>
-                                <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('apocalypse', community)}>Destroy World</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/apply`)}>{apply}</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.history.push(`/world/${community.url}/applications`)}>{manager} Applications</div>
+                                {/* <div className="world-show-action hover flex-center">Edit World</div>
+                                <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('apocalypse', community)}>Destroy World</div> */}
+                                {this.renderAdminButtons()}
                             </div>
                         </div>
                         <div className="world-show-right-limit">

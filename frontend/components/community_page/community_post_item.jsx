@@ -119,6 +119,18 @@ class CommunityPostItem extends React.Component {
           Delete <i className="far fa-times-circle"></i>
         </div>
       );
+    } else if (this.props.loggedIn && this.props.currentUser.id === this.props.community.admin_id) {
+      return (
+        <div
+          className="char-post-delete absolute hover"
+          onClick={() =>
+            this.props.deleteCharacterPost(this.props.characterPost.id)
+          }
+        >
+          {" "}
+          Delete <i className="far fa-times-circle"></i>
+        </div>
+      );
     } else return null;
   }
 
@@ -190,7 +202,7 @@ class CommunityPostItem extends React.Component {
               <Link to={`/character/${character.id}`}>
                 {character.first_name} {character.last_name}
               </Link>
-              <span> {this.handleTime()} </span>
+              <span> {this.handleTime()}, {character.creator.nick_name} </span>
             </div>
             {this.imgExists()}
             <div className="char-post-body">{this.renderBody()}</div>
