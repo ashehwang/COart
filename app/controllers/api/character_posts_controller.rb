@@ -75,7 +75,7 @@ class Api::CharacterPostsController < ApplicationController
     private
 
     def character_post_params
-        params.require(:character_post).permit(:body, :photo, :character_id, :user_id, :visibility)
+        params.require(:character_post).permit(:body, :photo, :character_id, :user_id, :visibility, :reference_id)
     end
 
 end

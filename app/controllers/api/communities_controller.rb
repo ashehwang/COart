@@ -9,6 +9,7 @@ class Api::CommunitiesController < ApplicationController
                             .includes(:membership_requests)
                             .includes(:applying_characters => [:user])
                             .find_by(url: params[:worldUrl]) #reduce N+1 query
+            @character_posts = CharacterPost.where(reference_id: @community.id)
             render :show
         else            
             @communities = Community.where(visibility: "public")

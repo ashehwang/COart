@@ -8,6 +8,8 @@ import DeleteCharacterFormContainer from '../chars_form/delete_char_form_contain
 import EditCharacterPostFormContainer from '../char_posts_form/edit_charpost_form_container';
 import FullProfileContainer from '../char_page/full_profile_container';
 import ExpelMemberContainer from '../community_forms/expel_member_container';
+import DeleteCommunityContainer from '../community_forms/delete_community_container';
+import CreateWorldCharPostContainer from '../char_posts_form/create_world_charpost_container';
 
 function Modal({ modal, closeModal }) {
 
@@ -26,6 +28,9 @@ function Modal({ modal, closeModal }) {
         case 'createcharpost':
             component = <CreateCharacterPostFormContainer />;
             break;
+        case 'story':
+            component = <CreateWorldCharPostContainer referenceId={modal.data}/>;
+            break;
         case 'deletechar':
             component = <DeleteCharacterFormContainer character={modal.data} />;
             break;
@@ -37,6 +42,9 @@ function Modal({ modal, closeModal }) {
             break;
         case 'expel':
             component = <ExpelMemberContainer character={modal.data} />;
+            break;
+        case 'apocalypse':
+            component = <DeleteCommunityContainer community={modal.data} />;
             break;
         // case 'editchar':
         //     component = <EditCharacterFormContainer character={modal.data} />
