@@ -21,7 +21,8 @@ class User < ApplicationRecord
 
     has_one_attached :profile_photo
 
-    has_many :follows
+    has_many :follows,
+    dependent: :destroy
 
     has_many :following_characters,
     through: :follows,
@@ -33,7 +34,8 @@ class User < ApplicationRecord
 
     has_many :sent_membership_requests,
     foreign_key: :user_id,
-    class_name: :MembershipRequest
+    class_name: :MembershipRequest,
+    dependent: :destroy
 
     has_many :received_membership_requests,
     foreign_key: :admin_id,

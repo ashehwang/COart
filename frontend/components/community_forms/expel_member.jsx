@@ -24,9 +24,9 @@ class ExpelMember extends React.Component {
         return(
             <div className="delete-char-container relative">
                 <i className="fas fa-exclamation-circle absolute"></i><h1>You're about to Expel {character.first_name}</h1>
-                <div>Are you sure? Please be prudent in making a decision.</div>
+                <div>Are you sure? Please think twice before making a decision.</div>
                 <div className="hover delete-char-button flex-center" onClick={() => closeModal()}>I'll keep this Character.</div>
-                <div className="hover delete-char-button flex-center" onClick={this.handleExpel}>I have made up my mind.</div>
+                <div className="hover delete-char-button2 flex-center" onClick={this.handleExpel}>I have made up my mind.</div>
             </div>
         )
     }

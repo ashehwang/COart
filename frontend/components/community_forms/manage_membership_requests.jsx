@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ManageMembershipRequests extends React.Component {
     constructor(props){
@@ -6,7 +7,9 @@ class ManageMembershipRequests extends React.Component {
     }
 
     render(){
-        const {community, characters, membershipRequests, openModal, deleteMembershipRequest, createMembership } = this.props;
+        const { currentUser, community, characters, membershipRequests, openModal, deleteMembershipRequest, createMembership, loggedIn } = this.props;
+        if (!membershipRequests) return <div className="warning"> There Is No Current Membership Requests</div>
+        if (!characters) return <div className="warning"> no characters </div>
         return(
             <div>
                 <div className="applicant-title">Current Applications To {community.name}</div>
@@ -20,6 +23,9 @@ class ManageMembershipRequests extends React.Component {
                         createMembership={createMembership} 
                         deleteMembershipRequest={deleteMembershipRequest} 
                         communityId={community.id}
+                        adminId={community.admin_id}
+                        currentUser={currentUser} 
+                        loggedIn={loggedIn}
                     />)}
                 </div>
             </div>
@@ -43,6 +49,20 @@ class MembershipRequestShow extends ManageMembershipRequests {
         this.props.deleteMembershipRequest(this.props.requestId);
     }
 
+    renderButtons(){
+
+        const { adminId, currentUser, loggedIn } = this.props;
+
+        if (loggedIn && adminId === currentUser.id) {
+            return (
+                <div className="applicant-show-buttons flex">
+                    <div className="applicant-show-button hover" onClick={this.handleAccept}>Accept</div>
+                    <div className="applicant-show-button applicant-show-button2 hover" onClick={this.handleDecline}>Decline</div>
+                </div>
+            )
+        } else return null;
+    }
+
     render(){
         const {character, openModal} = this.props;
         if (!character) return <div>No Character</div>
@@ -50,19 +70,18 @@ class MembershipRequestShow extends ManageMembershipRequests {
         return(
             <div className="applicant-show-container">
                 <div className="applicant-show-photo flex-center"><img src={character.headPhotoUrl}/></div>
-                <div className="applicant-show-char">{character.first_name} {character.last_name}</div>
+                <Link to={`/character/${character.id}`}><div className="applicant-show-char hover">{character.first_name} {character.last_name}</div></Link>
                 <div className="applicant-show-creator">Creator: {character.creator.nick_name} <span>@{character.creator.user_name}</span></div>
                 <div className="applicant-show-see hover" onClick={() => openModal('showchar', character)}>View Full Profile</div>
-                <div className="applicant-show-buttons flex">
+                {this.renderButtons()}
+                {/* <div className="applicant-show-buttons flex">
                     <div className="applicant-show-button hover" onClick={this.handleAccept}>Accept</div>
-                    <div className="applicant-show-button hover" onClick={this.handleDecline}>Decline</div>
-                </div>
+                    <div className="applicant-show-button applicant-show-button2 hover" onClick={this.handleDecline}>Decline</div>
+                </div> */}
             </div>
         )
     }
 
 }
-
-
 
 export default ManageMembershipRequests;

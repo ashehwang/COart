@@ -6,7 +6,7 @@ class Api::CharacterPostsController < ApplicationController
 
         if params[:characterId]  #for receiving a specific character
             @character_posts = CharacterPost.where(character_id: params[:characterId])
-                        .includes(:user, :character, comments: [:user]) #reduce N+1 query
+                        .includes(:user, :character => [:community], comments: [:user]) #reduce N+1 query
                         .order(updated_at: :desc)
             @character = Character.find(params[:characterId])
             @user = @character.user

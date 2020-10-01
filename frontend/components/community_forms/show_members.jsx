@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ShowMembers extends React.Component {
     constructor(props){
@@ -6,7 +7,7 @@ class ShowMembers extends React.Component {
     }
 
     render(){
-        const { community, characters, openModal, currentUser } = this.props;
+        const { community, characters, openModal, currentUser, loggedIn } = this.props;
         return(
             <div>
                 <div className="applicant-title">Current Members Of {community.name}</div>
@@ -17,7 +18,8 @@ class ShowMembers extends React.Component {
                         character={characters[id]} 
                         openModal={openModal}
                         adminId={community.admin_id} 
-                        currentUser={currentUser}
+                        currentUser={currentUser} 
+                        loggedIn={loggedIn}
                     />)}
                 </div>
             </div>
@@ -33,9 +35,9 @@ class MemberShow extends ShowMembers {
 
     renderButtons(){
 
-        const { adminId, currentUser, openModal, character } = this.props;
+        const { adminId, currentUser, openModal, character, loggedIn } = this.props;
 
-        if (adminId === currentUser.id) {
+        if (loggedIn && adminId === currentUser.id) {
             return <div className="applicant-show-see hover" onClick={() => openModal('expel', character)}>Expel</div>
         } else return null;
     }
@@ -47,7 +49,7 @@ class MemberShow extends ShowMembers {
         return(
             <div className="applicant-show-container">
                 <div className="applicant-show-photo flex-center"><img src={character.headPhotoUrl}/></div>
-                <div className="applicant-show-char">{character.first_name} {character.last_name}</div>
+                <Link to={`/character/${character.id}`}><div className="applicant-show-char hover">{character.first_name} {character.last_name}</div></Link>
                 <div className="applicant-show-creator">Creator: {character.creator.nick_name} <span>@{character.creator.user_name}</span></div>
                 <div className="applicant-show-see hover" onClick={() => openModal('showchar', character)}>View Full Profile</div>
                 {this.renderButtons()}

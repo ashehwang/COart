@@ -10,7 +10,7 @@ class CharPage extends React.Component {
 
     componentDidMount(){
         this.props.fetchRelatedCharacterPosts(this.props.characterId);
-        if (this.props.history.action === "POP") this.props.fetchRelatedCharacterPosts(this.props.characterId)
+        // if (this.props.history.action === "POP") this.props.fetchRelatedCharacterPosts(this.props.characterId)
     }
 
     handleFollow(){

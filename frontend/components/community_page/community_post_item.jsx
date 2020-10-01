@@ -67,8 +67,8 @@ class CommunityPostItem extends React.Component {
   }
 
   renderButtons() {
-    if (!this.props.loggedIn) {
-      return null;
+    if (!this.props.loggedIn || !this.props.community.user_member_ids.includes(this.props.currentUser.id)) {
+      return null; //can't comment when you're not logged in or any of user's character is not a member
     } else if (this.props.currentUser.id === this.props.character.creator.id) {
       return (
         <div className="char-post-bottom flex">

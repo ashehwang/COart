@@ -8,7 +8,6 @@ json.characterPosts do
 end
 
 json.user do 
-    # user = @character_posts[0].user
     json.extract! @user, :id, :user_name, :nick_name
 end
 
@@ -27,6 +26,9 @@ json.character do
         json.bodyPhotoUrl url_for(@character.body_photo) 
     else
         json.bodyPhotoUrl nil
+    end
+    json.community do
+        json.extract! @character.community, :url, :name
     end
 end
 

@@ -61,6 +61,11 @@
     font-weight: 600;
 }
 
+.applicant-show-button2:hover {
+    background: red;
+    color: white;
+}
+
 .applicant-list {
     /* justify-content: space-evenly; */
     flex-wrap: wrap;

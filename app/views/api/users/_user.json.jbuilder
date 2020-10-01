@@ -25,6 +25,9 @@ json.characters do
                 json.extract! user, :id, :user_name, :nick_name
             end
             json.membership_id character.membership.id if character.membership
+            json.community do
+                json.extract! character.community, :url, :name if character.community
+            end
         end
     end
 end
