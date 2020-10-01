@@ -24,7 +24,7 @@ class CreateCommunity extends React.Component {
     this.props.createCommunity(formData).then((res) => {
       if (res.type === "RECEIVE_COMMUNITY") {
         this.setState({ body: "" });
-        this.props.history.push(`/board`);
+        this.props.history.push(`/worlds`);
       }
     });
   }

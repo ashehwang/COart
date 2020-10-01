@@ -29,6 +29,7 @@ const characterPostsReducer = (state = {}, action) => {
             newState[action.comment.character_post_id].comment_ids.splice(targetIdx, 1);
             return newState;
         case RECEIVE_VIEWING_COMMUNITY:
+            if(!action.payload.characterPosts) return newState;
             return action.payload.characterPosts;        
         // case LOGOUT_CURRENT_USER:
         //     return {};

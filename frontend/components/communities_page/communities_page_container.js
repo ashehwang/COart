@@ -5,7 +5,7 @@ import { fetchAllOpenCommunities } from '../../actions/community_actions';
 const mSTP = state => ({
     loggedIn: Boolean(state.session.id),
     currentUser: state.entities.users[state.session.id],
-    communities: Object.values(state.entities.communities)
+    worlds: state.entities.communities,
 });
 
 const mDTP = dispatch => ({

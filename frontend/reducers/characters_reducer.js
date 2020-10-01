@@ -6,10 +6,12 @@ import {
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER } from '../actions/user_actions';
-import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
-import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { RECEIVE_VIEWING_COMMUNITY } from '../actions/community_actions';
+import { RECEIVE_MEMBERSHIP_REQUEST } from '../actions/membership_actions';
+
+// import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
+// import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const charactersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -70,6 +72,9 @@ const charactersReducer = (state = {}, action) => {
       Object.keys(action.payload.characters).forEach( id => {
         newState[id] = action.payload.characters[id];
       })
+      return newState;
+    case RECEIVE_MEMBERSHIP_REQUEST:
+      newState[action.payload.character_id].eligible = false;
       return newState;
     // case RECEIVE_COMMENT:
     //   if (

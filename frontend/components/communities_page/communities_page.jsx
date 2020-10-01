@@ -11,6 +11,9 @@ class CommunitiesPage extends React.Component {
     }
 
     render(){
+
+        const intKeys = Object.keys(this.props.worlds).filter( key => parseInt(key));
+
         return(
             <div className="worlds-page-container relative">
                 <div className="charform-limit">
@@ -25,7 +28,7 @@ class CommunitiesPage extends React.Component {
                         </div>
                     </div>
                     <div className="worlds-page flex">
-                        {this.props.communities.map( community => <CommunityItem key={community.url} community={community} />)}
+                        {intKeys.map( id => <CommunityItem key={id} community={this.props.worlds[id]} />)}
                     </div>
                 </div>
             </div>

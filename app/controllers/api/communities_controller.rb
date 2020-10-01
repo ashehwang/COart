@@ -26,7 +26,7 @@ class Api::CommunitiesController < ApplicationController
         @community = Community.new(community_params)
         @community.admin_id = current_user.id
         if @community.save
-            render :show
+            render :new
         else
             render json: @community.errors, status: 422
         end
@@ -35,7 +35,7 @@ class Api::CommunitiesController < ApplicationController
     def destroy
         @community = Community.find_by(id: params[:id])
         if @community.destroy
-            render :show
+            render :new
         else
             render json: @community.errors, status: 422
         end
