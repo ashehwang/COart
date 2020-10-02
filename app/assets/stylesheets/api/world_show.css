@@ -3,6 +3,16 @@
     background-image: linear-gradient(white, lightgrey);
 }
 
+.world-show-following {
+    background: pink;
+    font-size: 12px;
+    right: 8px;
+    bottom: 35px;
+    padding: 5px;
+    border-radius: 8px;
+    color: #424B54;
+}
+
 .world-show-limit {
     /* background: red; */
     margin: 0 auto;
@@ -90,6 +100,7 @@
     padding: 5px 8px;
     border-radius: 8px;
     margin-bottom: 10px;
+    color: #424B54;
 }
 .world-show-action:hover {
     background: #E6B2BC;

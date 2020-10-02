@@ -187,9 +187,9 @@ class CommunityPostItem extends React.Component {
     const { characterPost, character } = this.props;
     const hasComments = characterPost.comment_ids.length ? "" : "hidden";
 
-    if (!character) return <div>no character</div>;
     if (!characterPost) return <div>no character post</div>;
-
+    if (!character) return null; //characters that was there as applicant but didn't get accepted won't be rendered
+    
     return (
       <div className="char-post-container relative">
         {this.renderDelete()}

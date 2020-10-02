@@ -1,6 +1,6 @@
 import CommunityPage from './community_page';
 import { connect } from 'react-redux';
-import { fetchCommunityByUrl } from '../../actions/community_actions';
+import { fetchCommunityByUrl, followCommunity, unfollowCommunity } from '../../actions/community_actions';
 import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state, ownProps) => ({
@@ -12,7 +12,9 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = (dispatch) => ({
   fetchCommunityByUrl: (worldUrl) => dispatch(fetchCommunityByUrl(worldUrl)),
-  openModal: (modal, data) => dispatch(openModal(modal, data))
+  openModal: (modal, data) => dispatch(openModal(modal, data)),
+  followCommunity: follow => dispatch(followCommunity(follow)),
+  unfollowCommunity: unfollow => dispatch(unfollowCommunity(unfollow))
 });
 
 export default connect(mSTP, mDTP)(CommunityPage)

@@ -27,7 +27,7 @@ class CommunityApply extends React.Component {
         if(!community) return <div className="warning">This World Does Not Exist</div>
         if(!currentUser) return <div className="warning">No Current User</div>
         if(!characters) return <div className="warning">You Have No Characters To Apply</div>
-        console.log(this.state)
+
         return(
             <div className="world-apply">
                 <div className="world-apply-title flex-center">Apply to {community.name}</div>

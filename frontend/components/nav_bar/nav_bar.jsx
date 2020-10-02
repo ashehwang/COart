@@ -133,7 +133,7 @@ class NavBar extends React.Component {
             return (
                 <>
                     <div className={`navbar-submenu hover ${""}`}>How to CoTell</div>
-                    <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/communities")}>Communities</div>
+                    <div className={`navbar-submenu hover ${""}`} onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>
                     <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
                     {/* <div className={`navbar-submenu hover ${""}`}>Board</div> */}
                 </>

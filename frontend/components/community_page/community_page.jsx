@@ -13,11 +13,56 @@ class CommunityPage extends React.Component {
     constructor(props){
         super(props);
         this.state = { detail: true, members: false, feed: false, apply: false, edit: false };
+        this.handleFollow = this.handleFollow.bind(this);
+        this.handleUnfollow = this.handleUnfollow.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchCommunityByUrl(this.props.worldUrl);
     }
+
+    handleFollow(){
+        // console.log(this.props.following_community_ids)
+        const follow = { id: this.props.community.id };
+        this.props.followCommunity(follow)
+            // .then(()=> console.log(this.props.following_community_ids))
+            .then(() => this.forceUpdate());
+    }
+    
+    handleUnfollow(){
+        // console.log(this.props.following_community_ids)
+        const unfollow = { id: this.props.community.id };
+        this.props.unfollowCommunity(unfollow)
+            // .then(res => console.log(this.props.following_community_ids))
+            .then(() => this.forceUpdate());
+    }
+
+    showFollows(){
+        const { loggedIn, currentUser, community } = this.props;
+
+        if (!loggedIn || !community) return null;
+        if (currentUser.following_community_ids.includes(community.id)) {
+            return (
+                <div className="world-show-action hover flex-center" onClick={this.handleUnfollow} >UnFollow</div>
+                )
+            } else {
+                return (
+                    <div className="world-show-action hover flex-center" onClick={this.handleFollow} >Follow</div>
+                )
+            }
+    }
+
+    renderFollowing(){
+        const { loggedIn, currentUser, community } = this.props;
+
+        if (!loggedIn || !community) return null;
+        if (currentUser.following_community_ids.includes(community.id)) {
+            return (
+                <div className="world-show-following absolute"><i className="fas fa-heart"></i> Following</div>
+                )
+            } else return null;
+    }
+
 
     isAdmin(){
         return (this.props.loggedIn && this.props.currentUser.id === this.props.community.admin_id) ? true : false ;
@@ -61,6 +106,7 @@ class CommunityPage extends React.Component {
             // const apply = this.isAdmin() ? "Add Character" : "Apply To Join";
             const openOrNot = community.recruiting === "active" ? "Open For New Members" : <span>Members Only</span>
             const manager = this.isAdmin() ? "Manage" : "View";
+            // console.log(this.props)
             
         return(
             <div className="world-show-container">
@@ -68,7 +114,8 @@ class CommunityPage extends React.Component {
                     <div className="world-show-full-name">{community.name}</div>
                     <div className="world-show flex">
                         <div className="world-show-left">
-                            <div className="world-show-details">
+                            <div className="world-show-details relative">
+                                {this.renderFollowing()}
                                 <div className="world-show-logo">{logo}</div>
                                 <div className="world-show-intro">{community.intro}</div>
                                 <div className="world-show-others">Admin: {community.admin.nick_name} <span>@{community.admin.user_name}</span></div>
@@ -89,6 +136,7 @@ class CommunityPage extends React.Component {
                                 {/* <div className="world-show-action hover flex-center">Edit World</div>
                                 <div className="world-show-action hover flex-center" onClick={() => this.props.openModal('apocalypse', community)}>Destroy World</div> */}
                                 {this.renderAdminButtons()}
+                                {this.showFollows()}
                             </div>
                         </div>
                         <div className="world-show-right-limit">

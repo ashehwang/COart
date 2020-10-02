@@ -32,7 +32,15 @@ Rails.application.routes.draw do
       resources :comments, only: [:index]
     end
 
-    resources :communities, only: [:index, :create, :show, :destroy, :update]
+    resources :communities, only: [:index, :create, :show, :destroy, :update] do
+      member do
+        post :follow, to: "communities#follow", as: "follow"
+        post :unfollow, to:"communities#unfollow", as: "unfollow"
+      end
+      # collection do
+      #   get "search"
+      # end
+    end
     resources :membership_requests, only: [:create, :destroy, :index]
     resources :memberships, only: [:create, :destroy, :index]
 

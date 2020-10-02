@@ -8,7 +8,15 @@ class CommunityStory extends React.Component {
 
     isMember(){
         const { characters, loggedIn, currentUser, community } = this.props;
-        if (loggedIn && community.member_ids.includes(currentUser.selected_id)) {
+        if (loggedIn && community.member_ids.includes(currentUser.selected_id)) { //members are always allowed to write
+            const character = characters[currentUser.selected_id];
+            return(
+                <div className="flex world-story-write-container" onClick={() => this.props.openModal('story', community.id)}>
+                    <div className="flex world-story-write-image"><img src={character.headPhotoUrl}/></div>   
+                    <div className="flex world-story-write-text hover">What's happening in your world, {character.first_name}?</div>
+                </div>
+            )
+        } else if (loggedIn && community.status === "active" && community.applying_character_ids.includes(currentUser.selected_id)) {
             const character = characters[currentUser.selected_id];
             return(
                 <div className="flex world-story-write-container" onClick={() => this.props.openModal('story', community.id)}>
@@ -22,6 +30,7 @@ class CommunityStory extends React.Component {
     render(){
         const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost, openModal, community } = this.props;
         if (!characterPosts ) return null;
+        console.log(characterPosts)
 
         return(
             <div className="world-story-container">

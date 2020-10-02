@@ -99,10 +99,6 @@ class CharPage extends React.Component {
                                 <div className="char-page-creator-detail">
                                     <span>Creator: {character.creator.nick_name}</span>
                                     @{character.creator.user_name}
-                                    {/* <div className="char-page-world-show border hover flex">
-                                        <div className="flex-center"><img src={character.community.logoUrl}/></div>
-                                        <div className="char-page-world">Member Of <br/> {character.community.name}</div>
-                                    </div> */}
                                     {this.hasWorld()}
                                 </div>
                             </div>

@@ -40,3 +40,15 @@ export const fetchCommunityByUrl = worldUrl =>
     url: "/api/communities",
     data: { worldUrl }
   });
+
+export const followCommunity = (follow) =>
+  $.ajax({
+    method: "POST",
+    url: `/api/communities/${follow.id}/follow`,
+  });
+
+export const unfollowCommunity = (follow) =>
+  $.ajax({
+    method: "POST",
+    url: `/api/communities/${follow.id}/unfollow`,
+  });

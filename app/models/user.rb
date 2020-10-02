@@ -28,6 +28,13 @@ class User < ApplicationRecord
     through: :follows,
     source: :character
 
+    has_many :community_follows,
+    class_name: :WorldFollow
+
+    has_many :following_communities,
+    through: :community_follows,
+    source: :community
+
     has_many :created_communities,
     foreign_key: :admin_id,
     class_name: :Community

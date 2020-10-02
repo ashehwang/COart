@@ -1,6 +1,6 @@
 json.users do 
     json.set! user.id do
-        json.extract! user, :id, :user_name, :nick_name, :bio, :character_ids
+        json.extract! user, :id, :user_name, :nick_name, :bio, :character_ids, :following_character_ids, :following_community_ids
         selected_character = user.characters.detect { |char| char.selected }
         json.selected_id selected_character.id if selected_character
         # json.profilePhotoUrl url_for(user.profile_photo) if user.profile_photo.attached?

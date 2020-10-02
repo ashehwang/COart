@@ -28,6 +28,11 @@ html, body, h1, h2, h3, h4, h5, h6, div, main, nav, p, ul, ol, li, aside, articl
    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
 }
 
+body {
+    min-width: 1170px;
+    overflow-x: auto;
+}
+
 .flex {
     display: flex;
 }

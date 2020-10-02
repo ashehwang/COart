@@ -14,7 +14,7 @@ import {
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { CHANGE_SELECTED_CHAR, REMOVE_CHAR, RECEIVE_CHAR } from "../actions/char_actions";
-
+import { RECEIVE_COMMUNITY_FOLLOW, RECEIVE_COMMUNITY_UNFOLLOW } from '../actions/community_actions';
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -88,6 +88,13 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_CHAR: //receiving newly created character
       newState[action.char.creator.id].character_ids.push(action.char.id);
       newState[action.char.creator.id].selected_id = action.char.id;
+      return newState;
+    case RECEIVE_COMMUNITY_FOLLOW:
+      newState[action.follow.user_id].following_community_ids.push(action.follow.community_id);
+      return newState;
+    case RECEIVE_COMMUNITY_UNFOLLOW:
+      let removeIdx = newState[action.follow.user_id].following_community_ids.indexOf(action.follow.community_id);
+      newState[action.follow.user_id].following_community_ids.splice(removeIdx, 1);
       return newState;
     // case LOGOUT_CURRENT_USER:
     //   return {};

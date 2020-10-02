@@ -5,6 +5,8 @@ export const RECEIVE_COMMUNITY = "RECEIVE_COMMUNITY";
 export const RECEIVE_VIEWING_COMMUNITY = "RECEIVE_VIEWING_COMMUNITY";
 export const REMOVE_COMMUNITY = "REMOVE_COMMUNITY";
 export const RECEIVE_COMMUNITY_ERROR = "RECEIVE_COMMUNITY_ERROR";
+export const RECEIVE_COMMUNITY_FOLLOW = "RECEIVE_COMMUNITY_FOLLOW";
+export const RECEIVE_COMMUNITY_UNFOLLOW = "RECEIVE_COMMUNITY_UNFOLLOW";
 
 const receiveAllOpenCommunities = (payload) => ({
   type: RECEIVE_ALL_OPEN_COMMUNITIES,
@@ -26,13 +28,20 @@ const removeCommunity = (communityId) => ({
   communityId,
 });
 
+const receiveCommunityFollow = (follow) => ({
+  type: RECEIVE_COMMUNITY_FOLLOW,
+  follow,
+});
+
+const receiveCommunityUnfollow = (follow) => ({
+  type: RECEIVE_COMMUNITY_UNFOLLOW,
+  follow,
+});
+
 export const fetchAllOpenCommunities = () => (dispatch) =>
   CommunityApiUtil.fetchAllOpenCommunities().then((payload) =>
     dispatch(receiveAllOpenCommunities(payload))
   );
-
-// export const fetchCommunity = (communityId) => (dispatch) =>
-//   CommunityApiUtil.fetchCommunity(communityId).then((community) => dispatch(receiveCommunity(community)));
 
   export const fetchCommunityByUrl = (worldUrl) => (dispatch) =>
   CommunityApiUtil.fetchCommunityByUrl(worldUrl).then((payload) => dispatch(receiveViewingCommunity(payload)));
@@ -48,4 +57,14 @@ export const deleteCommunity = (communityId) => (dispatch) =>
 export const createCommunity = (formData) => (dispatch) =>
   CommunityApiUtil.createCommunity(formData).then((community) =>
     dispatch(receiveCommunity(community))
+  );
+
+export const followCommunity = (follow) => (dispatch) =>
+  CommunityApiUtil.followCommunity(follow).then((follow) =>
+    dispatch(receiveCommunityFollow(follow))
+  );
+
+export const unfollowCommunity = (unfollow) => (dispatch) =>
+  CommunityApiUtil.unfollowCommunity(unfollow).then((follow) =>
+    dispatch(receiveCommunityUnfollow(follow))
   );

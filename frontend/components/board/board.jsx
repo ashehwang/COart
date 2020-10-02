@@ -124,8 +124,7 @@ class Board extends React.Component {
     render(){
         const { boardPosts } = this.props;
         if(!boardPosts) return <div>No Posts exist in this Category Yet.</div>
-        console.log(this.props)
-        console.log(this.state)
+
         return(
             <div className="board-container">
                 <div className="flex">

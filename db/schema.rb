@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_191437) do
+ActiveRecord::Schema.define(version: 2020_10_02_001337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_191437) do
     t.string "status", default: "PC"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_memberships_on_character_id"
+    t.index ["community_id"], name: "index_memberships_on_community_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -163,6 +165,14 @@ ActiveRecord::Schema.define(version: 2020_09_30_191437) do
     t.string "email", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
+  end
+
+  create_table "world_follows", force: :cascade do |t|
+    t.integer "community_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "community_id"], name: "index_world_follows_on_user_id_and_community_id", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -73,9 +73,3 @@ export const followCharacter = (follow) => (dispatch) =>
 
 export const unfollowCharacter = (unfollow) => (dispatch) =>
   CharApiUtil.unfollowCharacter(unfollow).then((follow) => dispatch(receiveUnfollow(follow)));
-
-// export const likeChar = (postLike) => (dispatch) =>
-//   CharApiUtil.likeChar(postLike).then((post) => dispatch(receiveChar(post)));
-
-// export const unlikeChar = (postLike) => (dispatch) =>
-//   CharApiUtil.unlikeChar(postLike).then((post) => dispatch(receiveChar(post)));
