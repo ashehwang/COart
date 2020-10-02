@@ -45,11 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store.subscribe(() => {
         saveState(store.getState());
     });
-    // store.subscribe(throttle(() => {
-    //     saveState({
-    //         entities: store.getState().entities,
-    //         session: store.getState().session });
-    // }, 1000));
+
     store.subscribe(throttle(() => {
         saveState({
             entities: store.getState().entities
@@ -61,4 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.getState = store.getState;
     window.dispatch = store.dispatch;
-})
+});

@@ -29,7 +29,15 @@ const usersReducer = (state = {}, action) => {
       });
       return newState;
     case RECEIVE_UPDATED_USER:
-      return Object.assign({}, state, { [action.user.id]: action.user });
+      newState[action.user.id].bio = action.user.bio;
+      newState[action.user.id].nick_name = action.user.nick_name;
+      newState[action.user.user_name].bio = action.user.bio;
+      newState[action.user.user_name].nick_name = action.user.nick_name;
+      if (action.user.photoUrl) {
+        newState[action.user.id].photoUrl = action.user.photoUrl;
+        newState[action.user.user_name].photoUrl = action.user.photoUrl;
+      }
+      return newState;
     case RECEIVE_FRIEND_REQUEST:
       newState[action.payload.user.id] = action.payload.user;
       newState[
