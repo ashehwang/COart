@@ -19,7 +19,7 @@ class User < ApplicationRecord
     has_many :board_comments,
     dependent: :destroy
 
-    has_one_attached :profile_photo
+    has_one_attached :photo
 
     has_many :follows,
     dependent: :destroy
@@ -47,9 +47,6 @@ class User < ApplicationRecord
     has_many :received_membership_requests,
     foreign_key: :admin_id,
     class_name: :MembershipRequest
-
-
-    # has_one_attached :cover_photo
 
     # has_many :sent_friend_requests,
     # foreign_key: :requestor_id,

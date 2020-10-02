@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :index, :show, :update] do
       collection do
         get "search"
+        get "fetch"
       end
     end
 

@@ -12,3 +12,11 @@ export const editUser = (formData, userId) =>
     contentType: false,
     processData: false,
   });
+
+export const fetchUserByUsername = username => (
+  $.ajax({
+    method: "GET",
+    url: `/api/users/fetch`,
+    data: { username} 
+  }) 
+);

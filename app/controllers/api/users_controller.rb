@@ -32,6 +32,17 @@ class Api::UsersController < ApplicationController
         render :show
     end
 
+    def fetch
+        @user = User.includes(:characters)
+                    .find_by(user_name: params[:username])
+        @current_user = current_user
+        if @user
+            render :fetch
+        else
+            render json: @user.errors, status: 422
+        end
+    end
+
     # def search
     #     filter = params[:filter].downcase
     #     @users = User.where("LOWER(first_name) LIKE (?) OR LOWER(last_name) LIKE (?)", "%#{filter}%", "%#{filter}%")

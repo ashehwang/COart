@@ -1,9 +1,5 @@
-import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
-import {
-  RECEIVE_ALL_USERS,
-  RECEIVE_USER,
-  RECEIVE_UPDATED_USER,
-} from "../actions/user_actions";
+import { RECEIVE_CURRENT_USER  } from "../actions/session_actions";
+import {  RECEIVE_ALL_USERS, RECEIVE_USER, RECEIVE_UPDATED_USER, RECEIVE_FETCHED_USER } from "../actions/user_actions";
 import { RECEIVE_ALL_POSTS } from "../actions/post_actions";
 import {
   RECEIVE_FRIEND_REQUEST,
@@ -95,6 +91,9 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_COMMUNITY_UNFOLLOW:
       let removeIdx = newState[action.follow.user_id].following_community_ids.indexOf(action.follow.community_id);
       newState[action.follow.user_id].following_community_ids.splice(removeIdx, 1);
+      return newState;
+    case RECEIVE_FETCHED_USER:
+      newState[action.payload.user.user_name] = action.payload.user;
       return newState;
     // case LOGOUT_CURRENT_USER:
     //   return {};

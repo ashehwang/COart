@@ -1,0 +1,71 @@
+.edit-user-container {
+    width: 500px;
+}
+
+.edit-user-prompt {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid lightgrey;
+    font-size: 18px;
+    font-weight: 600;
+    color: #84BAD7;
+}
+
+.edit-user-photo > img {
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    object-fit: cover;
+    border: 2px solid #84BAD7;
+    margin-top: 10px;
+}
+/* 
+    background: #A3CBE1;
+    background: #84BAD7; */
+.edit-user-container label {
+    padding: 5px 8px;
+    display: block;
+    background: #A3CBE1;
+    border-radius: 8px;
+    border: 1px solid grey;
+    color: grey;
+    width: 120px;
+    margin: 0 10px;
+}
+
+.edit-user-container input[type=text] {
+    padding: 5px 8px;
+    background: lightgrey;
+    color: white;
+    border-radius: 8px;
+    width: 315px;
+}
+
+.edit-user-detail {
+    margin-top: 8px;
+}
+
+.edit-user-submit {
+    background: #A3CBE1;
+    color: grey;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.edit-user-submit:hover {
+    background: #84BAD7;
+    color: white;
+}
+
+.edit-user-container i {
+    top: 7px;
+    right: 7px;
+    font-size: 18px;
+    color: #A3CBE1;
+}
+
+.edit-user-container i:hover {
+    color: #84BAD7;
+}

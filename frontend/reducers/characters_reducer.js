@@ -5,7 +5,7 @@ import {
   CHANGE_SELECTED_CHAR, RECEIVE_FOLLOW, RECEIVE_UNFOLLOW
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_USER } from '../actions/user_actions';
+import { RECEIVE_USER, RECEIVE_FETCHED_USER } from '../actions/user_actions';
 import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { RECEIVE_VIEWING_COMMUNITY } from '../actions/community_actions';
 import { RECEIVE_MEMBERSHIP_REQUEST } from '../actions/membership_actions';
@@ -69,12 +69,18 @@ const charactersReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_VIEWING_COMMUNITY:
       if (!action.payload.characters) return newState;
-      Object.keys(action.payload.characters).forEach( id => {
-        newState[id] = action.payload.characters[id];
-      })
+      Object.keys(action.payload.characters).forEach( charId => {
+        newState[charId] = action.payload.characters[charId];
+      });
       return newState;
     case RECEIVE_MEMBERSHIP_REQUEST:
       newState[action.payload.character_id].eligible = false;
+      return newState;
+    case RECEIVE_FETCHED_USER:
+      if (!action.payload.characters) return newState;
+      Object.keys(action.payload.characters).forEach( charId => {
+        newState[charId] = action.payload.characters[charId];
+      });
       return newState;
     // case RECEIVE_COMMENT:
     //   if (
