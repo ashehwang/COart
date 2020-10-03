@@ -6,7 +6,7 @@ class UserPage extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchUserByUsername(this.props.username)
+        this.props.fetchUserByUsername(this.props.username);
     }
 
     renderButtons(){
@@ -15,10 +15,10 @@ class UserPage extends React.Component {
         if (currentUser.id === user.id) { //user on his/her own page
             return(
                 <>
-                    <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('edituser', user)}>
+                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('edituser', user)}>
                         Edit Your Profile
                     </div>
-                    <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
+                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
                         Check Messages
                     </div>
                 </>
@@ -26,7 +26,7 @@ class UserPage extends React.Component {
         } else {
             return (
                 <>
-                    <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
+                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
                         Send Messages to {user.nick_name}
                     </div>
                 </>
@@ -37,9 +37,13 @@ class UserPage extends React.Component {
 
     render(){
         const { user } = this.props;
+
+        console.log("PROPS", this.props)
         if (!user) return <div className="warning">No User</div>
+
+
         return(
-            <div className="char-page-container align-center">
+            <div className="user-page-container align-center">
                 <div className="relative flex">
                     <div className="char-page-left">
                         <div className="char-page-profile flex">
@@ -51,7 +55,7 @@ class UserPage extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('showchar', character)}>
+                        <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('showchar', character)}>
                             View {user.nick_name}'s Characters
                         </div>
                         <div>

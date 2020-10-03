@@ -4,7 +4,7 @@ import { RECEIVE_ALL_POSTS } from "../actions/post_actions";
 import {
   RECEIVE_FRIEND_REQUEST,
   REMOVE_FRIEND_REQUEST,
-  RECEIVE_FRIEND,
+  RECEIVE_FRIEND, 
   REMOVE_FRIEND,
 } from "../actions/friend_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
@@ -29,8 +29,10 @@ const usersReducer = (state = {}, action) => {
       });
       return newState;
     case RECEIVE_UPDATED_USER:
+      newState[action.user.id] = Object.assign({}, newState[action.user.id]);
       newState[action.user.id].bio = action.user.bio;
       newState[action.user.id].nick_name = action.user.nick_name;
+      newState[action.user.user_name] = Object.assign({}, newState[action.user.user_name]);
       newState[action.user.user_name].bio = action.user.bio;
       newState[action.user.user_name].nick_name = action.user.nick_name;
       if (action.user.photoUrl) {
