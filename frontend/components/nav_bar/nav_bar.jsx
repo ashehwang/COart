@@ -74,7 +74,7 @@ class NavBar extends React.Component {
                     </div>
                     <div className="nav-dropdown relative">
                         <img src="https://i.ibb.co/K9PYxTP/ahri2.jpg" className="small-profile-pic hover" onClick={this.handleDropdown} />
-                        <i className="fas fa-caret-down white absolute" onClick={this.handleDropdown}></i>
+                        <i className="fas fa-caret-down white absolute hover" onClick={this.handleDropdown}></i>
                         <div className={`dropdown-menu shadow flex-vert absolute ${hidden}`}>
                             <div className="dropdown hover dd-profile flex" onClick={() => this.props.history.push(`/user/${currentUser.user_name}`)}>
                                 <div>
@@ -127,7 +127,6 @@ class NavBar extends React.Component {
             return (
                 <>
                 <div className={`navbar-submenu hover ${main}`}>Feed</div>
-                <div className={`navbar-submenu hover ${main}`} onClick={() => this.props.openModal('createpost')}>TEST</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
                 {/* <div className={`navbar-submenu hover`} onClick={() => this.props.history.push("/create")}>Create Character</div> */}
                 <div className={`navbar-submenu hover ${worlds}`} onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>

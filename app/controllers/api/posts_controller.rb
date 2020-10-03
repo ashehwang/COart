@@ -43,14 +43,14 @@ class Api::PostsController < ApplicationController
         end
     end
 
-    # def update
-    #     @post = Post.find_by(id: params[:id])
-    #     if @post.update(post_params)
-    #         render :show
-    #     else
-    #         render json: @post.errors, status: 422
-    #     end
-    # end
+    def update
+        @post = Post.find_by(id: params[:id])
+        if @post.update(post_params)
+            render :show
+        else
+            render json: @post.errors, status: 422
+        end
+    end
 
     # def like
     #     @like = Like.new(likeable_type: "Post", likeable_id: params[:id])

@@ -29,13 +29,14 @@ class UserPost extends React.Component {
     }
 
     renderUserButtons(){ //allow users to edit and delete if own
+        const { openModal, post, deletePost } = this.props;
         if(this.isMine()){
             return (
                 <div className="user-single-post-cruds absolute flex">
-                    <div className="user-single-post-crud border hover">
+                    <div className="user-single-post-crud border hover" onClick={() => openModal('editpost', post)}>
                         Edit
                     </div>
-                    <div className="user-single-post-crud border hover" onClick={() => this.props.deletePost(this.props.post.id)}>
+                    <div className="user-single-post-crud border hover" onClick={() => deletePost(post.id)}>
                         Delete
                     </div>
                 </div>
