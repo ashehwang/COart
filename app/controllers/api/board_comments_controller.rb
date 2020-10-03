@@ -1,5 +1,7 @@
 class Api::BoardCommentsController < ApplicationController
 
+    before_action :require_login, only: [:create, :destroy, :update]
+
     # def index
     #     @board_post = BoardPost.find(params[:board_post_id])
     #     @board_comments = @board_post.board_comments

@@ -1,8 +1,8 @@
-export const fetchBoardPostComments = (boardPostId) =>
-  $.ajax({
-    url: `/api/board_posts/${boardPostId}/board_comments`,
-    method: "GET",
-  });
+// export const fetchBoardPostComments = (boardPostId) =>
+//   $.ajax({
+//     url: `/api/board_posts/${boardPostId}/board_comments`,
+//     method: "GET",
+//   });
 
 export const createBoardComment = (board_comment) =>
   $.ajax({

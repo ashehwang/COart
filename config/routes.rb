@@ -25,23 +25,24 @@ Rails.application.routes.draw do
     end
 
     resources :board_posts, only: [:index, :create, :show, :destroy, :update] do
-      resources :board_comments, only: [:index]
+      # resources :board_comments, only: [:index]
     end
 
     resources :character_posts, only: [:index, :create, :show, :destroy, :update] do
-      resources :comments, only: [:index]
+      # resources :comments, only: [:index]
     end
 
     resources :posts, only: [:index, :create, :show, :destroy, :update] do
       # resources :user_comments, only: [:index]
     end
 
-    resources :board_comments, only: [:destroy, :update, :create]
     resources :comments, only: [:destroy, :update, :create]
+    resources :user_comments, only: [:destroy, :update, :create]
+    resources :board_comments, only: [:destroy, :update, :create]
     # resources :friend_requests, only: [:create, :destroy]
     # resources :friends, only: [:create, :destroy]
-    resources :membership_requests, only: [:create, :destroy, :index]
-    resources :memberships, only: [:create, :destroy, :index]
+    resources :membership_requests, only: [:create, :destroy]
+    resources :memberships, only: [:create, :destroy]
 
     resources :communities, only: [:index, :create, :show, :destroy, :update] do
       member do

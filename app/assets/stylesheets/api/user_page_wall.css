@@ -59,3 +59,26 @@
     color: #B1D3E5;
     border: 1px solid #84BAD7;
 }
+
+.user-single-post-comments {
+    font-size: 12px;
+    border-top: 1px solid lightgrey;
+}
+
+.user-single-post-comments p {
+    display: block;
+    padding: 3px 5px;
+    margin-top: 4px;
+}
+
+.user-single-post-comments span {
+    color: lightgrey;
+}
+
+.user-single-post-comments input[type=text] {
+    background: #B1D3E5;
+    padding: 3px 5px;
+    margin-top: 4px;
+    border-radius: 5px;
+    width: 83.5%;
+}

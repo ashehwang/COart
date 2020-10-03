@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-    before_action :require_login, only: [:update, :show]
+    before_action :require_login, only: [:update, :show] #show?
 
     def create
         @user = User.new(user_params)
@@ -35,7 +35,8 @@ class Api::UsersController < ApplicationController
     def fetch
         @user = User.includes(:characters, :posts)
                     .find_by(user_name: params[:username])
-        @posts = Post.where(user_id: @user.id)
+        @posts = Post.includes(:user_comments => [:user])
+                    .where(user_id: @user.id)
                     .limit(3)
                     .order(updated_at: :desc)
         # @current_user = current_user

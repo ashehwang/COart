@@ -12,16 +12,18 @@ import boardPostsReducer from './board_posts_reducer';
 import boardCommentsReducer from './board_comments_reducer';
 import communitiesReducer from './communities_reducer';
 import membershipRequestsReducer from './membership_requests_reducer';
+import userCommentsReducer from './user_comments_reducer';
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
   posts: postsReducer,
-  comments: commentsReducer,
+  userComments: userCommentsReducer,
   search: searchReducer,
   friendRequests: friendRequestsReducer,
   friends: friendsReducer,
   characters: charactersReducer,
   characterPosts: characterPostsReducer,
+  comments: commentsReducer,
   boardPosts: boardPostsReducer,
   boardComments: boardCommentsReducer,
   communities: communitiesReducer,

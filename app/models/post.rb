@@ -7,8 +7,8 @@ class Post < ApplicationRecord
     
     has_one_attached :photo
     
-    # has_many :comments,
-    # dependent: :destroy
+    has_many :user_comments,
+    dependent: :destroy
 
     # has_many :likes,
     # as: :likeable,

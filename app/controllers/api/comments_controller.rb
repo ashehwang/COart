@@ -1,10 +1,10 @@
 class Api::CommentsController < ApplicationController
 
-    def index
-        @character_post = CharacterPost.find(params[:character_post_id])
-        @comments = @post.comments
-        render :index
-    end
+    # def index
+    #     @character_post = CharacterPost.find(params[:character_post_id])
+    #     @comments = @post.comments
+    #     render :index
+    # end
 
     def create
         @comment = Comment.new(comment_params)
@@ -57,7 +57,7 @@ class Api::CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:body, :user_id, :character_post_id, :visibility)
+        params.require(:comment).permit(:body, :user_id, :character_post_id)
     end
 
 end

@@ -1,13 +1,41 @@
 import React from 'react';
+import UserComment from './user_comment';
 
 class UserPost extends React.Component {
+
     constructor(props){
         super(props);
+        this.state = { body: "", user_id: null, post_id: this.props.post.id };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.updateBody = this.updateBody.bind(this);
+    }
+
+    updateBody(e){
+        this.setState({ body: e.target.value });
+    }
+
+    handleSubmit(e){
+        if (e.key === "Enter") {
+            this.setState({ user_id: this.props.currentUser.id}, () => {
+                this.props.createUserComment(this.state);
+                this.setState({body: ""});
+            })
+        }
     }
 
     isMine(){
         const { loggedIn, currentUser, user } = this.props;
         return (loggedIn && currentUser.id === user.id) ? true : false ;
+    }
+
+    renderCommentBox(){ //only logged  in users can comment
+        if(!this.props.loggedIn) return null;
+        return(
+            <div className="user-single-post-comments flex">
+                <p>{this.props.currentUser.nick_name} <span>@{this.props.currentUser.user_name}</span> :</p>
+                <input type="text" placeholder="Write a comment!" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit}/>
+            </div>
+        )
     }
 
     handleTime(){ //formatting time
@@ -44,6 +72,16 @@ class UserPost extends React.Component {
         } else return null;
     }
 
+    showComments(){ //displays comments
+        const { post, user } = this.props;
+        if(!post.user_comment_ids.length) return null;
+        return(
+            <div>
+                {post.user_comment_ids.map( id => <UserComment key={id} commentId={id} user={user}/>)}
+            </div>
+        )
+    }
+
     render(){
         const { post } = this.props;
         const image = post.photoUrl ? <div className="flex-center"><img src={post.photoUrl}/></div> : null ;
@@ -54,6 +92,8 @@ class UserPost extends React.Component {
                 <div className="user-single-post-time">{this.handleTime()}</div>
                 {image}
                 {body}
+                {this.renderCommentBox()}
+                {this.showComments()}
             </div>
         )
     }

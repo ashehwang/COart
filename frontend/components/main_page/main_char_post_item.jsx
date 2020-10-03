@@ -9,7 +9,7 @@ class MainCharPostItem extends React.Component {
     this.state = {
       dropdown: false,
       body: "",
-      visibility: "public",
+      // visibility: "public",
       user_id: null,
       character_post_id: this.props.characterPost.id,
     };

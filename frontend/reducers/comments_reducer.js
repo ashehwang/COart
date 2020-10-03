@@ -14,8 +14,8 @@ const commentsReducer = (state = {}, action) => {
       return action.payload.comments;
     case RECEIVE_PUBLIC_CHARACTER_POSTS:
       return action.payload.comments;
-    case RECEIVE_ALL_COMMENTS:
-      return action.comments;
+    // case RECEIVE_ALL_COMMENTS:
+    //   return action.comments;
     case RECEIVE_COMMENT:
       newState[action.comment.id] = action.comment;
       return newState;

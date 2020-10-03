@@ -1,7 +1,6 @@
 class Api::MembershipRequestsController < ApplicationController
 
-    def index
-    end
+    before_action :require_login, only: [:create, :destroy]
     
     def create
         @membership_request = MembershipRequest.new(membership_request_params)
@@ -25,6 +24,6 @@ class Api::MembershipRequestsController < ApplicationController
     private
 
     def membership_request_params
-        params.require(:membership_request).permit(:user_id, :admin_id, :community_id, :character_id, :status)
+        params.require(:membership_request).permit(:user_id, :admin_id, :community_id, :character_id)
     end
 end

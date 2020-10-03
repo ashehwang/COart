@@ -1,7 +1,6 @@
 class Api::MembershipsController < ApplicationController
 
-    def index
-    end
+    before_action :require_login, only: [:create, :destroy]
 
     def create
         @membership = Membership.new(membership_params)

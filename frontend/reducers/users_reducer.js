@@ -46,16 +46,16 @@ const usersReducer = (state = {}, action) => {
         action.payload.friendRequest.requestor_id
       ].sentFriendRequests.push(action.payload.friendRequest.requestee_id);
       return newState;
-    case RECEIVE_ALL_POSTS:
-      if (!action.payload.users) return state;
-      Object.values(action.payload.users).forEach((user) => {
-        if (newState[user.id]) {
-          newState[user.id] = Object.assign(user, newState[user.id]);
-        } else {
-          newState[user.id] = user;
-        }
-      });
-      return newState;
+    // case RECEIVE_ALL_POSTS:
+    //   if (!action.payload.users) return state;
+    //   Object.values(action.payload.users).forEach((user) => {
+    //     if (newState[user.id]) {
+    //       newState[user.id] = Object.assign(user, newState[user.id]);
+    //     } else {
+    //       newState[user.id] = user;
+    //     }
+    //   });
+    //   return newState;
     case REMOVE_FRIEND_REQUEST:
       let targetIdx = newState[
         action.payload.friendRequest.requestee_id

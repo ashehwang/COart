@@ -1,6 +1,6 @@
 import * as BoardCommentApiUtil from "../util/board_comment_api_util"
 
-export const RECEIVE_ALL_BOARD_COMMENTS = "RECEIVE_ALL_BOARD_COMMENTS";
+// export const RECEIVE_ALL_BOARD_COMMENTS = "RECEIVE_ALL_BOARD_COMMENTS";
 export const RECEIVE_BOARD_COMMENT = "RECEIVE_BOARD_COMMENT";
 export const REMOVE_BOARD_COMMENT = "REMOVE_BOARD_COMMENT";
 

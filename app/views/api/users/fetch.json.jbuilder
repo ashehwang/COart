@@ -41,8 +41,21 @@ end
 json.posts do 
     @posts.each do |post|
         json.set! post.id do
-            json.extract! post, :id, :user_id, :body, :updated_at, :visibility
+            json.extract! post, :id, :user_id, :body, :updated_at, :visibility, :user_comment_ids
             json.photoUrl url_for(post.photo) if post.photo.attached?
+        end
+    end
+end
+
+json.user_comments do
+    @posts.each do |post|
+        post.user_comments.each do |user_comment|
+            json.set! user_comment.id do
+                json.extract! user_comment, :id, :user_id, :body, :post_id, :updated_at
+                json.author do
+                    json.extract! user_comment.user, :id, :user_name, :nick_name
+                end
+            end
         end
     end
 end

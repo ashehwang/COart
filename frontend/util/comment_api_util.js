@@ -1,8 +1,8 @@
-export const fetchCharacterPostComments = (characterPostId) =>
-  $.ajax({
-    url: `/api/character_posts/${characterPostId}/comments`,
-    method: "GET",
-  });
+// export const fetchCharacterPostComments = (characterPostId) =>
+//   $.ajax({
+//     url: `/api/character_posts/${characterPostId}/comments`,
+//     method: "GET",
+//   });
 
 export const createComment = (comment) =>
   $.ajax({

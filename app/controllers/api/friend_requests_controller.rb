@@ -1,5 +1,7 @@
 class Api::FriendRequestsController < ApplicationController
 
+    before_action :require_login, only: [:create, :destroy]
+
     def create
         @friend_request = FriendRequest.new(friend_request_params)
         if @friend_request.save
