@@ -198,3 +198,9 @@
 .dd-profile:hover, .dd-add-chars:hover, .dd-logout:hover {
     background: #B7CFE1;
 }
+
+.dd-chars {
+    /* background: red; */
+    max-height: calc(100vh - 370px);
+    overflow-y: auto;
+}

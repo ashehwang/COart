@@ -21,6 +21,48 @@ class CommunityApply extends React.Component {
             })
     }
 
+    hasEligibleChars(){
+        let count = 0;
+        this.props.currentUser.character_ids.forEach( charId => {
+            if (this.props.characters[charId].eligible) count += 1;
+        })
+        console.log(count)
+        return count > 0;
+    }
+
+    renderApplyShow(){
+        const {community, currentUser, characters} = this.props; //its-you
+        if(!community) return <div className="warning">This World Does Not Exist</div>
+        if(!currentUser) return <div className="warning">No Current User</div>
+        if(!characters) return <div className="warning">You Have No Characters To Apply</div>
+
+        if (this.hasEligibleChars()) {
+            return (
+                <>
+                    <div className="world-apply-chars flex">
+                        <div>Apply With: </div>
+                        <div>
+                            {currentUser.character_ids.map(charId => <CharApplyShow key={charId} character={characters[charId]} updateCharacter={this.updateCharacter}/>)}
+                        </div>
+                    </div>
+                    <div className="world-apply-submit flex-center hover" onClick={this.handleSubmit}>Apply</div>
+                </>
+            )
+        } else {
+            return (
+                <div className="world-no-apply">
+                    <div>
+                    You currently don't have characters eligible to apply.
+                    Want to create one?
+                    </div>
+                    <div className="world-apply-submit hover flex-center" onClick={() => this.props.history.push("/create")}>
+                        Create Character
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render(){
 
         const {community, currentUser, characters} = this.props; //its-you
@@ -35,13 +77,7 @@ class CommunityApply extends React.Component {
                     A character can only be allowed to join one world. But one user can have multiple characters in one world. If you want an existing character
                      to join this world, that character should resign from existing world before applying to a different one.
                 </div>
-                <div className="world-apply-chars flex">
-                    <div>Apply With: </div>
-                    <div>
-                        {currentUser.character_ids.map(charId => <CharApplyShow key={charId} character={characters[charId]} updateCharacter={this.updateCharacter}/>)}
-                    </div>
-                </div>
-                <div className="world-apply-submit flex-center hover" onClick={this.handleSubmit}>Apply</div>
+                {this.renderApplyShow()}
             </div>
         )
     }

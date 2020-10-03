@@ -43,3 +43,13 @@
     color: black;
     font-weight: 600;
 }
+
+.world-no-apply {
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.world-no-apply > div {
+    padding-bottom: 10px; 
+}
