@@ -32,7 +32,7 @@ class UserPosts extends React.Component {
     }
 
     render(){
-        const { posts } = this.props;
+        const { posts, loggedIn, currentUser, user, deletePost } = this.props;
         if(!posts) return <div className="warning">This User Has No Posts.</div>
 
         return(
@@ -42,6 +42,10 @@ class UserPosts extends React.Component {
                     <UserPost 
                         key={postId} 
                         post={posts[postId]}
+                        loggedIn={loggedIn}
+                        user={user}
+                        currentUser={currentUser}
+                        deletePost={deletePost}
                     />)}
             </div>
         )

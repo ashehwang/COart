@@ -5,7 +5,12 @@ class UserPost extends React.Component {
         super(props);
     }
 
-    handleTime(){
+    isMine(){
+        const { loggedIn, currentUser, user } = this.props;
+        return (loggedIn && currentUser.id === user.id) ? true : false ;
+    }
+
+    handleTime(){ //formatting time
       const now = new Date();
       const nowString = now.toString();
       const past = new Date(this.props.post.updated_at);
@@ -23,14 +28,31 @@ class UserPost extends React.Component {
       }
     }
 
+    renderUserButtons(){ //allow users to edit and delete if own
+        if(this.isMine()){
+            return (
+                <div className="user-single-post-cruds absolute flex">
+                    <div className="user-single-post-crud border hover">
+                        Edit
+                    </div>
+                    <div className="user-single-post-crud border hover" onClick={() => this.props.deletePost(this.props.post.id)}>
+                        Delete
+                    </div>
+                </div>
+            )
+        } else return null;
+    }
+
     render(){
         const { post } = this.props;
-        const image = post.photoUrl ? <img src={post.photoUrl}/> : null ;
+        const image = post.photoUrl ? <div className="flex-center"><img src={post.photoUrl}/></div> : null ;
+        const body = post.body ? <div className="user-single-post-body">{post.body}</div> : null ;
         return(
-            <div className="user-single-post-container">
-                <div>{this.handleTime()}</div>
+            <div className="user-single-post-container relative border">
+                {this.renderUserButtons()}
+                <div className="user-single-post-time">{this.handleTime()}</div>
                 {image}
-                <div>{post.body}</div>
+                {body}
             </div>
         )
     }
