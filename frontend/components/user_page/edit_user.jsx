@@ -50,15 +50,22 @@ class EditUser extends React.Component {
 
         const {user} = this.props;
         if(!user) return <div> NO USER </div>;
-        // console.log(this.state)
+
         return(
             <div className="edit-user-container shadow">
                 <div className="edit-user-prompt relative">
                     Edit Your Profile
                     <i className="far fa-times-circle absolute hover" onClick={() => this.props.closeModal()}></i>
                 </div>
-                <div className="edit-user-photo flex-center">
+                <div className="edit-user-photo flex-center relative">
                     <img src={this.state.photoUrl} />
+                    <div className="flex absolute edit-user-camera-container">
+                        <label htmlFor="file-upload" className="custom-file-upload hover edit-user-camera">
+                            {/* Change Photo */}
+                            <i className="fas fa-camera-retro"></i>
+                        </label>
+                        <input type="file" onChange={this.handleFile} id="file-upload" className="hidden" />
+                    </div>
                 </div>
                 <div className="edit-user-detail flex">
                     <label>Name: </label>
@@ -68,12 +75,13 @@ class EditUser extends React.Component {
                     <label>Introduction: </label>
                         <input type="text" value={this.state.bio ? this.state.bio : ""} onChange={this.update('bio')}/>
                 </div>
-                <div className="edit-user-detail flex">
-                    <label htmlFor="file-upload" className="custom-file-upload hover">
+                {/* <div className="edit-user-detail flex absolute edit-user-camera-container">
+                    <label htmlFor="file-upload" className="custom-file-upload hover edit-user-camera">
                          Change Photo
+                         <i className="fas fa-camera-retro"></i>
                     </label>
                     <input type="file" onChange={this.handleFile} id="file-upload" className="hidden" />
-                </div>
+                </div> */}
                 <div className="edit-user-submit flex-center hover" onClick={this.handleSubmit}>
                     Edit
                 </div>

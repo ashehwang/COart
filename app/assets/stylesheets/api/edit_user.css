@@ -1,5 +1,6 @@
 .edit-user-container {
     width: 500px;
+    font-size: 14px;
 }
 
 .edit-user-prompt {
@@ -66,4 +67,35 @@
 
 .edit-user-container i:hover {
     color: #84BAD7;
+}
+
+.custom-file-upload i {
+    color: white;
+    font-size: 15px;
+}
+
+label.edit-user-camera {
+    width: fit-content;
+    border-radius: 50%;
+}
+
+.edit-user-camera-container {
+    right: 190px;
+    bottom: 0px;
+}
+
+.edit-user-camera-container label {
+    padding: 5px;
+    margin: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.edit-user-camera-container label:hover {
+    color: white;
+    background: #84BAD7;
+}
+
+i.fa-camera-retro:hover {
+    color: white;
 }

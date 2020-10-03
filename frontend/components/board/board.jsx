@@ -58,7 +58,7 @@ class Board extends React.Component {
                 });
                 break;
             case 3:
-                this.setState({ category: "Looking for Community"}, () => {
+                this.setState({ category: "Looking for World"}, () => {
                     this.props.fetchAllBoardPosts(num, 1)
                         .then( res => this.checkResLength(res));
                     this.setState({ page_num: 1 });
@@ -78,7 +78,7 @@ class Board extends React.Component {
                     this.props.fetchAllBoardPosts(2, this.state.page_num)
                         .then(res => this.checkResLength(res));
                     break;
-                case "Looking for Community":
+                case "Looking for World":
                     this.props.fetchAllBoardPosts(3, this.state.page_num)
                         .then(res => this.checkResLength(res));
                     break;
@@ -97,7 +97,7 @@ class Board extends React.Component {
                     this.props.fetchAllBoardPosts(2, this.state.page_num)
                         .then(res => this.checkResLength(res));
                     break;
-                case "Looking for Community":
+                case "Looking for World":
                     this.props.fetchAllBoardPosts(3, this.state.page_num)
                         .then(res => this.checkResLength(res));
                     break;
@@ -132,7 +132,7 @@ class Board extends React.Component {
                         <div className="flex-center">Select Category</div>
                         <div className="board-category flex-center hover border" onClick={() => this.switch(1)}>General</div>
                         <div className="board-category flex-center hover border" onClick={() => this.switch(2)}>Finding Members</div>
-                        <div className="board-category flex-center hover border" onClick={() => this.switch(3)}>Looking for Community</div>
+                        <div className="board-category flex-center hover border" onClick={() => this.switch(3)}>Looking for World</div>
                     </div>
                     <div className="board-list-container border bg-white">
                         <div className="board-top flex">
@@ -141,6 +141,7 @@ class Board extends React.Component {
                         </div>
                         <div>
                             <div className="flex board-topline">
+                                <div className="flex-center board-id">Id</div>
                                 <div className="flex-center board-title">Title</div>
                                 <div className="flex-center board-comments">Comments</div>
                                 <div className="flex-center board-author">Author</div>
@@ -194,6 +195,7 @@ class BoardPostTitle extends React.Component {
         return(
             <Link to={`/board/${boardPost.id}`}>
                 <div className="flex board-bottomline">
+                    <div className="flex-center board-id">{boardPost.id}</div> 
                     <div className="flex-center board-title">{boardPost.title}</div> 
                     <div className="flex-center board-comments">{boardPost.board_comment_ids.length}</div> 
                     <div className="flex-center board-author">{boardPost.author.user_name}</div>
