@@ -1,0 +1,12 @@
+.user-page-write {
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    color: lightgrey;;
+    background: white;
+}
+
+.user-page-write:hover {
+    color: #84BAD7;
+    border: 1px solid #84BAD7;
+}

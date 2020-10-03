@@ -31,12 +31,17 @@
     margin-top: 8px;
 }
 
-.user-page-profile-detail {
+.user-page-profile-detail, .user-page-profile-name {
     color: #4B4944;
     padding: 5px 8px;
 }
 
 .user-page-profile-detail > span {
+    color: grey;
+    font-size: 12px;
+}
+
+.user-page-profile-name > span {
     color: grey;
     font-size: 12px;
 }

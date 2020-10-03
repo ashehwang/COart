@@ -1,23 +1,23 @@
-export const fetchPosts = () =>
-  $.ajax({
-    method: "GET",
-    url: "/api/posts",
-  });
+// export const fetchPosts = () =>
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/posts",
+//   });
 
-export const fetchPost = (postId) =>
-  $.ajax({
-    method: "GET",
-    url: `/api/posts/${postId}`,
-  });
+// export const fetchPost = (postId) =>
+//   $.ajax({
+//     method: "GET",
+//     url: `/api/posts/${postId}`,
+//   });
 
-export const createPost = (post) =>
-  $.ajax({
-    method: "POST",
-    url: "/api/posts",
-    data: { post },
-    contentType: false,
-    processData: false,
-  });
+// export const createPost = (post) =>
+//   $.ajax({
+//     method: "POST",
+//     url: "/api/posts",
+//     data: { post },
+//     contentType: false,
+//     processData: false,
+//   });
 
 export const updatePost = (formData, id) =>
   $.ajax({
@@ -41,7 +41,7 @@ export const fetchUserPosts = (userId) =>
     data: { userId },
   });
 
-export const createPhotoPost = (formData) =>
+export const createPost = (formData) =>
   $.ajax({
     method: "POST",
     url: "/api/posts",
@@ -50,14 +50,14 @@ export const createPhotoPost = (formData) =>
     processData: false,
   });
 
-export const likePost = (postLike) =>
-  $.ajax({
-    method: "POST",
-    url: `/api/posts/${postLike.id}/like`,
-  });
+// export const likePost = (postLike) =>
+//   $.ajax({
+//     method: "POST",
+//     url: `/api/posts/${postLike.id}/like`,
+//   });
 
-export const unlikePost = (postLike) =>
-  $.ajax({
-    method: "POST",
-    url: `/api/posts/${postLike.id}/unlike`,
-  });
+// export const unlikePost = (postLike) =>
+//   $.ajax({
+//     method: "POST",
+//     url: `/api/posts/${postLike.id}/unlike`,
+//   });

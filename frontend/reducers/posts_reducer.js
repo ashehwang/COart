@@ -1,17 +1,19 @@
 import {
-  RECEIVE_ALL_POSTS,
+  RECEIVE_ALL_USER_POSTS,
   RECEIVE_POST,
   REMOVE_POST,
 } from "../actions/post_actions";
-import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
-import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
+
+import { RECEIVE_FETCHED_USER } from '../actions/user_actions';
+// import { RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comment_actions";
+// import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const postsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
 
   switch (action.type) {
-    case RECEIVE_ALL_POSTS:
+    case RECEIVE_ALL_USER_POSTS:
       if (!action.payload.posts) return {};
       return action.payload.posts;
     case RECEIVE_POST:
@@ -20,6 +22,9 @@ const postsReducer = (state = {}, action) => {
     case REMOVE_POST:
       delete newState[action.postId];
       return newState;
+    case RECEIVE_FETCHED_USER:
+      if (!action.payload.posts) return {};
+      return action.payload.posts;
     // case RECEIVE_COMMENT:
     //   if (
     //     !state[action.comment.post_id].comment_ids.includes(action.comment.id)
@@ -35,8 +40,8 @@ const postsReducer = (state = {}, action) => {
     //   );
     //   newState[action.comment.post_id].comment_ids.splice(targetIdx, 1);
     //   return newState;
-    case LOGOUT_CURRENT_USER:
-      return {};
+    // case LOGOUT_CURRENT_USER:
+    //   return {};
     default:
       return state;
   }

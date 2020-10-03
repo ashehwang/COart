@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import UserCharsShowContainer from './user_chars_show_container';
+import UserPostsContainer from './user_posts_container';
 
 class UserPage extends React.Component {
 
@@ -14,8 +15,8 @@ class UserPage extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        if (this.props.user !== undefined && prevProps.user !== undefined ){
-            if (this.props.user.id !== prevProps.user.id) {
+        if (this.props.username !== undefined && prevProps.username !== undefined ){
+            if (this.props.username !== prevProps.username) {
                 this.props.fetchUserByUsername(this.props.username);
             }
         }
@@ -57,7 +58,7 @@ class UserPage extends React.Component {
                     <div className="char-page-left">
                         <div className="user-page-profile flex">
                             <img src={user.photoUrl} className="small-profile-pic" />
-                            <div className="user-page-profile-detail">
+                            <div className="user-page-profile-name">
                                 {user.nick_name} <span>@{user.user_name}</span>
                                 <div className="user-page-bio">
                                     {user.bio}
@@ -72,9 +73,8 @@ class UserPage extends React.Component {
                         </div>
                     </div>
                     <div className="user-page-right">
-                        {/* USERPOSTS COME HERE */}
                         <Route exact path="/user/:username/characters" component={UserCharsShowContainer}/>
-                        {/* <Route exact path="/user/:username" component={}/> */}
+                        <Route exact path="/user/:username" component={UserPostsContainer}/>
                     </div>
                 </div>
             </div>

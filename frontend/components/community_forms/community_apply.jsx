@@ -26,7 +26,6 @@ class CommunityApply extends React.Component {
         this.props.currentUser.character_ids.forEach( charId => {
             if (this.props.characters[charId].eligible) count += 1;
         })
-        console.log(count)
         return count > 0;
     }
 

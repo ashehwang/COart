@@ -127,6 +127,7 @@ class NavBar extends React.Component {
             return (
                 <>
                 <div className={`navbar-submenu hover ${main}`}>Feed</div>
+                <div className={`navbar-submenu hover ${main}`} onClick={() => this.props.openModal('createpost')}>TEST</div>
                 {/* <div className={`navbar-submenu hover ${userPage}`}>{currentUser.nick_name}'s Page</div> */}
                 {/* <div className={`navbar-submenu hover`} onClick={() => this.props.history.push("/create")}>Create Character</div> */}
                 <div className={`navbar-submenu hover ${worlds}`} onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>

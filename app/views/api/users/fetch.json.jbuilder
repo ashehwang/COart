@@ -38,6 +38,11 @@ json.characters do
     end
 end
 
-json.session do 
-    json.extract! @current_user, :id, :user_name, :nick_name, :bio
+json.posts do 
+    @posts.each do |post|
+        json.set! post.id do
+            json.extract! post, :id, :user_id, :body, :updated_at, :visibility
+            json.photoUrl url_for(post.photo) if post.photo.attached?
+        end
+    end
 end

@@ -33,9 +33,12 @@ class Api::UsersController < ApplicationController
     end
 
     def fetch
-        @user = User.includes(:characters)
+        @user = User.includes(:characters, :posts)
                     .find_by(user_name: params[:username])
-        @current_user = current_user
+        @posts = Post.where(user_id: @user.id)
+                    .limit(3)
+                    .order(updated_at: :desc)
+        # @current_user = current_user
         if @user
             render :fetch
         else

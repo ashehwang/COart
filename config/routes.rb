@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
 
   namespace :api, default: {format: :json} do
+
     resource :session, only: [:create, :destroy]
+    
     resources :users, only: [:create, :index, :show, :update] do
       collection do
         get "search"
@@ -25,13 +27,21 @@ Rails.application.routes.draw do
     resources :board_posts, only: [:index, :create, :show, :destroy, :update] do
       resources :board_comments, only: [:index]
     end
-    resources :board_comments, only: [:destroy, :update, :create]
-    resources :comments, only: [:destroy, :update, :create]
-    resources :friend_requests, only: [:create, :destroy]
-    resources :friends, only: [:create, :destroy]
+
     resources :character_posts, only: [:index, :create, :show, :destroy, :update] do
       resources :comments, only: [:index]
     end
+
+    resources :posts, only: [:index, :create, :show, :destroy, :update] do
+      # resources :user_comments, only: [:index]
+    end
+
+    resources :board_comments, only: [:destroy, :update, :create]
+    resources :comments, only: [:destroy, :update, :create]
+    # resources :friend_requests, only: [:create, :destroy]
+    # resources :friends, only: [:create, :destroy]
+    resources :membership_requests, only: [:create, :destroy, :index]
+    resources :memberships, only: [:create, :destroy, :index]
 
     resources :communities, only: [:index, :create, :show, :destroy, :update] do
       member do
@@ -42,8 +52,6 @@ Rails.application.routes.draw do
       #   get "search"
       # end
     end
-    resources :membership_requests, only: [:create, :destroy, :index]
-    resources :memberships, only: [:create, :destroy, :index]
 
   end
 

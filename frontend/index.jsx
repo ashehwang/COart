@@ -17,41 +17,45 @@ document.addEventListener("DOMContentLoaded", () => {
     let store;
     
     if (window.currentUser) {
-        const preloadedState = {
+
+        // const preloadedState = {
+        //     session: { id: window.currentUser.session.id },
+        //     entities: {
+        //         users: { [window.currentUser.session.id]: window.currentUser.users[window.currentUser.session.id] }
+        //     }
+        // }
+
+        const preloadedUser = {
             session: { id: window.currentUser.session.id },
             entities: {
                 users: { [window.currentUser.session.id]: window.currentUser.users[window.currentUser.session.id] }
             }
         }
-        // const preloadedUser = {
-        //     session: { id: window.currentUser.session.id },
-            // entities: {
-            //     users: { [window.currentUser.session.id]: window.currentUser.users[window.currentUser.session.id] }
-            // }
-        // }
 
-        // const persistedState = loadState();
+        const persistedState = loadState();
 
-        // const preloadedState = Object.assign({}, persistedState, preloadedUser);
+        const preloadedState = Object.assign({}, persistedState, preloadedUser);
 
         store = configureStore(preloadedState);
+
         // store = configureStore(preloadedState);
+        
         delete window.currentUser;
     } else {
-        // const preloadedState = loadState();
-        // store = configureStore(preloadedState);
-        store = configureStore();
+        const preloadedState = loadState();
+        store = configureStore(preloadedState);
+        // store = configureStore();
     }
 
-    // store.subscribe(() => {
-    //     saveState(store.getState());
-    // });
+    store.subscribe(() => {
+        saveState(store.getState());
+    });
 
-    // store.subscribe(throttle(() => {
-    //     saveState({
-    //         entities: store.getState().entities
-    //         });
-    // }, 1000));
+    store.subscribe(throttle(() => {
+        saveState({
+            entities: store.getState().entities
+            });
+    }, 1000));
 
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root)
