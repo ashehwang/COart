@@ -44,9 +44,9 @@ class NavBar extends React.Component {
                         <img src={avatar.headPhotoUrl} className="small-profile-pic hover" onClick={this.handleDropdown} />
                         <i className="fas fa-caret-down white absolute hover" onClick={this.handleDropdown}></i>
                         <div className={`dropdown-menu shadow flex-vert absolute ${hidden}`}>
-                            <div className="dropdown hover dd-profile flex">
+                            <div className="dropdown hover dd-profile flex" onClick={() => this.props.history.push(`/user/${currentUser.user_name}`)}>
                                 <div>
-                                    <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="smaller-profile-pic"/>
+                                    <img src={currentUser.photoUrl} className="smaller-profile-pic"/>
                                 </div>
                                 <div>
                                     {currentUser.nick_name} <span>@{currentUser.user_name}</span>
@@ -76,9 +76,10 @@ class NavBar extends React.Component {
                         <img src="https://i.ibb.co/K9PYxTP/ahri2.jpg" className="small-profile-pic hover" onClick={this.handleDropdown} />
                         <i className="fas fa-caret-down white absolute" onClick={this.handleDropdown}></i>
                         <div className={`dropdown-menu shadow flex-vert absolute ${hidden}`}>
-                            <div className="dropdown hover dd-profile flex">
+                            <div className="dropdown hover dd-profile flex" onClick={() => this.props.history.push(`/user/${currentUser.user_name}`)}>
                                 <div>
-                                    <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="smaller-profile-pic"/>
+                                    {/* <img src="https://i.ibb.co/C59mJzN/ahri3.jpg" className="smaller-profile-pic"/> */}
+                                    <img src={currentUser.photoUrl} className="smaller-profile-pic"/>
                                 </div>
                                 <div>
                                     {currentUser.nick_name} <span>@{currentUser.user_name}</span>
@@ -100,12 +101,13 @@ class NavBar extends React.Component {
     renderNavLogin(){
             const { characters, currentUser, loggedIn } = this.props;
 
-            let charPageReg = new RegExp('^/character/');
+            // let charPageReg = new RegExp('^/character/');
             let boardPageReg = new RegExp('^/board');
 
             const main = this.props.location.pathname === "/" ? "nav-selected" : "";
             const worlds = this.props.location.pathname === "/worlds" ? "nav-selected" : "";
-            const charPage = this.props.location.pathname.match(charPageReg) ? "nav-selected" : "";
+            // const charPage = this.props.location.pathname.match(charPageReg) ? "nav-selected" : "";
+            const charPage = this.props.location.pathname === `/character/${currentUser.selected_id}` ? "nav-selected" : "";
             const userPage = this.props.location.pathname === "user/.*" ? "nav-selected" : "";
             const board = this.props.location.pathname.match(boardPageReg) ? "nav-selected" : "";
 

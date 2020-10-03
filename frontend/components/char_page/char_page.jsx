@@ -57,7 +57,7 @@ class CharPage extends React.Component {
             return null;
         } else if (currentUser.id === character.creator.id) {
             return(
-                <>
+                <div className="char-page-buttons-center flex-center">
                     <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
                         Write as {character.first_name}
                     </div>
@@ -67,7 +67,7 @@ class CharPage extends React.Component {
                     <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('deletechar', character)}>
                         Delete {character.first_name}
                     </div>
-                </>
+                </div>
             )
         } else if (character.follower_ids.includes(currentUser.id)) {
             return(
@@ -103,8 +103,10 @@ class CharPage extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('showchar', character)}>
-                            View Full Profile
+                        <div className="flex-center">
+                            <div className="char-page-buttons hover flex-center" onClick={() => this.props.openModal('showchar', character)}>
+                                View Full Profile
+                            </div>
                         </div>
                         <div>
                             {this.renderButtons()}

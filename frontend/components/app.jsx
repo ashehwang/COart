@@ -28,8 +28,8 @@ const App = () => (
         <Route exact path="/board/:boardPostId" component={BoardPostShowContainer} />
         <Route exact path="/character/:characterId" component={CharPageContainer}/>
         <Route exact path="/worlds" component={CommunitiesPageContainer}/>
-        <Route exact path="/world/:worldUrl" component={CommunityPageContainer}/>
-        <Route exact path="/user/:username" component={UserPageContainer}/>
+        <Route path="/world/:worldUrl" component={CommunityPageContainer}/>
+        <Route path="/user/:username" component={UserPageContainer}/>
         <ProtectedRoute path="/recruit" component={CreateCommunityContainer} />
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
         <ProtectedRoute path="/write" component={CreateBoardPostContainer} />

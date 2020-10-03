@@ -1,12 +1,24 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
+import UserCharsShowContainer from './user_chars_show_container';
 
 class UserPage extends React.Component {
+
     constructor(props){
         super(props);
     }
 
     componentDidMount(){
         this.props.fetchUserByUsername(this.props.username);
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props.user !== undefined && prevProps.user !== undefined ){
+            if (this.props.user.id !== prevProps.user.id) {
+                this.props.fetchUserByUsername(this.props.username);
+            }
+        }
     }
 
     renderButtons(){
@@ -37,33 +49,32 @@ class UserPage extends React.Component {
 
     render(){
         const { user } = this.props;
-
-        console.log("PROPS", this.props)
         if (!user) return <div className="warning">No User</div>
-
 
         return(
             <div className="user-page-container align-center">
                 <div className="relative flex">
                     <div className="char-page-left">
-                        <div className="char-page-profile flex">
+                        <div className="user-page-profile flex">
                             <img src={user.photoUrl} className="small-profile-pic" />
-                            <div className="char-page-profile-detail">
+                            <div className="user-page-profile-detail">
                                 {user.nick_name} <span>@{user.user_name}</span>
-                                <div className="char-page-creator-detail">
+                                <div className="user-page-bio">
                                     {user.bio}
                                 </div>
                             </div>
                         </div>
-                        <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('showchar', character)}>
-                            View {user.nick_name}'s Characters
-                        </div>
-                        <div>
+                        <div className="char-page-buttons-center flex-center">
+                            <div className="user-page-buttons hover flex-center" onClick={() => this.props.history.push(`/user/${user.user_name}/characters`)}>
+                                View {user.nick_name}'s Characters
+                            </div>
                             {this.renderButtons()}
                         </div>
                     </div>
-                    <div className="char-page-right">
-                        USERPOSTS COME HERE
+                    <div className="user-page-right">
+                        {/* USERPOSTS COME HERE */}
+                        <Route exact path="/user/:username/characters" component={UserCharsShowContainer}/>
+                        {/* <Route exact path="/user/:username" component={}/> */}
                     </div>
                 </div>
             </div>

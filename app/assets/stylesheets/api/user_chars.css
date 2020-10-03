@@ -1,0 +1,33 @@
+.user-char-show-container {
+    background: white;
+    border-radius: 12px;
+    width: 223px;
+    font: 12px;
+    padding: 5px;
+    margin: 0 15px 10px 0;
+    color: #55778A;
+}
+
+.user-all-chars {
+    flex-wrap: wrap;
+}
+
+.user-page-world-show img {
+    width: 30px;
+    height: 30px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
+.user-page-world-show {
+    background: #F1F8FA;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 10px;
+    right: 5px;
+    bottom: 5px;
+}
+
+.user-page-world-show:hover {
+    background: #CDE3EE;
+}

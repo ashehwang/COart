@@ -100,7 +100,7 @@
     padding: 8px;
     width: 322px;
     background: #FAF0F5;
-    margin-top: 15px;
+    margin: 15px;
     border-radius: 10px;
     color: #4B4944;
 }
@@ -351,4 +351,8 @@ img.pic-preview3 {
 
 .char-page-world-show:hover {
     background: #F0D1E1;
+}
+
+.char-page-buttons-center {
+    flex-direction: column;
 }
