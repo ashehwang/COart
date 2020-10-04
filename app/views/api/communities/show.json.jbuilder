@@ -70,7 +70,7 @@ end
     json.comments do
         character_post.comments.each do |comment|
             json.set! comment.id do
-                json.extract! comment, :id, :user_id, :character_post_id, :body, :visibility, :updated_at
+                json.extract! comment, :id, :user_id, :character_post_id, :body, :updated_at
                 json.user do
                     json.extract! comment.user, :id, :user_name, :nick_name
                 end

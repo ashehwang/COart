@@ -18,7 +18,7 @@ class UserMessages extends React.Component {
 
         const { messages, user, currentUser, deleteMessage, seenMessage, openModal } = this.props;
 
-        if (currentUser.id !== user.id) return <div className="warning">You are unauthorized to see this.</div>
+        if (currentUser.id !== user.id) return <div className="warning red">You are unauthorized to see this.</div>
         if (!messages) return <div>No Messages</div>
 
         return(
