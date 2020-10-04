@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { ProtectedRoute } from '../../util/route_util';
 
 import UserCharsShowContainer from './user_chars_show_container';
 import UserPostsContainer from './user_posts_container';
+import UserMessagesContainer from './user_messages';
 
 class UserPage extends React.Component {
 
@@ -23,15 +25,15 @@ class UserPage extends React.Component {
     }
 
     renderButtons(){
-        const { loggedIn, currentUser, user } = this.props;
+        const { loggedIn, currentUser, user, username, openModal, history } = this.props;
         if(!loggedIn || !user) return null; 
         if (currentUser.id === user.id) { //user on his/her own page
             return(
                 <>
-                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('edituser', user)}>
+                    <div className="user-page-buttons hover flex-center" onClick={() => openModal('edituser', user)}>
                         Edit Your Profile
                     </div>
-                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
+                    <div className="user-page-buttons hover flex-center" onClick={() => history.push(`/user/${username}/messages`)}>
                         Check Messages
                     </div>
                 </>
@@ -39,7 +41,7 @@ class UserPage extends React.Component {
         } else {
             return (
                 <>
-                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('createcharpost')}>
+                    <div className="user-page-buttons hover flex-center" onClick={() => this.props.openModal('createmessage', user)}>
                         Send Messages to {user.nick_name}
                     </div>
                 </>
@@ -73,8 +75,9 @@ class UserPage extends React.Component {
                         </div>
                     </div>
                     <div className="user-page-right">
-                        <Route exact path="/user/:username/characters" component={UserCharsShowContainer}/>
                         <Route exact path="/user/:username" component={UserPostsContainer}/>
+                        <Route exact path="/user/:username/characters" component={UserCharsShowContainer}/>
+                        <ProtectedRoute exact path="/user/:username/messages" component={UserMessagesContainer}/>
                     </div>
                 </div>
             </div>

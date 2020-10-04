@@ -13,6 +13,7 @@ import boardCommentsReducer from './board_comments_reducer';
 import communitiesReducer from './communities_reducer';
 import membershipRequestsReducer from './membership_requests_reducer';
 import userCommentsReducer from './user_comments_reducer';
+import messagesReducer from './messages_reducer';
 
 const entitiesReducer = combineReducers({
   users: usersReducer,
@@ -27,7 +28,8 @@ const entitiesReducer = combineReducers({
   boardPosts: boardPostsReducer,
   boardComments: boardCommentsReducer,
   communities: communitiesReducer,
-  membershipRequests: membershipRequestsReducer
+  membershipRequests: membershipRequestsReducer,
+  messages: messagesReducer
 });
 
 export default entitiesReducer;

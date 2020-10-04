@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       # resources :user_comments, only: [:index]
     end
 
+    resources :messages, only: [:index, :create, :destroy, :update]
+
     resources :comments, only: [:destroy, :update, :create]
     resources :user_comments, only: [:destroy, :update, :create]
     resources :board_comments, only: [:destroy, :update, :create]

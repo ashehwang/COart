@@ -15,6 +15,7 @@ import EditCommunityContainer from '../community_forms/edit_community_container'
 import EditUserContainer from '../user_page/edit_user_container';
 import CreatePostContainer from '../user_page_forms/create_post_container';
 import EditPostContainer from '../user_page_forms/edit_post_container';
+import CreateMessageContainer from '../user_page_forms/create_message_container';
 
 function Modal({ modal, closeModal }) {
 
@@ -62,6 +63,9 @@ function Modal({ modal, closeModal }) {
             break;
         case 'editpost':
             component = <EditPostContainer post={modal.data}/>;
+            break;
+        case 'createmessage':
+            component = <CreateMessageContainer user={modal.data} />;
             break;
         default:
             return null;

@@ -13,6 +13,14 @@ class User < ApplicationRecord
     has_many :characters,
     dependent: :destroy
 
+    has_many :messages, #received messages
+    dependent: :destroy
+
+    has_many :sent_messages,
+    class_name: :Message,
+    foreign_key: :sender_id,
+    dependent: :destroy
+
     has_many :comments,
     dependent: :destroy
 
