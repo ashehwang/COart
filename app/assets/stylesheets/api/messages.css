@@ -66,29 +66,34 @@
 }
 
 .user-messages-show-seen {
-    width: 100px;
+    width: 25px;
     height: fit-content;
+    /* background: blue; */
 }
 .user-messages-show-from {
-    width: 200px;
+    width: 150px;
     height: fit-content;
+    /* background: blue; */
 }
 .user-messages-show-content {
-    width: 450px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: fit-content;
+    /* background: blue; */
     /* background: pink; */
 }
 .user-messages-show-date {
-    width: 200px;
+    width: 120px;
     height: fit-content;
+    /* background: blue; */
 }
 .user-messages-show-action {
-    width: 200px;
+    width: 150px;
     justify-content: space-around;
     height: fit-content;
+    /* background: blue; */
 }
 
 .user-messages-show-item {
@@ -106,7 +111,7 @@
 }
 
 .user-messages-show-expand {
-    width: 450px;
+    width: 280px;
     word-wrap: break-word;
 }
 
