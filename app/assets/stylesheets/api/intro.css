@@ -1,0 +1,62 @@
+.intro-container {
+    height: calc(100vh - 131px);
+    background-image: linear-gradient(white, #F9B5AC);
+    font-family: 'Montserrat', sans-serif;
+    z-index: 1;
+}
+
+.intro-container > div {
+    width: 1100px;
+    /* background: grey; */
+}
+
+.intro-prompt {
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.intro-container h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.intro-categories {
+    justify-content: space-around;
+    background: #0B3142;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 0 auto;
+}
+
+.intro-category {
+    width: 150px;
+    text-align: center;
+}
+
+.intro-category:hover {
+    font-weight: 600;
+} 
+/* somehow not working */
+
+.intro-show-container {
+    background: blue;
+    background: white;
+    height: calc(100vh - 240px);
+    overflow-y: auto;
+    padding: 10px 15px 0 15px;
+    margin: 10px auto 0 auto;
+    border-radius: 8px;
+    color: grey;
+    font-size: 14px;
+}
+
+.intro-about h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.intro-about {
+    text-align: center;
+}

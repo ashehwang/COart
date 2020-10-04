@@ -138,8 +138,9 @@ class NavBar extends React.Component {
             // let charPageReg = new RegExp('^/character/');
             let boardPageReg = new RegExp('^/board');
 
-            const main = this.props.location.pathname === "/" ? "nav-selected" : "";
+            const main = this.props.location.pathname === "/main" ? "nav-selected" : "";
             const worlds = this.props.location.pathname === "/worlds" ? "nav-selected" : "";
+            const howto = this.props.location.pathname === "/" ? "nav-selected" : "";
             // const charPage = this.props.location.pathname.match(charPageReg) ? "nav-selected" : "";
             const userPage = this.props.location.pathname === "user/.*" ? "nav-selected" : "";
             const board = this.props.location.pathname.match(boardPageReg) ? "nav-selected" : "";
@@ -170,7 +171,7 @@ class NavBar extends React.Component {
         } else {
             return (
                 <>
-                    <div className={`navbar-submenu hover ${""}`}>How to CoTell</div>
+                    <div className={`navbar-submenu hover ${howto}`} onClick={() => this.props.history.push("/")}>How to CoTell</div>
                     <div className={`navbar-submenu hover ${worlds}`} onClick={() => this.props.history.push("/worlds")}>Open Worlds</div>
                     <div className={`navbar-submenu hover ${board}`} onClick={() => this.props.history.push("/board")}>Board</div>
                     {/* <div className={`navbar-submenu hover ${""}`}>Board</div> */}
@@ -187,7 +188,7 @@ class NavBar extends React.Component {
           <nav className="navbar-container">
             <div className="navbar-search-container">
               {/* <div className="hover" onClick={() => this.props.history.push("/main")}><img src="https://i.ibb.co/tMkrDPR/Untitled.png" /></div> */}
-              <div className="hover" onClick={() => this.props.history.push("/main")}><img src="https://i.ibb.co/y8hYN50/cotellimage.png" /></div>
+              <div className="hover" onClick={() => this.props.history.push("/")}><img src="https://i.ibb.co/y8hYN50/cotellimage.png" /></div>
               <div className="flex">
                 <i className="fas fa-search white"></i>
                 <SearchBarContainer />

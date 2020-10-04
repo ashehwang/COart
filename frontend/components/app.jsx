@@ -16,13 +16,13 @@ import CreateCommunityContainer from './community_forms/create_community_contain
 import CommunitiesPageContainer from './communities_page/communities_page_container';
 import CommunityPageContainer from './community_page/community_page_container';
 import UserPageContainer from './user_page/user_page_container';
-
-// import ArtLogContainer from './art_log/art_log_container';
+import Intro from './how_to/how_to';
 
 const App = () => (
     <>
         <Modal />
         <Route path="/" component={NavBarContainer} />
+        <Route exact path="/" component={Intro} />
         <Route exact path="/main" component={MainPageContainer} />
         <Route exact path="/board" component={BoardContainer} />
         <Route exact path="/board/:boardPostId" component={BoardPostShowContainer} />
