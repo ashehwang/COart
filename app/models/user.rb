@@ -75,6 +75,16 @@ class User < ApplicationRecord
     # through: :friends,
     # source: :friend
 
+    def unseen_message_ids
+        ids = []
+        unseen_messages = self.messages
+                            .reject{ |msg| msg.seen }
+        unseen_messages.each do |mgs|
+            ids << mgs.id
+        end
+        ids
+    end
+
     def self.find_by_credentials(user_name, password)
         user = User.find_by(user_name: user_name)
         user && user.is_password?(password) ? user : nil

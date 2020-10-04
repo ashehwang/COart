@@ -22,7 +22,7 @@ class UserMessages extends React.Component {
         if (!messages) return <div>No Messages</div>
 
         return(
-            <div className="user-messages-show-container">
+            <div className="user-messages-show-container border">
                 <div className="user-messages-show-top flex">
                     <div className="user-messages-show-seen flex-center"></div>
                     <div className="user-messages-show-from flex-center">From</div>

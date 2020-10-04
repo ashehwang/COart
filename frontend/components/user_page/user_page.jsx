@@ -34,7 +34,7 @@ class UserPage extends React.Component {
                         Edit Your Profile
                     </div>
                     <div className="user-page-buttons hover flex-center" onClick={() => history.push(`/user/${username}/messages`)}>
-                        Check Messages
+                        Inbox
                     </div>
                 </>
             )

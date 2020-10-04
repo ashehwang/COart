@@ -11,6 +11,7 @@ import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { CHANGE_SELECTED_CHAR, REMOVE_CHAR, RECEIVE_CHAR } from "../actions/char_actions";
 import { RECEIVE_COMMUNITY_FOLLOW, RECEIVE_COMMUNITY_UNFOLLOW } from '../actions/community_actions';
+import { MESSAGE_SEEN } from '../actions/message_actions';
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -104,6 +105,10 @@ const usersReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_FETCHED_USER:
       newState[action.payload.user.user_name] = action.payload.user;
+      return newState;
+    case MESSAGE_SEEN:
+      let msgIdx = newState[action.message.user_id].unseen_message_ids.indexOf(action.message.id);
+      newState[action.message.user_id].unseen_message_ids.splice(msgIdx, 1);
       return newState;
     // case LOGOUT_CURRENT_USER:
     //   return {};

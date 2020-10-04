@@ -10,11 +10,9 @@
     padding: 30px 30px 0 30px;
     border-bottom: 1px solid lightgrey;
     color: white;
-    /* flex-wrap: wrap; */
 }
 
 .navbar-menu {
-    /* background: teal; */
     width: calc(100vw - 630px);
 }
 
@@ -29,10 +27,8 @@
 }
 
 .navbar-submenu {
-    /* width: 150px; */
     min-width: 89px;
     height: 100%;
-    /* margin: 0 10px; */
     margin: 60px 10px -30px 50px;
     border-top-right-radius: 14px;
     border-top-left-radius: 14px;
@@ -43,8 +39,6 @@
 }
 
 .navbar-submenu:hover {
-    /* background: white;
-    color: black; */
     font-weight: 600;
 } /*FIX THIS WHEN TRYING TO DISPLAY*/
 
@@ -84,10 +78,8 @@
 .dropdown-menu {
     top: 95px;
     right: 10px;
-    /* background: lightgrey; */
     width: 200px;
     padding: 15px;
-    /* border: 1px solid grey; */
     border-radius: 15px;
     z-index: 7;
 }
@@ -95,7 +87,6 @@
 .dropdown {
     background: white;
     background: #D4E2ED;
-    /* opacity: 0.7; */
     padding: 8px;
     border-radius: 10px;
     color: rgba(100,100,100,1);
@@ -104,7 +95,6 @@
 
 .dd-profile, .dd-chars, .dd-add-chars {
     margin-bottom: 15px;
-    /* border-bottom: 1px solid lightgrey; */
 }
 
 .nav-char {
@@ -200,7 +190,38 @@
 }
 
 .dd-chars {
-    /* background: red; */
     max-height: calc(100vh - 370px);
     overflow-y: auto;
 }
+
+.nav-alert-message {
+    top: 0px;
+    right: 0px;
+    background: rgb(190, 0, 0);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 14px;
+    border: 2px solid white;
+}
+
+
+.nav-alert-message2 {
+    color: grey;
+    font-size: 10px;
+    width: 100px;
+    bottom: 5px;
+    right: 0px;
+    text-align: center;
+    /* background: red; */
+}
+
+.nav-alert-message2 > i {
+    font-size: 16px;
+    color: #7EA8C9;
+}
+
+/* .nav-dropdown {
+    background: red;
+} */

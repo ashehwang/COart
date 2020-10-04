@@ -2,17 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class UserCharsShow extends React.Component {
-    // constructor(props){
-    //     super(props);
-    // }
 
     render(){
 
         const { characters, character_ids } = this.props;
 
         return(
-            <div className="user-all-chars flex">
-                {character_ids.map( charId => <UserCharShow key={charId} character={characters[charId]} />)}
+            <div className="user-all-chars-container relative">
+                <div className="user-all-chars flex">
+                    {character_ids.map( charId => <UserCharShow key={charId} character={characters[charId]} />)}
+                </div>
+                <div className="user-page-return absolute hover" onClick={() => this.props.history.push(`/user/${this.props.username}`)}>
+                    <i className="fas fa-reply"></i> Go Back
+                </div>
             </div>
         )
     }
