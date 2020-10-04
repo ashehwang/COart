@@ -16,10 +16,10 @@ https://co-tell.herokuapp.com/#/main
 - USER PAGE: each user has its own space
 - USER POSTS: users can have their own posts in their own space/wall; all CRUDs done
 - USER COMMENTS: users can comment on each other's walls; all CRUDs done
+- MESSAGES: users can send each other private messages. CRUDs done. (when unseen messages will give you an alert)
 
 Working on implementing...
 
-- Direct messaging between users (private)
 - Search characters & worlds & users
 - allow certain number of posts at a time (main feed, character page, world story, personal page) 
 - when logged in, your feed shows characters and worlds you follow
