@@ -120,3 +120,9 @@
     color: #84BAD7;
     border: 1px solid #84BAD7;
 }
+
+.message-page-warning {
+    color: #84BAD7 !important;
+    font-size: 10px;
+    left: 0px;
+}

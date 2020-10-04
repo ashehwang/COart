@@ -8,10 +8,44 @@ class UserMessages extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = { page: 0 };
+        this.handleNext = this.handleNext.bind(this);
+        this.handlePrev = this.handlePrev.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchAllMessages(this.props.user.id);
+    }
+
+    handleNext(){
+        this.setState({ page: this.state.page + 1 }, () => {
+            console.log(this.state)
+            console.log(Object.keys(this.props.messages).length / 12);
+        });
+    }
+    
+    handlePrev(){
+        this.setState({ page: this.state.page - 1 }, () => {
+            console.log(this.state)
+            console.log(Object.keys(this.props.messages).length / 12);
+        });
+    }
+
+    renderPrevIcon() {
+        if (this.state.page > 0) {
+            return (
+                <div className="hover" onClick={this.handlePrev}><i className="fas fa-chevron-left" ></i> Prev</div>
+            )
+        } else return null;
+    }
+
+    renderNextIcon() {
+        let num = Math.floor(Object.keys(this.props.messages).length / 12);
+        if ( num - 1 > this.state.page ) {
+            return (
+                <div className="hover" onClick={this.handleNext}><i className="fas fa-chevron-right" ></i> Next</div>
+            )
+        } else return null;
     }
 
     render(){
@@ -20,17 +54,20 @@ class UserMessages extends React.Component {
 
         if (currentUser.id !== user.id) return <div className="warning red">You are unauthorized to see this.</div>
         if (!messages) return <div>No Messages</div>
+        const start = this.state.page * 12;
+        const end = (this.state.page + 1) * 12;
+        console.log(start, end)
 
         return(
             <div className="user-messages-show-container border">
                 <div className="user-messages-show-top flex">
                     <div className="user-messages-show-seen flex-center"></div>
                     <div className="user-messages-show-from flex-center">From</div>
-                    <div className="user-messages-show-content flex-center">Content</div>
+                    <div className="user-messages-show-expand flex-center">Content</div>
                     <div className="user-messages-show-date flex-center">Date</div>
                     <div className="user-messages-show-action flex-center"></div>
                 </div>
-                {Object.keys(messages).reverse().map( id => 
+                {Object.keys(messages).reverse().slice(start,end).map( id => 
                     <MessageItemShow 
                         key={id} 
                         message={messages[id]} 
@@ -39,6 +76,13 @@ class UserMessages extends React.Component {
                         seenMessage={seenMessage}
                         openModal={openModal}
                     /> )}
+                <div className="board-page-flip flex relative">
+                    {/* <div className="hover" onClick={this.handleNext}><i className="fas fa-chevron-right" ></i> Next</div> */}
+                    {/* <div className="hover" onClick={this.handlePrev}><i className="fas fa-chevron-left" ></i> Prev</div> */}
+                    {this.renderNextIcon()}
+                    {this.renderPrevIcon()}
+                    <div className="message-page-warning absolute"><i className="fas fa-exclamation-circle"></i> Messages older than 30 days will be deleted.</div>
+                </div>
             </div>
         )
     }

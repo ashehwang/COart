@@ -20,6 +20,10 @@
     color: #4B4944;
 }
 
+.user-page-return:hover {
+    color: white;
+}
+
 .user-all-chars {
     flex-wrap: wrap;
 }
