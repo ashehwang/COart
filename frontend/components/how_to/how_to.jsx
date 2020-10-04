@@ -52,7 +52,19 @@ class Intro extends React.Component {
                         <br/>
                         <h6>(I have my own story to tell!)</h6>
                         <br/>
-                        <p>I had a job that required me to be in close contact with people. When COVID-19 hit, I decided to make good use of the freed time to learn how to program. </p>
+                        <p>I had a job that required me to be in close contact with other people every day. So when COVID-19 hit, I decided to make good use of the freed time to learn how to program. I knew the repetitive nature of my previous job was killing the little creative soul in me, and wanted the ability to build anything if I wanted to.</p>
+                        <br/>
+                        Building Co-Tell has been one of the most enjoyable projects I've done in a long time. Mostly because I truly believe that no matter how common one can seem on the outside, that person is actually very special.. You just need to give them a safe space to expose that extraordinary little spark!
+                        <br/>
+                        Co-Tell is a work in progress. (Yes, I know it.) But I'll continue work on this to make it a better experience for you. Hope you enjoy.
+                        <br/>
+                        <br/>
+                        If you have any questions or suggestions, don't hesitate to contact me.
+                        <br/>
+                        <br/>
+                        With love,
+                        <br/>
+                        A.
                     </div>
                 )
         }
