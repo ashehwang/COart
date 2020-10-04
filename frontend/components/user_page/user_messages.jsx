@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAllMessages, deleteMessage, seenMessage } from '../../actions/message_actions';
+import { Link } from 'react-router-dom';
+import { openModal } from '../../actions/modal_actions';
 
 class UserMessages extends React.Component {
 
@@ -14,7 +16,7 @@ class UserMessages extends React.Component {
 
     render(){
 
-        const { messages, user, currentUser, deleteMessage, seenMessage } = this.props;
+        const { messages, user, currentUser, deleteMessage, seenMessage, openModal } = this.props;
 
         if (currentUser.id !== user.id) return <div className="warning">You are unauthorized to see this.</div>
         if (!messages) return <div>No Messages</div>
@@ -35,6 +37,7 @@ class UserMessages extends React.Component {
                         user={user} 
                         deleteMessage={deleteMessage}
                         seenMessage={seenMessage}
+                        openModal={openModal}
                     /> )}
             </div>
         )
@@ -79,7 +82,7 @@ class MessageItemShow extends React.Component {
     }
 
     render(){
-        const {message, user} = this.props;
+        const { message, user, openModal, deleteMessage } = this.props;
         const icon = message.seen ? <i className="far fa-envelope-open"></i> : <i className="far fa-envelope"></i>
         const body = message.body.length > 51 ? message.body.slice(0, 50) + "..." : message.body;
         const seen = this.state.expand ? "hidden" : "";
@@ -88,15 +91,15 @@ class MessageItemShow extends React.Component {
         return(
             <div className="user-messages-show-item flex">
                 <div className="user-messages-show-seen flex-center">{icon}</div>
-                <div className="user-messages-show-from flex-center hover">{message.author.nick_name} <span>@{message.author.user_name}</span></div>
+                <div className="user-messages-show-from flex-center hover"><Link to={`/user/${message.author.user_name}`}>{message.author.nick_name} <span>@{message.author.user_name}</span></Link></div>
                 <div className={`user-messages-show-content hover ${seen}`} onClick={this.handleSeen}>{body}</div>
                 <div className={`user-messages-show-expand hover ${expand}`} onClick={this.handleSeen}>{message.body}</div>
                 <div className="user-messages-show-date flex-center">{this.handleTime()}</div>
                 <div className="user-messages-show-action flex">
-                    <div className="user-messages-show-actions border hover">
+                    <div className="user-messages-show-actions border hover" onClick={() => openModal("createmessage", message.author)}>
                         <i className="fas fa-reply"></i> Reply
                     </div>
-                    <div className="user-messages-show-actions border hover">
+                    <div className="user-messages-show-actions border hover" onClick={() => deleteMessage(message.id)}>
                         <i className="fas fa-trash"></i> Delete
                     </div>
                 </div>
@@ -115,7 +118,8 @@ const mSTP = (state, ownProps) => ({
 const mDTP = dispatch => ({
     fetchAllMessages: userId => dispatch(fetchAllMessages(userId)),
     deleteMessage: messageId => dispatch(deleteMessage(messageId)),
-    seenMessage: messageId => dispatch(seenMessage(messageId))
+    seenMessage: messageId => dispatch(seenMessage(messageId)),
+    openModal: (modal, data) => dispatch(openModal(modal, data))
 });
 
 export default connect(mSTP, mDTP)(UserMessages);

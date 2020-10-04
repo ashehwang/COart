@@ -107,4 +107,10 @@
 
 .user-messages-show-expand {
     width: 450px;
+    word-wrap: break-word;
+}
+
+.user-messages-show-actions:hover {
+    color: #84BAD7;
+    border: 1px solid #84BAD7;
 }
