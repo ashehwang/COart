@@ -20,6 +20,10 @@
     font-weight: 600;
 }
 
+.intro-container p, .intro-container h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
 .intro-categories {
     justify-content: space-around;
     background: #0B3142;
@@ -36,7 +40,10 @@
 }
 
 .intro-category:hover {
-    font-weight: 600;
+    font-weight: 800;
+    background: #FDDDD9;
+    color: #0B3142;
+    border-radius: 5px;
 } 
 /* somehow not working */
 
@@ -60,3 +67,4 @@
 .intro-about {
     text-align: center;
 }
+

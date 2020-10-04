@@ -30,7 +30,7 @@ class UserMessages extends React.Component {
                     <div className="user-messages-show-date flex-center">Date</div>
                     <div className="user-messages-show-action flex-center"></div>
                 </div>
-                {Object.keys(messages).map( id => 
+                {Object.keys(messages).reverse().map( id => 
                     <MessageItemShow 
                         key={id} 
                         message={messages[id]} 

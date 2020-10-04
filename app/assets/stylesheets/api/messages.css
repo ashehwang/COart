@@ -81,6 +81,7 @@
     flex-direction: column;
     justify-content: center;
     height: fit-content;
+    color: lightgrey;
     /* background: blue; */
     /* background: pink; */
 }
