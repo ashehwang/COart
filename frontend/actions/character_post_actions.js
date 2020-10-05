@@ -8,6 +8,7 @@ export const RECEIVE_PUBLIC_CHARACTER_POSTS = "RECEIVE_PUBLIC_CHARACTER_POSTS";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const REMOVE_ERRORS = "REMOVE_ERRORS";
 export const RECEIVE_PAGE_CHARACTER_POSTS = "RECEIVE_PAGE_CHARACTER_POSTS";
+export const RECEIVE_FOLLOWING_CHARACTER_POSTS = "RECEIVE_FOLLOWING_CHARACTER_POSTS";
 
 const receivePageCharacterPosts = payload => ({
   type: RECEIVE_PAGE_CHARACTER_POSTS,
@@ -23,6 +24,11 @@ const receivePublicCharacterPosts = (payload) => ({
   type: RECEIVE_PUBLIC_CHARACTER_POSTS,
   payload: payload,
 }); //USE THIS FOR MAIN CHARACTER POST PAGE
+
+const receiveFollowingCharacterPosts = (payload) => ({
+  type: RECEIVE_FOLLOWING_CHARACTER_POSTS,
+  payload: payload,
+}); //USE THIS FOR FEED PAGE
 
 const receiveCharacterPost = (characterPost) => ({
   type: RECEIVE_CHARACTER_POST,
@@ -62,6 +68,11 @@ export const fetchRelatedCharacterPosts = (characterId) => dispatch => (
 export const fetchPublicCharacterPosts = () => (dispatch) =>
   CharacterPostApiUtil.fetchPublicCharacterPosts().then((payload) =>
     dispatch(receivePublicCharacterPosts(payload))
+  );
+
+export const fetchFollowingCharacterPosts = (userId, page) => (dispatch) =>
+  CharacterPostApiUtil.fetchFollowingCharacterPosts(userId, page).then((payload) =>
+    dispatch(receiveFollowingCharacterPosts(payload))
   );
 
 export const createCharacterPost = (formData) => (dispatch) =>

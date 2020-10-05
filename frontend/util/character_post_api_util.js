@@ -4,6 +4,13 @@ export const fetchPublicCharacterPosts = () =>
     url: "/api/character_posts",
   });
 
+export const fetchFollowingCharacterPosts = (userId, page) =>
+  $.ajax({
+    method: "GET",
+    url: "/api/character_posts",
+    data: {user_id: userId, page }
+  });
+
 export const fetchCharacterPost = (characterPostId) =>
   $.ajax({
     method: "GET",

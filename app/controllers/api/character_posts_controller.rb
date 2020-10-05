@@ -20,6 +20,16 @@ class Api::CharacterPostsController < ApplicationController
                                     .limit(5)
                                     .order(updated_at: :desc)
             render :fetch
+        elsif params[:user_id] #feching feed
+            offset = (params[:page].to_i) * 5
+            @user = User.find(params[:user_id])
+            # @character_posts = CharacterPost.where(character_id: @user.following_character_ids || reference_id: @user.following_community_ids)
+            @character_posts = CharacterPost.where("character_id IN (?) OR reference_id IN (?)", @user.following_character_ids, @user.following_community_ids)
+                                            .includes(:user, :community, :character => [:community], :comments => [:user])
+                                            .offset(offset)
+                                            .limit(15)
+                                            .order(updated_at: :desc)
+            render :feed
         else #for receiving all characters in the main feed
             @character_posts = CharacterPost.includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .where(visibility: "public")

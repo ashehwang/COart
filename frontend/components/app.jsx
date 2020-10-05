@@ -16,6 +16,7 @@ import CreateCommunityContainer from './community_forms/create_community_contain
 import CommunitiesPageContainer from './communities_page/communities_page_container';
 import CommunityPageContainer from './community_page/community_page_container';
 import UserPageContainer from './user_page/user_page_container';
+import FeedPageContainer from './feed_page/feed_page_container'
 import Intro from './how_to/how_to';
 
 const App = () => (
@@ -31,6 +32,7 @@ const App = () => (
         <Route path="/world/:worldUrl" component={CommunityPageContainer}/>
         <Route path="/user/:username" component={UserPageContainer}/>
         <ProtectedRoute path="/recruit" component={CreateCommunityContainer} />
+        <ProtectedRoute path="/feed" component={FeedPageContainer} />
         <ProtectedRoute path="/create" component={CreateCharsContainer} />
         <ProtectedRoute path="/write" component={CreateBoardPostContainer} />
         <ProtectedRoute path="/edit/:characterId" component={EditCharContainer} />

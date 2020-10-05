@@ -51,9 +51,12 @@ class UserPage extends React.Component {
     }
 
     render(){
-        const { user, currentUser } = this.props;
+        const { user, currentUser, loggedIn } = this.props;
         if (!user) return <div className="warning">No User</div>
-        const prompt = user.id === currentUser.id ? "Your" : `${user.nick_name}'s`;
+        let prompt;
+        if (loggedIn && user.id === currentUser.id) {
+            prompt = "Your"
+        } else { prompt = `${user.nick_name}'s`}
 
         return(
             <div className="user-page-container align-center">
