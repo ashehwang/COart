@@ -40,8 +40,10 @@ class UserMessages extends React.Component {
     }
 
     renderNextIcon() {
-        let num = Math.floor(Object.keys(this.props.messages).length / 12);
-        if ( num - 1 > this.state.page ) {
+        let num = Object.keys(this.props.messages).length / 12;
+        if (num - 1 === this.state.page) {
+            return null;
+        } else if ( Math.floor(num) - 1 >= this.state.page ) {
             return (
                 <div className="hover" onClick={this.handleNext}><i className="fas fa-chevron-right" ></i> Next</div>
             )
@@ -76,9 +78,7 @@ class UserMessages extends React.Component {
                         seenMessage={seenMessage}
                         openModal={openModal}
                     /> )}
-                <div className="board-page-flip flex relative">
-                    {/* <div className="hover" onClick={this.handleNext}><i className="fas fa-chevron-right" ></i> Next</div> */}
-                    {/* <div className="hover" onClick={this.handlePrev}><i className="fas fa-chevron-left" ></i> Prev</div> */}
+                <div className="board-page-flip flex relative user-messages-bottom">
                     {this.renderNextIcon()}
                     {this.renderPrevIcon()}
                     <div className="message-page-warning absolute"><i className="fas fa-exclamation-circle"></i> Messages older than 30 days will be deleted.</div>

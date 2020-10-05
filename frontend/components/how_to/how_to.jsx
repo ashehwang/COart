@@ -45,7 +45,7 @@ class Intro extends React.Component {
                         <h1>Possibilities are enless.</h1>
                         <p>Ever spent hours customizing your online game avatar? Now you have even more freedom to do so. Your character can have any looks you like. Any crazy family line you can imagine. Give it life by specifying it's personalities.</p>
                         <br/>
-                        <p>You can start simple and make an avatar of your own self. Or think of your favorite game, anime, Marvel studio, CD comics, TV series character. You'll find that there are traits that you especially attracted to. Red eyes? Elves? Villains with sad story behind how they became one? Twintail tsundere?</p>
+                        <p>You can start simple and make an avatar of your own self. Or think of your favorite game, anime, Marvel studio, DC comics, TV series character. You'll find that there are traits that you especially attracted to. Red eyes? Elves? Villains with sad story behind how they became one? Twintail tsundere?</p>
                         <h1>No matter what, they represent a small piece of you.</h1>
                         <p></p>
                     </div>
@@ -59,7 +59,7 @@ class Intro extends React.Component {
             case 4:
                 return(
                     <div>
-                       world is
+                       Rule
                     </div>
                 )
             case 5:
@@ -69,11 +69,12 @@ class Intro extends React.Component {
                         <br/>
                         <h6>(I have my own story to tell!)</h6>
                         <br/>
-                        <p>I had a job that required me to be in close contact with other people every day. So when COVID-19 hit, I decided to make good use of the freed time to learn how to program. I knew the repetitive nature of my previous job was killing the little creative soul in me, and wanted the ability to build anything if I wanted to.</p>
+                        {/* <p>I had a job that required me to be in close contact with other people every day. So when COVID-19 hit, I decided to make good use of the freed time to learn how to program. I knew the repetitive nature of my previous job was killing the little creative soul in me, and wanted the ability to build anything if I wanted to.</p> */}
+                        <p>I'm some with a job you'd least expect to be able to program. Or draw. Or write. Or design. But secretly I do them all. I have a little creative soul hidden in me, just like you. ;)</p>
                         <br/>
-                        <p>Building Co-Tell has been one of the most enjoyable projects I've done in a long time. Mostly because I truly believe that no matter how common one can seem on the outside, that person is actually very special.. You just need to give them a safe space to expose that extraordinary little spark!</p>
+                        <p>Building Co-Tell has been one of the most enjoyable projects I've done in a long time. Mostly because I truly believe that no matter how banal one can seem on the outside, that person is actually very special.. He/she just needs a safe space to let that extraordinary little spark out!</p>
                         <br/>
-                        <p>Co-Tell is a work in progress. (Yes, I know it.) But I'll continue work on this to make it a better experience for you. Hope you enjoy.</p>
+                        <p>Co-Tell is a work in progress. But I'll continue work on this to make it a better experience for you. Hope you enjoy. And maybe we can help each other in building a little world together.</p>
                         <br/>
                         <br/>
                         <p>If you have any questions or suggestions, don't hesitate to contact me.</p>

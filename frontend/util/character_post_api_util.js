@@ -48,6 +48,13 @@ export const createCharacterPost = (formData) =>
     processData: false,
   });
 
+export const fetchPageCharacterPosts = (charId, numPages) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/character_posts/`,
+    data: {charId, numPages}
+  });
+
 
 // export const likePost = (postLike) =>
 //   $.ajax({

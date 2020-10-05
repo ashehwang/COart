@@ -1,8 +1,8 @@
 import UserPosts from './user_posts';
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal_actions';
-import { deletePost } from '../../actions/post_actions';
-import { createUserComment } from '../../actions/user_comment_actions'
+import { deletePost, fetchPagePosts } from '../../actions/post_actions';
+import { createUserComment } from '../../actions/user_comment_actions';
 
 const mSTP = (state, ownProps) => ({
     username: ownProps.match.params.username,
@@ -16,7 +16,8 @@ const mSTP = (state, ownProps) => ({
 const mDTP = dispatch => ({
     openModal: (modal, data) => dispatch(openModal(modal, data)),
     deletePost: postId => dispatch(deletePost(postId)),
-    createUserComment: userComment => dispatch(createUserComment(userComment))
+    createUserComment: userComment => dispatch(createUserComment(userComment)),
+    fetchPagePosts: (userId, numPages) => dispatch(fetchPagePosts(userId, numPages))
 });
 
 export default connect(mSTP, mDTP)(UserPosts);

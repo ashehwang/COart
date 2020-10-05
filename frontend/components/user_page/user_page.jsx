@@ -51,8 +51,9 @@ class UserPage extends React.Component {
     }
 
     render(){
-        const { user } = this.props;
+        const { user, currentUser } = this.props;
         if (!user) return <div className="warning">No User</div>
+        const prompt = user.id === currentUser.id ? "Your" : `${user.nick_name}'s`;
 
         return(
             <div className="user-page-container align-center">
@@ -68,8 +69,11 @@ class UserPage extends React.Component {
                             </div>
                         </div>
                         <div className="char-page-buttons-center flex-center">
+                            <div className="user-page-buttons hover flex-center" onClick={() => this.props.history.push(`/user/${user.user_name}`)}>
+                                {prompt} Wall
+                            </div>
                             <div className="user-page-buttons hover flex-center" onClick={() => this.props.history.push(`/user/${user.user_name}/characters`)}>
-                                View {user.nick_name}'s Characters
+                                View {prompt} Characters
                             </div>
                             {this.renderButtons()}
                         </div>

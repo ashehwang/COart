@@ -5,13 +5,54 @@ import { Link } from 'react-router-dom';
 class CharPage extends React.Component {
     constructor(props){
         super(props);
+        this.state = { page_num: 0, next_avail: true };
         this.handleFollow = this.handleFollow.bind(this);
         this.handleUnfollow = this.handleUnfollow.bind(this);
+        this.getNextPosts = this.getNextPosts.bind(this);
+        this.getPreviousPosts = this.getPreviousPosts.bind(this);
     }
+    // fetchPageCharacterPosts = (charId, numPages)
 
     componentDidMount(){
+
         this.props.fetchRelatedCharacterPosts(this.props.characterId);
         // if (this.props.history.action === "POP") this.props.fetchRelatedCharacterPosts(this.props.characterId)
+    }
+    
+    getNextPosts(e){
+        this.setState({ page_num: this.state.page_num + 1 }, () => {
+            this.props.fetchPageCharacterPosts(this.props.character.id, this.state.page_num)
+                      .then( res => this.checkResLength(res));
+        });
+    }
+
+    getPreviousPosts(e){
+        this.setState({ page_num: this.state.page_num - 1 }, () => {
+            this.props.fetchPageCharacterPosts(this.props.character.id, this.state.page_num)
+                      .then( res => this.checkResLength(res));
+        });
+    }
+
+    checkResLength(res){
+        if(Object.values(res.payload.characterPosts).length === 5) {
+            this.setState({ next_avail: true });
+        } else this.setState({ next_avail: false }, () => console.log(this.state));
+    }
+
+    renderPrevious(){
+        if(this.state.page_num > 0){
+            return <div className="hover" onClick={this.getPreviousPosts}><i className="fas fa-chevron-left" ></i>  Previous</div>
+        } else return null;
+    }
+
+    renderNext(){
+        if (this.state.next_avail) {
+            return (
+              <div className="hover" onClick={this.getNextPosts}>
+                <i className="fas fa-chevron-right"></i> Next
+              </div>
+            );
+        } else return null;
     }
 
     handleFollow(){
@@ -115,6 +156,10 @@ class CharPage extends React.Component {
                     <div className="char-page-right">
                         <div>
                             {characterPosts.reverse().map(charPost => <CharPostItem key={charPost.id} characterPost={charPost} character={character} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment} deleteCharacterPost={deleteCharacterPost} openModal={openModal}/>)}
+                            <div className="board-page-flip flex relative">
+                                {this.renderNext()}
+                                {this.renderPrevious()}
+                            </div>
                         </div>
                     </div>
                 </div>

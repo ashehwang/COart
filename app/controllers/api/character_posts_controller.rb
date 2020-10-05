@@ -8,9 +8,18 @@ class Api::CharacterPostsController < ApplicationController
             @character_posts = CharacterPost.where(character_id: params[:characterId])
                         .includes(:user, :character => [:community], comments: [:user]) #reduce N+1 query
                         .order(updated_at: :desc)
+                        .limit(5)
             @character = Character.find(params[:characterId])
             @user = @character.user
             render :index
+        elsif params[:numPages] #fetching char posts by increments for char page
+            offset = (params[:numPages].to_i) * 5
+            @character_posts = CharacterPost.where(character_id: params[:charId])
+                                    .includes(comments: [:user])
+                                    .offset(offset)
+                                    .limit(5)
+                                    .order(updated_at: :desc)
+            render :fetch
         else #for receiving all characters in the main feed
             @character_posts = CharacterPost.includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .where(visibility: "public")

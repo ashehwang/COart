@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CharPage from './char_page';
-import { fetchRelatedCharacterPosts, deleteCharacterPost } from '../../actions/character_post_actions';
+import { fetchRelatedCharacterPosts, deleteCharacterPost, fetchPageCharacterPosts } from '../../actions/character_post_actions';
 import { openModal } from '../../actions/modal_actions';
 import { createComment } from '../../actions/comment_actions';
 import { followCharacter, unfollowCharacter } from '../../actions/char_actions';
@@ -20,7 +20,8 @@ const mDTP = dispatch => ({
     createComment: comment => dispatch(createComment(comment)),
     deleteCharacterPost: (characterPostId) => dispatch(deleteCharacterPost(characterPostId)),
     followCharacter: follow => dispatch(followCharacter(follow)),
-    unfollowCharacter: unfollow => dispatch(unfollowCharacter(unfollow))
+    unfollowCharacter: unfollow => dispatch(unfollowCharacter(unfollow)),
+    fetchPageCharacterPosts: (charId, numPages) => dispatch(fetchPageCharacterPosts(charId, numPages))
 });
 
 export default connect(mSTP, mDTP)(CharPage);

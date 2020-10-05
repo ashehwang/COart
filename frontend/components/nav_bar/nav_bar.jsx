@@ -23,7 +23,6 @@ class NavBar extends React.Component {
     youveGotMail(){
         const { loggedIn, currentUser } = this.props;
         if (loggedIn && currentUser) {
-            console.log(currentUser.unseen_message_ids)
             if (currentUser.unseen_message_ids.length) {
                 return(
                     <div className="nav-alert-message absolute flex-center">
@@ -37,7 +36,6 @@ class NavBar extends React.Component {
     youveGotMail2(){
         const { loggedIn, currentUser } = this.props;
         if (loggedIn && currentUser) {
-            console.log(currentUser.unseen_message_ids)
             if (currentUser.unseen_message_ids.length) {
                 return(
                     <div className="nav-alert-message2 absolute flex-center">

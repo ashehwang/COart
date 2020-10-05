@@ -1,5 +1,5 @@
 import {
-  RECEIVE_ALL_USER_POSTS,
+  RECEIVE_PAGE_POSTS,
   RECEIVE_POST,
   REMOVE_POST,
 } from "../actions/post_actions";
@@ -13,9 +13,9 @@ const postsReducer = (state = {}, action) => {
   let newState = Object.assign({}, state);
 
   switch (action.type) {
-    // case RECEIVE_ALL_USER_POSTS:
-    //   if (!action.payload.posts) return {};
-    //   return action.payload.posts;
+    case RECEIVE_PAGE_POSTS:
+      if (!action.payload.posts) return {};
+      return action.payload.posts;
     case RECEIVE_POST:
       newState[action.post.id] = action.post;
       return newState;

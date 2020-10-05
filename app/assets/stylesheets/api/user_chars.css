@@ -48,3 +48,7 @@
 .user-page-world-show:hover {
     background: #CDE3EE;
 }
+
+.user-messages-bottom {
+    min-height: 9px;
+}

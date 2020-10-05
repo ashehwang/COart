@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_CHARACTER_POST, REMOVE_CHARACTER_POST, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
+import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_CHARACTER_POST, REMOVE_CHARACTER_POST, RECEIVE_PUBLIC_CHARACTER_POSTS, RECEIVE_PAGE_CHARACTER_POSTS } from '../actions/character_post_actions';
 // import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_VIEWING_COMMUNITY } from '../actions/community_actions';
@@ -8,6 +8,8 @@ const characterPostsReducer = (state = {}, action) => {
     let newState = Object.assign({}, state);
 
     switch(action.type) {
+        case RECEIVE_PAGE_CHARACTER_POSTS:
+            return action.payload.characterPosts;
         case RECEIVE_ALL_CHARACTER_POSTS:
             if(!action.payload.characterPosts) return {};
             return action.payload.characterPosts;

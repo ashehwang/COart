@@ -7,6 +7,12 @@ export const RECEIVE_CHARACTER_POST_ERROR = "RECEIVE_CHARACTER_POST_ERROR";
 export const RECEIVE_PUBLIC_CHARACTER_POSTS = "RECEIVE_PUBLIC_CHARACTER_POSTS";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const REMOVE_ERRORS = "REMOVE_ERRORS";
+export const RECEIVE_PAGE_CHARACTER_POSTS = "RECEIVE_PAGE_CHARACTER_POSTS";
+
+const receivePageCharacterPosts = payload => ({
+  type: RECEIVE_PAGE_CHARACTER_POSTS,
+  payload
+}); //USER THIS FOR RECEIVING CERTAIN NUM PAGES A TIME
 
 const receiveAllCharacterPosts = (payload) => ({
   type: RECEIVE_ALL_CHARACTER_POSTS,
@@ -37,16 +43,8 @@ export const removeErrors = () => ({
   type: REMOVE_ERRORS
 });
 
-// export const fetchCharacterPosts = () => (dispatch) =>
-//   CharacterPostApiUtil.fetchCharacterPosts().then((payload) =>
-//     dispatch(receiveAllCharacterPosts(payload))
-//   );
-
 export const fetchCharacterPost = (characterPostId) => (dispatch) =>
   CharacterPostApiUtil.fetchCharacterPost(characterPostId).then((characterPost) => dispatch(receiveCharacterPost(characterPost)));
-
-// export const createCharacterPost = (characterPost) => (dispatch) =>
-//   CharacterPostApiUtil.createCharacterPost(characterPost).then((characterPost) => dispatch(receiveCharacterPost(characterPost)));
 
 export const updateCharacterPost = (formData, id) => (dispatch) =>
   CharacterPostApiUtil.updateCharacterPost(formData, id).then((updatedCharacterPost) =>
@@ -55,11 +53,6 @@ export const updateCharacterPost = (formData, id) => (dispatch) =>
 
 export const deleteCharacterPost = (characterPostId) => (dispatch) =>
   CharacterPostApiUtil.deleteCharacterPost(characterPostId).then(() => dispatch(removeCharacterPost(characterPostId)));
-
-// export const fetchUserCharacterPosts = (userId) => (dispatch) =>
-//   CharacterPostApiUtil.fetchUserCharacterPosts(userId).then((characterPosts) =>
-//     dispatch(receiveAllCharacterPosts(characterPosts))
-//   );
 
 export const fetchRelatedCharacterPosts = (characterId) => dispatch => (
   CharacterPostApiUtil.fetchRelatedCharacterPosts(characterId)
@@ -71,15 +64,13 @@ export const fetchPublicCharacterPosts = () => (dispatch) =>
     dispatch(receivePublicCharacterPosts(payload))
   );
 
-
 export const createCharacterPost = (formData) => (dispatch) =>
   CharacterPostApiUtil.createCharacterPost(formData)
     .then((characterPost) => dispatch(receiveCharacterPost(characterPost)),
       err => dispatch(receiveErrors(err.responseJSON)));
     // .catch((err) => dispatch(receiveErrors(err.response.data)));
 
-// export const likePost = (postLike) => (dispatch) =>
-//   CharacterPostApiUtil.likePost(postLike).then((post) => dispatch(receivePost(post)));
-
-// export const unlikePost = (postLike) => (dispatch) =>
-//   CharacterPostApiUtil.unlikePost(postLike).then((post) => dispatch(receivePost(post)));
+export const fetchPageCharacterPosts = (charId, numPages) => dispatch => (
+  CharacterPostApiUtil.fetchPageCharacterPosts(charId, numPages)
+    .then(payload => dispatch(receivePageCharacterPosts(payload)))
+)

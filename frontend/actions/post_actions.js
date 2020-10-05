@@ -4,6 +4,7 @@ export const RECEIVE_ALL_USER_POSTS = "RECEIVE_USER_ALL_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const REMOVE_POST = "REMOVE_POST";
 export const RECEIVE_POST_ERROR = "RECEIVE_POST_ERROR";
+export const RECEIVE_PAGE_POSTS = "RECEIVE_PAGE_POSTS";
 
 const receiveAllUserPosts = (payload) => ({
   type: RECEIVE_ALL_USER_POSTS,
@@ -20,16 +21,11 @@ const removePost = (postId) => ({
   postId,
 });
 
-// export const fetchPosts = () => (dispatch) =>
-//   PostApiUtil.fetchPosts().then((payload) =>
-//     dispatch(receiveAllPosts(payload))
-//   );
+const receivePagePosts = (payload) => ({
+  type: RECEIVE_PAGE_POSTS,
+  payload,
+});
 
-// export const fetchPost = (postId) => (dispatch) =>
-//   PostApiUtil.fetchPost(postId).then((post) => dispatch(receivePost(post)));
-
-// export const createPost = (post) => (dispatch) =>
-//   PostApiUtil.createPost(post).then((post) => dispatch(receivePost(post)));
 
 export const updatePost = (formData, id) => (dispatch) =>
   PostApiUtil.updatePost(formData, id).then((updatedPost) =>
@@ -49,8 +45,7 @@ export const createPost = (formData) => (dispatch) =>
     dispatch(receivePost(post))
   );
 
-// export const likePost = (postLike) => (dispatch) =>
-//   PostApiUtil.likePost(postLike).then((post) => dispatch(receivePost(post)));
-
-// export const unlikePost = (postLike) => (dispatch) =>
-//   PostApiUtil.unlikePost(postLike).then((post) => dispatch(receivePost(post)));
+export const fetchPagePosts = (userId, numPages) => (dispatch) =>
+  PostApiUtil.fetchPagePosts(userId, numPages).then((payload) =>
+    dispatch(receivePagePosts(payload))
+  );

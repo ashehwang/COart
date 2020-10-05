@@ -2,23 +2,16 @@ class Api::PostsController < ApplicationController
 
     before_action :require_login, only: [:create, :update, :destroy]
 
-    # def index
+    def index
+        offset = (params[:numPages].to_i) * 3
+        @posts = Post.includes(:user_comments)
+                    .where(user_id: params[:userId])
+                    .offset(offset)
+                    .limit(3)
+                    .order(updated_at: :desc)
 
-    #     friends_ids = current_user.friendship_ids
-    #     friends_ids << current_user.id
-
-    #     if params[:userId] 
-    #         @posts = Post.where(reference_id: params[:userId])
-    #                     .includes(:user, comments: [:user]) #reduce N+1 query
-    #         render :index
-    #     else
-    #         @posts = Post.includes(:user, comments: [:user]) 
-    #                     .where(user_id: friends_ids)
-    #                     .order(updated_at: :desc)
-    #         @user = current_user
-    #         render :index
-    #     end
-    # end
+        render :index
+    end
 
     # def show
     #     @post = Post.find_by(id: params[:id])
