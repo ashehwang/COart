@@ -118,6 +118,7 @@ class MainCharPostItem extends React.Component {
 
   render() {
     const { characterPost, character } = this.props;
+    // console.log(characterPost)
     const hasComments = characterPost.comment_ids.length ? "" : "hidden";
 
     if(!character) return <div>no character</div>

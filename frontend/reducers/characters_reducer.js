@@ -6,7 +6,7 @@ import {
 } from "../actions/char_actions";
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USER, RECEIVE_FETCHED_USER } from '../actions/user_actions';
-import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS } from '../actions/character_post_actions';
+import { RECEIVE_ALL_CHARACTER_POSTS, RECEIVE_PUBLIC_CHARACTER_POSTS, RECEIVE_FOLLOWING_CHARACTER_POSTS } from '../actions/character_post_actions';
 import { RECEIVE_VIEWING_COMMUNITY } from '../actions/community_actions';
 import { RECEIVE_MEMBERSHIP_REQUEST } from '../actions/membership_actions';
 
@@ -18,6 +18,11 @@ const charactersReducer = (state = {}, action) => {
   let newState = Object.assign({}, state);
 
   switch (action.type) {
+    case RECEIVE_FOLLOWING_CHARACTER_POSTS:
+      Object.keys(action.payload.characters).forEach(id => {
+        if (!newState[id]) newState[id] = action.payload.characters[id];
+      })
+      return newState;
     case RECEIVE_ALL_CHARS:
       if (!action.payload.chars) return {};
       return action.payload.chars;
