@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 class FeedPage extends React.Component {
     constructor(props){
         super(props);
-        this.state = { page: 0 };
-        // this.handleFollow = this.handleFollow.bind(this);
-        this.handleUnfollow = this.handleUnfollow.bind(this);
+        this.state = { page: 0, next_avail: true };
         this.getNextPosts = this.getNextPosts.bind(this);
         this.getPreviousPosts = this.getPreviousPosts.bind(this);
     }
@@ -19,15 +17,15 @@ class FeedPage extends React.Component {
     }
 
     getNextPosts(e){
-        this.setState({ page_num: this.state.page_num + 1 }, () => {
-            this.props.fetchPageCharacterPosts(this.props.character.id, this.state.page_num)
+        this.setState({ page: this.state.page + 1 }, () => {
+            this.props.fetchFollowingCharacterPosts(this.props.currentUser.id, this.state.page)
                       .then( res => this.checkResLength(res));
         });
     }
 
     getPreviousPosts(e){
-        this.setState({ page_num: this.state.page_num - 1 }, () => {
-            this.props.fetchPageCharacterPosts(this.props.character.id, this.state.page_num)
+        this.setState({ page: this.state.page - 1 }, () => {
+            this.props.fetchFollowingCharacterPosts(this.props.currentUser.id, this.state.page)
                       .then( res => this.checkResLength(res));
         });
     }
@@ -39,7 +37,7 @@ class FeedPage extends React.Component {
     }
 
     renderPrevious(){
-        if(this.state.page_num > 0){
+        if(this.state.page > 0){
             return <div className="hover" onClick={this.getPreviousPosts}><i className="fas fa-chevron-left" ></i>  Previous</div>
         } else return null;
     }
@@ -54,11 +52,6 @@ class FeedPage extends React.Component {
         } else return null;
     }
 
-    handleUnfollow(){
-        const unfollow = { id: this.props.character.id };
-        this.props.unfollowCharacter(unfollow);
-    }
-
     // componentDidUpdate(prevProps){
     //     if(prevProps.location.key !== this.props.location.key) {
     //         this.props.fetchPublicCharacterPosts();
@@ -66,7 +59,7 @@ class FeedPage extends React.Component {
     // }
 
     render(){
-        const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost, openModal, communities } = this.props;
+        const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost, openModal, communities, unfollowCommunity, unfollowCharacter } = this.props;
         if(!characterPosts) return null;
         return (
             <div className="main-page-container relative align-center">
@@ -78,15 +71,19 @@ class FeedPage extends React.Component {
                 </div>
                 <div className="main-page">
                     {characterPosts.reverse().map(charPost => <MainCharPostItem key={charPost.id} characterPost={charPost} character={characters[charPost.character_id]} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment} deleteCharacterPost={deleteCharacterPost} openModal={openModal}/>)}
+                    <div className="board-page-flip flex relative">
+                        {this.renderNext()}
+                        {this.renderPrevious()}
+                    </div>
                 </div>
                 <div className="feed-follow-box-container absolute border">
                     <div className="feed-follow-boxes">
                         <div className="feed-follow-category">Following Worlds</div>
-                        {currentUser.following_community_ids.map(id => <FollowWorldShow key={id} community={communities[id]} />)}
+                        {currentUser.following_community_ids.map(id => <FollowWorldShow key={id} community={communities[id]} unfollowCommunity={unfollowCommunity} />)}
                     </div>
                     <div className="feed-follow-boxes">
                         <div className="feed-follow-category">Following Characters</div>
-                        {currentUser.following_character_ids.map(id => <FollowCharShow key={id} character={characters[id]} />)}
+                        {currentUser.following_character_ids.map(id => <FollowCharShow key={id} character={characters[id]} unfollowCharacter={unfollowCharacter} />)}
                     </div>
                 </div>
             </div>
@@ -95,14 +92,27 @@ class FeedPage extends React.Component {
 }
 
 class FollowWorldShow extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.handleUnfollowWorld = this.handleUnfollowWorld.bind(this);
+    }
+
+    handleUnfollowWorld(){
+        const unfollow = { id: this.props.community.id };
+        this.props.unfollowCommunity(unfollow)
+    }
+
     render(){
+
         const {community} = this.props;
         if(!community) return <p>fetching world..</p>
+
         return(
             <Link to={`/world/${community.url}`}>
                 <div className="feed-page-follow-item flex">
                     <div>{community.name}</div>
-                    <i className="far fa-bell-slash"></i>
+                    <i className="far fa-bell-slash" onClick={this.handleUnfollowWorld}></i>
                 </div>
             </Link>
         )
@@ -110,14 +120,27 @@ class FollowWorldShow extends React.Component {
 }
 
 class FollowCharShow extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.handleUnfollowCharacter = this.handleUnfollowCharacter.bind(this);
+    }
+
+    handleUnfollowCharacter(){
+        const unfollow = { id: this.props.character.id };
+        this.props.unfollowCharacter(unfollow);
+    }
+
     render(){
+
         const {character} = this.props;
         if(!character) return <p>fetching character..</p>
+
         return(
             <Link to={`/character/${character.id}`}>
                 <div className="feed-page-follow-item flex">
                     <div>{character.first_name} {character.last_name}</div>
-                    <i className="far fa-bell-slash"></i>
+                    <i className="far fa-bell-slash" onClick={this.handleUnfollowCharacter}></i>
                 </div>
             </Link>
         )
