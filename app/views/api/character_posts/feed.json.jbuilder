@@ -39,7 +39,7 @@ end
             if character_post.character.community
                 json.community do
                     json.extract! character_post.character.community, :url, :name if character_post.character.community
-                    # json.logoUrl url_for(character_post.character.community.logo) if character_post.character.community.logo.attached?
+                    json.logoUrl url_for(character_post.character.community.logo) if character_post.character.community.logo.attached?
                 end
             end
         end
