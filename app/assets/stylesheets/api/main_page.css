@@ -50,3 +50,9 @@
 .main-char-post-delete:hover {
     background: #84BAD7;
 }
+
+.char-post-profile-world {
+    font-size: 11px;
+    color: #84BAD7;
+    padding-left: 5px;
+}

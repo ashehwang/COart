@@ -1,0 +1,36 @@
+.cotell-logo {
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+}
+
+.feed-page-alert {
+    font-size: 11px;
+    color: grey;
+    text-align: center;
+    padding: 10px;
+    display: none;
+}
+
+.feed-page-logo:hover .feed-page-alert {
+    display: block;
+}
+
+.feed-page-logo {
+    left: calc((100vw - 800px)/4 - 110px);
+    top: 35px;
+    text-align: center;
+    width: 230px;
+    /* background: red; */
+}
+
+.feed-follow-box-container {
+    right: calc((100vw - 800px)/4 - 125px);
+    top: 35px;
+    background: white;
+    padding: 10px;
+    width: 250px;
+    border-radius: 12px;
+    color: grey;
+    font-size: 12px;
+}

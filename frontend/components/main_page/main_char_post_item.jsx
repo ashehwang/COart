@@ -53,6 +53,18 @@ class MainCharPostItem extends React.Component {
     this.setState({ dropdown: !this.state.dropdown });
   }
 
+  handleWorld(){
+    if(this.props.characterPost.community){
+      return(
+        <Link to={`/world/${this.props.characterPost.community.url}`}>
+          <span className="char-post-profile-world">
+            {this.props.characterPost.community.name}
+          </span>
+        </Link>
+      )
+    } else return null;;
+  }
+
   imgExists() {
     if (this.props.characterPost.photoUrl) {
       return (
@@ -134,6 +146,8 @@ class MainCharPostItem extends React.Component {
           <div>
             <div className="char-post-profile flex">
               <Link to={`/character/${character.id}`}>{character.first_name} {character.last_name}</Link>
+              {/* <Link><span className="char-post-profile-world"></span></Link> */}
+              {this.handleWorld()}
               <span> {this.handleTime()} </span>
             </div>
             {this.imgExists()}
