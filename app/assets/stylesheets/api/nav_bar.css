@@ -36,6 +36,8 @@
     text-align: center;
     padding-top: 12px;
     font-weight: 500;
+    position: relative;
+    z-index: 0;
 }
 
 .navbar-submenu:hover {
@@ -229,4 +231,12 @@
 .navbar-logo {
     width: 120px;
     height: 120px;
+    top: -25px;
+    left: -25px;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+.navbar-logo2, .navbar-logo3 {
+    z-index: 1;
 }

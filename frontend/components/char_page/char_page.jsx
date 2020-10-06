@@ -141,11 +141,11 @@ class CharPage extends React.Component {
                             <img src={character.headPhotoUrl} className="small-profile-pic" />
                             <div className="char-page-profile-detail">
                                 {character.first_name} {character.last_name}
-                                <div className="char-page-creator-detail">
-                                    <span>Creator: {character.creator.nick_name}</span>
-                                    @{character.creator.user_name}
-                                    {this.hasWorld()}
-                                </div>
+                                    <div className="char-page-creator-detail">
+                                        <span><Link to={`/user/${character.creator.user_name}`} className="hover"> Creator: {character.creator.nick_name}</Link></span>
+                                        @{character.creator.user_name}
+                                        {this.hasWorld()}
+                                    </div>
                             </div>
                         </div>
                         <div className="flex-center">

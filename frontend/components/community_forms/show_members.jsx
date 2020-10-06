@@ -50,7 +50,7 @@ class MemberShow extends ShowMembers {
             <div className="applicant-show-container">
                 <div className="applicant-show-photo flex-center"><img src={character.headPhotoUrl}/></div>
                 <Link to={`/character/${character.id}`}><div className="applicant-show-char hover">{character.first_name} {character.last_name}</div></Link>
-                <div className="applicant-show-creator">Creator: {character.creator.nick_name} <span>@{character.creator.user_name}</span></div>
+                <div className="applicant-show-creator"><Link to={`/user/${character.creator.user_name}`}>Creator: {character.creator.nick_name} </Link><span>@{character.creator.user_name}</span></div>
                 <div className="applicant-show-see hover" onClick={() => openModal('showchar', character)}>View Full Profile</div>
                 {this.renderButtons()}
             </div>

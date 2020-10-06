@@ -98,9 +98,10 @@ class CommunityPage extends React.Component {
         }
         
         render(){
-            
+            console.log(this.props)
+
             if(!this.props.community) return <div className="warning">No Such World Exists</div>
-            
+
             const { community } = this.props;        
             const logo = community.logoUrl ? <img src={community.logoUrl} /> : <div className="flex-center world-show-nologo"><p>No Logo</p></div>
             // const apply = this.isAdmin() ? "Add Character" : "Apply To Join";

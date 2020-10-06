@@ -180,12 +180,12 @@ class NavBar extends React.Component {
         const main = this.props.location.pathname === "/main" ? "nav-selected" : "";
 
         return (
-          <nav className="navbar-container">
+          <nav className="navbar-container relative">
             <div className="navbar-search-container relative">
               <img className="absolute navbar-logo" src="https://i.ibb.co/fYkKYp5/try3.png" alt="try3" border="0"></img>
               {/* <div className="hover" onClick={() => this.props.history.push("/main")}><img src="https://i.ibb.co/tMkrDPR/Untitled.png" /></div> */}
-              <div className="hover" onClick={() => this.props.history.push("/")}><img src="https://i.ibb.co/y8hYN50/cotellimage.png" /></div>
-              <div className="flex">
+              <div className="hover" onClick={() => this.props.history.push("/")}><img className="relative navbar-logo2"src="https://i.ibb.co/y8hYN50/cotellimage.png" /></div>
+              <div className="relative flex navbar-logo3">
                 <i className="fas fa-search white"></i>
                 <SearchBarContainer />
                 <i className="fas fa-home white absolute hover" onClick={() => this.props.history.push("/main")}></i>

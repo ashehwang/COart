@@ -33,7 +33,7 @@ class UserPost extends React.Component {
         return(
             <div className="user-single-post-comments flex">
                 <p>{this.props.currentUser.nick_name} <span>@{this.props.currentUser.user_name}</span> :</p>
-                <input type="text" placeholder="Write a comment!" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit}/>
+                <input type="text" placeholder="Write a comment.." value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit}/>
             </div>
         )
     }

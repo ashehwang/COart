@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CommentShow extends React.Component {
     constructor(props){
@@ -53,7 +54,8 @@ class CommentShow extends React.Component {
         return(
             <div className="comment-box-container flex">
                 <div className="comment-box flex">
-                    <div className="comment-user">{comment.user.nick_name} <span>@{comment.user.user_name}</span> : </div>
+                    <Link to={`/user/${comment.user.user_name}`}><div className="comment-user hover">{comment.user.nick_name} <span>@{comment.user.user_name}</span> : </div></Link>
+                    {/* <div className="comment-user">{comment.user.nick_name} <span>@{comment.user.user_name}</span> : </div> */}
                     <div className={`comment-body ${hide}`} onClick={this.toggleEdit}>{comment.body}</div>
                     <div className={`comment-edit ${edit}`}><input type="text" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit}/></div>
                 </div>

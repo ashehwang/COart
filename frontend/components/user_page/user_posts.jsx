@@ -11,7 +11,12 @@ class UserPosts extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchPagePosts(this.props.user.id, 0);
+        this.props.fetchPagePosts(this.props.user.id, 0)
+                .then(res => {
+                    if (Object.keys(res.payload.posts).length < 5) {
+                        this.setState({next_avail: false})
+                    }
+                })
     }
 
     getNextPosts(e){
