@@ -24,6 +24,8 @@ class CreateCharacterPostForm extends React.Component {
     }
 
     handleSubmit(e){
+        console.log(this.props)
+        console.log(this.state)
         e.preventDefault();
         const formData = new FormData();
         formData.append("character_post[body]", this.state.body);

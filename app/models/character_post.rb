@@ -7,7 +7,8 @@ class CharacterPost < ApplicationRecord
     belongs_to :character
 
     belongs_to :community,
-    foreign_key: :reference_id
+    foreign_key: :reference_id,
+    optional: true
     
     has_one_attached :photo
     

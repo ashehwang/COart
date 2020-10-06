@@ -23,11 +23,12 @@ class Api::CharacterPostsController < ApplicationController
         elsif params[:user_id] #feching feed
             offset = (params[:page].to_i) * 5
             @user = User.find(params[:user_id])
+                        # .includes(:following_characters, :following_communities)
             # @character_posts = CharacterPost.where(character_id: @user.following_character_ids || reference_id: @user.following_community_ids)
             @character_posts = CharacterPost.where("character_id IN (?) OR reference_id IN (?)", @user.following_character_ids, @user.following_community_ids)
                                             .includes(:user, :community, :character => [:community], :comments => [:user])
                                             .offset(offset)
-                                            .limit(15)
+                                            .limit(5)
                                             .order(updated_at: :desc)
             render :feed
         else #for receiving all characters in the main feed
@@ -48,7 +49,8 @@ class Api::CharacterPostsController < ApplicationController
         if @character_post.save
             render :show
         else
-            render json: { "character_post": "You cannot have an empty post." }, status: 422
+            # render json: { "character_post": "You cannot have an empty post." }, status: 422
+            render json: @character_post.errors, status: 422
         end
     end
 

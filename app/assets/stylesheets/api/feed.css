@@ -32,5 +32,42 @@
     width: 250px;
     border-radius: 12px;
     color: grey;
-    font-size: 12px;
+    font-size: 11px;
+    /* height: 20px; */
+    overflow-y: auto;
+}
+
+.feed-follow-category {
+    text-align: center;
+    color: #6A95AC;
+    font-size: 14px;
+    /* margin-bottom: 8px; */
+}
+
+.feed-page-follow-item {
+    padding: 3px 5px;
+    border-radius: 7px;
+    /* margin-bottom: 5px; */
+    /* background: #D7E9F1; */
+    text-align: center;
+    justify-content: space-between;
+}
+
+
+.feed-page-follow-item i {
+    color: lightgrey;
+    font-size: 9px;
+}
+
+.feed-page-follow-item i:hover {
+    color: rgb(170, 12, 12);
+    font-weight: 600;
+}
+
+.feed-page-follow-item:hover {
+    background: #D7E9F1;
+}
+
+.feed-follow-boxes:first-child {
+    margin-bottom: 10px;
 }

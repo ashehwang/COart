@@ -25,6 +25,26 @@ end
     end
 
     json.characters do
+        @user.following_characters.each do |character|
+            json.set! character.id do
+                json.extract! character, :id, :first_name, :last_name, :bio, :selected, :eligible
+                if character.head_photo.attached?
+                    json.headPhotoUrl url_for(character.head_photo)
+                else
+                    json.headPhotoUrl "https://i.ibb.co/K9PYxTP/ahri2.jpg"
+                end
+                json.creator do
+                    json.extract! character.user, :id, :user_name, :nick_name
+                end
+                json.membership_id character.membership.id if character.membership
+                if character.community
+                    json.community do
+                        json.extract! character.community, :url, :name if character.community
+                        json.logoUrl url_for(character.community.logo) if character.community.logo.attached?
+                    end
+                end
+            end
+        end
         json.set! character_post.character.id do
             json.extract! character_post.character, :id, :first_name, :last_name, :bio, :selected, :eligible
             if character_post.character.head_photo.attached?
@@ -41,6 +61,14 @@ end
                     json.extract! character_post.character.community, :url, :name if character_post.character.community
                     json.logoUrl url_for(character_post.character.community.logo) if character_post.character.community.logo.attached?
                 end
+            end
+        end
+    end
+
+    json.communities do 
+        @user.following_communities.each do |community|
+            json.set! community.id do
+                json.extract! community, :id, :url, :name
             end
         end
     end

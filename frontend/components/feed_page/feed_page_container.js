@@ -8,7 +8,8 @@ const mSTP = (state) => ({
   characterPosts: Object.values(state.entities.characterPosts),
   characters: state.entities.characters,
   currentUser: state.entities.users[state.session.id],
-  loggedIn: Boolean(state.session.id)
+  loggedIn: Boolean(state.session.id),
+  communities: state.entities.communities
 });
 
 const mDTP = (dispatch) => ({

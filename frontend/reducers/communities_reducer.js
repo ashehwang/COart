@@ -1,11 +1,15 @@
 import { RECEIVE_VIEWING_COMMUNITY, RECEIVE_ALL_OPEN_COMMUNITIES, RECEIVE_COMMUNITY, REMOVE_COMMUNITY } from '../actions/community_actions';
 import { REMOVE_MEMBERSHIP_REQUEST, REMOVE_MEMBERSHIP, RECEIVE_MEMBERSHIP_REQUEST, RECEIVE_MEMBERSHIP } from '../actions/membership_actions';
+import { RECEIVE_FOLLOWING_CHARACTER_POSTS } from '../actions/character_post_actions'; 
 
 const communitiesReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
 
   switch (action.type) {
+    case RECEIVE_FOLLOWING_CHARACTER_POSTS:
+      if(!action.payload.communities) return {};
+      return action.payload.communities;
     case RECEIVE_ALL_OPEN_COMMUNITIES:
       if (!action.payload) return {};
       return action.payload;
