@@ -12,7 +12,7 @@ const mSTP = (state) => ({
 });
 
 const mDTP = (dispatch) => ({
-  fetchPublicCharacterPosts: () => dispatch(fetchPublicCharacterPosts()),
+  fetchPublicCharacterPosts: (mainPage) => dispatch(fetchPublicCharacterPosts(mainPage)),
   createComment: (comment) => dispatch(createComment(comment)),
   deleteCharacterPost: (characterPostId) => dispatch(deleteCharacterPost(characterPostId)),
   openModal: (modal, data) => dispatch(openModal(modal, data))

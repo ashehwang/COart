@@ -1,14 +1,15 @@
-export const fetchPublicCharacterPosts = () =>
+export const fetchPublicCharacterPosts = (mainPage) =>
   $.ajax({
     method: "GET",
     url: "/api/character_posts",
+    data: { mainPage }
   });
 
 export const fetchFollowingCharacterPosts = (userId, page) =>
   $.ajax({
     method: "GET",
     url: "/api/character_posts",
-    data: {user_id: userId, page }
+    data: { user_id: userId, page }
   });
 
 export const fetchCharacterPost = (characterPostId) =>

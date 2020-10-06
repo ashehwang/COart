@@ -65,8 +65,8 @@ export const fetchRelatedCharacterPosts = (characterId) => dispatch => (
     .then(payload => dispatch(receiveAllCharacterPosts(payload)))
 );
 
-export const fetchPublicCharacterPosts = () => (dispatch) =>
-  CharacterPostApiUtil.fetchPublicCharacterPosts().then((payload) =>
+export const fetchPublicCharacterPosts = (mainPage) => (dispatch) =>
+  CharacterPostApiUtil.fetchPublicCharacterPosts(mainPage).then((payload) =>
     dispatch(receivePublicCharacterPosts(payload))
   );
 

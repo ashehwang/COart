@@ -5,7 +5,7 @@ class UserPosts extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = { page_num: 0, next_avail: true };
+        this.state = { page_num: 0, next_avail: false };
         this.getNextPosts = this.getNextPosts.bind(this);
         this.getPreviousPosts = this.getPreviousPosts.bind(this);
     }
@@ -13,8 +13,8 @@ class UserPosts extends React.Component {
     componentDidMount(){
         this.props.fetchPagePosts(this.props.user.id, 0)
                 .then(res => {
-                    if (Object.keys(res.payload.posts).length < 5) {
-                        this.setState({next_avail: false})
+                    if (res.payload.posts && Object.keys(res.payload.posts).length >= 3) {
+                        this.setState({next_avail: true })
                     }
                 })
     }

@@ -31,9 +31,12 @@ class Api::CharacterPostsController < ApplicationController
                                             .limit(5)
                                             .order(updated_at: :desc)
             render :feed
-        else #for receiving all characters in the main feed
+        else #for receiving all characters in the main feed; params[mainPage] for offset
+            offset = (params[:mainPage].to_i) * 5
             @character_posts = CharacterPost.includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .where(visibility: "public")
+                        .offset(offset)
+                        .limit(5)
                         .order(updated_at: :desc)
             render :main
         end

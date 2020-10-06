@@ -9,8 +9,10 @@ const characterPostsReducer = (state = {}, action) => {
 
     switch(action.type) {
         case RECEIVE_FOLLOWING_CHARACTER_POSTS:
+            if(!action.payload.characterPosts) return {};
             return action.payload.characterPosts;
         case RECEIVE_PAGE_CHARACTER_POSTS:
+            if (!action.payload.characterPosts) return {};
             return action.payload.characterPosts;
         case RECEIVE_ALL_CHARACTER_POSTS:
             if(!action.payload.characterPosts) return {};
@@ -22,6 +24,7 @@ const characterPostsReducer = (state = {}, action) => {
             delete newState[action.characterPostId];
             return newState;
         case RECEIVE_PUBLIC_CHARACTER_POSTS:
+            if (!action.payload.characterPosts) return {};
             return action.payload.characterPosts;
         case RECEIVE_COMMENT:
             if (!state[action.comment.character_post_id].comment_ids.includes(action.comment.id)) {
@@ -33,7 +36,7 @@ const characterPostsReducer = (state = {}, action) => {
             newState[action.comment.character_post_id].comment_ids.splice(targetIdx, 1);
             return newState;
         case RECEIVE_VIEWING_COMMUNITY:
-            if(!action.payload.characterPosts) return newState;
+            if(!action.payload.characterPosts) return {};
             return action.payload.characterPosts;        
         // case LOGOUT_CURRENT_USER:
         //     return {};

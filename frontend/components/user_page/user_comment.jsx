@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteUserComment, updateUserComment } from '../../actions/user_comment_actions';
+import { Link } from 'react-router-dom';
 
 class UserComment extends React.Component {
 
@@ -61,7 +62,7 @@ class UserComment extends React.Component {
         return(
             <div className="comment-box-container flex">
                 <div className="comment-box flex">
-                    <div className="comment-user">{comment.author.nick_name} <span>@{comment.author.user_name}</span> : </div>
+                    <div className="comment-user"><Link to={`/user/${comment.author.user_name}`}>{comment.author.nick_name} </Link><span>@{comment.author.user_name}</span> : </div>
                     <div className={`comment-body ${hide}`} onClick={this.toggleEdit}>{comment.body}</div>
                     <div className={`comment-edit ${edit}`}><input type="text" value={this.state.body} onChange={this.updateBody} onKeyDown={this.handleSubmit}/></div>
                 </div>
