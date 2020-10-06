@@ -112,14 +112,18 @@ class CharPage extends React.Component {
             )
         } else if (character.follower_ids && character.follower_ids.includes(currentUser.id)) {
             return(
-                <div className="char-page-buttons hover flex-center" onClick={this.handleUnfollow}>
-                    Unfollow {character.first_name}
+                <div className="flex-center">
+                    <div className="char-page-buttons hover flex-center" onClick={this.handleUnfollow}>
+                        Unfollow {character.first_name}
+                    </div>
                 </div>
             )
         } else {
             return(
-                <div className="char-page-buttons hover flex-center" onClick={this.handleFollow}>
-                    Follow {character.first_name}
+                <div className="flex-center">
+                    <div className="char-page-buttons hover flex-center" onClick={this.handleFollow}>
+                        Follow {character.first_name}
+                    </div>
                 </div>
             )
         }

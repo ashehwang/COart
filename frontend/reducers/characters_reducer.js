@@ -71,7 +71,7 @@ const charactersReducer = (state = {}, action) => {
       newState[action.follow.character_id].follower_ids.push(action.follow.user_id);
       return newState;
     case RECEIVE_UNFOLLOW:
-      const targetIdx = newState[action.follow.character_id].follower_ids.indexOf(action.follow.user_id)
+      const targetIdx = newState[action.follow.character_id].follower_ids.indexOf(action.follow.user_id);
       newState[action.follow.character_id].follower_ids.splice(targetIdx, 1);
       return newState;
     case RECEIVE_VIEWING_COMMUNITY:

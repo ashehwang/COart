@@ -7,6 +7,7 @@ export const RECEIVE_CHAR_ERROR = "RECEIVE_CHAR_ERROR";
 export const CHANGE_SELECTED_CHAR = "CHANGE_SELECTED_CHAR";
 export const RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
 export const RECEIVE_UNFOLLOW = "RECEIVE_UNFOLLOW";
+export const RECEIVE_FEED_UNFOLLOW = "RECEIVE_FEED_UNFOLLOW";
 
 const receiveAllChars = (payload) => ({
   type: RECEIVE_ALL_CHARS,
@@ -35,6 +36,11 @@ const receiveFollow = follow => ({
 
 const receiveUnfollow = follow => ({
   type: RECEIVE_UNFOLLOW,
+  follow
+});
+
+const receiveFeedUnfollow = follow => ({
+  type: RECEIVE_FEED_UNFOLLOW,
   follow
 });
 
@@ -73,3 +79,6 @@ export const followCharacter = (follow) => (dispatch) =>
 
 export const unfollowCharacter = (unfollow) => (dispatch) =>
   CharApiUtil.unfollowCharacter(unfollow).then((follow) => dispatch(receiveUnfollow(follow)));
+
+export const unfollowFeedCharacter = (unfollow) => (dispatch) =>
+  CharApiUtil.unfollowCharacter(unfollow).then((follow) => dispatch(receiveFeedUnfollow(follow)));

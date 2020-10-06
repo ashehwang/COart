@@ -59,13 +59,13 @@ class FeedPage extends React.Component {
     // }
 
     render(){
-        const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost, openModal, communities, unfollowCommunity, unfollowCharacter } = this.props;
+        const { characterPosts, characters, loggedIn, currentUser, createComment, deleteCharacterPost, openModal, communities, unfollowCommunity, unfollowFeedCharacter } = this.props;
         if(!characterPosts) return null;
         return (
             <div className="main-page-container relative align-center">
                 <div className="feed-page-logo absolute">
                     <img className="cotell-logo hover" src="https://i.ibb.co/fYkKYp5/try3.png" alt="logo"></img>
-                    <div className="feed-page-alert">
+                    <div className="feed-page-alert border">
                         Feed page will show posts from characters and worlds you follow. If this page is empty, look for characters / worlds that interest you!
                     </div>
                 </div>
@@ -83,7 +83,7 @@ class FeedPage extends React.Component {
                     </div>
                     <div className="feed-follow-boxes">
                         <div className="feed-follow-category">Following Characters</div>
-                        {currentUser.following_character_ids.map(id => <FollowCharShow key={id} character={characters[id]} unfollowCharacter={unfollowCharacter} />)}
+                        {currentUser.following_character_ids.map(id => <FollowCharShow key={id} character={characters[id]} unfollowFeedCharacter={unfollowFeedCharacter} />)}
                     </div>
                 </div>
             </div>
@@ -109,12 +109,10 @@ class FollowWorldShow extends React.Component {
         if(!community) return <p>fetching world..</p>
 
         return(
-            <Link to={`/world/${community.url}`}>
-                <div className="feed-page-follow-item flex">
-                    <div>{community.name}</div>
-                    <i className="far fa-bell-slash" onClick={this.handleUnfollowWorld}></i>
-                </div>
-            </Link>
+            <div className="feed-page-follow-item flex">
+                <Link to={`/world/${community.url}`}><div>{community.name}</div></Link>
+                <i className="far fa-bell-slash" onClick={this.handleUnfollowWorld}></i>
+            </div>
         )
     }
 }
@@ -128,7 +126,7 @@ class FollowCharShow extends React.Component {
 
     handleUnfollowCharacter(){
         const unfollow = { id: this.props.character.id };
-        this.props.unfollowCharacter(unfollow);
+        this.props.unfollowFeedCharacter(unfollow);
     }
 
     render(){
@@ -137,12 +135,10 @@ class FollowCharShow extends React.Component {
         if(!character) return <p>fetching character..</p>
 
         return(
-            <Link to={`/character/${character.id}`}>
-                <div className="feed-page-follow-item flex">
-                    <div>{character.first_name} {character.last_name}</div>
-                    <i className="far fa-bell-slash" onClick={this.handleUnfollowCharacter}></i>
-                </div>
-            </Link>
+            <div className="feed-page-follow-item flex">
+                <Link to={`/character/${character.id}`}> <div>{character.first_name} {character.last_name}</div> </Link>
+                <i className="far fa-bell-slash" onClick={this.handleUnfollowCharacter}></i>
+            </div>
         )
     }
 }

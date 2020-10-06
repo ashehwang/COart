@@ -10,6 +10,8 @@
     text-align: center;
     padding: 10px;
     display: none;
+    border-radius: 10px;
+    background: white;
 }
 
 .feed-page-logo:hover .feed-page-alert {

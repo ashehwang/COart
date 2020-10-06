@@ -9,7 +9,7 @@ import {
 } from "../actions/friend_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_CHARACTER_POSTS } from '../actions/character_post_actions';
-import { CHANGE_SELECTED_CHAR, REMOVE_CHAR, RECEIVE_CHAR } from "../actions/char_actions";
+import { CHANGE_SELECTED_CHAR, REMOVE_CHAR, RECEIVE_CHAR, RECEIVE_FEED_UNFOLLOW, RECEIVE_FOLLOW } from "../actions/char_actions";
 import { RECEIVE_COMMUNITY_FOLLOW, RECEIVE_COMMUNITY_UNFOLLOW } from '../actions/community_actions';
 import { MESSAGE_SEEN } from '../actions/message_actions';
 
@@ -110,8 +110,17 @@ const usersReducer = (state = {}, action) => {
       let msgIdx = newState[action.message.user_id].unseen_message_ids.indexOf(action.message.id);
       newState[action.message.user_id].unseen_message_ids.splice(msgIdx, 1);
       return newState;
+    case RECEIVE_FEED_UNFOLLOW:
+      let charIdx = newState[action.follow.user_id].following_character_ids.indexOf(action.follow.character_id);
+      newState[action.follow.user_id].following_character_ids.splice(charIdx,1);
+      return newState;
     // case LOGOUT_CURRENT_USER:
     //   return {};
+    case RECEIVE_FOLLOW:
+      if (!newState[action.follow.user_id].following_character_ids.includes(action.follow.character_id)) {
+        newState[action.follow.user_id].following_character_ids.push(action.follow.character_id);
+      }
+      return newState;
     default:
       return state;
   }
