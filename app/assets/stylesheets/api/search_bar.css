@@ -39,3 +39,13 @@
     border: 2px solid lightgrey;
     border-style: inset;
 }
+
+.navbar-search-container {
+    /* background: blue; */
+}
+
+i.fa-home {
+    font-size: 16px;
+    bottom: 20px;
+    right: 25px;
+}

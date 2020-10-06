@@ -225,3 +225,8 @@
 /* .nav-dropdown {
     background: red;
 } */
+
+.navbar-logo {
+    width: 120px;
+    height: 120px;
+}
