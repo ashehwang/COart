@@ -34,7 +34,7 @@ class CharPage extends React.Component {
     }
 
     checkResLength(res){
-        if(Object.values(res.payload.characterPosts).length === 5) {
+        if(Object.values(res.payload.characterPosts).length === 15) {
             this.setState({ next_avail: true });
         } else this.setState({ next_avail: false }, () => console.log(this.state));
     }
