@@ -33,7 +33,13 @@ class SearchBar extends React.Component {
       return null;
     } else if (!this.state.filter) {
       return null;
-    } else if (this.state.filter && this.props.characters.length === 0) {
+    } else if (this.state.filter && this.state.filter.length < 3) {
+      return (
+        <div className="search-result-box">
+          <div className="search-result"> minimum 3 characters needed for search</div>
+        </div>
+      )
+    } else if (this.state.filter && this.state.filter.length > 2 && this.props.characters.length === 0) {
       return (
         <div className="search-result-box">
           <div className="search-result">No Matching Character</div>
@@ -76,7 +82,7 @@ class SearchBar extends React.Component {
           <form className="searchform">
             <input
               type="text"
-              placeholder="search CoTell"
+              placeholder="search Characters.."
               onChange={this.updateFilter}
               value={this.state.filter}
               onFocus={(e) => this.setState({ showSearchResults: true })}

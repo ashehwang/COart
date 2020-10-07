@@ -41,7 +41,7 @@ class Intro extends React.Component {
                         <p>They'll be your chess piece, and your avatar to unfold the story for you. They'll interact with other characters and you might find out that they have a soul of their own. </p>
                         <br/>
                         <h1>Each character is unique. Just like us.</h1>
-                        <p>There are billions of people walking on earth. But no two people are the same. So are your characters.</p>
+                        <p>There are billions of people walking on earth. But no two people are the same. So are your characters.</p><br/>
                         <h1>Possibilities are enless.</h1>
                         <p>Ever spent hours customizing your online game avatar? Now you have even more freedom to do so. Your character can have any looks you like. Any crazy family line you can imagine. Give it life by specifying it's personalities.</p>
                         <br/>
@@ -53,13 +53,26 @@ class Intro extends React.Component {
             case 3:
                 return(
                     <div>
-                       world is
+                       <h1>World is where your character lives in and actively provides a context for your story line.</h1><br/>
+                       <p>Possibilies range from anywhere you currently live to an unknown place that's yet to form in your imagination. It can be set any time in history, or any place in legends, a fantasy world with different races and magic ... I've always been a fan of Hogwarts, dreaming I'd get a letter from owl.</p><br/>
+                        <h1>World is a community.</h1><br/>
+                        <p>When you make a world, you're sending an invitation for people to write and/or draw a story together. The characters act the story, but it's people behind them who tell and creat them.</p>
+                        <h1>Recruit people to create a story with you!</h1><br/>
+                        <p>When you create a world, you'll be the Game Master of that story. Initially the world is set to open for new members. People can apply with their characters to participate in a story. As administrator, you'll have the power to choose which characters you'd like to invite to your world. If you think the character doesn't align with your story (you'd not want a sorcerer in an SF world) you can decline membership and that character won't be able to write in the storyline.</p><br/>
+                        <h1>When recruiting's closed, only members can write in your world storyline.</h1><br/>
+                        <p>Provide events to give people a hint what to add to the storyline. Or you can have common missions set for world member characters to participate.</p><br/>
+                        <h1>Let your story unfold.</h1>
                     </div>
                 )
             case 4:
                 return(
                     <div>
-                       Rule
+                       <h1>Your works are your creation.</h1><br/>
+                       <p>Don't copy other people's original characters, or claim someone else's original character to be yours. You would be very sad if someone else claimed your work to be his/hers. Co-Tell won't use your works without you permission. <strong>Your works belong to you.</strong></p><br/>
+                       <h1>Be respectful.</h1><br/>
+                       <p>No swearing, no name calling, no sabotaging will be allowed. Collaboartion entails cooperation, and cooperation can't exist without mutual respect. Co-Tell holds right to delete any posts/comments that seem damaging to other people. 
+                       </p><br/>
+                       <h1>Golden Rule: Don't do things to others that you wouldn't want to be done to you.</h1><br/>
                     </div>
                 )
             case 5:
@@ -77,7 +90,7 @@ class Intro extends React.Component {
                         <p>Co-Tell is a work in progress. But I'll continue work on this to make it a better experience for you. Hope you enjoy. And maybe we can help each other in building a little world together.</p>
                         <br/>
                         <br/>
-                        <p>If you have any questions or suggestions, don't hesitate to contact me.</p>
+                        <p>If you have any questions or suggestions, don't hesitate to contact me. My email is yuroruby@gmail.com</p>
                         <br/>
                         <br/>
                         With love,
@@ -89,6 +102,12 @@ class Intro extends React.Component {
     }
 
     render(){
+        const cat1 = this.state.category === 1 ? "selected-intro" : "";
+        const cat2 = this.state.category === 2 ? "selected-intro" : "";
+        const cat3 = this.state.category === 3 ? "selected-intro" : "";
+        const cat4 = this.state.category === 4 ? "selected-intro" : "";
+        const cat5 = this.state.category === 5 ? "selected-intro" : "";
+
         return(
             <div className="intro-container relative">
                 <div className="intro-prompt">
@@ -96,11 +115,11 @@ class Intro extends React.Component {
                     <h3></h3>
                 </div>
                 <div className="intro-categories flex">
-                    <div className="intro-category hover" onClick={() => this.setState({ category: 1 })}>What's this about?</div>
-                    <div className="intro-category hover" onClick={() => this.setState({ category: 2 })}>Characters</div>
-                    <div className="intro-category hover" onClick={() => this.setState({ category: 3 })}>World</div>
-                    <div className="intro-category hover" onClick={() => this.setState({ category: 4 })}>Rules</div>
-                    <div className="intro-category hover" onClick={() => this.setState({ category: 5 })}>About Me</div>
+                    <div className={`intro-category hover ${cat1}`} onClick={() => this.setState({ category: 1 })}>What's this about?</div>
+                    <div className={`intro-category hover ${cat2}`} onClick={() => this.setState({ category: 2 })}>Characters</div>
+                    <div className={`intro-category hover ${cat3}`} onClick={() => this.setState({ category: 3 })}>World</div>
+                    <div className={`intro-category hover ${cat4}`} onClick={() => this.setState({ category: 4 })}>Rules</div>
+                    <div className={`intro-category hover ${cat5}`} onClick={() => this.setState({ category: 5 })}>About Me</div>
                 </div>
                 <div className="intro-show-container">
                     {this.renderContent()}

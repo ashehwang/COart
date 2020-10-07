@@ -41,9 +41,9 @@
 
 .intro-category:hover {
     font-weight: 800;
-    background: #FDDDD9;
+    /* background: #FDDDD9;
     color: #0B3142;
-    border-radius: 5px;
+    border-radius: 5px; */
 } 
 /* somehow not working */
 
@@ -71,4 +71,11 @@
 .intro-aboutme {
     width: 500px;
     margin: 0 auto;
+}
+
+.selected-intro {
+    font-weight: 800;
+    background: #FDDDD9;
+    color: #0B3142;
+    border-radius: 5px;
 }
