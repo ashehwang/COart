@@ -115,7 +115,7 @@ class Api::CharactersController < ApplicationController
     def search
         filter = params[:filter].downcase
         @characters = Character.where("LOWER(first_name) LIKE (?) OR LOWER(last_name) LIKE (?)", "%#{filter}%", "%#{filter}%")
-        @users = User.where("LOWER(nick_name LIKE (?)", "%#{filter}")
+        @users = User.where("LOWER(nick_name) LIKE (?) OR LOWER(user_name) LIKE (?)", "%#{filter}", "%#{filter}")
         render :search
     end
 

@@ -29,6 +29,7 @@
 
 .board-list-container {
     width: 900px;
+    z-index: 1;
 }
 
 .board-top {
@@ -103,11 +104,16 @@
     color: grey;
 }
 
-.board-page-flip > div:hover {
+.board-page-flip-white > div {
+    font-size: 12px;
+    padding: 5px 8px;
+    color: white;
+}
+
+.board-page-flip > div:hover, .board-page-flip-white > div:hover {
     color: #28292A;
 }
 
-.board-page-flip {
+.board-page-flip, .board-page-flip-white {
     flex-direction: row-reverse;
 }
-

@@ -3,7 +3,7 @@ import SearchBar from "./search_bar";
 import { clearSearch, fetchSearchResult } from '../../actions/search_actions';
 
 const mSTP = (state) => ({
-  users: Object.values(state.entities.search),
+  characters: Object.values(state.entities.search)
 });
 
 const mDTP = (dispatch) => ({

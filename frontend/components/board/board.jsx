@@ -28,16 +28,10 @@ class Board extends React.Component {
     //     this.setState({ next_avail: false, page_num: 1 })
     // }
 
-    // checkNextAvail(){
-    //     if (this.props.boardPosts.length >= 15) {
-    //         this.setState({next_avail: true});
-    //     } else this.setState({next_avail: false});
-    // }
-
     checkResLength(res){
         if(Object.values(res.boardPosts).length === 15) {
-            this.setState({next_avail: true})
-        } else this.setState({next_avail: false})
+            this.setState({ next_avail: true })
+        } else this.setState({ next_avail: false })
     }
 
 
@@ -107,14 +101,14 @@ class Board extends React.Component {
 
     renderPrevious(){
         if(this.state.page_num > 1){
-            return <div className="hover" onClick={this.getPreviousPosts}><i className="fas fa-chevron-left" ></i>  Previous</div>
+            return <div className="hover color-grey" onClick={this.getPreviousPosts}><i className="fas fa-chevron-left" ></i>  Previous</div>
         } else return null;
     }
 
     renderNext(){
         if (this.state.next_avail) {
             return (
-              <div className="hover" onClick={this.getNextPosts}>
+              <div className="hover color-grey" onClick={this.getNextPosts}>
                 <i className="fas fa-chevron-right"></i> Next
               </div>
             );
@@ -134,7 +128,7 @@ class Board extends React.Component {
                         <div className="board-category flex-center hover border" onClick={() => this.switch(2)}>Finding Members</div>
                         <div className="board-category flex-center hover border" onClick={() => this.switch(3)}>Looking for World</div>
                     </div>
-                    <div className="board-list-container border bg-white">
+                    <div className="board-list-container border bg-white relative">
                         <div className="board-top flex">
                             <h1>{this.state.category}</h1>
                             <div className="border flex-center hover" onClick={() => this.props.history.push("/write")}><div className="flex-center"><i className="fas fa-marker"></i>  Write</div></div>

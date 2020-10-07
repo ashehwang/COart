@@ -1,5 +1,6 @@
 import React from 'react';
 import MainCharPostItem from './main_char_post_item';
+import {Link} from 'react-router-dom';
 
 class MainPage extends React.Component {
     constructor(props){
@@ -11,7 +12,7 @@ class MainPage extends React.Component {
 
     componentDidMount(){
         this.props.fetchPublicCharacterPosts(0);
-        if (this.props.history.action === "POP") this.props.fetchPublicCharacterPosts();
+        // if (this.props.history.action === "POP") this.props.fetchPublicCharacterPosts();
     }
 
     componentDidUpdate(prevProps){
@@ -19,6 +20,7 @@ class MainPage extends React.Component {
             this.props.fetchPublicCharacterPosts(0);
         }
     }
+
     getNextPosts(e){
         this.setState({ page_num: this.state.page_num + 1 }, () => {
             this.props.fetchPublicCharacterPosts(this.state.page_num)
@@ -60,9 +62,17 @@ class MainPage extends React.Component {
         if(!characterPosts) return null;
         return (
             <div className="main-page-container relative align-center">
+                <div className="feed-page-logo absolute">
+                    <img className="cotell-logo hover" src="https://i.ibb.co/fYkKYp5/try3.png" alt="logo"></img>
+                    <div className="feed-page-alert border">
+                        Welcome to Co-Tell! Clicking our logo at the upper left corner will bring you to the <Link to="/">introduction page</Link>. 
+                        <br/><br/>
+                        This page can be loaded by clicking the small home sign next to the search bar. Please join/log in to access your feed!
+                    </div>
+                </div>
                 <div className="main-page">
                     {characterPosts.reverse().map(charPost => <MainCharPostItem key={charPost.id} characterPost={charPost} character={characters[charPost.character_id]} loggedIn={loggedIn} currentUser={currentUser} createComment={createComment} deleteCharacterPost={deleteCharacterPost} openModal={openModal}/>)}
-                    <div className="board-page-flip flex relative">
+                    <div className="board-page-flip-white flex relative">
                         {this.renderNext()}
                         {this.renderPrevious()}
                     </div>

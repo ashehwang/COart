@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     this.state = { filter: "", showSearchResults: false };
     this.updateFilter = this.updateFilter.bind(this);
     this.performSearch = this.performSearch.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   updateFilter(e) {
@@ -16,66 +16,64 @@ class SearchBar extends React.Component {
   }
 
   performSearch() {
-    if (this.state.filter) {
+    if (this.state.filter.length > 2) {
       this.props.fetchSearchResult({ filter: this.state.filter });
     } else {
       this.props.clearSearch();
     }
   }
 
-  // handleClick(userId) {
-  //   this.props.history.push(`/profile/${userId}`);
-  //   this.setState({ filter: "" });
-  // }
+  handleClick(charId) {
+    this.props.history.push(`/character/${charId}`);
+    this.setState({ filter: "" });
+  }
 
-  // showSearchResults() {
-  //   if (!this.state.showSearchResults) {
-  //     return null;
-  //   } else if (!this.state.filter) {
-  //     return null;
-  //   } else if (this.state.filter && this.props.users.length === 0) {
-  //     return (
-  //       <div className="search-result-box">
-  //         <div className="search-result">No matching user</div>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div className="search-result-box">
-  //         {this.props.users.map((user) => {
-  //           return (
-  //             <div
-  //               className="search-result"
-  //               key={user.id}
-  //               onMouseDown={(e) => this.handleClick(user.id)}
-  //             >
-  //               <img
-  //                 src={
-  //                   user.profilePhotoUrl
-  //                     ? user.profilePhotoUrl
-  //                     : "https://i.ibb.co/DRTq0KR/5cc28e190d41d2738de6.jpg"
-  //                 }
-  //                 className="small-profile-pic"
-  //               />
-  //               <p>
-  //                 {user.first_name} {user.last_name}
-  //               </p>
-  //             </div>
-  //           );
-  //         })}
-  //       </div>
-  //     );
-  //   }
-  // }
+  showSearchResults() {
+    if (!this.state.showSearchResults) {
+      return null;
+    } else if (!this.state.filter) {
+      return null;
+    } else if (this.state.filter && this.props.characters.length === 0) {
+      return (
+        <div className="search-result-box">
+          <div className="search-result">No Matching Character</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="search-result-box">
+          {this.props.characters.map((character) => {
+            return (
+              <div
+                className="search-result hover"
+                key={character.id}
+                onMouseDown={(e) => this.handleClick(character.id)}
+              >
+                <img
+                  src={
+                    character.headPhotoUrl
+                  }
+                  className="search-photo"
+                />
+                <p>
+                  {character.first_name} {character.last_name}
+                </p>
+                <p className="search-creator">
+                  {character.creator.nick_name} <span>@{character.creator.user_name}</span>
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+  }
 
   render() {
     return (
       <div className="search-bar-container">
         <div className="searchbar">
           <form className="searchform">
-            {/* <Link to="/">
-              <i className="fab fa-facebook"></i>
-            </Link> */}
             <input
               type="text"
               placeholder="search CoTell"
@@ -86,7 +84,7 @@ class SearchBar extends React.Component {
             />
           </form>
         </div>
-        {/* {this.showSearchResults()} */}
+        {this.showSearchResults()}
       </div>
     );
   }

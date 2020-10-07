@@ -3,6 +3,11 @@ json.characterPosts do
         json.set! character_post.id do
             json.extract! character_post, :id, :user_id, :character_id, :body, :visibility, :updated_at, :comment_ids
             json.photoUrl url_for(character_post.photo) if character_post.photo.attached?
+            if character_post.community
+                json.community do
+                    json.extract! character_post.community, :id, :url, :name
+                end
+            end
         end
     end
 end

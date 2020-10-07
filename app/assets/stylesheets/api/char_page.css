@@ -331,6 +331,7 @@ img.pic-preview3 {
     height: 40px;
     border: 1px solid lightgrey;
     border-radius: 4px;
+    background: white;
 }
 
 .char-page-world-show {
