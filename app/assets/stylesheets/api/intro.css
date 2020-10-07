@@ -73,6 +73,16 @@
     margin: 0 auto;
 }
 
+.withlove {
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.intro-aboutme h6 {
+    font-size: 10px;
+    color: lightgrey;
+}
+
 .selected-intro {
     font-weight: 800;
     background: #FDDDD9;

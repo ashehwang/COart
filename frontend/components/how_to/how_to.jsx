@@ -34,25 +34,55 @@ class Intro extends React.Component {
                     </div>
                 )
             case 2:
-                return(
-                    <div>
-                        <h1>Characters are the living building blocks of your story.</h1>
-                        <br/>
-                        <p>They'll be your chess piece, and your avatar to unfold the story for you. They'll interact with other characters and you might find out that they have a soul of their own. </p>
-                        <br/>
-                        <h1>Each character is unique. Just like us.</h1>
-                        <p>There are billions of people walking on earth. But no two people are the same. So are your characters.</p><br/>
-                        <h1>Possibilities are enless.</h1>
-                        <p>Ever spent hours customizing your online game avatar? Now you have even more freedom to do so. Your character can have any looks you like. Any crazy family line you can imagine. Give it life by specifying it's personalities.</p>
-                        <br/>
-                        <p>You can start simple and make an avatar of your own self. Or think of your favorite game, anime, Marvel studio, DC comics, TV series character. You'll find that there are traits that you especially attracted to. Red eyes? Elves? Villains with sad story behind how they became one? Twintail tsundere?</p>
-                        <h1>No matter what, they represent a small piece of you.</h1>
-                        <p></p>
-                    </div>
-                )
+                return (
+                  <div className="intro-about">
+                    <h1>
+                      Characters are the living building blocks of your story.
+                    </h1>
+                    <br />
+                    <p>
+                      They'll be your chess piece, and your avatar to unfold the
+                      story for you. They'll interact with other characters and
+                      you might find out that they have a soul of their own.{" "}
+                    </p>
+                    <br />
+                    <h1>Each character is unique. Just like us.</h1>
+                    <br />
+                    <p>
+                      There are billions of people walking on earth. But no two
+                      people are the same. So are your characters.
+                    </p>
+                    <br />
+                    <h1>Possibilities are enless.</h1>
+                    <br />
+                    <p>
+                      Ever spent hours customizing your online game avatar? Now
+                      you have even more freedom to do so. Your character can
+                      have any looks you like. Any crazy family line you can
+                      imagine. Give it life by specifying it's personalities.
+                    </p>
+                    <br />
+                    <p>
+                      You can start simple and make an avatar of your own self.
+                      Or think of your favorite game, anime, Marvel studio, DC
+                      comics, TV series character. You'll find that there are
+                      traits that you especially attracted to. Red eyes? Elves?
+                      Villains with sad story behind how they became one?
+                      Twintail tsundere?
+                    </p>
+                    <br />
+                    <h1>
+                      No matter what, they represent a small piece of you.
+                    </h1>
+                    <br /> 
+                    <p>
+                      Be respectful of other people and their characters alike.
+                    </p>
+                  </div>
+                );
             case 3:
                 return(
-                    <div>
+                    <div className="intro-about">
                        <h1>World is where your character lives in and actively provides a context for your story line.</h1><br/>
                        <p>Possibilies range from anywhere you currently live to an unknown place that's yet to form in your imagination. It can be set any time in history, or any place in legends, a fantasy world with different races and magic ... I've always been a fan of Hogwarts, dreaming I'd get a letter from owl.</p><br/>
                         <h1>World is a community.</h1><br/>
@@ -66,7 +96,7 @@ class Intro extends React.Component {
                 )
             case 4:
                 return(
-                    <div>
+                    <div className="intro-aboutme">
                        <h1>Your works are your creation.</h1><br/>
                        <p>Don't copy other people's original characters, or claim someone else's original character to be yours. You would be very sad if someone else claimed your work to be his/hers. Co-Tell won't use your works without you permission. <strong>Your works belong to you.</strong></p><br/>
                        <h1>Be respectful.</h1><br/>
@@ -76,28 +106,49 @@ class Intro extends React.Component {
                     </div>
                 )
             case 5:
-                return(
-                    <div className="intro-aboutme">
-                        <h2>A little about me...</h2>
-                        <br/>
-                        <h6>(I have my own story to tell!)</h6>
-                        <br/>
-                        {/* <p>I had a job that required me to be in close contact with other people every day. So when COVID-19 hit, I decided to make good use of the freed time to learn how to program. I knew the repetitive nature of my previous job was killing the little creative soul in me, and wanted the ability to build anything if I wanted to.</p> */}
-                        <p>I'm some with a job you'd least expect to be able to program. Or draw. Or write. Or design. But secretly I do them all. I have a little creative soul hidden in me, just like you. ;)</p>
-                        <br/>
-                        <p>Building Co-Tell has been one of the most enjoyable projects I've done in a long time. Mostly because I truly believe that no matter how banal one can seem on the outside, that person is actually very special.. He/she just needs a safe space to let that extraordinary little spark out!</p>
-                        <br/>
-                        <p>Co-Tell is a work in progress. But I'll continue work on this to make it a better experience for you. Hope you enjoy. And maybe we can help each other in building a little world together.</p>
-                        <br/>
-                        <br/>
-                        <p>If you have any questions or suggestions, don't hesitate to contact me. My email is yuroruby@gmail.com</p>
-                        <br/>
-                        <br/>
-                        With love,
-                        <br/>
-                        A.
-                    </div>
-                )
+                return (
+                  <div className="intro-aboutme">
+                    <br/>
+                    <h2>A little about me...</h2>
+                    <br />
+                    <h6>(I have my own story to tell!)</h6>
+                    <br />
+                    <p>
+                      I'm some with a job you'd least expect to be able to
+                      program. Or draw. Or write. Or design. But secretly I do
+                      them all. I have a little creative soul hidden in me, just
+                      like you. ;-)
+                    </p>
+                    <br />
+                    <p>
+                      Building Co-Tell has been one of the most enjoyable
+                      projects I've done in a long time. Mostly because I truly
+                      believe that no matter how banal one can seem on the
+                      outside, that person is actually very special.. He/she
+                      just needs a safe space to let that extraordinary little
+                      spark out!
+                    </p>
+                    <br />
+                    <p>
+                      Co-Tell is a work in progress. But I'll continue work on
+                      this to make it a better experience for you. Hope you
+                      enjoy. And maybe we can help each other in building a
+                      little world together.
+                    </p>
+                    <br />
+                    <p>
+                      If you have any questions or suggestions, don't hesitate
+                      to contact me. My email is yuroruby@gmail.com
+                    </p>
+                    <br />
+                    <br />
+                    <h4 className="withlove">
+                      With love,
+                      <br />
+                      A.
+                    </h4>
+                  </div>
+                );
         }
     }
 
