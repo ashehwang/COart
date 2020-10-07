@@ -3,11 +3,11 @@ class Api::PostsController < ApplicationController
     before_action :require_login, only: [:create, :update, :destroy]
 
     def index
-        offset = (params[:numPages].to_i) * 3
+        offset = (params[:numPages].to_i) * 15
         @posts = Post.includes(:user_comments)
                     .where(user_id: params[:userId])
                     .offset(offset)
-                    .limit(3)
+                    .limit(15)
                     .order(updated_at: :desc)
 
         render :index

@@ -13,7 +13,7 @@ class UserPosts extends React.Component {
     componentDidMount(){
         this.props.fetchPagePosts(this.props.user.id, 0)
                 .then(res => {
-                    if (res.payload.posts && Object.keys(res.payload.posts).length >= 3) {
+                    if (res.payload.posts && Object.keys(res.payload.posts).length >= 15) {
                         this.setState({next_avail: true })
                     }
                 })
@@ -34,7 +34,7 @@ class UserPosts extends React.Component {
     }
 
     checkResLength(res){
-        if(Object.values(res.payload.posts).length === 3) {
+        if(Object.values(res.payload.posts).length === 15) {
             this.setState({next_avail: true})
         } else this.setState({next_avail: false})
     }

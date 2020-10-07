@@ -8,35 +8,35 @@ class Api::CharacterPostsController < ApplicationController
             @character_posts = CharacterPost.where(character_id: params[:characterId])
                         .includes(:user, :character => [:community], comments: [:user]) #reduce N+1 query
                         .order(updated_at: :desc)
-                        .limit(5)
+                        .limit(15)
             @character = Character.find(params[:characterId])
             @user = @character.user
             render :index
         elsif params[:numPages] #fetching char posts by increments for char page
-            offset = (params[:numPages].to_i) * 5
+            offset = (params[:numPages].to_i) * 15
             @character_posts = CharacterPost.where(character_id: params[:charId])
                                     .includes(comments: [:user])
                                     .offset(offset)
-                                    .limit(5)
+                                    .limit(15)
                                     .order(updated_at: :desc)
             render :fetch
         elsif params[:user_id] #feching feed
-            offset = (params[:page].to_i) * 5
+            offset = (params[:page].to_i) * 15
             @user = User.find(params[:user_id])
                         # .includes(:following_characters, :following_communities)
             # @character_posts = CharacterPost.where(character_id: @user.following_character_ids || reference_id: @user.following_community_ids)
             @character_posts = CharacterPost.where("character_id IN (?) OR reference_id IN (?)", @user.following_character_ids, @user.following_community_ids)
                                             .includes(:user, :community, :character => [:community], :comments => [:user])
                                             .offset(offset)
-                                            .limit(5)
+                                            .limit(15)
                                             .order(updated_at: :desc)
             render :feed
         else #for receiving all characters in the main feed; params[mainPage] for offset
-            offset = (params[:mainPage].to_i) * 5
+            offset = (params[:mainPage].to_i) * 15
             @character_posts = CharacterPost.includes(:user, :character, comments: [:user]) #reduce N+1 query
                         .where(visibility: "public")
                         .offset(offset)
-                        .limit(5)
+                        .limit(15)
                         .order(updated_at: :desc)
             render :main
         end
